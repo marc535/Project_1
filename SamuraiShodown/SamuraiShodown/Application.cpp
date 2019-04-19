@@ -1,20 +1,20 @@
 #include "Application.h"
 #include "ModuleWindow.h"
-#include "ModuleRender.h"
-#include "ModuleInput.h"
-#include "ModuleTextures.h"
-#include "ModuleSceneSpace.h"
-#include "ModuleSceneIntro.h"
-#include "ModuleCollision.h"
-#include "ModulePlayer.h"
-#include "ModuleFadeToBlack.h"
-#include "ModuleParticles.h"
+//#include "ModuleRender.h"
+//#include "ModuleInput.h"
+//#include "ModuleTextures.h"
+//#include "ModuleSceneSpace.h"
+//#include "ModuleSceneIntro.h"
+//#include "ModuleCollision.h"
+//#include "ModulePlayer.h"
+//#include "ModuleFadeToBlack.h"
+//#include "ModuleParticles.h"
 
 Application::Application()
 {
 	int i = 0;
 	modules[i++] = window = new ModuleWindow();
-	modules[i++] = render = new ModuleRender();
+	/*modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = scene_intro = new ModuleSceneIntro();
@@ -22,7 +22,7 @@ Application::Application()
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = fade = new ModuleFadeToBlack();*/
 }
 
 Application::~Application()
@@ -36,9 +36,9 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-	scene_space->Disable();
+	/*scene_space->Disable();
 	player->Disable();
-	collision->Disable();
+	collision->Disable();*/
 	// ----------------------------
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
