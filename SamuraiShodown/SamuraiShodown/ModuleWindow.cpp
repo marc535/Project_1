@@ -31,17 +31,13 @@ bool ModuleWindow::Init()
 		int height = SCREEN_HEIGHT * SCREEN_SIZE;
 		Uint32 flags = SDL_WINDOW_SHOWN;
 
-		if (WIN_FULLSCREEN == true)
-			flags |= SDL_WINDOW_FULLSCREEN;
+		if (WIN_FULLSCREEN == true) { flags |= SDL_WINDOW_FULLSCREEN; }
 
-		if (WIN_BORDERLESS == true)
-			flags |= SDL_WINDOW_BORDERLESS;
+		if (WIN_BORDERLESS == true) { flags |= SDL_WINDOW_BORDERLESS; }
 
-		if (WIN_RESIZABLE == true)
-			flags |= SDL_WINDOW_RESIZABLE;
+		if (WIN_RESIZABLE == true) { flags |= SDL_WINDOW_RESIZABLE; }
 
-		if (WIN_FULLSCREEN_DESKTOP == true)
-			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		if (WIN_FULLSCREEN_DESKTOP == true) { flags |= SDL_WINDOW_FULLSCREEN_DESKTOP; }
 
 		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
@@ -52,6 +48,7 @@ bool ModuleWindow::Init()
 		}
 		else
 		{
+			LOG("Window created succesfully! -------");
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
 		}
