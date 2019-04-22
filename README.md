@@ -22,5 +22,5 @@ Download the file of whichever version you wish to play, inside of every one of 
 
 List of Versions:
 
-v0.1: Scrollable empty background
+v.0.1: Scrollable empty background
  
