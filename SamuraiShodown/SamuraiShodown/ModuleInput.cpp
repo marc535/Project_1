@@ -5,8 +5,9 @@
 
 ModuleInput::ModuleInput() : Module()
 {
-	for(uint i = 0; i < MAX_KEYS; ++i)
+	for (uint i = 0; i < MAX_KEYS; ++i) {
 		keyboard[i] = KEY_IDLE;
+	}
 }
 
 // Destructor
@@ -41,22 +42,28 @@ update_status ModuleInput::PreUpdate()
 	{
 		if(keys[i] == 1)
 		{
-			if(keyboard[i] == KEY_IDLE)
+			if (keyboard[i] == KEY_IDLE) {
 				keyboard[i] = KEY_DOWN;
-			else
+			}
+			else {
 				keyboard[i] = KEY_REPEAT;
+			}
 		}
 		else
 		{
-			if(keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN) {
 				keyboard[i] = KEY_UP;
-			else
+			}
+			else {
 				keyboard[i] = KEY_IDLE;
+			}
 		}
 	}
 
-	if(keyboard[SDL_SCANCODE_ESCAPE])
+	if (keyboard[SDL_SCANCODE_ESCAPE]) {
+
 		return update_status::UPDATE_STOP;
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
