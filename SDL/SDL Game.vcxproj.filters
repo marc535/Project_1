@@ -56,7 +56,7 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneIntro.h">
+    <ClInclude Include="..\SamuraiShodown\SamuraiShodown\ModuleSceneWelcome.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -94,7 +94,7 @@
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneIntro.cpp">
+    <ClCompile Include="..\SamuraiShodown\SamuraiShodown\ModuleSceneWelcome.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
