@@ -8,9 +8,9 @@ ModuleAudio::ModuleAudio() : Module()
 		music[i] = nullptr;
 	}
 
-	for (int p = 0; p < MAX_EFFECTS; p++)
+	for (int j = 0; j < MAX_EFFECTS; j++)
 	{
-		fx[p] = nullptr;
+		fx[j] = nullptr;
 	}
 }
 
