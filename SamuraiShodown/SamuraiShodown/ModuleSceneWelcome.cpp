@@ -27,14 +27,14 @@ bool ModuleSceneWelcome::Start()
 
 	LOG("Loading Welcome scene");
 
-	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/Music/WelcomeMusic.ogg");
+	App->audio->music[2] = Mix_LoadMUS("Assets/Music/WelcomeMusic.ogg");
 
-	if (!App->audio->soundtracks[2]) {
+	if (!App->audio->music[2]) {
 		LOG("Mix_LoadMUS(\"WelcomeMusic.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
 		graphics = App->textures->Load("Assets/Sprites/welcome.png");
-		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+		Mix_PlayMusic(App->audio->music[2], 2);
 	}
 
 	
@@ -62,11 +62,11 @@ update_status ModuleSceneWelcome::Update()
 	App->render->Blit(graphics, 0, 0, false, &background); //Welcome Image
 	
 
-	// TODO 2: make so pressing SPACE the HONDA stage is loaded
+	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		Mix_FadeOutMusic(2000);
-		App->fade->FadeToBlack(App->scene_welcome, App->scene_uky, 2.0f);
+		
 	}
 
 	return UPDATE_CONTINUE;

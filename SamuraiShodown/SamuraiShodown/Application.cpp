@@ -17,7 +17,7 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
-	//modules[i++] = scene_intro = new ModuleSceneIntro();
+	modules[i++] = scene_welcome = new ModuleWelcomeScreen();
 	/*modules[i++] = scene_space = new ModuleSceneSpace();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
