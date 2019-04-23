@@ -13,6 +13,7 @@ class ModuleParticles;
 class ModuleSceneSpace;
 class ModuleSceneIntro;
 class ModulePlayer;
+class ModuleAudio;
 class ModuleFadeToBlack;
 class ModuleCollision;
 class Module;
@@ -32,6 +33,7 @@ public:
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
+	ModuleAudio* audio;
 
 public:
 
