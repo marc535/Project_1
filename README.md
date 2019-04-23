@@ -24,3 +24,4 @@ List of Versions:
 
 v.0.1: Scrollable empty background
  
+Link to the game's wiki: https://github.com/marc535/Project_1/wiki
