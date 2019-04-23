@@ -22,8 +22,8 @@ public:
 
 public:
 
-	Mix_Chunk * effects[MAX_EFFECTS];
-	Mix_Music * soundtracks[MAX_SOUNDTRACK];
+	Mix_Chunk * fx[MAX_EFFECTS];
+	Mix_Music * music[MAX_SOUNDTRACK];
 
 };
 
