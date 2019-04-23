@@ -80,11 +80,11 @@ bool ModuleAudio::CleanUp()
 			
 	}
 
-	for (int z = 0; z < MAX_EFFECTS; z++)
+	for (int j = 0; j < MAX_EFFECTS; j++)
 	{
-		if (fx[z] != nullptr) {
-			Mix_FreeChunk(fx[z]);
-			fx[z] = nullptr;
+		if (fx[j] != nullptr) {
+			Mix_FreeChunk(fx[j]);
+			fx[j] = nullptr;
 		}			
 	}
 
