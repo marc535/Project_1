@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleSceneWelcome.h"
 #include "ModuleSceneNeoGeo.h"
+#include "ModuleSceneCharacterSelection.h"
 //#include "ModuleCollision.h"
 //#include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -19,6 +20,7 @@ Application::Application()
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
 	modules[i++] = scene_welcome = new ModuleSceneWelcome();
+	modules[i++] = scene_charSelect = new ModuleSceneCharacterSelection();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	/*modules[i++] = scene_space = new ModuleSceneSpace();
 	modules[i++] = player = new ModulePlayer();
