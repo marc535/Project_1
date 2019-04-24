@@ -35,7 +35,7 @@ bool ModuleSceneHaohmaru::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/1.png");
+		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
