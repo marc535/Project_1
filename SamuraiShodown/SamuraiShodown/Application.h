@@ -26,7 +26,7 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleSceneWelcome* scene_welcome ;
+	ModuleSceneWelcome* scene_welcome;
 	ModuleCollision* collision;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;

@@ -2,8 +2,8 @@
 #define __ModulePlayer_H__
 
 #include "Module.h"
-#include "Animation.h"
-#include "p2Point.h"
+//#include "Animation.h"
+//#include "p2Point.h"
 
 struct SDL_Texture;
 struct Collider;
