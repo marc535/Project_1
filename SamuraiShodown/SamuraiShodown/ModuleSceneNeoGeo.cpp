@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleSceneWelcome.h"
 #include "ModuleSceneNeoGeo.h"
 //#include "ModulePlayer.h"
 #include "ModuleInput.h"
@@ -34,7 +33,7 @@ bool ModuleSceneNeoGeo::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/title.png");
+		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neogeo.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
