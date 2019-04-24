@@ -55,6 +55,9 @@
     <ClCompile Include="ModuleSceneHaohmaru.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneEnding.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -97,6 +100,9 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneHaohmaru.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneEnding.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

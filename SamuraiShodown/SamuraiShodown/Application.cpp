@@ -6,6 +6,7 @@
 #include "ModuleSceneWelcome.h"
 #include "ModuleSceneNeoGeo.h"
 #include "ModuleSceneCharacterSelection.h"
+#include "ModuleSceneEnding.h"
 #include "ModuleSceneHaohmaru.h"
 
 //#include "ModuleCollision.h"
@@ -23,6 +24,7 @@ Application::Application()
 	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
 	modules[i++] = scene_welcome = new ModuleSceneWelcome();
 	modules[i++] = scene_charSelect = new ModuleSceneCharacterSelection();
+	modules[i++] = scene_ending = new ModuleSceneEnding();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
 	
 	modules[i++] = fade = new ModuleFadeToBlack();
@@ -52,6 +54,7 @@ bool Application::Init()
 
 	scene_welcome->Disable();
 	scene_charSelect->Disable();
+	scene_ending->Disable();
 	scene_haohmaru->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
