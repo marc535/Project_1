@@ -51,6 +51,10 @@ update_status ModuleRender::Update()
 {
 	//move camera
 
+	
+		LOG("Moving camera");
+	
+
 	return update_status::UPDATE_CONTINUE;
 }
 

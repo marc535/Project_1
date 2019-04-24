@@ -16,7 +16,16 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 	background.x = 0;
 	background.y = 0;
 
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			stageAnimation.PushBack({ (640 * j),416 * i,640,416 });
+		}
+	}
+	stageAnimation.speed = (0.1f);
 }
+
 
 ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
 {}
@@ -37,7 +46,7 @@ bool ModuleSceneHaohmaru::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage.png");
+		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
