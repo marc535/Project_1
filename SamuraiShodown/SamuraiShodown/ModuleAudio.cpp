@@ -36,30 +36,6 @@ bool ModuleAudio::Init()
 
 	Mix_OpenAudio(48000, AUDIO_U8, 2, 1024);
 
-	/*	MIX FORMATS
-	AUDIO_U8
-	Unsigned 8-bit samples
-	AUDIO_S8
-	Signed 8-bit samples
-	AUDIO_U16LSB
-	Unsigned 16-bit samples, in little-endian byte order
-	AUDIO_S16LSB
-	Signed 16-bit samples, in little-endian byte order
-	AUDIO_U16MSB
-	Unsigned 16-bit samples, in big-endian byte order
-	AUDIO_S16MSB
-	Signed 16-bit samples, in big-endian byte order
-	AUDIO_U16
-	same as AUDIO_U16LSB (for backwards compatability probably)
-	AUDIO_S16
-	same as AUDIO_S16LSB (for backwards compatability probably)
-	AUDIO_U16SYS
-	Unsigned 16-bit samples, in system byte order
-	AUDIO_S16SYS
-	Signed 16-bit samples, in system byte order
-	*/
-
-
 	Mix_VolumeMusic(MUSIC_VOLUME);
 	
 
