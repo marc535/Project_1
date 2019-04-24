@@ -12,48 +12,15 @@
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 {
 
-	/*for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		for (int j = 0; j < 6; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			stageAnimation.PushBack({ (640 * j), (416 * i), 640, 416 });
-			LOG("j++")
+			stageAnimation.PushBack({ (320 * j), (224 * i), 320, 224 });
+			//LOG("j++")
 		}
-		LOG("i++")
+		//LOG("i++")
 	}
-
-	stageAnimation.speed = 0.14f;*/
-
-	stageAnimation.PushBack({ 0, 0, 640, 416 });
-	stageAnimation.PushBack({ 640, 0, 640, 416 });
-	stageAnimation.PushBack({ 1280, 0, 640, 416 });
-	stageAnimation.PushBack({ 1920, 0, 640, 416 });
-
-	stageAnimation.PushBack({ 0, 0, 640, 416 });
-	stageAnimation.PushBack({ 640, 416, 640, 416 });
-	stageAnimation.PushBack({ 1280, 416, 640, 416 });
-	stageAnimation.PushBack({ 1920, 416, 640, 416 });
-
-	stageAnimation.PushBack({ 0, 832, 640, 416 });
-	stageAnimation.PushBack({ 640, 832, 640, 416 });
-	stageAnimation.PushBack({ 1280, 832, 640, 416 });
-	stageAnimation.PushBack({ 1920, 832, 640, 416 });
-
-	stageAnimation.PushBack({ 0, 1248, 640, 416 });
-	stageAnimation.PushBack({ 640, 1248, 640, 416 });
-	stageAnimation.PushBack({ 1280, 1248, 640, 416 });
-	stageAnimation.PushBack({ 1920, 1248, 640, 416 });
-
-	stageAnimation.PushBack({ 0, 1664, 640, 416 });
-	stageAnimation.PushBack({ 640, 1664, 640, 416 });
-	stageAnimation.PushBack({ 1280, 1664, 640, 416 });
-	stageAnimation.PushBack({ 1920, 1664, 640, 416 });
-
-	stageAnimation.PushBack({ 0, 2080, 640, 416 });
-	stageAnimation.PushBack({ 640, 2080, 640, 416 });
-	stageAnimation.PushBack({ 1280, 2080, 640, 416 });
-	stageAnimation.PushBack({ 1920, 2080, 640, 416 });
-
 
 	stageAnimation.speed = 0.14f;
 }
@@ -79,7 +46,7 @@ bool ModuleSceneHaohmaru::Start()
 	}
 	else {*/
 	/*	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");*/
-	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/prova.png");
+	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
