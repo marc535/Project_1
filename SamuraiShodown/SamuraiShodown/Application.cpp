@@ -25,6 +25,8 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	*/
+
+	scene_welcome->Disable();
 }
 
 Application::~Application()
