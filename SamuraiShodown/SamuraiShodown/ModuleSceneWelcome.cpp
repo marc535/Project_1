@@ -27,10 +27,10 @@ bool ModuleSceneWelcome::Start()
 
 	LOG("Loading Welcome scene");
 
-	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Static and Dynamic (Title).ogg");
+	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
 
 	if (!App->audio->music[2]) {
-		LOG("Mix_LoadMUS(\"Neo Geo Logo.ogg\"): %s\n", Mix_GetError());
+		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
 		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/title.png");
