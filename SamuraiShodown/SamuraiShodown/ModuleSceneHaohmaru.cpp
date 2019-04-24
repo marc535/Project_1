@@ -35,7 +35,7 @@ bool ModuleSceneHaohmaru::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neogeo.png");
+		graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 

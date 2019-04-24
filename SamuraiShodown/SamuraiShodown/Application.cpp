@@ -52,6 +52,7 @@ bool Application::Init()
 
 	scene_welcome->Disable();
 	scene_charSelect->Disable();
+	scene_haohmaru->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
