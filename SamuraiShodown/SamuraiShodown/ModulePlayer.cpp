@@ -26,10 +26,6 @@ ModulePlayer::ModulePlayer()
 	forward.PushBack({701, 0, 61, 118});
 	forward.PushBack({823, 0, 69, 118});
 	forward.PushBack({946, 0, 75, 118});
-	forward.PushBack({823, 0, 69, 118});
-	forward.PushBack({701, 0, 61, 118});
-	forward.PushBack({576, 0, 56, 118});
-	forward.PushBack({446, 0, 58, 118});
 	forward.speed = 0.14f;
 
 	// walk backward animation 
