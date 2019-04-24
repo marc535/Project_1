@@ -16,13 +16,15 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 	background.x = 0;
 	background.y = 0;
 
-	for (int i = 0; i < 6; i++)
+	/*for (int i = 0; i < 6; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			stageAnimation.PushBack({ (640 * j),416 * i,640,416 });
+			stageAnimation.PushBack({ (640 * i), (416 * j), 640, 416 });
 		}
-	}
+	}*/
+
+	stageAnimation.PushBack({ 0, 0, 640, 416 });
 	stageAnimation.speed = (0.1f);
 }
 
@@ -58,9 +60,10 @@ bool ModuleSceneHaohmaru::Start()
 // Update: draw background
 update_status ModuleSceneHaohmaru::Update()
 {
+	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //NeoGeo Image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f); //Haohmaru Image
 
 
 
