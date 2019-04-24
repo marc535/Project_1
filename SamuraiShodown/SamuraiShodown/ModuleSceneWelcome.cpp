@@ -26,6 +26,7 @@ ModuleSceneWelcome::~ModuleSceneWelcome()
 // Load assets
 bool ModuleSceneWelcome::Start()
 {
+	Enable();
 	/*if((Module*)App->scene_neogeo->isEnabled == false) {}*/
 	/*LOG("Loading Welcome scene");
 
