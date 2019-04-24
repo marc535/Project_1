@@ -25,17 +25,17 @@ ModuleSceneWelcome::~ModuleSceneWelcome()
 bool ModuleSceneWelcome::Start()
 {
 
-	LOG("Loading Welcome scene");
+	/*LOG("Loading Welcome scene");
 
-	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Music/NeoGeoLogo.ogg");
+	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Static and Dynamic (Title).ogg");
 
 	if (!App->audio->music[2]) {
-		LOG("Mix_LoadMUS(\"WelcomeMusic.ogg\"): %s\n", Mix_GetError());
+		LOG("Mix_LoadMUS(\"Neo Geo Logo.ogg\"): %s\n", Mix_GetError());
 	}
-	else {
-		graphics = App->textures->Load("Assets/Sprites/welcome.png");
-		Mix_PlayMusic(App->audio->music[2], 2);
-	}
+	else {*/
+		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/title.png");
+		/*Mix_PlayMusic(App->audio->music[2], 2);
+	}*/
 
 	
 	
@@ -49,7 +49,7 @@ bool ModuleSceneWelcome::CleanUp()
 
 	App->textures->Unload(graphics);
 	
-	App->audio->CleanUp();
+	//App->audio->CleanUp();
 
 	return true;
 }
@@ -65,6 +65,7 @@ update_status ModuleSceneWelcome::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
+		//FadeToBlack
 		Mix_FadeOutMusic(2000);
 		
 	}
