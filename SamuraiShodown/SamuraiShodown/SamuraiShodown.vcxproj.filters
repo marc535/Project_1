@@ -11,6 +11,9 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{9e0723a2-61df-4041-89e2-40daf856ef82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{4743c5f6-4d4e-48b0-a559-44433d9a96c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -41,7 +44,10 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneWelcome.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneNeoGeo.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +82,10 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneWelcome.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneNeoGeo.h">
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

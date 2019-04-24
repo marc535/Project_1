@@ -1,5 +1,3 @@
-#ifndef __MODULESCENEWELC_H__
-#define __MODULESCENEWELC_H__
 
 #include "Module.h"
 //#include "Animation.h"
@@ -7,11 +5,11 @@
 
 struct SDL_Texture;
 
-class ModuleSceneWelcome : public Module
+class ModuleSceneNeoGeo : public Module
 {
 public:
-	ModuleSceneWelcome();
-	~ModuleSceneWelcome();
+	ModuleSceneNeoGeo();
+	~ModuleSceneNeoGeo();
 
 	bool Start();
 	update_status Update();
@@ -25,4 +23,3 @@ public:
 	//Animation backgroundanim;
 };
 
-#endif // __MODULESCENEWELC_H__

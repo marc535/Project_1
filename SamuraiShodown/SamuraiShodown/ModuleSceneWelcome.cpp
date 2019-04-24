@@ -66,7 +66,8 @@ update_status ModuleSceneWelcome::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
-		Mix_FadeOutMusic(2000);
+		
+		//Mix_FadeOutMusic(2000);
 		
 	}
 

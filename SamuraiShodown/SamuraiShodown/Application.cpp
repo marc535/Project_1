@@ -7,7 +7,7 @@
 #include "ModuleSceneNeoGeo.h"
 //#include "ModuleCollision.h"
 //#include "ModulePlayer.h"
-//#include "ModuleFadeToBlack.h"
+#include "ModuleFadeToBlack.h"
 //#include "ModuleParticles.h"
 
 Application::Application()
@@ -17,13 +17,14 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
-	modules[i++] = scene_welcome = new ModuleSceneWelcome();
 	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
+	modules[i++] = scene_welcome = new ModuleSceneWelcome();
+	modules[i++] = fade = new ModuleFadeToBlack();
 	/*modules[i++] = scene_space = new ModuleSceneSpace();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = fade = new ModuleFadeToBlack();*/
+	*/
 }
 
 Application::~Application()

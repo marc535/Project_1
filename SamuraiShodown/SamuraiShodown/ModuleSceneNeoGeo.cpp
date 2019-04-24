@@ -10,7 +10,7 @@
 #include "ModuleAudio.h"
 
 
-ModuleSceneWelcome::ModuleSceneNeoGeo()
+ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 {
 	background.w = 320;
 	background.h = 224;
@@ -19,11 +19,11 @@ ModuleSceneWelcome::ModuleSceneNeoGeo()
 
 }
 
-ModuleSceneWelcome::~ModuleSceneNeoGeo()
+ModuleSceneNeoGeo::~ModuleSceneNeoGeo()
 {}
 
 // Load assets
-bool ModuleSceneWelcome::Start()
+bool ModuleSceneNeoGeo::Start()
 {
 
 	/*LOG("Loading Welcome scene");
@@ -44,7 +44,7 @@ bool ModuleSceneWelcome::Start()
 }
 
 // UnLoad assets
-bool ModuleSceneWelcome::CleanUp()
+bool ModuleSceneNeoGeo::CleanUp()
 {
 	LOG("Unloading Welcome scene");
 
@@ -56,17 +56,18 @@ bool ModuleSceneWelcome::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSceneWelcome::Update()
+update_status ModuleSceneNeoGeo::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //Welcome Image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f); //NeoGeo Image
 	
 
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
+		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_welcome, 2.0f);
 		Mix_FadeOutMusic(2000);
 		
 	}
