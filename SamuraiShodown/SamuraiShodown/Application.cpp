@@ -3,7 +3,8 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleSceneWelcome.h""
+#include "ModuleSceneWelcome.h"
+#include "ModuleSceneNeoGeo.h"
 //#include "ModuleCollision.h"
 //#include "ModulePlayer.h"
 //#include "ModuleFadeToBlack.h"
@@ -17,6 +18,7 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
 	modules[i++] = scene_welcome = new ModuleSceneWelcome();
+	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
 	/*modules[i++] = scene_space = new ModuleSceneSpace();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
