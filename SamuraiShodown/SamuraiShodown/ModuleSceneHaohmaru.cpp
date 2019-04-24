@@ -11,19 +11,51 @@
 
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 {
-	background.w = 320;
-	background.h = 224;
-	background.x = 0;
-	background.y = 0;
 
-	for (int i = 0; i < 6; i++)
+	/*for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 4; j++)
+		for (int j = 0; j < 6; j++)
 		{
-			stageAnimation.PushBack({ (640 * j),416 * i,640,416 });
+			stageAnimation.PushBack({ (640 * j), (416 * i), 640, 416 });
+			LOG("j++")
 		}
+		LOG("i++")
 	}
-	stageAnimation.speed = (0.1f);
+
+	stageAnimation.speed = 0.14f;*/
+
+	stageAnimation.PushBack({ 0, 0, 640, 416 });
+	stageAnimation.PushBack({ 640, 0, 640, 416 });
+	stageAnimation.PushBack({ 1280, 0, 640, 416 });
+	stageAnimation.PushBack({ 1920, 0, 640, 416 });
+
+	stageAnimation.PushBack({ 0, 0, 640, 416 });
+	stageAnimation.PushBack({ 640, 416, 640, 416 });
+	stageAnimation.PushBack({ 1280, 416, 640, 416 });
+	stageAnimation.PushBack({ 1920, 416, 640, 416 });
+
+	stageAnimation.PushBack({ 0, 832, 640, 416 });
+	stageAnimation.PushBack({ 640, 832, 640, 416 });
+	stageAnimation.PushBack({ 1280, 832, 640, 416 });
+	stageAnimation.PushBack({ 1920, 832, 640, 416 });
+
+	stageAnimation.PushBack({ 0, 1248, 640, 416 });
+	stageAnimation.PushBack({ 640, 1248, 640, 416 });
+	stageAnimation.PushBack({ 1280, 1248, 640, 416 });
+	stageAnimation.PushBack({ 1920, 1248, 640, 416 });
+
+	stageAnimation.PushBack({ 0, 1664, 640, 416 });
+	stageAnimation.PushBack({ 640, 1664, 640, 416 });
+	stageAnimation.PushBack({ 1280, 1664, 640, 416 });
+	stageAnimation.PushBack({ 1920, 1664, 640, 416 });
+
+	stageAnimation.PushBack({ 0, 2080, 640, 416 });
+	stageAnimation.PushBack({ 640, 2080, 640, 416 });
+	stageAnimation.PushBack({ 1280, 2080, 640, 416 });
+	stageAnimation.PushBack({ 1920, 2080, 640, 416 });
+
+
+	stageAnimation.speed = 0.14f;
 }
 
 
@@ -46,7 +78,8 @@ bool ModuleSceneHaohmaru::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");
+	/*	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");*/
+	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/prova.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
@@ -58,9 +91,10 @@ bool ModuleSceneHaohmaru::Start()
 // Update: draw background
 update_status ModuleSceneHaohmaru::Update()
 {
+	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //NeoGeo Image
+	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f); //Haohmaru Image
 
 
 
@@ -80,8 +114,9 @@ bool ModuleSceneHaohmaru::CleanUp()
 {
 	LOG("Unloading Haohmaru scene");
 
-	App->textures->Unload(graphics);
 	App->player->Disable();
+	App->textures->Unload(graphics);
+	
 	
 	//App->audio->CleanUp();
 
