@@ -1,6 +1,6 @@
 
 #include "Module.h"
-//#include "Animation.h"
+#include "Animation.h"
 #include "Globals.h"
 
 struct SDL_Texture;

@@ -5,8 +5,6 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
@@ -19,7 +17,7 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({241, 0, 72, 118});
 	idle.PushBack({169, 0, 72, 118 });
 	idle.PushBack({96, 0, 73, 118 });
-	idle.speed = 0.05f;
+	idle.speed = 0.14f;
 
 	// walk forward animation 
 	forward.PushBack({313, 0, 68, 118});
@@ -32,7 +30,7 @@ ModulePlayer::ModulePlayer()
 	forward.PushBack({701, 0, 61, 118});
 	forward.PushBack({576, 0, 56, 118});
 	forward.PushBack({446, 0, 58, 118});
-	forward.speed = 0.05f;
+	forward.speed = 0.14f;
 
 	// walk backward animation 
 	backward.PushBack({ 1023, 0, 82, 118 });
@@ -45,7 +43,7 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 1259, 0, 64, 118 });
 	backward.PushBack({ 1187, 0, 68, 118 });
 	backward.PushBack({ 1109, 0, 74, 118 });
-	backward.speed = 0.05f;
+	backward.speed = 0.14f;
 
 
 
@@ -60,7 +58,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Haohmaru.png"); // arcade version
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	return ret;
 }
 
@@ -71,13 +69,12 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
 		position.x -= speed;

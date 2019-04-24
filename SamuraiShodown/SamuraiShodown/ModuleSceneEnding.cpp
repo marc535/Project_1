@@ -3,7 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleSceneEnding.h"
-//#include "ModulePlayer.h"
+#include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
