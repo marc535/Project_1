@@ -25,6 +25,7 @@ ModuleSceneNeoGeo::~ModuleSceneNeoGeo()
 bool ModuleSceneNeoGeo::Start()
 {
 	Enable();
+	
 
 	/*LOG("Loading Welcome scene");
 

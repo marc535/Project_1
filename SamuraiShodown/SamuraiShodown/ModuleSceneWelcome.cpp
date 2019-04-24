@@ -26,7 +26,7 @@ ModuleSceneWelcome::~ModuleSceneWelcome()
 // Load assets
 bool ModuleSceneWelcome::Start()
 {
-	
+	if((Module*)App->scene_neogeo->isEnabled == false) {}
 	/*LOG("Loading Welcome scene");
 
 	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
