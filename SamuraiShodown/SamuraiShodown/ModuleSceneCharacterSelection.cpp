@@ -36,7 +36,7 @@ bool ModuleSceneCharacterSelection::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {*/
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/title.png");
+		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/characterselecting.png");
 		/*Mix_PlayMusic(App->audio->music[2], 2);
 	}*/
 
