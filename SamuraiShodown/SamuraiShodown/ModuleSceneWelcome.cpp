@@ -59,7 +59,7 @@ update_status ModuleSceneWelcome::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, false, &background); //Welcome Image
+	//App->render->Blit(graphics, 0, 0, false, &background); //Welcome Image
 	
 
 	
