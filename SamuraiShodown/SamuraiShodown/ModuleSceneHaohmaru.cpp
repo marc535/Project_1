@@ -17,9 +17,9 @@ ModuleSceneHaohmaru::ModuleSceneHaohmaru()
 		for (int j = 0; j < 4; j++)
 		{
 			stageAnimation.PushBack({ (320 * j), (224 * i), 320, 224 });
-			//LOG("j++")
+			LOG("j++")
 		}
-		//LOG("i++")
+		LOG("i++")
 	}
 
 	stageAnimation.speed = 0.14f;
