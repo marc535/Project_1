@@ -26,7 +26,6 @@ Application::Application()
 	modules[i++] = collision = new ModuleCollision();
 	*/
 
-	scene_welcome->Disable();
 }
 
 Application::~Application()
@@ -40,10 +39,12 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-	/*scene_space->Disable();
-	player->Disable();
+	/*player->Disable();
 	collision->Disable();*/
 	// ----------------------------
+
+
+	scene_welcome->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
