@@ -27,7 +27,7 @@ bool ModuleAudio::Init()
 
 	int flags = MIX_INIT_OGG | MIX_INIT_MOD;
 	int initted = Mix_Init(flags);
-	if (initted & flags != flags) {
+	if ((initted) & (flags != flags)) {
 		//check errors
 		LOG("Mix_Init: Failed to init required ogg and mod support!\n");
 		LOG("Mix_Init: %s\n", Mix_GetError());

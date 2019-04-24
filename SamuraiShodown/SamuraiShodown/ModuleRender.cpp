@@ -49,11 +49,7 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()	
 {
-	//move camera
-
-	
-		LOG("Moving camera");
-	
+	//move camera	
 
 	return update_status::UPDATE_CONTINUE;
 }
