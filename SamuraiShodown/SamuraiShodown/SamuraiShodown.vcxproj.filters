@@ -49,6 +49,9 @@
     <ClCompile Include="ModuleSceneNeoGeo.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneCharacterSelection.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -85,6 +88,9 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneNeoGeo.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneCharacterSelection.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
