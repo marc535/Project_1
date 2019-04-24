@@ -52,6 +52,9 @@
     <ClCompile Include="ModuleSceneCharacterSelection.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneHaohmaru.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -91,6 +94,9 @@
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneCharacterSelection.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneHaohmaru.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

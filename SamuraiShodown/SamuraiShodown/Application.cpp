@@ -6,6 +6,8 @@
 #include "ModuleSceneWelcome.h"
 #include "ModuleSceneNeoGeo.h"
 #include "ModuleSceneCharacterSelection.h"
+#include "ModuleSceneHaohmaru.h"
+
 //#include "ModuleCollision.h"
 //#include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -21,6 +23,8 @@ Application::Application()
 	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
 	modules[i++] = scene_welcome = new ModuleSceneWelcome();
 	modules[i++] = scene_charSelect = new ModuleSceneCharacterSelection();
+	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
+	
 	modules[i++] = fade = new ModuleFadeToBlack();
 	/*modules[i++] = scene_space = new ModuleSceneSpace();
 	modules[i++] = player = new ModulePlayer();
