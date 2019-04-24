@@ -24,6 +24,7 @@ ModuleSceneNeoGeo::~ModuleSceneNeoGeo()
 // Load assets
 bool ModuleSceneNeoGeo::Start()
 {
+	Enable();
 
 	/*LOG("Loading Welcome scene");
 

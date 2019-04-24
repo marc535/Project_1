@@ -16,15 +16,17 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	background.x = 0;
 	background.y = 0;
 
+
 }
 
 ModuleSceneWelcome::~ModuleSceneWelcome()
 {}
 
+
 // Load assets
 bool ModuleSceneWelcome::Start()
 {
-
+	
 	/*LOG("Loading Welcome scene");
 
 	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
