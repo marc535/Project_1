@@ -27,17 +27,17 @@ bool ModuleSceneNeoGeo::Start()
 	Enable();
 	
 
-	/*LOG("Loading Welcome scene");
+	LOG("Loading Welcome scene");
 
-	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
 
-	if (!App->audio->music[2]) {
+	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
-	else {*/
+	else {
 		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neogeo.png");
-		/*Mix_PlayMusic(App->audio->music[2], 2);
-	}*/
+		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+	}
 
 	
 	
@@ -51,7 +51,7 @@ bool ModuleSceneNeoGeo::CleanUp()
 
 	App->textures->Unload(graphics);
 	
-	//App->audio->CleanUp();
+	App->audio->CleanUp();
 
 	return true;
 }

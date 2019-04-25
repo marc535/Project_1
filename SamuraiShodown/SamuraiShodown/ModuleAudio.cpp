@@ -5,12 +5,12 @@ ModuleAudio::ModuleAudio() : Module()
 {
 	for (int i = 0; i < MAX_SOUNDTRACK; i++)
 	{
-		songs[i] = nullptr;
+		soundtracks[i] = nullptr;
 	}
 
-	for (int j = 0; j < MAX_EFFECTS; j++)
+	for (int z = 0; z < MAX_EFFECTS; z++)
 	{
-		fxs[j] = nullptr;
+		effects[z] = nullptr;
 	}
 }
 
@@ -22,25 +22,53 @@ bool ModuleAudio::Init()
 {
 	LOG("Init Audio library");
 
+
 	SDL_Init(SDL_INIT_AUDIO);
+
+	// load support for the OGG sample/music formats
+
 
 
 	int flags = MIX_INIT_OGG | MIX_INIT_MOD;
 	int initted = Mix_Init(flags);
-	if ((initted) & (flags != flags)) {
-		//check errors
+	if (initted & flags != flags) {
 		LOG("Mix_Init: Failed to init required ogg and mod support!\n");
 		LOG("Mix_Init: %s\n", Mix_GetError());
-		
+		// handle error
 	}
 
 	Mix_OpenAudio(48000, AUDIO_U8, 2, 1024);
 
+	/*	MIX FORMATS
+	AUDIO_U8
+	Unsigned 8-bit samples
+	AUDIO_S8
+	Signed 8-bit samples
+	AUDIO_U16LSB
+	Unsigned 16-bit samples, in little-endian byte order
+	AUDIO_S16LSB
+	Signed 16-bit samples, in little-endian byte order
+	AUDIO_U16MSB
+	Unsigned 16-bit samples, in big-endian byte order
+	AUDIO_S16MSB
+	Signed 16-bit samples, in big-endian byte order
+	AUDIO_U16
+	same as AUDIO_U16LSB (for backwards compatability probably)
+	AUDIO_S16
+	same as AUDIO_S16LSB (for backwards compatability probably)
+	AUDIO_U16SYS
+	Unsigned 16-bit samples, in system byte order
+	AUDIO_S16SYS
+	Signed 16-bit samples, in system byte order
+	*/
+
+
 	Mix_VolumeMusic(MUSIC_VOLUME);
-	
+
 
 	return true;
 }
+
 
 
 // Called before quitting
@@ -49,107 +77,23 @@ bool ModuleAudio::CleanUp()
 
 	for (int i = 0; i < MAX_SOUNDTRACK; i++)
 	{
-		if (songs[i] != nullptr) {
-			Mix_FreeMusic(songs[i]);
-			songs[i] = nullptr;
+		if (soundtracks[i] != nullptr) {
+			Mix_FreeMusic(soundtracks[i]);
+			soundtracks[i] = nullptr;
 		}
-			
+
 	}
 
-	for (int j = 0; j < MAX_EFFECTS; j++)
+	for (int z = 0; z < MAX_EFFECTS; z++)
 	{
-		if (fxs[j] != nullptr) {
-			Mix_FreeChunk(fxs[j]);
-			fxs[j] = nullptr;
-		}			
+		if (effects[z] != nullptr) {
+			Mix_FreeChunk(effects[z]);
+			effects[z] = nullptr;
+		}
 	}
 
 
 	Mix_Quit();
 
-	return true;
-}
-
-Mix_Music* ModuleAudio::LoadMusic(const char* path) {
-	Mix_Music* song;
-	song = Mix_LoadMUS(path);
-	if (!song)
-	{
-		LOG("Mix_LoadMUS(\"%s\"): %s\n", path, Mix_GetError());
-	}
-	for (int i = 0; i < MAX_SOUNDTRACK; i++)
-	{
-		if (songs[i] == nullptr)
-		{
-			songs[i] = song;
-			break;
-		}
-	}
-	return song;
-}
-
-Mix_Chunk* ModuleAudio::LoadEffects(const char* path) {
-	Mix_Chunk* fx;
-	fx = Mix_LoadWAV(path);
-	if (!fx)
-	{
-		LOG("Mix_LoadWAV: %s\n", Mix_GetError());
-	}
-	for (int i = 0; i < MAX_EFFECTS; i++)
-	{
-		if (fxs[i] == nullptr)
-		{
-			fxs[i] = fx;
-			break;
-		}
-	}
-	return fx;
-}
-
-bool ModuleAudio::PlayMusic(Mix_Music* song, int times) {
-	if (times == NULL)
-	{
-		times = -1;
-	}
-	if (Mix_FadeInMusic(song, times, 1250) == -1)
-	{
-		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
-		return false;
-	}
-	return true;
-}
-
-bool ModuleAudio::PlayEffects(Mix_Chunk* fx) {
-	if (Mix_PlayChannel(-1, fx, 0) == -1)
-	{
-		LOG("Mix_PlayChannel: %s\n", Mix_GetError());
-		return false;
-	}
-	return true;
-}
-
-bool ModuleAudio::UnLoadMusic(Mix_Music * mus)
-{
-	for (int i = 0; i < MAX_SOUNDTRACK; ++i) {
-		if (songs[i] == mus) {
-			Mix_FreeMusic(mus);
-			songs[i] = nullptr;
-			mus = nullptr;
-			break;
-		}
-	}
-	return true;
-}
-
-bool ModuleAudio::UnLoadEffects(Mix_Chunk * chunk)
-{
-	for (int i = 0; i < MAX_EFFECTS; ++i) {
-		if (fxs[i] == chunk) {
-			Mix_FreeChunk(chunk);
-			fxs[i] = nullptr;
-			chunk = nullptr;
-			break;
-		}
-	}
 	return true;
 }

@@ -19,20 +19,11 @@ public:
 
 	bool Init();
 	bool CleanUp();
-	
-	Mix_Music* LoadMusic(const char* path);
-	Mix_Chunk* LoadEffects(const char* path);
-	
-	bool PlayMusic(Mix_Music* mus, int);
-	bool PlayEffects(Mix_Chunk* chunk);
-	
-	bool UnLoadMusic(Mix_Music* mus);
-	bool UnLoadEffects(Mix_Chunk* chunk);
 
 public:
 
-	Mix_Chunk * fxs[MAX_EFFECTS];
-	Mix_Music * songs[MAX_SOUNDTRACK];
+	Mix_Chunk * effects[MAX_EFFECTS];
+	Mix_Music * soundtracks[MAX_SOUNDTRACK];
 
 };
 

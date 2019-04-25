@@ -8,7 +8,7 @@
 #include "ModuleSceneCharacterSelection.h"
 #include "ModuleSceneEnding.h"
 #include "ModuleSceneHaohmaru.h"
-
+#include "ModuleAudio.h"
 //#include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
@@ -21,6 +21,8 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
+
+	modules[i++] = audio = new ModuleAudio();
 
 	modules[i++] = scene_neogeo = new ModuleSceneNeoGeo();
 	modules[i++] = scene_welcome = new ModuleSceneWelcome();
