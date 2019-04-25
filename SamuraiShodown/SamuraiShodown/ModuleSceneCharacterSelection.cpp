@@ -52,7 +52,7 @@ bool ModuleSceneCharacterSelection::CleanUp()
 
 	App->textures->Unload(graphics);
 	
-	//App->audio->CleanUp();
+	App->audio->CleanUp();
 
 	return true;
 }

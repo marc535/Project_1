@@ -37,18 +37,18 @@ bool ModuleSceneHaohmaru::Start()
 
 	
 
-	//LOG("Loading Haohmaru scene");
+    LOG("Loading Haohmaru scene");
 
-	//App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
 
-	//if (!App->audio->music[2]) {
-		//LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
-	//}
-	//else {*/
-	/*	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");*/
+	if (!App->audio->soundtracks[2]) {
+		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
+	}
+	else {
+		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");
 	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");
-		/*Mix_PlayMusic(App->audio->music[2], 2);
-	}*/
+		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+	}
 
 	
 	
@@ -85,7 +85,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->textures->Unload(graphics);
 	
 	
-	//App->audio->CleanUp();
+	App->audio->CleanUp();
 
 	return true;
 }
