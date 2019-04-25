@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 //#include "ModuleParticles.h"
 
@@ -32,6 +33,7 @@ Application::Application()
 	modules[i++] = fade = new ModuleFadeToBlack();
 
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
 	//modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	
@@ -50,6 +52,7 @@ bool Application::Init()
 
 	// Deactivate modules here ----
 	player->Disable();
+	player2->Disable();
 	//collision->Disable();
 	
 

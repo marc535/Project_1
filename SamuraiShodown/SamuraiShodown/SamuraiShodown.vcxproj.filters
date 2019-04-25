@@ -17,6 +17,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{10e3f4bd-dd96-4b22-9231-21d6c30ca066}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Player">
+      <UniqueIdentifier>{a90cc133-5722-49ab-839e-2392c806c93d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -61,11 +64,14 @@
     <ClCompile Include="ModuleSceneEnding.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer2.cpp">
+      <Filter>Modules\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +120,6 @@
     <ClInclude Include="ModuleSceneEnding.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Containers</Filter>
     </ClInclude>
@@ -125,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer2.h">
+      <Filter>Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

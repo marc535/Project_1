@@ -8,7 +8,7 @@
 
 ModulePlayer::ModulePlayer()
 {
-	position.x = 100;
+	position.x = 50;
 	position.y = 220;
 
 	// idle animation
