@@ -20,11 +20,20 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+
 	Animation idle;
 	Animation forward;
 	Animation backward;
+	Animation jump;
+
 	iPoint position;
 
+	bool jumped = false;
+	bool jumpeed = false;
+	bool action = false;
+
+	int var1 = 0;
+	
 };
 
 #endif

@@ -41,9 +41,13 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 1109, 0, 74, 118 });
 	backward.speed = 0.14f;
 
+	// jump animation
+	jump.PushBack({ 22,124,59,112 }); 
+	jump.PushBack({ 83,145,75,91 });
+	jump.PushBack({ 158,153,76,84 });
+	jump.PushBack({ 235,126,68,110 });
+	jump.speed = 0.07f;
 
-
-	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -55,6 +59,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
+	
 	return ret;
 }
 
@@ -62,18 +67,55 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
-
+	
 	int speed = 1;
+	float yVelocity = 19.1f;
+	float yAcceleration = 0.87f;
+	
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !action)
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !action)
 	{
 		current_animation = &backward;
 		position.x -= speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
+	{
+
+		jumped = true;
+		action = true;
+		
+	}
+
+	if(action){
+	
+		if (jumped) {
+
+			current_animation = &jump;
+
+			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			jumpeed = true;
+
+			
+			if (position.y > 220 && jumpeed == true)	//end of the jump
+			{
+				var1 = 0;
+				jumpeed = false;
+				jumped = false;
+				position.y = 220;
+				action = false;
+
+			}
+			var1++;
+
+		}
+	
+	
+	
 	}
 
 	// Draw everything --------------------------------------
