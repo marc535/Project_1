@@ -211,7 +211,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			}
 		}
 	}
-	else {
+	if(flipPlayer){
+
 		if (this->p1Collider == c1) {
 			if (c1->rect.x < c2->rect.x) {
 				flipPlayer = false;
