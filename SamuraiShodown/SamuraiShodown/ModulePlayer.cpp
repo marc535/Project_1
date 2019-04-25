@@ -50,11 +50,11 @@ ModulePlayer::ModulePlayer()
 	jump.speed = 0.07f;
 
 	// kick animation
-	kick.PushBack({ 305,141,66,118 });
-	kick.PushBack({ 372,138,86,118 });
-	kick.PushBack({ 305,141,66,118 });
+	kick.PushBack({ 305,141,66,95 });
+	kick.PushBack({ 372,138,86,98 });
+	kick.PushBack({ 305,141,66,95 });
 	//kick.PushBack({22, 0, 73, 118});
-	kick.speed = 0.14f;
+	kick.speed = 0.05f;
 
 	// tornado move animation
 	tornadoMove.PushBack({ 22, 247, 102, 102 });
@@ -209,7 +209,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 				flipPlayer = true;
 				LOG("Player1 flip = true")
 			}
+			
 		}
+		
 	}
 	if(flipPlayer){
 
