@@ -39,7 +39,7 @@ bool ModuleSceneHaohmaru::Start()
 
     LOG("Loading Haohmaru scene");
 
-	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Music/HardWork.ogg");
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
