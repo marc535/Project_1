@@ -68,7 +68,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
-	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/Pregame/Neo Geo Logo.ogg");
+	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	return ret;
@@ -143,7 +143,7 @@ update_status ModulePlayer::Update()
 		}
 
 		if (kicked) {
-
+			Mix_PlayChannel(-1, App->audio->effects[2], 0);
 			current_animation = &kick;
 			if (kick.FinishedAnimation() == true) {
 			
