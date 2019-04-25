@@ -68,7 +68,7 @@ ModulePlayer::ModulePlayer()
 	tornadoMove.PushBack({ 793, 244, 118, 104 });
 	tornadoMove.PushBack({ 912, 244, 104, 102 });
 
-	tornadoMove.speed = 0.01f;
+	tornadoMove.speed = 0.2f;
 	
 }
 
