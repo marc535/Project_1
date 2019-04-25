@@ -112,13 +112,13 @@ update_status ModulePlayer::Update()
 			current_animation = &jump;
 
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
-			jumpeed = true;
+			airborne = true;
 
 			
-			if (position.y > 220 && jumpeed == true)	//end of the jump
+			if (position.y > 220 && airborne == true)	//end of the jump
 			{
 				var1 = 0;
-				jumpeed = false;
+				airborne = false;
 				jumped = false;
 				position.y = 220;
 				action = false;
