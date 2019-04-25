@@ -1,19 +1,18 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModulePlayer2_H__
+#define __ModulePlayer2_H__
 
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
-#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
-class ModulePlayer : public Module
+class ModulePlayer2 : public Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModulePlayer2();
+	~ModulePlayer2();
 
 	bool Start();
 	update_status Update();
@@ -24,7 +23,7 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 
-	Collider* p1Collider = nullptr;
+	Collider* p2Collider = nullptr;
 	Collider* attack = nullptr;
 	Animation idle;
 	Animation forward;
@@ -38,12 +37,10 @@ public:
 	bool airborne = false;
 	bool action = false;
 	bool kicked = false;
-	bool flipPlayer = false;
+	bool flipPlayer = true;
 
 	int var1 = 0;
 	
-	Mix_Chunk* kicks;
-
 };
 
 #endif

@@ -3,12 +3,12 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 
-ModulePlayer::ModulePlayer()
+ModulePlayer2::ModulePlayer2()
 {
-	position.x = 50;
+	position.x = 200;
 	position.y = 220;
 
 	// idle animation
@@ -58,24 +58,22 @@ ModulePlayer::ModulePlayer()
 	
 }
 
-ModulePlayer::~ModulePlayer()
+ModulePlayer2::~ModulePlayer2()
 {}
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModulePlayer2::Start()
 {
-	LOG("Loading player textures");
+	LOG("Loading player2 textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
-	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-
-	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+	p2Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 	return ret;
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModulePlayer2::Update()
 {
 	Animation* current_animation = &idle;
 	
@@ -84,28 +82,28 @@ update_status ModulePlayer::Update()
 	float yAcceleration = 0.87f;
 	
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
 	}
 		
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
 		jumped = true;
 		action = true;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
 		kicked = true;
@@ -143,7 +141,7 @@ update_status ModulePlayer::Update()
 		}
 
 		if (kicked) {
-			Mix_PlayChannel(-1, App->audio->effects[2], 0);
+
 			current_animation = &kick;
 			if (kick.FinishedAnimation() == true) {
 			
@@ -159,7 +157,7 @@ update_status ModulePlayer::Update()
 	
 	}
 
-	p1Collider->SetPos(position.x, position.y - 90);
+	p2Collider->SetPos(position.x, position.y - 90);
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -169,8 +167,8 @@ update_status ModulePlayer::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	if (this->p1Collider == c1) {
+void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
+	if (this->p2Collider == c1) {
 		if (c1->rect.x < c2->rect.x)
 			position.x = c2->rect.x - c1->rect.w;
 		if (c1->rect.x > c2->rect.x)
