@@ -170,16 +170,27 @@ update_status ModulePlayer::Update()
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	if (this->p1Collider == c1) {
+	/*if (this->p1Collider == c1) {
 		if (c1->rect.x < c2->rect.x)
 			position.x = c2->rect.x - c1->rect.w;
 		if (c1->rect.x > c2->rect.x)
 			position.x = c2->rect.x + c2->rect.w;
-	}
+	}*/
 
 	if (c2->type == COLLIDER_ENEMY_SHOT) {
 		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		health += 30;
 		getsHit = true; doingAction = true;*/
 	}
+}
+
+void ModulePlayer::OnPassing(ModulePlayer2* p2) {
+
+	/*p2 = App->player2;
+
+	if ((this->position.x) > (App->player2->position.x)) {
+
+
+	}*/
+
 }

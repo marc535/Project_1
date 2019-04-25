@@ -168,12 +168,12 @@ update_status ModulePlayer2::Update()
 }
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
-	if (this->p2Collider == c1) {
+	/*if (this->p2Collider == c1) {
 		if (c1->rect.x < c2->rect.x)
 			position.x = c2->rect.x - c1->rect.w;
 		if (c1->rect.x > c2->rect.x)
 			position.x = c2->rect.x + c2->rect.w;
-	}
+	}*/
 
 	if (c2->type == COLLIDER_ENEMY_SHOT) {
 		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
