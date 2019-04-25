@@ -48,6 +48,13 @@ ModulePlayer::ModulePlayer()
 	jump.PushBack({ 235,126,68,110 });
 	jump.speed = 0.07f;
 
+	// jump animation
+	kick.PushBack({ 305,141,66,118 });
+	kick.PushBack({ 372,138,86,118 });
+	kick.PushBack({ 305,141,66,118 });
+	//kick.PushBack({22, 0, 73, 118});
+	kick.speed = 0.14f;
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -90,6 +97,13 @@ update_status ModulePlayer::Update()
 		action = true;
 		
 	}
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT && !action)
+	{
+
+		kicked = true;
+		action = true;
+
+	}
 
 	if(action){
 	
@@ -112,6 +126,19 @@ update_status ModulePlayer::Update()
 			}
 			var1++;
 
+		}
+
+		if (kicked) {
+
+			current_animation = &kick;
+			if (kick.getuwu() == true) {
+			
+				kicked = false; 
+				action = false; 
+
+				kick.finishingAnimation(false); 
+			}
+		
 		}
 	
 	
