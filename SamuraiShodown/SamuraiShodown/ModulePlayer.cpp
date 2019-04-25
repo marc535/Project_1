@@ -149,7 +149,7 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, false);
 	
 	return UPDATE_CONTINUE;
 }

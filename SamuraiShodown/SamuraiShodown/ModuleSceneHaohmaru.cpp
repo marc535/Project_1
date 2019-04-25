@@ -61,7 +61,7 @@ update_status ModuleSceneHaohmaru::Update()
 	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f); //Haohmaru Image
+	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //Haohmaru Image
 	App->player->Enable();
 
 

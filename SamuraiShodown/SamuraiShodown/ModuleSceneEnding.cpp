@@ -61,7 +61,7 @@ update_status ModuleSceneEnding::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //Ending Image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Ending Image
 	
 
 	

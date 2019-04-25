@@ -62,7 +62,7 @@ update_status ModuleSceneCharacterSelection::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //Char selection image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Char selection image
 
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {

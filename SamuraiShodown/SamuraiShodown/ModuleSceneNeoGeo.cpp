@@ -61,7 +61,7 @@ update_status ModuleSceneNeoGeo::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f); //NeoGeo Image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //NeoGeo Image
 	
 
 	
