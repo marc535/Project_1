@@ -68,7 +68,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
-	p1Collider = App->collision->AddCollider({ position.x, position.y - 113, 73, 113 }, COLLIDER_PLAYER, this);
+	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 73, 90 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -148,7 +148,7 @@ update_status ModulePlayer::Update()
 	
 	}
 
-	p1Collider->SetPos(position.x, position.y - 113);
+	p1Collider->SetPos(position.x, position.y - 90);
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
