@@ -80,12 +80,12 @@ update_status ModulePlayer::Update()
 	float yAcceleration = 0.87f;
 	
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
 		position.x -= speed;
@@ -131,7 +131,7 @@ update_status ModulePlayer::Update()
 		if (kicked) {
 
 			current_animation = &kick;
-			if (kick.getuwu() == true) {
+			if (kick.FinishedAnimation() == true) {
 			
 				kicked = false; 
 				action = false; 

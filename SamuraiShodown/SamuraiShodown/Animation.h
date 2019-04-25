@@ -47,7 +47,7 @@ public:
 		current_frame = 0;
 	}
 
-	bool getuwu() {
+	bool FinishedAnimation() {
 		return Finish;
 	}
 	void finishingAnimation(bool end) {
