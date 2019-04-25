@@ -25,12 +25,14 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation jump;
+	Animation kick;
 
 	iPoint position;
 
 	bool jumped = false;
 	bool jumpeed = false;
 	bool action = false;
+	bool kicked = false;
 
 	int var1 = 0;
 	
