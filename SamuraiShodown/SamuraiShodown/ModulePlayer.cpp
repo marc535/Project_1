@@ -54,7 +54,7 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 372,138,86,98 });
 	kick.PushBack({ 305,141,66,95 });
 	//kick.PushBack({22, 0, 73, 118});
-	kick.speed = 0.05f;
+	kick.speed = 0.14f;
 
 	// tornado move animation
 	tornadoMove.PushBack({ 22, 247, 102, 102 });
@@ -65,10 +65,10 @@ ModulePlayer::ModulePlayer()
 	tornadoMove.PushBack({ 480, 174, 72, 174 });
 	tornadoMove.PushBack({ 566, 236, 111, 112 });
 	tornadoMove.PushBack({ 681, 244, 111, 104 });
-	tornadoMove.PushBack({ 793, 244, 118, 504 });
+	tornadoMove.PushBack({ 793, 244, 118, 104 });
 	tornadoMove.PushBack({ 912, 244, 104, 102 });
 
-	tornadoMove.speed = 0.2f;
+	tornadoMove.speed = 0.01f;
 	
 }
 
