@@ -30,7 +30,7 @@ public:
 	iPoint position;
 
 	bool jumped = false;
-	bool jumpeed = false;
+	bool airborne = false;
 	bool action = false;
 	bool kicked = false;
 
