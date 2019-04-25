@@ -17,10 +17,14 @@ public:
 	bool Start();
 	update_status Update();
 
+	void OnCollision(Collider* c1, Collider* c2);
+
 public:
 
 	SDL_Texture* graphics = nullptr;
 
+	Collider* p1Collider = nullptr;
+	Collider* attack = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;

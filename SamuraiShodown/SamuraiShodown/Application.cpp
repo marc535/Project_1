@@ -9,7 +9,7 @@
 #include "ModuleSceneEnding.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleAudio.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 //#include "ModuleParticles.h"
@@ -32,9 +32,9 @@ Application::Application()
 	modules[i++] = fade = new ModuleFadeToBlack();
 
 	modules[i++] = player = new ModulePlayer();
-	/*modules[i++] = particles = new ModuleParticles();
+	//modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
-	*/
+	
 
 }
 

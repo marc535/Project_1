@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleCollision.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -67,6 +68,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
+	p1Collider = App->collision->AddCollider({ position.x, position.y - 113, 73, 113 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -146,10 +148,27 @@ update_status ModulePlayer::Update()
 	
 	}
 
+	p1Collider->SetPos(position.x, position.y - 113);
+
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, false);
 	
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	if (this->p1Collider == c1) {
+		if (c1->rect.x < c2->rect.x)
+			position.x = c2->rect.x - c1->rect.w;
+		if (c1->rect.x > c2->rect.x)
+			position.x = c2->rect.x + c2->rect.w;
+	}
+
+	if (c2->type == COLLIDER_ENEMY_SHOT) {
+		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
+		health += 30;
+		getsHit = true; doingAction = true;*/
+	}
 }
