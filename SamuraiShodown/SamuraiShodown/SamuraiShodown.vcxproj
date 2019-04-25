@@ -137,6 +137,7 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneCharacterSelection.cpp" />
     <ClCompile Include="ModuleSceneEnding.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSceneCharacterSelection.h" />
     <ClInclude Include="ModuleSceneEnding.h" />

@@ -1,9 +1,7 @@
-#ifndef __APPLICATION_H__
-#define __APPLICATION_H__
 
 #include "Globals.h"
 
-#define NUM_MODULES 13
+#define NUM_MODULES 14
 
 class ModuleWindow;
 class ModuleInput;
@@ -16,6 +14,7 @@ class ModuleSceneCharacterSelection;
 class ModuleSceneEnding;
 class ModuleSceneHaohmaru;
 class ModulePlayer;
+class ModulePlayer2;
 class ModuleAudio;
 class ModuleFadeToBlack;
 class ModuleCollision;
@@ -37,6 +36,7 @@ public:
 	ModuleSceneHaohmaru * scene_haohmaru;
 	ModuleCollision* collision;
 	ModulePlayer* player;
+	ModulePlayer2* player2;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleAudio* audio;
@@ -54,5 +54,3 @@ public:
 
 // Global var made extern for Application ---
 extern Application* App;
-
-#endif // __APPLICATION_H__

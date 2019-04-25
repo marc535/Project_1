@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -63,6 +64,7 @@ update_status ModuleSceneHaohmaru::Update()
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //Haohmaru Image
 	App->player->Enable();
+	App->player2->Enable();
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
@@ -84,6 +86,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	LOG("Unloading Haohmaru scene");
 
 	App->player->Disable();
+	App->player2->Disable();
 	App->textures->Unload(graphics);
 
 	
