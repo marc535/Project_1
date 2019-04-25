@@ -68,6 +68,8 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
+	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/Pregame/Neo Geo Logo.ogg");
+
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	return ret;
 }
