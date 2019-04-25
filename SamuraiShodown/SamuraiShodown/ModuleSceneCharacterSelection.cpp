@@ -27,18 +27,18 @@ ModuleSceneCharacterSelection::~ModuleSceneCharacterSelection()
 bool ModuleSceneCharacterSelection::Start()
 {
 	Enable();
-	/*if((Module*)App->scene_neogeo->isEnabled == false) {}*/
-	/*LOG("Loading CharSelection scene");
+	//if((Module*)App->scene_neogeo->isEnabled == false) {}
+      LOG("Loading CharSelection scene");
 
-	App->audio->music[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
 
-	if (!App->audio->music[2]) {
+	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
-	else {*/
+	else {
 		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/characterselecting.png");
-		/*Mix_PlayMusic(App->audio->music[2], 2);
-	}*/
+		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+	}
 
 	
 	
