@@ -55,6 +55,20 @@ ModulePlayer::ModulePlayer()
 	kick.PushBack({ 305,141,66,118 });
 	//kick.PushBack({22, 0, 73, 118});
 	kick.speed = 0.14f;
+
+	// tornado move animation
+	tornadoMove.PushBack({ 22, 247, 102, 102 });
+	tornadoMove.PushBack({ 124, 247, 81, 101 });
+	tornadoMove.PushBack({ 206, 253, 82, 101 });
+	tornadoMove.PushBack({ 289, 244, 66, 105 });
+	tornadoMove.PushBack({ 356, 237, 107, 102 });
+	tornadoMove.PushBack({ 480, 174, 72, 174 });
+	tornadoMove.PushBack({ 566, 236, 111, 112 });
+	tornadoMove.PushBack({ 681, 244, 111, 104 });
+	tornadoMove.PushBack({ 793, 244, 118, 504 });
+	tornadoMove.PushBack({ 912, 244, 104, 102 });
+
+	tornadoMove.speed = 0.2f;
 	
 }
 
@@ -112,6 +126,12 @@ update_status ModulePlayer::Update()
 		action = true;
 
 	}
+	if (App->input->keyboard[SDL_SCANCODE_V] == KEY_STATE::KEY_REPEAT && !action) {
+
+		tornadoMov = true;
+		action = true;
+
+	}
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 	{
 		if (flipPlayer) { flipPlayer = false; }
@@ -154,7 +174,18 @@ update_status ModulePlayer::Update()
 			}
 		
 		}
-	
+		if (tornadoMov) {
+
+			current_animation = &tornadoMove;
+			if (tornadoMove.FinishedAnimation() == true) {
+
+				tornadoMov = false;
+				action = false;
+
+				tornadoMove.finishingAnimation(false);
+			}
+
+		}
 	
 	
 	}
