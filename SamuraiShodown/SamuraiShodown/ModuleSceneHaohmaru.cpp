@@ -33,13 +33,13 @@ ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
 bool ModuleSceneHaohmaru::Start()
 {
 	Enable();
-	App->player->Enable();
+	
 
 	
 
     LOG("Loading Haohmaru scene");
 
-	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Music/HardWork.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Characters/Haohmaru.ogg");
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
@@ -50,7 +50,7 @@ bool ModuleSceneHaohmaru::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-	
+
 	
 	return true;
 }
@@ -62,12 +62,14 @@ update_status ModuleSceneHaohmaru::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f); //Haohmaru Image
-
+	App->player->Enable();
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
+		
+		
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 		Mix_FadeOutMusic(2000);
 
@@ -83,7 +85,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 
 	App->player->Disable();
 	App->textures->Unload(graphics);
-	
+
 	
 	App->audio->CleanUp();
 

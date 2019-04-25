@@ -69,6 +69,7 @@ update_status ModuleSceneCharacterSelection::Update()
 
 		//FadeToBlack
 		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru, 2.0f);
+		
 
 		//Mix_FadeOutMusic(2000);
 		
