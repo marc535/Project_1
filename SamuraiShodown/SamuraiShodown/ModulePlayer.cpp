@@ -68,7 +68,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
-	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 73, 90 }, COLLIDER_PLAYER, this);
+	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -84,14 +84,17 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		if (!action) { current_animation = &forward; }
+		if (!action && !flipPlayer) { current_animation = &forward; }
+		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
 	}
 		
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		if (!action) { current_animation = &backward; }
+		if (!action && !flipPlayer) { current_animation = &backward; }
+		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
+
 	}
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
 	{
@@ -106,6 +109,12 @@ update_status ModulePlayer::Update()
 		kicked = true;
 		action = true;
 
+	}
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+	{
+		if (flipPlayer) { flipPlayer = false; }
+		else { flipPlayer = true; }
+		
 	}
 
 	if(action){
@@ -153,7 +162,7 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, false);
+	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
 	
 	return UPDATE_CONTINUE;
 }

@@ -37,6 +37,7 @@ public:
 	bool airborne = false;
 	bool action = false;
 	bool kicked = false;
+	bool flipPlayer = false;
 
 	int var1 = 0;
 	
