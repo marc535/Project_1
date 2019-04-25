@@ -29,7 +29,7 @@ bool ModuleSceneEnding::Start()
 
 	LOG("Loading Welcome scene");
 
-	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Endings/Peace.ogg");
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());

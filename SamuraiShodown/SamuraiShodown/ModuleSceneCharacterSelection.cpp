@@ -30,7 +30,7 @@ bool ModuleSceneCharacterSelection::Start()
 	//if((Module*)App->scene_neogeo->isEnabled == false) {}
       LOG("Loading CharSelection scene");
 
-	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/PlayerSelect.ogg");
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
