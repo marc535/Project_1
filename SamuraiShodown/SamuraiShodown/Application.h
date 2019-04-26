@@ -1,13 +1,14 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 16
+#define NUM_MODULES 17
 
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModuleParticles;
+class ModuleParticles2;
 class ModuleSceneWelcome;
 class ModuleSceneNeoGeo;
 class ModuleSceneCharacterSelection;
@@ -40,6 +41,7 @@ public:
 	ModulePlayer2* player2;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
+	ModuleParticles2* particles2;
 	ModuleAudio* audio;
 	ModuleUI* UI;
 
