@@ -2,10 +2,10 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleUIInGame.h"
+#include "ModuleUI.h"
 #include "ModuleInput.h"
 
-ModuleUIInGame::ModuleUIInGame()
+ModuleUI::ModuleUI()
 {
 	hp_pull.h = 15;
 	hp_pull.w = 134;
@@ -33,24 +33,24 @@ ModuleUIInGame::ModuleUIInGame()
 	damage_taken.speed = 1.0f;
 }
 
-ModuleUIInGame::~ModuleUIInGame()
+ModuleUI::~ModuleUI()
 {}
 
-bool ModuleUIInGame::Start()
+bool ModuleUI::Start()
 {
 	LOG("Loading UI in-Game textures");
 	graphics = App->textures->Load("Assets/Sprite_Sheets/UI/1.png");
 	return true;
 }
 
-void ModuleUIInGame::damage(int damage)
+void ModuleUI::damage(int damage)
 {
 	damaged = true;
 	hp_graph += (1.34f * damage);
 	HP -= damage;
 }
 
-update_status ModuleUIInGame::Update()
+update_status ModuleUI::Update()
 {
 	Animation* current_animation = &healthy;
 
@@ -105,7 +105,7 @@ update_status ModuleUIInGame::Update()
 	return UPDATE_CONTINUE;
 }
 
-bool ModuleUIInGame::CleanUp()
+bool ModuleUI::CleanUp()
 {
 	LOG("Unloading Welcome scene");
 

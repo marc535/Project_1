@@ -11,11 +11,11 @@
 
 struct SDL_Texture;
 
-class ModuleUIInGame : public Module
+class ModuleUI : public Module
 {
 public:
-	ModuleUIInGame();
-	~ModuleUIInGame();
+	ModuleUI();
+	~ModuleUI();
 
 	bool Start();
 	update_status Update();

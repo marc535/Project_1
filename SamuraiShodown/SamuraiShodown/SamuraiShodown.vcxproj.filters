@@ -79,7 +79,7 @@
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleUIInGame.cpp">
+    <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,7 +147,7 @@
     <ClInclude Include="ModuleParticles.h">
       <Filter>Modules\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleUIInGame.h">
+    <ClInclude Include="ModuleUI.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

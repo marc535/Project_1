@@ -8,7 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
-#include "ModuleUIInGame.h"
+#include "ModuleUI.h"
 
 
 ModuleSceneHaohmaru::ModuleSceneHaohmaru()
@@ -66,7 +66,7 @@ update_status ModuleSceneHaohmaru::Update()
 	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //Haohmaru Image
 	App->player->Enable();
 	App->player2->Enable();
-	App->UI_inGame->Enable();
+	App->UI->Enable();
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
@@ -89,7 +89,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 
 	App->player->Disable();
 	App->player2->Disable();
-	App->UI_inGame->Disable();
+	App->UI->Disable();
 	App->textures->Unload(graphics);
 
 	

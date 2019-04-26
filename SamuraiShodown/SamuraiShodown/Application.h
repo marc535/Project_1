@@ -19,7 +19,7 @@ class ModuleAudio;
 class ModuleFadeToBlack;
 class ModuleCollision;
 class Module;
-class ModuleUIInGame;
+class ModuleUI;
 
 class Application
 {
@@ -41,7 +41,7 @@ public:
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleAudio* audio;
-	ModuleUIInGame* UI_inGame;
+	ModuleUI* UI;
 
 public:
 
