@@ -6,6 +6,8 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
+#include "Animation.h"
+#include "ModuleParticles.h"
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -56,6 +58,20 @@ ModulePlayer2::ModulePlayer2()
 	kick.PushBack({ 305,141,66, 95 });
 	//kick.PushBack({22, 0, 73, 118});
 	kick.speed = 0.14f;
+
+	// tornado move animation
+	tornadoMove.PushBack({ 22, 247, 102, 102 });
+	tornadoMove.PushBack({ 124, 247, 81, 101 });
+	tornadoMove.PushBack({ 206, 253, 82, 101 });
+	tornadoMove.PushBack({ 289, 244, 66, 105 });
+	tornadoMove.PushBack({ 356, 237, 107, 102 });
+	tornadoMove.PushBack({ 480, 174, 72, 174 });
+	tornadoMove.PushBack({ 566, 236, 111, 112 });
+	tornadoMove.PushBack({ 681, 244, 111, 104 });
+	tornadoMove.PushBack({ 793, 244, 118, 104 });
+	tornadoMove.PushBack({ 912, 244, 104, 102 });
+
+	tornadoMove.speed = 0.2f;
 	
 }
 
@@ -115,6 +131,22 @@ update_status ModulePlayer2::Update()
 		action = true;
 
 	}
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_REPEAT && !action) {
+
+		Mix_PlayChannel(-1, App->audio->effects[3], 0);
+		Mix_PlayChannel(-1, App->audio->effects[4], 0);
+		tornadoMov = true;
+		action = true;
+		if (!flipPlayer) {
+			App->particles->tornado.speed.x = +3;
+			App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+		}
+		else {
+			App->particles->tornado.speed.x = -3;
+			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+
+		}
+	}
 	
 	
 	if(action){
@@ -152,7 +184,18 @@ update_status ModulePlayer2::Update()
 			}
 		
 		}
-	
+		if (tornadoMov) {
+
+			current_animation = &tornadoMove;
+			if (tornadoMove.FinishedAnimation() == true) {
+
+				tornadoMov = false;
+				action = false;
+
+				tornadoMove.finishingAnimation(false);
+			}
+
+		}
 	
 	
 	}
