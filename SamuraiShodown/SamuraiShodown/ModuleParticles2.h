@@ -11,7 +11,7 @@ struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
 
-struct Particle
+struct Particle2
 {
 	Collider* collider = nullptr;
 	Animation anim;
@@ -23,9 +23,9 @@ struct Particle
 	bool fx_played = false;
 	bool flipPlayer = false;
 
-	Particle();
-	Particle(const Particle& p);
-	~Particle();
+	Particle2();
+	Particle2(const Particle2& p);
+	~Particle2();
 	bool Update();
 };
 
@@ -34,7 +34,7 @@ class ModuleParticles2 : public Module
 private:
 
 	SDL_Texture* graphics = nullptr;
-	Particle* active[MAX_ACTIVE_PARTICLES];
+	Particle2* active[MAX_ACTIVE_PARTICLES];
 
 public:
 
@@ -46,10 +46,10 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle2& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
-	Particle tornado;
-	Particle tornadoHit;
+	Particle2 tornado;
+	Particle2 tornadoHit;
 
 
 

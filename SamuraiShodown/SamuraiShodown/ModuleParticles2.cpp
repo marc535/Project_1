@@ -5,7 +5,6 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles2.h"
-#include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 
 #include "SDL/include/SDL_timer.h"
@@ -89,7 +88,7 @@ update_status ModuleParticles2::Update()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		Particle* p = active[i];
+		Particle2* p = active[i];
 
 		if(p == nullptr)
 			continue;
@@ -101,7 +100,7 @@ update_status ModuleParticles2::Update()
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			if (App->player->flipPlayer == true) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, true); }
+			if (App->player2->flipPlayer == true) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, true); }
 			else { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false); }
 
 			if(p->fx_played == false)
@@ -114,13 +113,13 @@ update_status ModuleParticles2::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles2::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles2::AddParticle(const Particle2& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if(active[i] == nullptr)
 		{
-			Particle* p = new Particle(particle);
+			Particle2* p = new Particle2(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
@@ -152,24 +151,24 @@ void ModuleParticles2::OnCollision(Collider* c1, Collider* c2)
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle()
+Particle2::Particle2()
 {
 	position.SetToZero();
 	speed.SetToZero();
 }
 
-Particle::Particle(const Particle& p) : 
+Particle2::Particle2(const Particle2& p) : 
 anim(p.anim), position(p.position), speed(p.speed),
 fx(p.fx), born(p.born), life(p.life)
 {}
 
-Particle::~Particle()
+Particle2::~Particle2()
 {
 	if (collider != nullptr)
 		collider->to_delete = true;
 }
 
-bool Particle::Update()
+bool Particle2::Update()
 {
 	bool ret = true;
 

@@ -7,7 +7,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 #include "Animation.h"
-#include "ModuleParticles.h"
+#include "ModuleParticles2.h"
 
 ModulePlayer2::ModulePlayer2()
 {
@@ -138,12 +138,12 @@ update_status ModulePlayer2::Update()
 		tornadoMov = true;
 		action = true;
 		if (!flipPlayer) {
-			App->particles->tornado.speed.x = +3;
-			App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->tornado.speed.x = +3;
+			App->particles2->AddParticle(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 		}
 		else {
-			App->particles->tornado.speed.x = -3;
-			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->tornado.speed.x = -3;
+			App->particles2->AddParticle(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 
 		}
 	}
