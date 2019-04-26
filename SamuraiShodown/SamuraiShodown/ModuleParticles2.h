@@ -34,7 +34,7 @@ class ModuleParticles2 : public Module
 private:
 
 	SDL_Texture* graphics = nullptr;
-	Particle2* active[MAX_ACTIVE_PARTICLES];
+	Particle2* active2[MAX_ACTIVE_PARTICLES];
 
 public:
 

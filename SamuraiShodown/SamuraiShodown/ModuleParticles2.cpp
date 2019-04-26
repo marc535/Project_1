@@ -12,7 +12,7 @@
 ModuleParticles2::ModuleParticles2()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-		active[i] = nullptr;
+		active2[i] = nullptr;
 }
 
 ModuleParticles2::~ModuleParticles2()
@@ -73,10 +73,10 @@ bool ModuleParticles2::CleanUp()
 
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if(active[i] != nullptr)
+		if(active2[i] != nullptr)
 		{
-			delete active[i];
-			active[i] = nullptr;
+			delete active2[i];
+			active2[i] = nullptr;
 		}
 	}
 
@@ -88,7 +88,7 @@ update_status ModuleParticles2::Update()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		Particle2* p = active[i];
+		Particle2* p = active2[i];
 
 		if(p == nullptr)
 			continue;
@@ -96,7 +96,7 @@ update_status ModuleParticles2::Update()
 		if(p->Update() == false)
 		{
 			delete p;
-			active[i] = nullptr;
+			active2[i] = nullptr;
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
@@ -117,7 +117,7 @@ void ModuleParticles2::AddParticle2(const Particle2& particle, int x, int y, COL
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if(active[i] == nullptr)
+		if(active2[i] == nullptr)
 		{
 			Particle2* p = new Particle2(particle);
 			p->born = SDL_GetTicks() + delay;
@@ -126,7 +126,7 @@ void ModuleParticles2::AddParticle2(const Particle2& particle, int x, int y, COL
 			if(collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			LOG("TORNADO 2 CREATED");
-			active[i] = p;
+			active2[i] = p;
 			break;
 		}
 	}
@@ -141,15 +141,15 @@ void ModuleParticles2::OnCollision(Collider* c1, Collider* c2)
 
 		
 
-		if (active[i] != nullptr && active[i]->collider == c1 && c2->type == COLLIDER_PLAYER)
+		if (active2[i] != nullptr && active2[i]->collider == c1 && c2->type == COLLIDER_PLAYER)
 
 		{
-			AddParticle2(tornadoHit, active[i]->position.x, active[i]->position.y - 100, COLLIDER_NONE);
+			AddParticle2(tornadoHit, active2[i]->position.x, active2[i]->position.y - 100, COLLIDER_NONE);
 			if (c1->type == COLLIDER_ENEMY) { LOG("c1 - Colliding with enemy") }
 			if (c2->type == COLLIDER_ENEMY) { LOG("c2 - Colliding with enemy") }
 			LOG("big TORNADO 2 CREATED");
-			delete active[i];
-			active[i] = nullptr;
+			delete active2[i];
+			active2[i] = nullptr;
 			break;
 		}
 	}

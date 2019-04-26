@@ -139,11 +139,11 @@ update_status ModulePlayer2::Update()
 		action = true;
 		if (!flipPlayer) {
 			App->particles2->tornado.speed.x = +3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 		}
 		else {
 			App->particles2->tornado.speed.x = -3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 
 		}
 	}
