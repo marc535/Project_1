@@ -146,7 +146,7 @@ update_status ModulePlayer::Update()
 		tornadoMov = true;
 		action = true;
 		App->particles->tornado.speed.x = +3;
-		App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 70, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y-77, COLLIDER_PLAYER_SHOT);
 
 	}
 	//GOD MODE

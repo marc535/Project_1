@@ -24,10 +24,10 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 
 	// Tornado particle
-	tornado.anim.PushBack({ 22, 400, 49, 26 });
-	tornado.anim.PushBack({ 22, 400, 49, 26 });
-	tornado.anim.PushBack({ 75, 385, 41, 41 });
-	tornado.anim.PushBack({ 75, 385, 41, 41 });
+	tornado.anim.PushBack({ 22, 400, 49, 77 });
+	tornado.anim.PushBack({ 22, 400, 49, 77 });
+	tornado.anim.PushBack({ 75, 385, 41, 77 });
+	tornado.anim.PushBack({ 75, 385, 41, 77 });
 	tornado.anim.PushBack({ 117, 349, 84, 77 });
 	tornado.anim.PushBack({ 202, 348, 93, 78 });
 	tornado.anim.PushBack({ 295, 356, 92, 70 });
@@ -44,7 +44,7 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 1045, 257, 81, 77 });
 
 	tornado.anim.loop = false;
-	tornado.anim.speed = 0.14f;
+	tornado.anim.speed = 0.2f;
 
 	tornado.speed.x = 3;
 	tornado.life = 6000;
@@ -125,7 +125,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1)
 		{
-			AddParticle(tornado, active[i]->position.x, active[i]->position.y - 101, COLLIDER_NONE);
+			AddParticle(tornado, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
 
 			delete active[i];
 			active[i] = nullptr;
