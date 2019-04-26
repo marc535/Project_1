@@ -140,7 +140,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if(active[i] != nullptr && active[i]->collider == c1 && c2->type == COLLIDER_ENEMY)
 		{
 			AddParticle(tornadoHit, active[i]->position.x, active[i]->position.y-100, COLLIDER_NONE);
-
+			if (c1->type == COLLIDER_ENEMY) { LOG("c1 - Colliding with enemy") }
+			if (c2->type == COLLIDER_ENEMY) { LOG("c2 - Colliding with enemy") }
+			LOG("TORNADO CREATED");
 			delete active[i];
 			active[i] = nullptr;
 			break;

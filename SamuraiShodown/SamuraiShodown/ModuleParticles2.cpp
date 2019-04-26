@@ -125,6 +125,7 @@ void ModuleParticles2::AddParticle2(const Particle2& particle, int x, int y, COL
 			p->position.y = y;
 			if(collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			LOG("TORNADO 2 CREATED");
 			active[i] = p;
 			break;
 		}
@@ -140,7 +141,9 @@ void ModuleParticles2::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1 && c2->type == COLLIDER_PLAYER)
 		{
 			AddParticle2(tornadoHit, active[i]->position.x, active[i]->position.y - 100, COLLIDER_NONE);
-
+			if (c1->type == COLLIDER_ENEMY) { LOG("c1 - Colliding with enemy") }
+			if (c2->type == COLLIDER_ENEMY) { LOG("c2 - Colliding with enemy") }
+			LOG("big TORNADO 2 CREATED");
 			delete active[i];
 			active[i] = nullptr;
 			break;
@@ -149,7 +152,7 @@ void ModuleParticles2::OnCollision(Collider* c1, Collider* c2)
 }
 
 // -------------------------------------------------------------
-// -------------------------------------------------------------
+// -------------------------------------------------2------------
 
 Particle2::Particle2()
 {
