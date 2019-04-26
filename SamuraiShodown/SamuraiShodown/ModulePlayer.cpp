@@ -130,7 +130,7 @@ update_status ModulePlayer::Update()
 
 		tornadoMov = true;
 		action = true;
-		App->particles->tornado.speed.x = +3
+		App->particles->tornado.speed.x = +3;
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
