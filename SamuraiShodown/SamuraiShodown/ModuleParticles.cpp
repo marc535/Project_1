@@ -52,6 +52,17 @@ bool ModuleParticles::Start()
 	tornado.life = 6000;
 	tornado.anim.First = 2.0f;
 
+	tornadoHit.anim.PushBack({1140, 249, 50, 177});
+	tornadoHit.anim.PushBack({ 1191, 248, 61, 176 });
+	tornadoHit.anim.PushBack({ 1254, 245, 52, 177 });
+	tornadoHit.anim.PushBack({ 1191, 248, 61, 176 });
+	tornadoHit.anim.PushBack({ 1254, 245, 52, 177 });
+
+	tornadoHit.anim.loop = true;
+	tornadoHit.anim.speed = 0.3f;
+	tornadoHit.life = 2000;
+	tornadoHit.anim.First = 1.0f;
+
 	return true;
 }
 
