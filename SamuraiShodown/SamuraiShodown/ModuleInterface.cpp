@@ -2,17 +2,17 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleSceneUky.h"
-#include "ModuleSceneHao.h"
+//#include "ModuleSceneUky.h"
+#include "ModuleSceneHaohmaru.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
-#include "ModuleFonts.h"
+//#include "ModuleFonts.h"
 #include "ModuleInterface.h"
 
-#include <stdio.h> //for the sprintf_s function
+//#include <stdio.h> 
 
 
 ModuleInterface::ModuleInterface()
@@ -29,11 +29,11 @@ bool ModuleInterface::Start()
 	LOG("Loading interface ");
 	 roundfinish = false;
 
-	startingtime = SDL_GetTicks();
+	//startingtime = SDL_GetTicks();
 
 
-	font_time = App->fonts->Load("Assets/Fonts/TimeTile.png", "0123456789", 1);
-	font_name = App->fonts->Load("Assets/Fonts/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
+	//ont_time = App->fonts->Load("Assets/Fonts/TimeTile.png", "0123456789", 1);
+	//font_name = App->fonts->Load("Assets/Fonts/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
 	ui = App->textures->Load("Assets/Sprites/UIspritesheet2.png");
 
 	return true;
@@ -44,8 +44,8 @@ bool ModuleInterface::CleanUp()
 {
 	LOG("Unloading interface ");
 	App->textures->Unload(ui);
-	App->fonts->UnLoad(font_time);
-	App->fonts->UnLoad(font_name);
+//	App->fonts->UnLoad(font_time);
+	//App->fonts->UnLoad(font_name);
 
 
 	App->audio->CleanUp();
@@ -55,8 +55,8 @@ bool ModuleInterface::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleInterface::Update()
-{
+update_status ModuleInterface::Update(){
+/*
 	App->render->Blit(ui, (SCREEN_WIDTH / 2) - 14, 10, false, &ko, NULL, true); // KO UI
 
 
@@ -83,6 +83,6 @@ update_status ModuleInterface::Update()
 	App->render->Blit(ui, 210, 202, false, &powbar, NULL, true);
 	App->render->Blit(ui, 275, 200, false, &pow, NULL, true);
 
-
+*/
 	return UPDATE_CONTINUE;
 }

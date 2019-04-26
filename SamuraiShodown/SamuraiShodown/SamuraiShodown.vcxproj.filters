@@ -85,6 +85,9 @@
     <ClCompile Include="ModuleParticles2.cpp">
       <Filter>Modules\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleInterface.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="ModuleParticles2.h">
       <Filter>Modules\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInterface.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -136,6 +136,7 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleInterface.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleParticles2.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleInterface.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModuleParticles2.h" />
     <ClInclude Include="ModulePlayer.h" />
