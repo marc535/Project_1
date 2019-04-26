@@ -13,7 +13,6 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleUIInGame.h"
 #include "ModuleParticles.h"
 
 Application::Application()
@@ -32,7 +31,6 @@ Application::Application()
 	modules[i++] = scene_ending = new ModuleSceneEnding();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
 	modules[i++] = fade = new ModuleFadeToBlack();
-	modules[i++] = UI_inGame = new ModuleUIInGame();
 
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
@@ -55,7 +53,6 @@ bool Application::Init()
 	// Deactivate modules here ----
 	player->Disable();
 	player2->Disable();
-	UI_inGame->Disable();
 	//collision->Disable();
 	
 
