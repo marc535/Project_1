@@ -117,7 +117,7 @@ update_status ModulePlayer2::Update()
 		else { flipPlayer = true; }
 		
 	}
-
+	
 	if(action){
 	
 		if (jumped) {

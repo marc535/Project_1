@@ -44,6 +44,7 @@ public:
 	bool tornadoMov = false;
 
 	bool flipPlayer = false;
+	bool godMode = false;
 
 	int var1 = 0;
 	
