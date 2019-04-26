@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleAudio.h"
 
 struct SDL_Texture;
 
@@ -41,6 +42,9 @@ public:
 	bool flipPlayer = true;
 
 	int var1 = 0;
+	
+
+	Mix_Chunk* kicks;
 	
 };
 
