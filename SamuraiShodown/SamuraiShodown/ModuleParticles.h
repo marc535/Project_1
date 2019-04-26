@@ -50,7 +50,7 @@ private:
 
 public:
 
-	Particle explosion;
+	Particle tornado;
 	Particle laser;
 };
 

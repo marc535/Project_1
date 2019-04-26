@@ -13,7 +13,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
-//#include "ModuleParticles.h"
+#include "ModuleParticles.h"
 
 Application::Application()
 {
@@ -34,7 +34,7 @@ Application::Application()
 
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
-	//modules[i++] = particles = new ModuleParticles();
+	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	
 

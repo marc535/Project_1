@@ -20,6 +20,9 @@
     <Filter Include="Modules\Player">
       <UniqueIdentifier>{a90cc133-5722-49ab-839e-2392c806c93d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Particles">
+      <UniqueIdentifier>{99e3b40d-690c-45f4-9e6d-89159be61d33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="ModulePlayer2.cpp">
       <Filter>Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="ModulePlayer2.h">
       <Filter>Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Modules\Particles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
