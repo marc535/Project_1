@@ -93,6 +93,7 @@ bool ModuleSceneHaohmaru::CleanUp()
 	App->player2->Disable();
 	App->UI->Disable();
 	App->textures->Unload(graphics);
+	App->collision->Disable();
 
 	
 	App->audio->CleanUp();
