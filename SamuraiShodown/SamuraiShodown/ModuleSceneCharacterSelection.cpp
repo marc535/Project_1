@@ -31,13 +31,14 @@ bool ModuleSceneCharacterSelection::Start()
       LOG("Loading CharSelection scene");
 
 	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/PlayerSelect.ogg");
-
+	App->audio->effects[5] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersNames/Haohmaru.wav");
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
 		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/characterselecting.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+		Mix_PlayChannel(-1, App->audio->effects[5], 0);
 	}
 
 	
