@@ -237,7 +237,7 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 
 	if (flipPlayer) {
 		
-			if (this->position.x < p2->position.x) {
+			if ((this->position.x + 60) < p2->position.x) {
 				flipPlayer = false;
 				LOG("Player1 flip = false")
 			
@@ -246,7 +246,7 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 	if (!flipPlayer) {
 
 		
-		if (this->position.x > p2->position.x) {
+		if (this->position.x > (p2->position.x + 60)) {
 				flipPlayer = true;
 				LOG("Player1 flip = true")	
 		}
