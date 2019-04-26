@@ -30,12 +30,12 @@ bool ModuleParticles::Start()
 	tornado.anim.PushBack({ 75, 349, 41, 77 });
 	tornado.anim.PushBack({ 117, 349, 84, 77 });
 	tornado.anim.PushBack({ 202, 348, 93, 78 });
-	tornado.anim.PushBack({ 295, 356, 92, 70 });
-	tornado.anim.PushBack({ 388, 361, 93, 65 });
-	tornado.anim.PushBack({ 482, 367, 93, 59 });
-	tornado.anim.PushBack({ 576, 368, 88, 58 });
-	tornado.anim.PushBack({ 665, 368, 88, 65 });
-	tornado.anim.PushBack({ 754, 361, 81, 65 });
+	tornado.anim.PushBack({ 295, 349, 92, 77 });
+	tornado.anim.PushBack({ 388, 349, 93, 77 });
+	tornado.anim.PushBack({ 482, 349, 93, 77 });
+	tornado.anim.PushBack({ 576, 349, 88, 77 });
+	tornado.anim.PushBack({ 665, 349, 88, 77 });
+	tornado.anim.PushBack({ 754, 349, 81, 77 });
 	tornado.anim.PushBack({ 836, 355, 57, 71 });
 	tornado.anim.PushBack({ 894, 351, 48, 75 });
 	tornado.anim.PushBack({ 943, 351, 49, 75 });
