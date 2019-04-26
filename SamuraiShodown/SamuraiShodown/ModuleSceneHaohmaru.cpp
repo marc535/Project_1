@@ -8,6 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
+#include "ModuleCollision.h"
 #include "ModuleUI.h"
 
 
@@ -52,7 +53,8 @@ bool ModuleSceneHaohmaru::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-
+	App->collision->AddCollider({ -5, 0, 10, 416 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 635, 0, 10, 416 }, COLLIDER_WALL);
 	
 	return true;
 }
