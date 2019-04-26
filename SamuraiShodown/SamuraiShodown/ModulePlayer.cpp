@@ -101,7 +101,7 @@ bool ModulePlayer::Start()
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	
-	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -130,6 +130,7 @@ update_status ModulePlayer::Update()
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
+	
 	}
 		
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
@@ -137,7 +138,7 @@ update_status ModulePlayer::Update()
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
-
+		
 	}
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
 	{
@@ -191,7 +192,7 @@ update_status ModulePlayer::Update()
 		}
 
 		if (!godMode) {
-			p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+			p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 30, 90 }, COLLIDER_PLAYER, this);
 		}
 	}
 
@@ -259,7 +260,12 @@ update_status ModulePlayer::Update()
 	
 	}
 
-	p1Collider->SetPos(position.x, position.y - 90);
+	if (!flipPlayer) {
+		p1Collider->SetPos(position.x + 20, position.y - 80);
+	}
+	else {
+		p1Collider->SetPos(position.x + 10, position.y - 80);
+	}
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
