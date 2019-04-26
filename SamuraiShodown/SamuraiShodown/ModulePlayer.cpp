@@ -123,7 +123,7 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT && !action)
 	{
-
+        Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		kicked = true;
 		action = true;
 
@@ -179,7 +179,7 @@ update_status ModulePlayer::Update()
 		}
 
 		if (kicked) {
-			Mix_PlayChannel(-1, App->audio->effects[2], 0);
+			
 			current_animation = &kick;
 			if (kick.FinishedAnimation() == true) {
 			
