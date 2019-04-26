@@ -52,7 +52,7 @@ void ModuleUI::damage(int damage)
 
 update_status ModuleUI::Update()
 {
-	Animation* current_animation = &healthy;
+	/*Animation* current_animation = &healthy;
 
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
 	{
@@ -101,7 +101,7 @@ update_status ModuleUI::Update()
 		{
 			App->render->Blit(graphics, 10, 10, &animation, 0.1f, false);
 		}
-	}
+	}*/
 	return UPDATE_CONTINUE;
 }
 

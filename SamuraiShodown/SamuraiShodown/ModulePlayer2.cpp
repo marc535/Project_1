@@ -115,12 +115,7 @@ update_status ModulePlayer2::Update()
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
-	{
-		if (flipPlayer) { flipPlayer = false; }
-		else { flipPlayer = true; }
-		
-	}
+	
 	
 	if(action){
 	
