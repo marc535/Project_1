@@ -36,7 +36,7 @@ ModuleSceneHaohmaru::~ModuleSceneHaohmaru()
 bool ModuleSceneHaohmaru::Start()
 {
 	Enable();
-	
+	App->collision->Enable();
 
 	
 
