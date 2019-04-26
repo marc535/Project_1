@@ -120,7 +120,7 @@ update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
 	
-	float speed = 2.0f;
+	int speed = 2;
 	float yVelocity = 15.1f;
 	float yAcceleration = 0.87f;
 	

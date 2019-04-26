@@ -33,6 +33,7 @@ public:
 	Animation jump;
 	Animation kick;
 	Animation tornadoMove;
+	Animation sAttack;
 
 	iPoint position;
 
@@ -41,15 +42,16 @@ public:
 	bool action = false;
 	bool kicked = false;
 	bool tornadoMov = false;
+	bool attacking = false;
 
 	bool flipPlayer = true;
 
 
 	int var1 = 0;
-	
+
 
 	Mix_Chunk* kicks;
-	
+
 };
 
 #endif

@@ -72,6 +72,18 @@ ModulePlayer2::ModulePlayer2()
 	tornadoMove.PushBack({ 912, 244, 104, 102 });
 
 	tornadoMove.speed = 0.2f;
+
+	// sword attack
+	sAttack.PushBack({ 22, 446, 67, 127 });
+	sAttack.PushBack({ 90, 477, 78, 96 });
+	sAttack.PushBack({ 169, 480, 130, 93 });
+	sAttack.PushBack({ 300, 480, 130, 93 });
+	sAttack.PushBack({ 431, 491, 129, 82 });
+	sAttack.PushBack({ 561, 491, 127, 82 });
+	sAttack.PushBack({ 689, 491, 119, 82 });
+	sAttack.PushBack({ 809, 488, 130, 85 });
+
+	sAttack.speed = 0.3f;
 	
 }
 
@@ -102,14 +114,14 @@ update_status ModulePlayer2::Update()
 	float yAcceleration = 0.87f;
 	
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
 	}
 		
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
@@ -123,15 +135,14 @@ update_status ModulePlayer2::Update()
 		action = true;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action && !jumped)
 	{
-
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		kicked = true;
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action) {
+	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
 		Mix_PlayChannel(-1, App->audio->effects[3], 0);
 		Mix_PlayChannel(-1, App->audio->effects[4], 0);
@@ -146,6 +157,13 @@ update_status ModulePlayer2::Update()
 			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 
 		}
+	}
+	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action)
+	{
+		Mix_PlayChannel(-1, App->audio->effects[6], 0);
+		attacking = true;
+		action = true;
+
 	}
 	
 	
@@ -193,6 +211,18 @@ update_status ModulePlayer2::Update()
 				action = false;
 
 				tornadoMove.finishingAnimation(false);
+			}
+
+		}
+		if (attacking) {
+
+			current_animation = &sAttack;
+			if (sAttack.FinishedAnimation() == true) {
+
+				attacking = false;
+				action = false;
+
+				sAttack.finishingAnimation(false);
 			}
 
 		}
