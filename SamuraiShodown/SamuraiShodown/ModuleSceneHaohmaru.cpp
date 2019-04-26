@@ -53,8 +53,8 @@ bool ModuleSceneHaohmaru::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-	App->collision->AddCollider({ -5, 0, 10, 416 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 635, 0, 10, 416 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 0, 0, 3, 500 }, COLLIDER_WALL);
+	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 	
 	return true;
 }
