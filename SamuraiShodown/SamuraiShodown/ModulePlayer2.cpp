@@ -51,9 +51,9 @@ ModulePlayer2::ModulePlayer2()
 	jump.speed = 0.07f;
 
 	// kick animation
-	kick.PushBack({ 305,141,66,118 });
-	kick.PushBack({ 372,138,86,118 });
-	kick.PushBack({ 305,141,66,118 });
+	kick.PushBack({ 305,141,66, 95 });
+	kick.PushBack({ 372,138,86, 98 });
+	kick.PushBack({ 305,141,66, 95 });
 	//kick.PushBack({22, 0, 73, 118});
 	kick.speed = 0.14f;
 	
