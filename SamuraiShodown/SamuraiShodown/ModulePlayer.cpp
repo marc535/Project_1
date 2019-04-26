@@ -91,9 +91,8 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
-bool ModulePlayer::CleanUp()
-{
-	// TODO 5: Remove all memory leaks
+bool ModulePlayer::CleanUp(){
+
 	LOG("Unloading Character");
 	App->textures->Unload(graphics);
 
@@ -239,13 +238,7 @@ update_status ModulePlayer::Update()
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	/*if (this->p1Collider == c1) {
-		if (c1->rect.x < c2->rect.x)
-			position.x = c2->rect.x - c1->rect.w;
-		if (c1->rect.x > c2->rect.x)
-			position.x = c2->rect.x + c2->rect.w;
-	}
-*/
+
 	
 }
 
