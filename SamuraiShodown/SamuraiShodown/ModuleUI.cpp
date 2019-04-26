@@ -7,30 +7,48 @@
 
 ModuleUI::ModuleUI()
 {
-	hp_pull.h = 15;
-	hp_pull.w = 134;
-	hp_pull.x = 273;
-	hp_pull.y = 421;
+	//health 1
+	hp_pull_1.h = 15;
+	hp_pull_1.w = 134;
+	hp_pull_1.x = 273;
+	hp_pull_1.y = 421;
 
-	//healthy
-	healthy.PushBack({ 273, 308, 134 - hp_graph, 15 });
-	healthy.PushBack({ 273, 308, 134 - hp_graph, 15 });
-	healthy.speed = 1.0f;
+	//health 2
+	hp_pull_2.h = 15;
+	hp_pull_2.w = 134;
+	hp_pull_2.x = 273;
+	hp_pull_2.y = 405;
 
-	//not healthy 1
-	not_healthy1.PushBack({ 273, 324, 134 - hp_graph, 15 });
-	not_healthy1.PushBack({ 273, 389, 134 - hp_graph, 15 });
-	not_healthy1.speed = 0.2f;
+	//healthy 1
+	healthy_1.PushBack({ 273, 308, 128, 13 });
+	healthy_1.PushBack({ 273, 308, 128, 13 });
+	healthy_1.speed = 1.0f;
 
-	//not healthy 2
-	not_healthy2.PushBack({ 273, 324, 134 - hp_graph, 15 });
-	not_healthy2.PushBack({ 273, 389, 134 - hp_graph, 15 });
-	not_healthy2.speed = 0.5f;
+	//medium health 1
+	medium_health_1.PushBack({ 277, 326, 128, 9 });
+	medium_health_1.PushBack({ 277, 391, 128, 9 });
+	medium_health_1.speed = 0.2f;
 
-	//damage taken
-	damage_taken.PushBack({ 273, 310, 134 - hp_graph, 9 });
-	damage_taken.PushBack({ 273, 310, 134 - hp_graph, 9 });
-	damage_taken.speed = 1.0f;
+	//low health 1
+	low_health_1.PushBack({ 277, 326, 128, 9 });
+	low_health_1.PushBack({ 277, 391, 128, 9 });
+	low_health_1.speed = 0.7f;
+
+	//healthy 2
+	healthy_2.PushBack({ 273, 308, 128, 13 });
+	healthy_2.PushBack({ 273, 308, 128, 13 });
+	healthy_2.speed = 1.0f;
+
+	//medium health 2
+	medium_health_2.PushBack({ 277, 326, 128, 9 });
+	medium_health_2.PushBack({ 277, 391, 128, 9 });
+	medium_health_2.speed = 0.2f;
+
+	//low health 2
+	low_health_2.PushBack({ 277, 326, 128, 9 });
+	low_health_2.PushBack({ 277, 391, 128, 9 });
+	low_health_2.speed = 0.7f;
+
 }
 
 ModuleUI::~ModuleUI()
@@ -43,65 +61,68 @@ bool ModuleUI::Start()
 	return true;
 }
 
-void ModuleUI::damage(int damage)
+void ModuleUI::damage_to_1(int damage)
 {
-	damaged = true;
-	hp_graph += (1.34f * damage);
-	HP -= damage;
+	HP1 -= damage;
+	//damaged_1 = true;
+}
+void ModuleUI::damage_to_2(int damage)
+{
+	HP2 -= damage;
+	//damaged_2 = true;
 }
 
 update_status ModuleUI::Update()
 {
-	Animation* current_animation = &healthy;
+	Animation* health_bar_animation_1 = &healthy_1;
+	Animation* health_bar_animation_2 = &healthy_2;
 
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_6] == KEY_STATE::KEY_DOWN)
 	{
-		damage(20);
+		damage_to_1(20);
 	}
-	if (HP <= LOW_HP)
+	if (App->input->keyboard[SDL_SCANCODE_7] == KEY_STATE::KEY_DOWN)
 	{
-		if (damaged)
-		{
-			current_animation = &damage_taken;
-			damaged = false;
-		}
-		else
-		{
-			current_animation = &not_healthy1;
-		}
-	}
-	else if (HP <= LOW2_HP)
-	{
-		if (damaged)
-		{
-			current_animation = &damage_taken;
-			damaged = false;
-		}
-		else
-		{
-			current_animation = &not_healthy2;
-		}
+		damage_to_2(20);
 	}
 
-	animation = current_animation->GetCurrentFrame();
+	App->render->Blit(graphics, 10, 10, &hp_pull_1, 1.0f, false);
+	App->render->Blit(graphics, 148, 10, &hp_pull_2, 1.0f, false);
 
-	App->render->Blit(graphics, 10, 10, &hp_pull, 1.0f, false);
-	App->render->Blit(graphics, 10, 10, &damage_animation, 1.0f, false);
-	if (HP > LOW_HP)
+	if (HP1 <= LOW_HP && HP1 > LOW2_HP)
 	{
-		App->render->Blit(graphics, 14, 10, &animation, 0.1f, false);
+		health_bar_animation_1 = &medium_health_1;
+		App->render->Blit(graphics, 14, 12, &health_animation_1, 1.0f, false);
 	}
-	else
+	if (HP1 <= LOW2_HP)
 	{
-		if (damaged)
-		{
-			App->render->Blit(graphics, 14, 12, &animation, 0.1f, false);
-		}
-		else
-		{
-			App->render->Blit(graphics, 10, 10, &animation, 0.1f, false);
-		}
+		health_bar_animation_1 = &low_health_1;
+		App->render->Blit(graphics, 14, 12, &health_animation_1, 1.0f, false);
 	}
+	if (HP1 > LOW_HP)
+	{
+		App->render->Blit(graphics, 14, 10, &health_animation_1, 1.0f, false);
+	}
+
+
+	if (HP2 <= LOW_HP && HP2 > LOW2_HP)
+	{
+		health_bar_animation_2 = &medium_health_2;
+		App->render->Blit(graphics, 150, 12, &health_animation_2, 1.0f, false);
+	}
+	if (HP2 <= LOW2_HP)
+	{
+		health_bar_animation_2 = &low_health_2;
+		App->render->Blit(graphics, 150, 12, &health_animation_2, 1.0f, false);
+	}
+	if (HP2 > LOW_HP)
+	{
+		App->render->Blit(graphics, 150, 10, &health_animation_2, 1.0f, false);
+	}
+
+	health_animation_1 = health_bar_animation_1->GetCurrentFrame();
+	health_animation_2 = health_bar_animation_2->GetCurrentFrame();
+
 	return UPDATE_CONTINUE;
 }
 
@@ -109,8 +130,8 @@ bool ModuleUI::CleanUp()
 {
 	LOG("Unloading Welcome scene");
 
-	HP = TOTAL_HP;
-	hp_graph = 134;
+	HP1 = TOTAL_HP;
+	HP2 = TOTAL_HP;
 	App->textures->Unload(graphics);
 
 	return true;
