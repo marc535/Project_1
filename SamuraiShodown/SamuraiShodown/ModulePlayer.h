@@ -17,6 +17,7 @@ public:
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 	void OnCollision(Collider* c1, Collider* c2);
 	void OnPassing(ModulePlayer2* p2);
@@ -49,6 +50,7 @@ public:
 	int var1 = 0;
 	
 	Mix_Chunk* kicks;
+	Mix_Chunk* tornados;
 
 };
 

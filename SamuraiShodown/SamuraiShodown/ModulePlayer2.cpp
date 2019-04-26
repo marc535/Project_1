@@ -69,6 +69,9 @@ bool ModulePlayer2::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
+	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
+
+
 	p2Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
 	return ret;
 }
@@ -107,6 +110,7 @@ update_status ModulePlayer2::Update()
 	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
+		Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		kicked = true;
 		action = true;
 
