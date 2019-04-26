@@ -59,7 +59,7 @@ bool ModuleParticles::Start()
 
 	tornadoHit.anim.loop = true;
 	tornadoHit.anim.speed = 0.3f;
-	tornadoHit.life = 2000;
+	tornadoHit.life = 1125;
 	tornadoHit.anim.First = 1.0f;
 
 	return true;
@@ -139,7 +139,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if(active[i] != nullptr && active[i]->collider == c1)
 		{
-			AddParticle(tornado, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
+			AddParticle(tornadoHit, active[i]->position.x, active[i]->position.y-100, COLLIDER_NONE);
 
 			delete active[i];
 			active[i] = nullptr;
