@@ -49,6 +49,7 @@ public:
 	int var1 = 0;
 	
 	Mix_Chunk* kicks;
+	Mix_Chunk* tornados;
 
 };
 

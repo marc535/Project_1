@@ -85,7 +85,8 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-
+	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
+	
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
 	return ret;
 }
@@ -130,6 +131,7 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_V] == KEY_STATE::KEY_REPEAT && !action) {
 
+		Mix_PlayChannel(-1, App->audio->effects[3], 0);
 		tornadoMov = true;
 		action = true;
 		App->particles->tornado.speed.x = +3;
