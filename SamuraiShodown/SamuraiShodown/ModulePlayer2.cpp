@@ -163,17 +163,30 @@ update_status ModulePlayer2::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
-	
+
 	return UPDATE_CONTINUE;
 }
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
-	/*if (this->p2Collider == c1) {
-		if (c1->rect.x < c2->rect.x)
-			position.x = c2->rect.x - c1->rect.w;
-		if (c1->rect.x > c2->rect.x)
-			position.x = c2->rect.x + c2->rect.w;
-	}*/
+
+	if (!flipPlayer) {
+
+		if (this->p2Collider == c1) {
+			if (c1->rect.x > c2->rect.x) {
+				flipPlayer = true;
+				LOG("Player1 flip = true")
+			}
+		}
+	}
+	else {
+		if (this->p2Collider == c1) {
+			if (c1->rect.x < c2->rect.x) {
+				flipPlayer = false;
+				LOG("Player1 flip = false")
+			}
+		}
+	}
+
 
 	if (c2->type == COLLIDER_ENEMY_SHOT) {
 		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
