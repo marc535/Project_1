@@ -32,6 +32,7 @@ public:
 	Animation backward;
 	Animation jump;
 	Animation kick;
+	Animation tornadoMove;
 
 	iPoint position;
 
@@ -39,7 +40,10 @@ public:
 	bool airborne = false;
 	bool action = false;
 	bool kicked = false;
+	bool tornadoMov = false;
+
 	bool flipPlayer = true;
+
 
 	int var1 = 0;
 	

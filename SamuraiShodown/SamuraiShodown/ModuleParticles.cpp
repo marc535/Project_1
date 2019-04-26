@@ -103,6 +103,7 @@ update_status ModuleParticles::Update()
 		{
 			if (App->player->flipPlayer == true) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, true); }
 			else { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false); }
+
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;

@@ -129,6 +129,7 @@ void ModuleCollision::DebugDraw() //(debug tool) draw colliders
 
 	if(debug == false)
 		return;
+	
 
 	Uint8 alpha = 80;
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)

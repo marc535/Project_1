@@ -1,4 +1,4 @@
-# Project 1
+﻿# Project 1
 
 ## Samurai Shodown
 
@@ -20,8 +20,24 @@ The stories take place in the 18th century in Japan, during the seclusion period
 Instructions:
 Download the file of whichever version you wish to play, inside of every one of them you will find an executable to play the version and a modified copy of this README file. We recommend you read only the last part, which will show you which features are included in that version
 
+Controls:
+If you wish to switch screens you can press SPACE
+To move Haohmaru you have to either press D(forward walk), A(backward walk) or W(jump)
+
 List of Versions:
 
-v.0.1: Scrollable empty background
- 
+v.0.1: - Scrollable empty background
+
+v.0.2:  - Included NeoGeo screen, Welcome screen, Haohmaru's stage(animated) and Celebration screen
+	- FadeToBlack when screen switching added
+	- Music added for each different screen
+ 	- Haohmaru added with idle, forward walk, backward walk and jump animation
+	- Direct access to Haohmaru's scene by pressing Q (shortcut from NeoGeo's screen)
+
+v.0.3:  - Two movable players added without collisions
+	- Players flip when they pass each other, therefore, their animations flip as well
+	- Animated kick and special attack mechanics
+	- Added tornado particle
+	- Added sound fx for kick and special attack (+tornado)
+
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki
