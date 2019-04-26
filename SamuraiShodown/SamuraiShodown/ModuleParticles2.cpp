@@ -137,7 +137,7 @@ void ModuleParticles2::OnCollision(Collider* c1, Collider* c2)
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
-		if(active[i] != nullptr && active[i]->collider == c2)
+		if(active[i] != nullptr && active[i]->collider == c1)
 		{
 			AddParticle(tornadoHit, active[i]->position.x, active[i]->position.y-100, COLLIDER_NONE);
 
