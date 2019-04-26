@@ -145,9 +145,15 @@ update_status ModulePlayer::Update()
 		Mix_PlayChannel(-1, App->audio->effects[3], 0);
 		tornadoMov = true;
 		action = true;
-		App->particles->tornado.speed.x = +3;
-		App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y-77, COLLIDER_PLAYER_SHOT);
-
+		if (!flipPlayer) {
+			App->particles->tornado.speed.x = +3;
+			App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+		}
+		else {
+			App->particles->tornado.speed.x = -3;
+			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			
+		}
 	}
 	//GOD MODE
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)

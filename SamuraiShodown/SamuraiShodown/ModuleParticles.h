@@ -32,7 +32,13 @@ struct Particle
 
 class ModuleParticles : public Module
 {
+private:
+
+	SDL_Texture* graphics = nullptr;
+	Particle* active[MAX_ACTIVE_PARTICLES];
+
 public:
+
 	ModuleParticles();
 	~ModuleParticles();
 
@@ -43,15 +49,10 @@ public:
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
-private:
-
-	SDL_Texture* graphics = nullptr;
-	Particle* active[MAX_ACTIVE_PARTICLES];
-
-public:
-
 	Particle tornado;
-	Particle laser;
+
+
+
 };
 
 #endif // __MODULEPARTICLES_H__
