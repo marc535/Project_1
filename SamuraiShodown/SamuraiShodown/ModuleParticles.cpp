@@ -5,6 +5,8 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -88,7 +90,8 @@ update_status ModuleParticles::Update()
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false);
+			if (App->player->flipPlayer == true) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, true); }
+			else { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false); }
 			if(p->fx_played == false)
 			{
 				p->fx_played = true;

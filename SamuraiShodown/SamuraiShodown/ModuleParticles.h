@@ -23,6 +23,7 @@ struct Particle
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
+	bool flipPlayer = false;
 
 	Particle();
 	Particle(const Particle& p);
