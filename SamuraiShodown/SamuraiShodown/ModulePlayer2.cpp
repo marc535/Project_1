@@ -100,7 +100,7 @@ bool ModulePlayer2::Start()
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 
 
-	p2Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_ENEMY, this);
+	p2Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_ENEMY, this);
 	return ret;
 }
 
@@ -230,7 +230,12 @@ update_status ModulePlayer2::Update()
 	
 	}
 
-	p2Collider->SetPos(position.x, position.y - 90);
+	if (!flipPlayer) {
+		p2Collider->SetPos(position.x + 20, position.y - 80);
+	}
+	else {
+		p2Collider->SetPos(position.x + 10, position.y - 80);
+	}
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
