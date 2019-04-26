@@ -90,7 +90,7 @@ update_status ModuleParticles::Update()
 		}
 		else if(SDL_GetTicks() >= p->born)
 		{
-			if (App->player->flipPlayer) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false); }
+			if (App->player->flipPlayer == true) { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, true); }
 			else { App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 1.0f, false); }
 			if(p->fx_played == false)
 			{
