@@ -18,6 +18,7 @@ public:
 	update_status Update();
 
 	void OnCollision(Collider* c1, Collider* c2);
+	void OnPassing(ModulePlayer* p1);
 
 public:
 

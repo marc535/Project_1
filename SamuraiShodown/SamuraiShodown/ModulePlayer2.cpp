@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleCollision.h"
 
@@ -167,30 +168,50 @@ update_status ModulePlayer2::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
+//void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
+//
+//	if (!flipPlayer) {
+//
+//		if (this->p2Collider == c1) {
+//			if (c1->rect.x > c2->rect.x) {
+//				flipPlayer = true;
+//				LOG("Player2 flip = true")
+//			}
+//		}
+//	}
+//	else {
+//		if (this->p2Collider == c1) {
+//			if (c1->rect.x < c2->rect.x) {
+//				flipPlayer = false;
+//				LOG("Player2 flip = false")
+//			}
+//		}
+//	}
+//
+//
+//	if (c2->type == COLLIDER_ENEMY_SHOT) {
+//		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
+//		health += 30;
+//		getsHit = true; doingAction = true;*/
+//	}
+//}
 
+void ModulePlayer2::OnPassing(ModulePlayer* p1) {
+
+	if (flipPlayer) {
+
+		if (this->position.x < p1->position.x) {
+			flipPlayer = false;
+			LOG("Player1 flip = false")
+
+		}
+	}
 	if (!flipPlayer) {
 
-		if (this->p2Collider == c1) {
-			if (c1->rect.x > c2->rect.x) {
-				flipPlayer = true;
-				LOG("Player1 flip = true")
-			}
-		}
-	}
-	else {
-		if (this->p2Collider == c1) {
-			if (c1->rect.x < c2->rect.x) {
-				flipPlayer = false;
-				LOG("Player1 flip = false")
-			}
-		}
-	}
 
-
-	if (c2->type == COLLIDER_ENEMY_SHOT) {
-		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		health += 30;
-		getsHit = true; doingAction = true;*/
+		if (this->position.x > p1->position.x) {
+			flipPlayer = true;
+			LOG("Player1 flip = true")
+		}
 	}
 }

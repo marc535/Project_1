@@ -4,7 +4,9 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -196,36 +198,56 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
+	OnPassing(App->player2);
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
 	
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	
+//void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+//	
+//	if (flipPlayer) {
+//		if (this->p1Collider == c1) {
+//			if (c1->rect.x < c2->rect.w) {
+//				flipPlayer = false;
+//				LOG("Player1 flip = false")
+//			}
+//		}
+//	}
+//	if (!flipPlayer) {
+//
+//		if (this->p1Collider == c1) {
+//			if (c1->rect.x > c2->rect.x) {
+//				flipPlayer = true;
+//				LOG("Player1 flip = true")
+//			}
+//		}
+//	}
+//	
+//	
+//
+//	if (c2->type == COLLIDER_ENEMY_SHOT) {
+//		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
+//		health += 30;
+//		getsHit = true; doingAction = true;*/
+//	}
+//}
+void ModulePlayer::OnPassing(ModulePlayer2* p2) {
+
 	if (flipPlayer) {
-		if (this->p1Collider == c1) {
-			if (c1->rect.x < c2->rect.w) {
+		
+			if (this->position.x < p2->position.x) {
 				flipPlayer = false;
 				LOG("Player1 flip = false")
-			}
+			
 		}
 	}
 	if (!flipPlayer) {
 
-		if (this->p1Collider == c1) {
-			if (c1->rect.x > c2->rect.x) {
+		
+		if (this->position.x > p2->position.x) {
 				flipPlayer = true;
-				LOG("Player1 flip = true")
-			}
+				LOG("Player1 flip = true")	
 		}
-	}
-	
-	
-
-	if (c2->type == COLLIDER_ENEMY_SHOT) {
-		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		health += 30;
-		getsHit = true; doingAction = true;*/
 	}
 }
