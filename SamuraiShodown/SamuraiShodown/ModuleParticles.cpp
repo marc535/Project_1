@@ -23,16 +23,18 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 
-	// Explosion particle
-	tornado.anim.PushBack({22, 400, 49, 26});
-	tornado.anim.PushBack({75, 385, 41, 41 });
-	tornado.anim.PushBack({117, 349, 84, 77 });
-	tornado.anim.PushBack({202, 348, 93, 78});
-	tornado.anim.PushBack({295, 356, 92, 70});
-	tornado.anim.PushBack({388, 361, 93, 65});
-	tornado.anim.PushBack({482, 367, 93, 59 });
-	tornado.anim.PushBack({576, 368, 88, 58 });
-	tornado.anim.PushBack({665, 368, 88, 65 });
+	// Tornado particle
+	tornado.anim.PushBack({ 22, 400, 49, 26 });
+	tornado.anim.PushBack({ 22, 400, 49, 26 });
+	tornado.anim.PushBack({ 75, 385, 41, 41 });
+	tornado.anim.PushBack({ 75, 385, 41, 41 });
+	tornado.anim.PushBack({ 117, 349, 84, 77 });
+	tornado.anim.PushBack({ 202, 348, 93, 78 });
+	tornado.anim.PushBack({ 295, 356, 92, 70 });
+	tornado.anim.PushBack({ 388, 361, 93, 65 });
+	tornado.anim.PushBack({ 482, 367, 93, 59 });
+	tornado.anim.PushBack({ 576, 368, 88, 58 });
+	tornado.anim.PushBack({ 665, 368, 88, 65 });
 	tornado.anim.PushBack({ 754, 361, 81, 65 });
 	tornado.anim.PushBack({ 836, 355, 57, 71 });
 	tornado.anim.PushBack({ 894, 351, 48, 75 });
