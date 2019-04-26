@@ -24,10 +24,10 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 
 	// Tornado particle
-	tornado.anim.PushBack({ 22, 400, 49, 77 });
-	tornado.anim.PushBack({ 22, 400, 49, 77 });
-	tornado.anim.PushBack({ 75, 385, 41, 77 });
-	tornado.anim.PushBack({ 75, 385, 41, 77 });
+	tornado.anim.PushBack({ 22, 349, 49, 77 });
+	tornado.anim.PushBack({ 22, 349, 49, 77 });
+	tornado.anim.PushBack({ 75, 349, 41, 77 });
+	tornado.anim.PushBack({ 75, 349, 41, 77 });
 	tornado.anim.PushBack({ 117, 349, 84, 77 });
 	tornado.anim.PushBack({ 202, 348, 93, 78 });
 	tornado.anim.PushBack({ 295, 356, 92, 70 });
