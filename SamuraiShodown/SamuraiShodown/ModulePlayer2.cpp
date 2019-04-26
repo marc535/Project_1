@@ -123,7 +123,7 @@ update_status ModulePlayer2::Update()
 		action = true;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
@@ -131,7 +131,7 @@ update_status ModulePlayer2::Update()
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_REPEAT && !action) {
+	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action) {
 
 		Mix_PlayChannel(-1, App->audio->effects[3], 0);
 		Mix_PlayChannel(-1, App->audio->effects[4], 0);
