@@ -146,6 +146,7 @@
     <ClCompile Include="ModuleSceneNeoGeo.cpp" />
     <ClCompile Include="ModuleSceneWelcome.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
+    <ClCompile Include="ModuleUIInGame.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="ModuleSceneNeoGeo.h" />
     <ClInclude Include="ModuleSceneWelcome.h" />
     <ClInclude Include="ModuleTextures.h" />
+    <ClInclude Include="ModuleUIInGame.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
   </ItemGroup>
