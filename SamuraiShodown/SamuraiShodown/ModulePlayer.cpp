@@ -204,34 +204,35 @@ update_status ModulePlayer::Update()
 	return UPDATE_CONTINUE;
 }
 
-//void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-//	
-//	if (flipPlayer) {
-//		if (this->p1Collider == c1) {
-//			if (c1->rect.x < c2->rect.w) {
-//				flipPlayer = false;
-//				LOG("Player1 flip = false")
-//			}
-//		}
-//	}
-//	if (!flipPlayer) {
-//
-//		if (this->p1Collider == c1) {
-//			if (c1->rect.x > c2->rect.x) {
-//				flipPlayer = true;
-//				LOG("Player1 flip = true")
-//			}
-//		}
-//	}
-//	
-//	
-//
-//	if (c2->type == COLLIDER_ENEMY_SHOT) {
-//		/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
-//		health += 30;
-//		getsHit = true; doingAction = true;*/
-//	}
-//}
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	
+	//if (flipPlayer) {
+	//	if (this->p1Collider == c1) {
+	//		if (c1->rect.x < c2->rect.w) {
+	//			flipPlayer = false;
+	//			LOG("Player1 flip = false")
+	//		}
+	//	}
+	//}
+	//if (!flipPlayer) {
+
+	//	if (this->p1Collider == c1) {
+	//		if (c1->rect.x > c2->rect.x) {
+	//			flipPlayer = true;
+	//			LOG("Player1 flip = true")
+	//		}
+	//	}
+	//}
+	//
+	//
+
+	//if (c2->type == COLLIDER_ENEMY_SHOT) {
+	//	/*Mix_PlayChannel(-1, App->audio->effects[2], 0);
+	//	health += 30;
+	//	getsHit = true; doingAction = true;*/
+	//}
+}
+
 void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 
 	if (flipPlayer) {
