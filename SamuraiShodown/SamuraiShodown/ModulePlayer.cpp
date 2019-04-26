@@ -135,12 +135,25 @@ update_status ModulePlayer::Update()
 		App->particles->tornado.speed.x = +3;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+	//GOD MODE
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)
 	{
-		if (flipPlayer) { flipPlayer = false; }
-		else { flipPlayer = true; }
-		
+		if (godMode)
+			godMode = false;
+		else
+			godMode = true;
+
 	}
+	else if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_UP) {
+		if (godMode) {
+			p1Collider->to_delete = true;
+		}
+
+		if (!godMode) {
+			p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 60, 90 }, COLLIDER_PLAYER, this);
+		}
+	}
+
 
 	if(action){
 	
