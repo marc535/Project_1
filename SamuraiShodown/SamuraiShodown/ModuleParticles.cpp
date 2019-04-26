@@ -44,10 +44,6 @@ bool ModuleParticles::Start()
 	tornado.anim.loop = false;
 	tornado.anim.speed = 0.06f;
 
-	//laser.anim.PushBack({232, 103, 16, 12});
-	//laser.anim.PushBack({249, 103, 16, 12});
-	//laser.anim.speed = 0.2f;
-
 	tornado.speed.x = 3;
 	tornado.life = 6000;
 	tornado.anim.First = 2.0f;
@@ -73,7 +69,7 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
-// Update: draw background
+
 update_status ModuleParticles::Update()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -119,7 +115,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 	}
 }
 
-// TODO 5: Make so every time a particle hits a wall it triggers an explosion particle
+
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
