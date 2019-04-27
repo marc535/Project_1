@@ -177,6 +177,9 @@ update_status ModulePlayer::Update()
 		action = true;
 
 	}
+
+	
+
 	//GOD MODE
 	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)
 	{

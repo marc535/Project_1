@@ -162,5 +162,8 @@
     <ClInclude Include="ModuleInterface.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="p2Qeue.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
