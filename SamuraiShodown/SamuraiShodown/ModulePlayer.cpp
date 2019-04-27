@@ -272,13 +272,27 @@ update_status ModulePlayer::Update()
 
 	OnPassing(App->player2);
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
+
 	
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
-	
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	if (c1 == p1Collider && c2->type == COLLIDER_WALL) {
+		LOG("Colliding with wall");
+		if (c1->rect.w > c2->rect.x)
+			position.x = c2->rect.x - c1->rect.w;
+		if (c1->rect.x > c2->rect.w)
+			position.x = c2->rect.x + c2->rect.w;
+	}
+
+	//if (c2->type == COLLIDER_ENEMY_SHOT) {
+	//	Mix_PlayChannel(-1, App->audio->effects[2], 0);
+	//	health += 30;
+	//	getsHit = true; doingAction = true;
+	//}
 }
 
 void ModulePlayer::OnPassing(ModulePlayer2* p2) {

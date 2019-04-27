@@ -53,7 +53,7 @@ bool ModuleSceneHaohmaru::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-	App->collision->AddCollider({ 0, 0, 3, 500 }, COLLIDER_WALL);
+	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 	
 	return true;
@@ -62,6 +62,11 @@ bool ModuleSceneHaohmaru::Start()
 // Update: draw background
 update_status ModuleSceneHaohmaru::Update()
 {
+	if (App->player->position.x <= -15) { App->player->position.x = -15; }
+	if (App->player->position.x + 60 >= 325) { App->player->position.x = 265; }
+	if (App->player2->position.x <= -15) { App->player2->position.x = -15; }
+	if (App->player2->position.x + 60 >= 325) { App->player2->position.x = 265; }
+
 	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
