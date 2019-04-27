@@ -22,7 +22,13 @@ Download the file of whichever version you wish to play, inside of every one of 
 
 Controls:
 If you wish to switch screens you can press SPACE
+* Player1 - Haohmaru:
 To move Haohmaru you have to either press D(forward walk), A(backward walk) or W(jump)
+To attack with Haohmaru you can either press Q(kick), E(slash), or R(tornado)
+
+* Player2 - Haohmaru:
+To move Haohmaru you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk) or UP(jump)
+To attack with Haohmaru you can either press 1(kick), 2(slash), or 3(tornado)
 
 List of Versions:
 
@@ -39,5 +45,12 @@ v.0.3:  - Two movable players added without collisions
 	- Animated kick and special attack mechanics
 	- Added tornado particle
 	- Added sound fx for kick and special attack (+tornado)
+
+v.0.4:  - Camera limits implemented
+	- Colliders for player and player2
+	- Colliders for tornado(+ animation completed)
+	- Colliders for walls/camera limits
+	- F1 debug tool added (show collides)
+	- F5 debug tool added godMode(eliminates only player's colliders)
 
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki
