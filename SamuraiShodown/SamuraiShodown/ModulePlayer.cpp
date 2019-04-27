@@ -125,6 +125,78 @@ update_status ModulePlayer::Update()
 	float yAcceleration = 0.87f;
 	
 
+	if (external_input(inputs))
+	{
+		internal_input(inputs);
+		player_states state = process_fsm(inputs);
+
+		if (!action) {
+			switch (state)
+			{
+			case ST_IDLE:
+				LOG("IDLE\n");
+				break;
+			case ST_WALK_FORWARD:
+				LOG("FORWARD >>>\n");
+				current_animation = &forward;
+				position.x += speed;
+				break;
+			case ST_WALK_BACKWARD:
+				LOG("BACKWARD <<<\n");
+				current_animation = &backward;
+				position.x -= speed;
+				break;
+			case ST_JUMP_NEUTRAL:
+				LOG("jumped NEUTRAL ^^^^\n");
+				jumped = true; action = true;
+				break;
+			case ST_JUMP_FORWARD:
+				LOG("jumped FORWARD ^^>>\n");
+				jumped = true; action = true;
+				break;
+			case ST_JUMP_BACKWARD:
+				LOG("jumped BACKWARD ^^<<\n");
+				jumped = true; action = true;
+				break;
+			case ST_CROUCH:
+				LOG("CROUCHING ****\n");
+				break;
+			case ST_SLASH_CROUCH:
+				LOG("SLASH CROUCHING **++\n");
+				break;
+			case ST_SLASH_STANDING:
+				LOG("SLASH STANDING ++++\n");
+				attacking = true; action = true;
+				//App->attack->addAttack({ position.x + 73, position.y - 56, 40, 40 }, COLLIDER_PLAYER_ATTACK, 20, 7);
+				break;
+			case ST_KICK_STANDING:
+				LOG("KICK STANDING ----\n");
+				kicked = true; action = true;
+				//App->attack->addAttack({ position.x + 73, position.y - 56 / 2, 40, 20 }, COLLIDER_PLAYER_ATTACK, 10, 3);
+				break;
+			case ST_SLASH_NEUTRAL_JUMP:
+				LOG("SLASH JUMP NEUTRAL ^^++\n");
+				break;
+			case ST_SLASH_FORWARD_JUMP:
+				LOG("SLASH JUMP FORWARD ^>>+\n");
+				break;
+			case ST_SLASH_BACKWARD_JUMP:
+				LOG("SLASH JUMP BACKWARD ^<<+\n");
+				break;
+			case ST_SPECIAL:
+				LOG("SPECIAL OwwwwO\n");
+				tornadoMov = true; action = true;
+				Mix_PlayChannel(-1, App->audio->effects[0], 0);
+				Mix_PlayChannel(-1, App->audio->effects[1], 0);
+				App->particles->tornado.speed.x = +3;
+				App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 70, COLLIDER_PLAYER_SHOT);
+				break;
+
+			}
+		}
+		current_state = state;
+	}
+
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
@@ -294,7 +366,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	//if (c2->type == COLLIDER_ENEMY_SHOT) {
 	//	Mix_PlayChannel(-1, App->audio->effects[2], 0);
 	//	health += 30;
-	//	getsHit = true; doingAction = true;
+	//	getsHit = true; action = true;
 	//}
 }
 
