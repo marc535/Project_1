@@ -21,11 +21,11 @@ enum player_states
 	ST_JUMP_FORWARD,
 	ST_JUMP_BACKWARD,
 	ST_CROUCH,
-	ST_PUNCH_STANDING,
-	ST_PUNCH_NEUTRAL_JUMP,
-	ST_PUNCH_FORWARD_JUMP,
-	ST_PUNCH_BACKWARD_JUMP,
-	ST_PUNCH_CROUCH,
+	ST_SLASH_STANDING,
+	ST_SLASH_NEUTRAL_JUMP,
+	ST_SLASH_FORWARD_JUMP,
+	ST_SLASH_BACKWARD_JUMP,
+	ST_SLASH_CROUCH,
 	ST_KICK_STANDING,
 	ST_SPECIAL
 };
@@ -41,11 +41,11 @@ enum player_inputs
 	IN_CROUCH_UP,
 	IN_CROUCH_DOWN,
 	IN_JUMP_AND_CROUCH,
-	IN_X,
+	IN_SLASH,
 	IN_KICK,
 	IN_SPECIAL,
 	IN_JUMP_FINISH,
-	IN_PUNCH_FINISH
+	IN_SLASH_FINISH
 };
 
 class ModulePlayer : public Module
@@ -66,7 +66,6 @@ public:
 	player_states process_fsm(p2Qeue<player_inputs>& inputs);
 
 public:
-
 	p2Qeue<player_inputs> inputs;
 	player_states current_state = ST_UNKNOWN;
 
