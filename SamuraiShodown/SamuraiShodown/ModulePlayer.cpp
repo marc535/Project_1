@@ -192,7 +192,7 @@ update_status ModulePlayer::Update()
 		}
 
 		if (!godMode) {
-			p1Collider = App->collision->AddCollider({ position.x, position.y - 90, 30, 90 }, COLLIDER_PLAYER, this);
+			p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 		}
 	}
 

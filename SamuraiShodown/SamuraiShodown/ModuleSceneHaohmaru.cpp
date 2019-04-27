@@ -73,7 +73,7 @@ update_status ModuleSceneHaohmaru::Update()
 	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //Haohmaru Image
 	App->player->Enable();
 	App->player2->Enable();
-	App->UI->Enable();
+	//App->UI->Enable();
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
