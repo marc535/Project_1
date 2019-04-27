@@ -135,16 +135,20 @@ update_status ModulePlayer::Update()
 			{
 			case ST_IDLE:
 				LOG("IDLE\n");
+				current_animation = &idle;
 				break;
 			case ST_WALK_FORWARD:
 				LOG("FORWARD >>>\n");
-				current_animation = &forward;
-				position.x += speed;
+				current_animation = &forward;			
+				if (!action && !flipPlayer) { position.x += speed; }
+				if (!action && flipPlayer) { position.x -= speed; }
+				
 				break;
 			case ST_WALK_BACKWARD:
 				LOG("BACKWARD <<<\n");
 				current_animation = &backward;
-				position.x -= speed;
+				if (!action && !flipPlayer) { position.x -= speed; }
+				if (!action && flipPlayer) { position.x += speed; }
 				break;
 			case ST_JUMP_NEUTRAL:
 				LOG("jumped NEUTRAL ^^^^\n");
@@ -160,9 +164,11 @@ update_status ModulePlayer::Update()
 				break;
 			case ST_CROUCH:
 				LOG("CROUCHING ****\n");
+				crouched = true; action = true;
 				break;
 			case ST_SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
+				sCrouch = true; action = true;
 				break;
 			case ST_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
@@ -176,12 +182,15 @@ update_status ModulePlayer::Update()
 				break;
 			case ST_SLASH_NEUTRAL_JUMP:
 				LOG("SLASH JUMP NEUTRAL ^^++\n");
+				sJump = true; action = true;
 				break;
 			case ST_SLASH_FORWARD_JUMP:
 				LOG("SLASH JUMP FORWARD ^>>+\n");
+				sJumpF = true; action = true;
 				break;
 			case ST_SLASH_BACKWARD_JUMP:
 				LOG("SLASH JUMP BACKWARD ^<<+\n");
+				sJumpB = true; action = true;
 				break;
 			case ST_SPECIAL:
 				LOG("SPECIAL OwwwwO\n");
@@ -197,7 +206,7 @@ update_status ModulePlayer::Update()
 		current_state = state;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	/*if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
@@ -248,7 +257,7 @@ update_status ModulePlayer::Update()
 		attacking = true;
 		action = true;
 
-	}
+	}*/
 
 	
 
@@ -279,13 +288,13 @@ update_status ModulePlayer::Update()
 			current_animation = &jump;
 
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
-			airborne = true;
+			grounded = true;
 
 			
-			if (position.y > 220 && airborne == true)	//end of the jump
+			if (position.y > 220 && grounded == true)	//end of the jump
 			{
 				var1 = 0;
-				airborne = false;
+				grounded = false;
 				jumped = false;
 				position.y = 220;
 				action = false;
@@ -522,8 +531,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		{
 			switch (last_input)
 			{
-			case IN_RIGHT_DOWN: state = ST_WALK_FORWARD; break;
-			case IN_LEFT_DOWN: state = ST_WALK_BACKWARD; break;
+			case IN_RIGHT_DOWN: if (!flipPlayer) { state = ST_WALK_FORWARD; break; }
+								else { state = ST_WALK_BACKWARD; break; }
+			case IN_LEFT_DOWN: if (!flipPlayer) { state = ST_WALK_BACKWARD; break;	}
+							   else	{ state = ST_WALK_FORWARD; break;	}
 			case IN_JUMP: state = ST_JUMP_NEUTRAL;  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_SLASH: state = ST_SLASH_STANDING; break;
