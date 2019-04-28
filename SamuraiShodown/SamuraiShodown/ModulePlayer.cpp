@@ -178,6 +178,8 @@ update_status ModulePlayer::Update()
 			case ST_KICK_STANDING:
 				LOG("KICK STANDING ----\n");
 				kicked = true; action = true;
+				attack = App->collision->AddCollider({ position.x, position.y, 80, 40 }, COLLIDER_PLAYER_ATTACK, this);
+				attack->SetPos(position.x + 30, position.y - 35);
 				//App->attack->addAttack({ position.x + 73, position.y - 56 / 2, 40, 20 }, COLLIDER_PLAYER_ATTACK, 10, 3);
 				break;
 			case ST_SLASH_NEUTRAL_JUMP:
@@ -293,6 +295,7 @@ update_status ModulePlayer::Update()
 			
 			if (position.y > 220 && grounded == true)	//end of the jump
 			{
+				inputs.Push(IN_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
@@ -307,10 +310,13 @@ update_status ModulePlayer::Update()
 		if (kicked) {
 			
 			current_animation = &kick;
+			
 			if (kick.FinishedAnimation() == true) {
 			
 				kicked = false; 
-				action = false; 
+				action = false;
+				attack->to_delete = true;
+				inputs.Push(IN_KICK_FINISH);
 
 				kick.finishingAnimation(false); 
 			}
@@ -323,6 +329,7 @@ update_status ModulePlayer::Update()
 
 				tornadoMov = false;
 				action = false;
+				inputs.Push(IN_SPECIAL_FINISH);
 
 				tornadoMove.finishingAnimation(false);
 			}
@@ -335,6 +342,7 @@ update_status ModulePlayer::Update()
 
 				attacking = false;
 				action = false;
+				inputs.Push(IN_SLASH_FINISH);
 
 				sAttack.finishingAnimation(false);
 			}
@@ -486,38 +494,7 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 
 	return true;
 }
-void ModulePlayer::internal_input(p2Qeue<player_inputs>& inputs)
-{
 
-	/*if (jump_timer > 0)
-	{
-		if (SDL_GetTicks() - jump_timer > JUMP_TIME)
-		{
-			inputs.Push(IN_JUMP_FINISH);
-			jump_timer = 0;
-		}
-	}
-
-
-	if (SLASH_timer > 0)
-	{
-		if (SDL_GetTicks() / 1000 / 60 - SLASH_timer > SLASH_TIME)
-		{
-			inputs.Push(IN_SLASH_FINISH);
-			SLASH_timer = 0;
-		}
-	}
-
-	if (kick_timer > 0)
-	{
-		if (SDL_GetTicks() / 1000 / 60 - kick_timer > SLASH_TIME)
-		{
-			inputs.Push(IN_SLASH_FINISH);
-			SLASH_timer = 0;
-		}
-	}
-*/
-}
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 {
 	static player_states state = ST_IDLE;
@@ -659,14 +636,14 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		{
 			switch (last_input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
+			case IN_KICK_FINISH: state = ST_IDLE; break;
 			}
 		}
 		case ST_SPECIAL:
 		{
 			switch (last_input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
+			case IN_SPECIAL_FINISH: state = ST_IDLE; break;
 			}
 		}
 		break;

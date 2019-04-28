@@ -45,7 +45,9 @@ enum player_inputs
 	IN_KICK,
 	IN_SPECIAL,
 	IN_JUMP_FINISH,
-	IN_SLASH_FINISH
+	IN_KICK_FINISH,
+	IN_SLASH_FINISH,
+	IN_SPECIAL_FINISH
 };
 
 class ModulePlayer : public Module
@@ -62,7 +64,6 @@ public:
 	void OnPassing(ModulePlayer2* p2);
 
 	bool external_input(p2Qeue<player_inputs>& inputs);
-	void internal_input(p2Qeue<player_inputs>& inputs);
 	player_states process_fsm(p2Qeue<player_inputs>& inputs);
 
 public:

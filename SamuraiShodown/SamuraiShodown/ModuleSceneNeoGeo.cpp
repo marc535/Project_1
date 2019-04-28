@@ -72,7 +72,7 @@ update_status ModuleSceneNeoGeo::Update()
 		Mix_FadeOutMusic(2000);
 		
 	}
-	if(App->input->keyboard[SDL_SCANCODE_Q] == 1) {
+	if(App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 		
 		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_haohmaru, 2.0f);
 		
