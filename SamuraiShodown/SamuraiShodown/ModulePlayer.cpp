@@ -116,30 +116,54 @@ ModulePlayer::ModulePlayer()
 	JumpForward.PushBack({ 1213,462 ,76 ,83});
 	JumpForward.PushBack({ 1299,462 ,76 ,83 });
 	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+	JumpForward.loop = false;
 
 	// jump bakward
 
 	JumpBackward.PushBack({ 22, 720, 60, 112 });
 	JumpBackward.PushBack({ 89, 720, 60, 112 });
 	JumpBackward.PushBack({ 157, 720, 60, 112 });
-	JumpForward.PushBack({ 231,592, 74, 91 });
-	JumpForward.PushBack({ 314,592, 74, 91 });
-	JumpForward.PushBack({ 398,592, 74, 91 });
-	JumpForward.PushBack({ 1229,592 ,82 ,61 });
-	JumpForward.PushBack({ 1318,592 ,82 ,61 });
-	JumpForward.PushBack({ 1410,592 ,82 ,61 });
-	JumpForward.PushBack({ 988,592 ,61 ,81 });
-	JumpForward.PushBack({ 1073,592 ,61 ,81 });
-	JumpForward.PushBack({ 1158,592 ,61 ,81 });
-	JumpForward.PushBack({ 713,592 ,82 ,61 });
-	JumpForward.PushBack({ 805,592 ,82 ,61 });
-	JumpForward.PushBack({ 895,592 ,82 ,61 });
-	JumpForward.PushBack({ 485,589, 61, 82 });
-	JumpForward.PushBack({ 566,589, 61, 82 });
-	JumpForward.PushBack({ 638,589, 61, 82 });
-	JumpForward.PushBack({ 1213,462 ,76 ,83 });
-	JumpForward.PushBack({ 1299,462 ,76 ,83 });
-	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+	JumpBackward.PushBack({ 231,592, 74, 91 });
+	JumpBackward.PushBack({ 314,592, 74, 91 });
+	JumpBackward.PushBack({ 398,592, 74, 91 });
+	JumpBackward.PushBack({ 1229,592 ,82 ,61 });
+	JumpBackward.PushBack({ 1318,592 ,82 ,61 });
+	JumpBackward.PushBack({ 1410,592 ,82 ,61 });
+	JumpBackward.PushBack({ 988,592 ,61 ,81 });
+	JumpBackward.PushBack({ 1073,592 ,61 ,81 });
+	JumpBackward.PushBack({ 1158,592 ,61 ,81 });
+	JumpBackward.PushBack({ 713,592 ,82 ,61 });
+	JumpBackward.PushBack({ 805,592 ,82 ,61 });
+	JumpBackward.PushBack({ 895,592 ,82 ,61 });
+	JumpBackward.PushBack({ 485,589, 61, 82 });
+	JumpBackward.PushBack({ 566,589, 61, 82 });
+	JumpBackward.PushBack({ 638,589, 61, 82 });
+	JumpBackward.PushBack({ 1213,462 ,76 ,83 });
+	JumpBackward.PushBack({ 1299,462 ,76 ,83 });
+	JumpBackward.PushBack({ 1387,462 ,76 ,83 });
+	JumpBackward.loop = false;
+
+	// crouch sword attack 
+
+	sCrouch.PushBack({ 22,832,88,75 });
+	sCrouch.PushBack({ 137,838,83,69 });
+	sCrouch.PushBack({ 245,838,83,69 });
+	sCrouch.PushBack({ 361,838,126,68 });
+	sCrouch.PushBack({ 513,838,126,68 });
+	sCrouch.PushBack({ 677,839,126,68 });
+	sCrouch.PushBack({ 830 ,838,125,78 });
+	sCrouch.PushBack({ 988,840,124,68 });
+	sCrouch.PushBack({ 1164 ,839,126,68 });
+	sCrouch.PushBack({ 568,739,85,68 });
+	sCrouch.PushBack({ 692 ,739,85,68 });
+	sCrouch.PushBack({ 820,739,85,68 });
+	sCrouch.PushBack({ 944,739,81,68 });
+	sCrouch.PushBack({ 1070,739,81,68 });
+	sCrouch.PushBack({ 1182,738,83,69 });
+	sCrouch.speed = 0.3f;
+	sCrouch.loop = false;
+	
+
 }
 
 ModulePlayer::~ModulePlayer()
