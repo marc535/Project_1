@@ -76,7 +76,7 @@ update_status ModuleSceneNeoGeo::Update()
 	if(App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 		
 		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_haohmaru, 2.0f);
-		
+		Mix_FadeOutMusic(2000);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
 		App->player2->isDead = true;

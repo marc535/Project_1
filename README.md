@@ -24,12 +24,12 @@ We recommend you read only the last part, which will show you which features are
 Controls:
 If you wish to switch screens you can press SPACE
 * Player1 - Haohmaru:
-To move Haohmaru you have to either press D(forward walk), A(backward walk) or W(jump)
+To move Haohmaru you have to either press D(forward walk), A(backward walk),W(jump) or S(crouch)
 To attack with Haohmaru you can either press Q(kick), E(slash), or R(tornado)
 You can also combine walking with jumping to realize forward/backward jumps (A/D + W)
 
 * Player2 - Haohmaru:
-To move Haohmaru you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk) or UP(jump)
+To move Haohmaru you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk),UP(jump) or DOWN(crouch)
 To attack with Haohmaru you can either press 1(kick), 2(slash), or 3(tornado)
 You can also combine walking with jumping to realize forward/backward jumps (LEFT/RIGHT + UP)
 
