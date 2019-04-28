@@ -39,6 +39,8 @@ F2: skip to battle
 F5: godMode(eliminate p1 colliders)
 F10: Player1 win
 F11: Player2 win
+1:Direct player1 win
+2:Direct player2 win
 
 List of Versions:
 
