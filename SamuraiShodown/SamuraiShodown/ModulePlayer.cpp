@@ -211,12 +211,21 @@ update_status ModulePlayer::Update()
 				sJumpB = true; action = true;
 				break;
 			case ST_SPECIAL:
-				LOG("SPECIAL OwwwwO\n");
+				LOG("TORNADO\n");
 				tornadoMov = true; action = true;
-				Mix_PlayChannel(-1, App->audio->effects[0], 0);
-				Mix_PlayChannel(-1, App->audio->effects[1], 0);
-				App->particles->tornado.speed.x = +3;
-				App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 70, COLLIDER_PLAYER_SHOT);
+				Mix_PlayChannel(-1, App->audio->effects[3], 0);
+				Mix_PlayChannel(-1, App->audio->effects[4], 0);
+				tornadoMov = true;
+				action = true;
+				if (!flipPlayer) {
+					App->particles->tornado.speed.x = +3;
+					App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+				}
+				else {
+					App->particles->tornado.speed.x = -3;
+					App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+
+				}
 				break;
 
 			}
@@ -411,7 +420,8 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 			if ((this->position.x + 60) < p2->position.x) {
 				flipPlayer = false;
 				LOG("Player1 flip = false")
-			
+				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
+
 		}
 	}
 	if (!flipPlayer) {
@@ -420,6 +430,7 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 		if (this->position.x > (p2->position.x + 60)) {
 				flipPlayer = true;
 				LOG("Player1 flip = true")	
+				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
 		}
 	}
 }
