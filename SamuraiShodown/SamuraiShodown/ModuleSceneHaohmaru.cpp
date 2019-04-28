@@ -92,6 +92,14 @@ update_status ModuleSceneHaohmaru::Update()
 		Mix_FadeOutMusic(2000);
 
 	}
+	if (App->player->isDead == true) {
+
+		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
+	}
+	if (App->player2->isDead == true) {
+
+		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
+	}
 
 	return UPDATE_CONTINUE;
 }
