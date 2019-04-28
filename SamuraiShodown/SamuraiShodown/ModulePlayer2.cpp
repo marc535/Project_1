@@ -248,12 +248,12 @@ update_status ModulePlayer2::Update()
 		kicked = true; action = true;
 		if (!flipPlayer) {
 
-			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
 			attack->SetPos(position.x + 30, position.y - 50);
 		}
 		if (flipPlayer) {
 
-			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
 			attack->SetPos(position.x - 25, position.y - 50);
 		}
 
@@ -266,11 +266,11 @@ update_status ModulePlayer2::Update()
 		action = true;
 		if (!flipPlayer) {
 			App->particles2->tornado.speed.x = +3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 		}
 		else {
 			App->particles2->tornado.speed.x = -3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 
 		}
 	}
