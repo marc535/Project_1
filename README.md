@@ -73,5 +73,6 @@ V.0.5:  - Implemented the following animations:
 	- Skip to battle debug tool changed from Q to F2, and added to all the screens
 	- Slash mechanic added, as well as its sfx
 	- Getting hit sfx and animation added
+	- Applied all changes to player2
 
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki

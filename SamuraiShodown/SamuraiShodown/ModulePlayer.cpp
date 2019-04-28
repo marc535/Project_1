@@ -447,14 +447,8 @@ update_status ModulePlayer::Update()
 		}
 		if (jumpedF) {
 
-			if (flipPlayer) {
-				current_animation = &JumpBackward;
-			}
-			else {
-				current_animation = &JumpForward;
-			}
-					
-
+			current_animation = &JumpForward;
+			
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
@@ -479,15 +473,8 @@ update_status ModulePlayer::Update()
 		}
 		if (jumpedB) {
 
-			if (flipPlayer) {
-				current_animation = &JumpForward;
-			}
-			else {
-				current_animation = &JumpBackward;
-				
-			}
-			
-
+			current_animation = &JumpBackward;
+		
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
@@ -598,6 +585,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 	case COLLIDER_ENEMY_SHOT:
 
@@ -756,7 +744,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
 			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_FORWARD;  break;
+			case IN_JUMP: 
+				if (!flipPlayer) { state = ST_JUMP_FORWARD; }
+				if (flipPlayer) { state = ST_JUMP_BACKWARD; }
+				break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			}
 		}
@@ -769,7 +760,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
 			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_BACKWARD; break;
+			case IN_JUMP: 
+				if (!flipPlayer) { state = ST_JUMP_BACKWARD; }
+				if (flipPlayer) { state = ST_JUMP_FORWARD; }
+				break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			}
 		}

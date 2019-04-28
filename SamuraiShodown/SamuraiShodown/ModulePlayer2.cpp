@@ -284,6 +284,7 @@ update_status ModulePlayer2::Update()
 			attack->SetPos(position.x + 60, position.y - 50);
 		}
 		if (flipPlayer) {
+			attacking = true; action = true;
 
 			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
 			attack->SetPos(position.x - 55, position.y - 50);
