@@ -499,10 +499,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	switch (c2->type) {
 
 	case COLLIDER_ENEMY_ATTACK:
-		
+		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
 	case COLLIDER_ENEMY_SHOT:
-		
+
+		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
 	}
 }
