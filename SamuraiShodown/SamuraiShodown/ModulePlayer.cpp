@@ -102,6 +102,7 @@ bool ModulePlayer::Start()
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
+	current_state = ST_IDLE;
 	return ret;
 }
 
@@ -444,83 +445,86 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 
 	SDL_Event event;
 
-	while (SDL_PollEvent(&event) != 0)
-	{
-		if (event.type == SDL_KEYUP && event.key.repeat == 0)
+	if (this->IsEnabled() == true) {
+
+		while (SDL_PollEvent(&event) != 0)
 		{
-			switch (event.key.keysym.sym)
+			if (event.type == SDL_KEYUP && event.key.repeat == 0)
 			{
-			case SDLK_ESCAPE:
-				return false;
-				break;
-			case SDLK_s:
-				inputs.Push(IN_CROUCH_UP);
-				down = false;
-				break;
-			case SDLK_w:
-				up = false;
-				break;
-			case SDLK_a:
-				inputs.Push(IN_LEFT_UP);
-				left = false;
-				break;
-			case SDLK_d:
-				inputs.Push(IN_RIGHT_UP);
-				right = false;
-				break;
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_ESCAPE:
+					return false;
+					break;
+				case SDLK_s:
+					inputs.Push(IN_CROUCH_UP);
+					down = false;
+					break;
+				case SDLK_w:
+					up = false;
+					break;
+				case SDLK_a:
+					inputs.Push(IN_LEFT_UP);
+					left = false;
+					break;
+				case SDLK_d:
+					inputs.Push(IN_RIGHT_UP);
+					right = false;
+					break;
+				}
+			}
+			if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+			{
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_q:
+					inputs.Push(IN_SLASH);
+					break;
+				case SDLK_e:
+					inputs.Push(IN_KICK);
+					break;
+				case SDLK_r:
+					inputs.Push(IN_SPECIAL);
+					break;
+				case SDLK_w:
+					up = true;
+					break;
+				case SDLK_s:
+					down = true;
+					break;
+				case SDLK_a:
+					left = true;
+					break;
+				case SDLK_d:
+					right = true;
+					break;
+				}
 			}
 		}
-		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+
+		if (left && right)
+			inputs.Push(IN_LEFT_AND_RIGHT);
 		{
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_q:
-				inputs.Push(IN_SLASH);
-				break;
-			case SDLK_e:
-				inputs.Push(IN_KICK);
-				break;
-			case SDLK_r:
-				inputs.Push(IN_SPECIAL);
-				break;
-			case SDLK_w:
-				up = true;
-				break;
-			case SDLK_s:
-				down = true;
-				break;
-			case SDLK_a:
-				left = true;
-				break;
-			case SDLK_d:
-				right = true;
-				break;
-			}
+			if (left)
+				inputs.Push(IN_LEFT_DOWN);
+			if (right)
+				inputs.Push(IN_RIGHT_DOWN);
 		}
-	}
 
-	if (left && right)
-		inputs.Push(IN_LEFT_AND_RIGHT);
-	{
-		if (left)
-			inputs.Push(IN_LEFT_DOWN);
-		if (right)
-			inputs.Push(IN_RIGHT_DOWN);
-	}
-
-	if (up && down)
-		inputs.Push(IN_JUMP_AND_CROUCH);
-	else
-	{
-		if (down)
-			inputs.Push(IN_CROUCH_DOWN);
+		if (up && down)
+			inputs.Push(IN_JUMP_AND_CROUCH);
 		else
-			inputs.Push(IN_CROUCH_UP);
-		if (up)
-			inputs.Push(IN_JUMP);
-	}
+		{
+			if (down)
+				inputs.Push(IN_CROUCH_DOWN);
+			else
+				inputs.Push(IN_CROUCH_UP);
+			if (up)
+				inputs.Push(IN_JUMP);
+		}
 
-	return true;
+		return true;
+	}
 }
 
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
