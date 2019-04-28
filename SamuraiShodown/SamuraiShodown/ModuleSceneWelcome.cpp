@@ -72,7 +72,7 @@ update_status ModuleSceneWelcome::Update()
 		//FadeToBlack
 		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_charSelect, 2.0f);
 
-		//Mix_FadeOutMusic(2000);
+		Mix_FadeOutMusic(2000);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
