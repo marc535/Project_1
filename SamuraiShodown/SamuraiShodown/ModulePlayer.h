@@ -81,7 +81,8 @@ public:
 	Animation kick;
 	Animation tornadoMove;
 	Animation sAttack;
-	
+	Animation crouchD;
+	Animation crouchU;
 
 	iPoint position;
 

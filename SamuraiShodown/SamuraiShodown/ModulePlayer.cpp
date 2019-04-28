@@ -83,6 +83,16 @@ ModulePlayer::ModulePlayer()
 	sAttack.PushBack({ 809, 488, 130, 85 });
 
 	sAttack.speed = 0.3f;
+
+	// crouch 
+	crouchD.PushBack({ 22, 432, 68, 110 });
+	crouchD.PushBack({ 101, 432, 68, 110 });
+	crouchD.PushBack({ 187, 432, 68, 110 });
+	crouchD.PushBack({ 304, 467, 89, 75 });
+	crouchD.PushBack({ 434, 467, 89, 75 });
+	crouchD.PushBack({ 560, 467, 89, 75 });
+	crouchD.loop = false;
+
 	
 }
 
@@ -373,6 +383,12 @@ update_status ModulePlayer::Update()
 
 				sAttack.finishingAnimation(false);
 			}
+
+		}
+		if (crouched) {
+
+			current_animation = &crouchD;
+
 
 		}
 	
