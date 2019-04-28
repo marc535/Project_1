@@ -39,6 +39,10 @@ bool ModuleSceneHaohmaru::Start()
 	App->collision->Enable();
 	App->UI->Enable();
 	LOG("UI Enabled");
+	App->player->hp = 100;
+	App->player2->hp = 100; 
+	App->player->position.x = 50;
+	App->player2->position.x = 200;
 
 	
 

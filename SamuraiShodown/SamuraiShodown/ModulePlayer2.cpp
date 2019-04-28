@@ -390,10 +390,13 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	switch (c2->type) {
 
 	case COLLIDER_PLAYER_ATTACK:
-		
+
+		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+
 	case COLLIDER_PLAYER_SHOT:
 
+		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
 	}
 	
