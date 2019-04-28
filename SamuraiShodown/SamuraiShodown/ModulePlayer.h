@@ -107,6 +107,7 @@ public:
 	bool sJump = false;
 	bool sJumpF = false;
 	bool sJumpB = false;
+	bool getsHit = false;
 	
 	
 	bool flipPlayer = false;

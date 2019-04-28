@@ -178,6 +178,10 @@ ModulePlayer::ModulePlayer()
 	//get hit anim
 
 	hit.PushBack({ 1364,133,109,83 });
+	hit.PushBack({ 1364,133,109,83 });
+	hit.PushBack({ 1364,133,109,83 });
+
+	hit.speed = 0.1f;
 
 	// death animation
 
@@ -576,6 +580,18 @@ update_status ModulePlayer::Update()
 
 		current_state = ST_VICTORY;
 	}
+	if (getsHit) {
+
+		action = true;
+		current_animation = &hit;
+		if (hit.Finished() == true) {
+			action = false;
+			getsHit = false;
+			current_state = ST_IDLE;
+
+		}
+
+	}
 
 	if (!flipPlayer) {
 		p1Collider->SetPos(position.x + 20, position.y - 80);
@@ -603,11 +619,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+		getsHit = true;
 		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 	case COLLIDER_ENEMY_SHOT:
-
 		if (c2->to_delete == false) { c2->to_delete = true; }
+		getsHit = true;
 		hp -= 20;
 		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
