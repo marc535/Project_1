@@ -74,5 +74,6 @@ V.0.5:  - Implemented the following animations:
 	- Slash mechanic added, as well as its sfx
 	- Getting hit sfx and animation added
 	- Applied all changes to player2
+	- Death animation
 
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki
