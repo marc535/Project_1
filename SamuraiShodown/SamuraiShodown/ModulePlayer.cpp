@@ -335,7 +335,7 @@ update_status ModulePlayer::Update()
 				break;
 			case ST_DEAD:
 				LOG("PLAYER1 DEAD x.x\n");
-				//current_animation = &dead;
+				current_animation = &death;
 				action = true;
 				break;
 
@@ -547,6 +547,20 @@ update_status ModulePlayer::Update()
 				inputs.Push(IN_SLASH_FINISH);
 
 				sAttack.finishingAnimation(false);
+			}
+
+		}
+		if (sCrouched) {
+
+			current_animation = &sCrouch;
+			if (sCrouch.FinishedAnimation() == true) {
+
+				sCrouched = false;
+				action = false;
+				attack->to_delete = true;
+				inputs.Push(IN_SLASH_FINISH);
+
+				sCrouch.finishingAnimation(false);
 			}
 
 		}
