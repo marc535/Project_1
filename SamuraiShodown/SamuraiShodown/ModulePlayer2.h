@@ -86,6 +86,8 @@ public:
 	Animation crouchU;
 	Animation JumpForward;
 	Animation JumpBackward;
+	Animation death;
+	Animation dead;
 
 	iPoint position;
 

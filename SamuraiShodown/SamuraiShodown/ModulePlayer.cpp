@@ -185,6 +185,11 @@ ModulePlayer::ModulePlayer()
 	death.PushBack({793,140,106,69});
 	death.PushBack({900,155,108,54 });
 	death.PushBack({1009,167,116,42});
+
+	death.speed = 0.2f;
+
+	//dead anim
+	dead.PushBack({ 1009,167,116,42 });
 }
 
 ModulePlayer::~ModulePlayer()
@@ -335,13 +340,7 @@ update_status ModulePlayer::Update()
 
 				}
 				break;
-			case ST_DEAD:
-				LOG("PLAYER1 DEAD x.x\n");
-				current_animation = &death;
-				action = true;
-				break;
-
-			}
+			
 		}
 		current_state = state;
 	}
@@ -421,8 +420,8 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if(action){
-	
+	if (action) {
+
 		if (jumped) {
 
 			current_animation = &jump;
@@ -430,7 +429,7 @@ update_status ModulePlayer::Update()
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
-			
+
 			if (position.y > 220 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN_JUMP_FINISH);
@@ -439,7 +438,7 @@ update_status ModulePlayer::Update()
 				jumped = false;
 				position.y = 220;
 				action = false;
-				
+
 
 			}
 			var1++;
@@ -448,7 +447,7 @@ update_status ModulePlayer::Update()
 		if (jumpedF) {
 
 			current_animation = &JumpForward;
-			
+
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
@@ -468,13 +467,13 @@ update_status ModulePlayer::Update()
 
 			}
 			var1++;
-			
+
 
 		}
 		if (jumpedB) {
 
 			current_animation = &JumpBackward;
-		
+
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
@@ -498,19 +497,19 @@ update_status ModulePlayer::Update()
 		}
 
 		if (kicked) {
-			
+
 			current_animation = &kick;
-			
+
 			if (kick.FinishedAnimation() == true) {
-			
-				kicked = false; 
+
+				kicked = false;
 				action = false;
 				attack->to_delete = true;
 				inputs.Push(IN_KICK_FINISH);
 
-				kick.finishingAnimation(false); 
+				kick.finishingAnimation(false);
 			}
-		
+
 		}
 		if (tornadoMov) {
 
@@ -559,15 +558,20 @@ update_status ModulePlayer::Update()
 			action = false;
 
 		}
-	
+		if (isDead) {
+
+			current_animation = &death;
+			p1Collider->to_delete = true;
+			if (death.FinishedAnimation() == true) {
+				current_animation = &dead;
+				}
+			}
+		}
 	}
+	
 	if (hp <= 0) { isDead = true; action = true; }
 
-	if (isDead) {
-
-		current_state = ST_DEAD;
-		
-	}
+	
 	if (App->player2->isDead == true) {
 
 		current_state = ST_VICTORY;

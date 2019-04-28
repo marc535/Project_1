@@ -91,6 +91,7 @@ public:
 	Animation kcrouch;
 	Animation hit;
 	Animation death;
+	Animation dead;
 	iPoint position;
 
 	bool jumped = false;
