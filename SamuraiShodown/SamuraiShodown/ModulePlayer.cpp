@@ -478,6 +478,13 @@ update_status ModulePlayer::Update()
 	
 	
 	}
+	if (hp <= 0) { isDead = true; action = true; }
+
+	if (isDead) {
+
+		victory = false;
+		defeat = true;
+	}
 
 	if (!flipPlayer) {
 		p1Collider->SetPos(position.x + 20, position.y - 80);
@@ -532,11 +539,8 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
 		}
 	}
-	if (isDead) {
 
-		victory = false;
-		defeat = true;
-	}
+	
 }
 
 bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)

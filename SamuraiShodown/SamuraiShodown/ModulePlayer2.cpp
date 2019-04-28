@@ -74,14 +74,14 @@ ModulePlayer2::ModulePlayer2()
 	tornadoMove.speed = 0.2f;
 
 	// sword attack
-	sAttack.PushBack({ 22, 446, 67, 127 });
-	sAttack.PushBack({ 90, 477, 78, 96 });
-	sAttack.PushBack({ 169, 480, 130, 93 });
-	sAttack.PushBack({ 300, 480, 130, 93 });
-	sAttack.PushBack({ 431, 491, 129, 82 });
-	sAttack.PushBack({ 561, 491, 127, 82 });
-	sAttack.PushBack({ 689, 491, 119, 82 });
-	sAttack.PushBack({ 809, 488, 130, 85 });
+	sAttack.PushBack({ 22, 1004, 67, 127 });
+	sAttack.PushBack({ 90, 1035, 78, 96 });
+	sAttack.PushBack({ 169, 1038, 130, 93 });
+	sAttack.PushBack({ 300, 1038, 130, 93 });
+	sAttack.PushBack({ 431, 1049, 129, 82 });
+	sAttack.PushBack({ 561, 1049, 127, 82 });
+	sAttack.PushBack({ 689, 1049, 119, 82 });
+	sAttack.PushBack({ 809, 1046, 130, 85 });
 
 	sAttack.speed = 0.3f;
 	
