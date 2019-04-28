@@ -190,6 +190,8 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
+	action = false;
+
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
@@ -321,6 +323,11 @@ update_status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 
 				}
+				break;
+			case ST_DEAD:
+				LOG("PLAYER1 DEAD x.x\n");
+				//current_animation = &dead;
+				action = true;
 				break;
 
 			}
