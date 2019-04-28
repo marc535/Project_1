@@ -178,6 +178,13 @@ ModulePlayer::ModulePlayer()
 	//get hit anim
 
 	hit.PushBack({ 1364,133,109,83 });
+
+	// death animation
+
+	death.PushBack({1126,120,98,89});
+	death.PushBack({793,140,106,69});
+	death.PushBack({900,155,108,54 });
+	death.PushBack({1009,167,116,42});
 }
 
 ModulePlayer::~ModulePlayer()
