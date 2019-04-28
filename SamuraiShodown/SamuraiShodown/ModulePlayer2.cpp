@@ -378,6 +378,73 @@ update_status ModulePlayer2::Update()
 
 		}
 
+		if (sJumpF) {
+
+			if (flipPlayer) {
+				current_animation = &JumpBackward;
+			}
+			else {
+				current_animation = &JumpForward;
+			}
+
+
+			position.y = 220 - (yVelocity*var1)+(0.5*(yAcceleration)*pow(var1, 2));
+			position.x += 4;
+			grounded = true;
+
+
+			if (position.y > 220 && grounded == true)    //end of the jump
+			{
+				inputs.Push(IN2_JUMP_FINISH);
+				var1 = 0;
+				grounded = false;
+				sJumpF = false;
+				position.y = 220;
+				action = false;
+				JumpForward.Reset();
+				JumpBackward.Reset();
+
+
+			}
+			var1++;
+
+
+		}
+		if (sJumpB) {
+
+			if (flipPlayer) {
+				current_animation = &JumpForward;
+			}
+			else {
+				current_animation = &JumpBackward;
+
+			}
+
+
+			position.y = 220 - (yVelocity*var1)+(0.5*(yAcceleration)*pow(var1, 2));
+			position.x -= 4;
+			grounded = true;
+
+
+			if (position.y > 220 && grounded == true)    //end of the jump
+			{
+				inputs.Push(IN2_JUMP_FINISH);
+				var1 = 0;
+				grounded = false;
+				sJumpB = false;
+				position.y = 220;
+				action = false;
+				JumpBackward.Reset();
+
+
+			}
+			var1++;
+
+
+		}
+
+	}
+
 		if (kicked) {
 
 			current_animation = &kick;
