@@ -135,6 +135,15 @@ ModulePlayer2::ModulePlayer2()
 
 	sAttack.speed = 0.3f;
 	
+	//get hit anim
+
+	hit.PushBack({ 1364,133,109,83 });
+	hit.PushBack({ 1364,133,109,83 });
+	hit.PushBack({ 1364,133,109,83 });
+
+	hit.loop = false;
+	hit.speed = 0.14f;
+
 	// death animation
 
 	death.PushBack({ 1126,120,98,89 });
@@ -497,15 +506,25 @@ update_status ModulePlayer2::Update()
 		}
 	}
 
-		if (isDead) {
+	if (isDead) {
 
-			current_animation = &death;
-			p2Collider->to_delete = true;
-			if (death.FinishedAnimation() == true) {
-				current_animation = &dead;
-				}
-			}
-		
+		current_animation = &death;
+		p2Collider->to_delete = true;
+
+		if (death.FinishedAnimation() == true) {current_animation = &dead;}
+	}
+	if (getsHit) {
+
+		action = true;
+		current_animation = &hit;
+		if (hit.Finished() == true) {
+			action = false;
+			getsHit = false;
+			current_state2 = ST2_IDLE;
+
+		}
+
+	}
 
 	if (hp <= 0) { isDead = true; action = true; }
 
@@ -544,12 +563,14 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+		getsHit = true;
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 
 	case COLLIDER_PLAYER_SHOT:
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
+		getsHit = true;
 		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
 	

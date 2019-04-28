@@ -88,6 +88,7 @@ public:
 	Animation JumpBackward;
 	Animation death;
 	Animation dead;
+	Animation hit;
 
 	iPoint position;
 
@@ -108,6 +109,7 @@ public:
 	bool flipPlayer = true;
 
 	bool isDead = false;
+	bool getsHit = false;
 	
 
 	int var1 = 0;
