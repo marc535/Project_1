@@ -127,7 +127,7 @@ update_status ModulePlayer::Update()
 
 	if (external_input(inputs))
 	{
-		internal_input(inputs);
+		
 		player_states state = process_fsm(inputs);
 
 		if (!action) {
@@ -526,7 +526,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		{
 			switch (last_input)
 			{
-			case IN_RIGHT_UP: state = ST_IDLE; break;
+			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
+			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_FORWARD;  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
@@ -538,7 +539,8 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		{
 			switch (last_input)
 			{
-			case IN_LEFT_UP: state = ST_IDLE; break;
+			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
+			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
 			case IN_JUMP: state = ST_JUMP_BACKWARD; break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
