@@ -98,11 +98,186 @@ bool ModulePlayer2::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-
+	hp = 100;
 
 	p2Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_ENEMY, this);
 	return ret;
 }
+
+update_status ModulePlayer2::PreUpdate()
+{
+		Animation* current_animation = &idle;
+	
+		player2_input.pressing_left = App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_REPEAT;
+		player2_input.pressing_right = App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_REPEAT;
+		player2_input.pressing_down = App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_REPEAT;
+		player2_input.pressing_up = App->input->keyboard[SDL_SCANCODE_UP] == KEY_DOWN;
+		player2_input.pressing_1 = App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_DOWN;
+		player2_input.pressing_2 = App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_DOWN;
+		player2_input.pressing_3 = App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_DOWN;
+		player2_input.pressing_F5 = App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN;
+
+
+		if (current_state2 == ST2_IDLE) {
+			
+			if (player2_input.pressing_left)
+				current_state2 = ST2_WALK_FORWARD;
+			if (player2_input.pressing_right)
+				current_state2 = ST2_WALK_BACKWARD;
+			if (player2_input.pressing_1) {
+				
+				current_state2 = ST2_KICK_STANDING;
+				//App->audio->PlayFX(light_kick_fx);
+			}
+			if (player2_input.pressing_2) {
+				
+				current_state2 = ST2_SLASH_STANDING;
+				//App->audio->PlayFX(light_attack_fx);
+			}
+			if (player2_input.pressing_up)
+				current_state2 = ST2_JUMP_NEUTRAL;
+			if (player2_input.pressing_down)
+				current_state2 = ST2_CROUCH_DOWN;
+			if (player2_input.pressing_3) {
+				
+				current_state2 = ST2_SPECIAL;
+			}
+		}
+		if (current_state2 == ST2_WALK_BACKWARD) {
+			if (!player2_input.pressing_right)
+				current_state2 = ST2_IDLE;
+			if (player2_input.pressing_2) {
+				
+				current_state2 = ST2_SLASH_STANDING;
+			}
+
+			if (player2_input.pressing_1) {
+				
+				current_state2 = ST2_KICK_STANDING;
+			}
+
+			if (player2_input.pressing_up)
+				current_state2 = ST2_JUMP_BACKWARD;
+		}
+		if (current_state2 == ST2_WALK_FORWARD) {
+			if (!player2_input.pressing_left)
+				current_state2 = ST2_IDLE;
+			if (player2_input.pressing_2) {
+				
+				current_state2 = ST2_SLASH_STANDING;
+			}
+
+			if (player2_input.pressing_1) {
+				
+				current_state2 = ST2_KICK_STANDING;
+			}
+
+			if (player2_input.pressing_up)
+				current_state2 = ST2_JUMP_FORWARD;
+		}
+		if (current_state2 == ST2_KICK_STANDING) {
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+			}
+		}
+		if (current_state2 == ST2_SLASH_STANDING) {
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+			}
+		}
+		if (current_state2 == ST2_JUMP_NEUTRAL)
+		{
+			if (player2_input.pressing_right)
+				current_state2 = ST2_JUMP_BACKWARD;
+			if (player2_input.pressing_left)
+				current_state2 = ST2_JUMP_FORWARD;
+			if (current_animation->Finished())
+			{
+				current_state2 = ST2_IDLE;
+			
+			}
+		}
+		if (current_state2 == ST2_JUMP_FORWARD)
+		{
+			if (current_animation->Finished())
+			{
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+		if (current_state2 == ST2_JUMP_BACKWARD)
+		{
+			if (current_animation->Finished())
+			{
+				current_state2 = ST2_IDLE;
+			
+			}
+		}
+		if (current_state2 == ST2_CROUCH_DOWN)
+		{
+			if (!player2_input.pressing_down)
+			{
+				current_state2 = ST2_CROUCH_UP;
+			}
+			if (player2_input.pressing_1) {
+				
+				current_state2 = ST2_KICK_CROUCH;
+				
+			}
+			if (player2_input.pressing_2) {
+				
+				current_state2 = ST2_SLASH_CROUCH;
+				
+			}
+		}
+		if (current_state2 == ST2_CROUCH_UP)
+		{
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+		if (current_state2 == ST2_SPECIAL)
+		{
+			if (current_animation->Finished())
+			{
+				
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+		if (current_state2 == ST2_KICK_CROUCH)
+		{
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+		if (current_state2 ==  ST2_SLASH_CROUCH) {
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+		
+			}
+		}
+		if (current_state2 == HIT2) {
+			if (current_animation->Finished()) {
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+
+		if (current_state2 == WIN2)
+		{
+			if (current_animation->Finished())
+			{
+				current_state2 = ST2_IDLE;
+				
+			}
+		}
+		
+	return UPDATE_CONTINUE;
+}
+
 
 // Update: draw background
 update_status ModulePlayer2::Update()
@@ -112,59 +287,159 @@ update_status ModulePlayer2::Update()
 	int speed = 2;
 	float yVelocity = 15.1f;
 	float yAcceleration = 0.87f;
-	
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
-	{
-		if (!action && !flipPlayer) { current_animation = &forward; }
-		if (!action && flipPlayer) { current_animation = &backward; }
-		position.x += speed;
+		if (!action) {
+			switch (current_state2)
+			{
+			case ST2_IDLE:
+				LOG("IDLE2\n");
+				current_animation = &idle;
+				break;
+			case ST2_WALK_FORWARD:
+				LOG("FORWARD2 >>>\n");
+				current_animation = &forward;			
+				if (!action && !flipPlayer) { position.x += speed; }
+				if (!action && flipPlayer) { position.x -= speed; }
+				
+				break;
+			case ST2_WALK_BACKWARD:
+				LOG("BACKWARD2 <<<\n");
+				current_animation = &backward;
+				if (!action && !flipPlayer) { position.x -= speed; }
+				if (!action && flipPlayer) { position.x += speed; }
+				break;
+			case ST2_JUMP_NEUTRAL:
+				LOG("jumped NEUTRAL2 ^^^^\n");
+				jumped = true; action = true;
+				break;
+			case ST2_JUMP_FORWARD:
+				LOG("jumped FORWARD2 ^^>>\n");
+				jumped = true; action = true;
+				break;
+			case ST2_JUMP_BACKWARD:
+				LOG("jumped BACKWARD2 ^^<<\n");
+				jumped = true; action = true;
+				break;
+			case ST2_CROUCH_DOWN:
+				LOG("CROUCHING2 ****\n");
+				crouched = true; action = true;
+				break;
+			case ST2_SLASH_CROUCH:
+				LOG("SLASH CROUCHING2 **++\n");
+				sCrouch = true; action = true;
+				break;
+			case ST2_SLASH_STANDING:
+				LOG("SLASH STANDING2 ++++\n");
+				attacking = true; action = true;
+				if (!flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack->SetPos(position.x + 60, position.y - 50);
+				}
+				if (flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack->SetPos(position.x - 55, position.y - 50);
+				}
+				break;
+			case ST2_KICK_STANDING:
+				LOG("KICK STANDING2 ----\n");
+				kicked = true; action = true;
+				if (!flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack->SetPos(position.x + 30, position.y - 50);
+				}
+				if (flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack->SetPos(position.x - 25, position.y - 50);
+				}
+				break;
+			case ST2_SLASH_NEUTRAL_JUMP:
+				LOG("SLASH JUMP NEUTRAL2 ^^++\n");
+				sJump = true; action = true;
+				break;
+			case ST2_SLASH_FORWARD_JUMP:
+				LOG("SLASH JUMP FORWARD2 ^>>+\n");
+				sJumpF = true; action = true;
+				break;
+			case ST2_SLASH_BACKWARD_JUMP:
+				LOG("SLASH JUMP BACKWARD2 ^<<+\n");
+				sJumpB = true; action = true;
+				break;
+			case ST2_SPECIAL:
+				LOG("TORNADO2\n");
+				tornadoMov = true; action = true;
+				Mix_PlayChannel(-1, App->audio->effects[3], 0);
+				Mix_PlayChannel(-1, App->audio->effects[4], 0);
+				tornadoMov = true;
+				action = true;
+				if (!flipPlayer) {
+					App->particles2->tornado.speed.x = +3;
+					App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_ENEMY_SHOT);
+				}
+				else {
+					App->particles2->tornado.speed.x = -3;
+					App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
+
+				}
+				break;
+
+			}
 	}
-		
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
-	{
-		if (!action && !flipPlayer) { current_animation = &backward; }
-		if (!action && flipPlayer) { current_animation = &forward; }
-		position.x -= speed;
 
-	}
-	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
-	{
+	//if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	//{
+	//	if (!action && !flipPlayer) { current_animation = &forward; }
+	//	if (!action && flipPlayer) { current_animation = &backward; }
+	//	position.x += speed;
+	//}
+	//	
+	//if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	//{
+	//	if (!action && !flipPlayer) { current_animation = &backward; }
+	//	if (!action && flipPlayer) { current_animation = &forward; }
+	//	position.x -= speed;
 
-		jumped = true;
-		action = true;
-		
-	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action && !jumped)
-	{
-		Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		kicked = true;
-		action = true;
+	//}
+	//if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
+	//{
 
-	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
+	//	jumped = true;
+	//	action = true;
+	//	
+	//}
+	//if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	//{
+	//	Mix_PlayChannel(-1, App->audio->effects[2], 0);
+	//	kicked = true;
+	//	action = true;
 
-		Mix_PlayChannel(-1, App->audio->effects[3], 0);
-		Mix_PlayChannel(-1, App->audio->effects[4], 0);
-		tornadoMov = true;
-		action = true;
-		if (!flipPlayer) {
-			App->particles2->tornado.speed.x = +3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_ENEMY_SHOT);
-		}
-		else {
-			App->particles2->tornado.speed.x = -3;
-			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
+	//}
+	//if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
-		}
-	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action)
-	{
-		Mix_PlayChannel(-1, App->audio->effects[6], 0);
-		attacking = true;
-		action = true;
+	//	Mix_PlayChannel(-1, App->audio->effects[3], 0);
+	//	Mix_PlayChannel(-1, App->audio->effects[4], 0);
+	//	tornadoMov = true;
+	//	action = true;
+	//	if (!flipPlayer) {
+	//		App->particles2->tornado.speed.x = +3;
+	//		App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_ENEMY_SHOT);
+	//	}
+	//	else {
+	//		App->particles2->tornado.speed.x = -3;
+	//		App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_ENEMY_SHOT);
 
-	}
+	//	}
+	//}
+	//if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action)
+	//{
+	//	Mix_PlayChannel(-1, App->audio->effects[6], 0);
+	//	attacking = true;
+	//	action = true;
+
+	//}
 	
 	
 	if(action){

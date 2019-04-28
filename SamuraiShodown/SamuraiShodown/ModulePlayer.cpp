@@ -399,19 +399,16 @@ update_status ModulePlayer::Update()
 
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	if (c1 == p1Collider && c2->type == COLLIDER_WALL) {
-		LOG("Colliding with wall");
-		if (c1->rect.w > c2->rect.x)
-			position.x = c2->rect.x - c1->rect.w;
-		if (c1->rect.x > c2->rect.w)
-			position.x = c2->rect.x + c2->rect.w;
-	}
+	
+	switch (c2->type) {
 
-	//if (c2->type == COLLIDER_ENEMY_SHOT) {
-	//	Mix_PlayChannel(-1, App->audio->effects[2], 0);
-	//	health += 30;
-	//	getsHit = true; action = true;
-	//}
+	case COLLIDER_ENEMY_ATTACK:
+		App->player2->attack->to_delete = true;
+		hp -= 10;
+	case COLLIDER_ENEMY_SHOT:
+		
+		hp -= 20;
+	}
 }
 
 void ModulePlayer::OnPassing(ModulePlayer2* p2) {
@@ -530,15 +527,15 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 {
 	static player_states state = ST_IDLE;
-	player_inputs last_input;
+	player_inputs laST_input;
 
-	while (inputs.Pop(last_input))
+	while (inputs.Pop(laST_input))
 	{
 		switch (state)
 		{
 		case ST_IDLE:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_RIGHT_DOWN: if (!flipPlayer) { state = ST_WALK_FORWARD; break; }
 								if(flipPlayer) { state = ST_WALK_BACKWARD; break; }
@@ -556,7 +553,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_WALK_FORWARD:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
 			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
@@ -569,7 +566,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_WALK_BACKWARD:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
 			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
@@ -582,7 +579,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_NEUTRAL:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_NEUTRAL_JUMP; break;
@@ -592,7 +589,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_FORWARD:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_FORWARD_JUMP; break;
@@ -602,7 +599,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_BACKWARD:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_BACKWARD_JUMP; break;
@@ -612,7 +609,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_NEUTRAL_JUMP:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -622,7 +619,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_FORWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -632,7 +629,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_BACKWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -642,7 +639,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_STANDING:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			}
@@ -651,7 +648,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_CROUCH:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_CROUCH_UP: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_CROUCH; break;
@@ -660,7 +657,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		break;
 		case ST_SLASH_CROUCH:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_CROUCH_UP && IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_SLASH_FINISH: state = ST_CROUCH; break;
@@ -668,14 +665,14 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		}
 		case ST_KICK_STANDING:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_KICK_FINISH: state = ST_IDLE; break;
 			}
 		}
 		case ST_SPECIAL:
 		{
-			switch (last_input)
+			switch (laST_input)
 			{
 			case IN_SPECIAL_FINISH: state = ST_IDLE; break;
 			}
