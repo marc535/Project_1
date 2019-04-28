@@ -85,6 +85,17 @@ ModulePlayer2::ModulePlayer2()
 
 	sAttack.speed = 0.3f;
 	
+	// death animation
+
+	death.PushBack({ 1126,120,98,89 });
+	death.PushBack({ 793,140,106,69 });
+	death.PushBack({ 900,155,108,54 });
+	death.PushBack({ 1009,167,116,42 });
+
+	death.speed = 0.2f;
+
+	//dead anim
+	dead.PushBack({ 1009,167,116,42 });
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -366,7 +377,14 @@ update_status ModulePlayer2::Update()
 
 		}
 
+		if (isDead) {
 
+			current_animation = &death;
+			p2Collider->to_delete = true;
+			if (death.FinishedAnimation() == true) {
+				current_animation = &dead;
+			}
+		}
 	}
 
 	if (hp <= 0) { isDead = true; action = true; }

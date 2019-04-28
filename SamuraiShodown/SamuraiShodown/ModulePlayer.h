@@ -91,6 +91,7 @@ public:
 	Animation kcrouch;
 	Animation hit;
 	Animation death;
+	Animation dead;
 	iPoint position;
 
 	bool jumped = false;
@@ -106,6 +107,7 @@ public:
 	bool sJump = false;
 	bool sJumpF = false;
 	bool sJumpB = false;
+	bool getsHit = false;
 	
 	
 	bool flipPlayer = false;
