@@ -115,7 +115,6 @@ update_status ModulePlayer2::Update()
 
 	if (external_input2(inputs))
 	{
-
 		player2_states state = process_fsm2(inputs);
 
 		if (!action) {
@@ -156,7 +155,7 @@ update_status ModulePlayer2::Update()
 				break;
 			case ST2_SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
-				sCrouch = true; action = true;
+				sCrouched = true; action = true;
 				break;
 			case ST2_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
@@ -221,7 +220,7 @@ update_status ModulePlayer2::Update()
 		current_state2 = state;
 	}
 
-	/*if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
@@ -229,28 +228,37 @@ update_status ModulePlayer2::Update()
 
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
 		jumped = true;
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action && !jumped)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		kicked = true;
-		action = true;
+		kicked = true; action = true;
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
+	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
 		Mix_PlayChannel(-1, App->audio->effects[3], 0);
 		Mix_PlayChannel(-1, App->audio->effects[4], 0);
@@ -258,21 +266,21 @@ update_status ModulePlayer2::Update()
 		action = true;
 		if (!flipPlayer) {
 			App->particles2->tornado.speed.x = +3;
-			App->particles2->AddParticle(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 		}
 		else {
 			App->particles2->tornado.speed.x = -3;
-			App->particles2->AddParticle(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+			App->particles2->AddParticle2(App->particles2->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[6], 0);
 		attacking = true;
 		action = true;
 
-	}*/
+	}
 
 
 	if (action) {
@@ -370,6 +378,15 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 
+	switch (c2->type) {
+
+	case COLLIDER_PLAYER_ATTACK:
+		
+		hp -= 10;
+	case COLLIDER_PLAYER_SHOT:
+
+		hp -= 20;
+	}
 	
 }
 

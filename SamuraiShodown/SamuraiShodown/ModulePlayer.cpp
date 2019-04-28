@@ -91,6 +91,7 @@ ModulePlayer::ModulePlayer()
 	crouchD.PushBack({ 304, 467, 89, 75 });
 	crouchD.PushBack({ 434, 467, 89, 75 });
 	crouchD.PushBack({ 560, 467, 89, 75 });
+	crouchD.speed = 0.3f;
 	crouchD.loop = false;
 
 	// jump forward
@@ -489,7 +490,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	switch (c2->type) {
 
 	case COLLIDER_ENEMY_ATTACK:
-		App->player2->attack->to_delete = true;
+		
 		hp -= 10;
 	case COLLIDER_ENEMY_SHOT:
 		
@@ -753,7 +754,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		{
 			switch (last_input)
 			{
-			case IN_KICK_FINISH: state = ST_IDLE; break;
+			case IN_KICK_FINISH: 
+				state = ST_IDLE;
+
+				break;
 			}
 		}
 		case ST_SPECIAL:
