@@ -85,6 +85,7 @@ public:
 	Animation crouchU;
 	Animation JumpForward;
 	Animation JumpBackward;
+	Animation sCrouch;
 
 	iPoint position;
 
@@ -95,7 +96,7 @@ public:
 	bool tornadoMov = false;
 	bool attacking = false;
 	bool crouched = false;
-	bool sCrouch = false;
+	bool sCrouched = false;
 	bool sJump = false;
 	bool sJumpF = false;
 	bool sJumpB = false;
