@@ -83,6 +83,56 @@ ModulePlayer2::ModulePlayer2()
 	sAttack.PushBack({ 689, 1049, 119, 82 });
 	sAttack.PushBack({ 809, 1046, 130, 85 });
 
+	// jump forward
+
+	JumpForward.PushBack({ 22,592, 62, 128 });
+	JumpForward.PushBack({ 90,592, 62, 128 });
+	JumpForward.PushBack({ 158,592, 62, 128 });
+	JumpForward.PushBack({ 231,592, 74, 91 });
+	JumpForward.PushBack({ 314,592, 74, 91 });
+	JumpForward.PushBack({ 398,592, 74, 91 });
+	JumpForward.PushBack({ 485,589, 61, 82 });
+	JumpForward.PushBack({ 566,589, 61, 82 });
+	JumpForward.PushBack({ 638,589, 61, 82 });
+	JumpForward.PushBack({ 713,592 ,82 ,61 });
+	JumpForward.PushBack({ 805,592 ,82 ,61 });
+	JumpForward.PushBack({ 895,592 ,82 ,61 });
+	JumpForward.PushBack({ 988,592 ,61 ,81 });
+	JumpForward.PushBack({ 1073,592 ,61 ,81 });
+	JumpForward.PushBack({ 1158,592 ,61 ,81 });
+	JumpForward.PushBack({ 1229,592 ,82 ,61 });
+	JumpForward.PushBack({ 1318,592 ,82 ,61 });
+	JumpForward.PushBack({ 1410,592 ,82 ,61 });
+	JumpForward.PushBack({ 1213,462 ,76 ,83 });
+	JumpForward.PushBack({ 1299,462 ,76 ,83 });
+	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+	JumpForward.loop = false;
+
+	// jump bakward
+
+	JumpBackward.PushBack({ 22, 720, 60, 112 });
+	JumpBackward.PushBack({ 89, 720, 60, 112 });
+	JumpBackward.PushBack({ 157, 720, 60, 112 });
+	JumpBackward.PushBack({ 231,592, 74, 91 });
+	JumpBackward.PushBack({ 314,592, 74, 91 });
+	JumpBackward.PushBack({ 398,592, 74, 91 });
+	JumpBackward.PushBack({ 1229,592 ,82 ,61 });
+	JumpBackward.PushBack({ 1318,592 ,82 ,61 });
+	JumpBackward.PushBack({ 1410,592 ,82 ,61 });
+	JumpBackward.PushBack({ 988,592 ,61 ,81 });
+	JumpBackward.PushBack({ 1073,592 ,61 ,81 });
+	JumpBackward.PushBack({ 1158,592 ,61 ,81 });
+	JumpBackward.PushBack({ 713,592 ,82 ,61 });
+	JumpBackward.PushBack({ 805,592 ,82 ,61 });
+	JumpBackward.PushBack({ 895,592 ,82 ,61 });
+	JumpBackward.PushBack({ 485,589, 61, 82 });
+	JumpBackward.PushBack({ 566,589, 61, 82 });
+	JumpBackward.PushBack({ 638,589, 61, 82 });
+	JumpBackward.PushBack({ 1213,462 ,76 ,83 });
+	JumpBackward.PushBack({ 1299,462 ,76 ,83 });
+	JumpBackward.PushBack({ 1387,462 ,76 ,83 });
+	JumpBackward.loop = false;
+
 	sAttack.speed = 0.3f;
 	
 	// death animation
@@ -154,11 +204,11 @@ update_status ModulePlayer2::Update()
 				break;
 			case ST2_JUMP_FORWARD:
 				LOG("jumped FORWARD ^^>>\n");
-				jumped = true; action = true;
+				sJumpF = true; action = true;
 				break;
 			case ST2_JUMP_BACKWARD:
 				LOG("jumped BACKWARD ^^<<\n");
-				jumped = true; action = true;
+				sJumpB = true; action = true;
 				break;
 			case ST2_CROUCH:
 				LOG("CROUCHING ****\n");
