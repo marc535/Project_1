@@ -140,24 +140,6 @@ ModulePlayer::ModulePlayer()
 	JumpForward.PushBack({ 1213,462 ,76 ,83 });
 	JumpForward.PushBack({ 1299,462 ,76 ,83 });
 	JumpForward.PushBack({ 1387,462 ,76 ,83 });
-
-	// crouch sword attack 
-
-	sCrouch.PushBack({ 22,832,88,75 });
-	sCrouch.PushBack({ 137,838,83,69 });
-	sCrouch.PushBack({ 245,838,83,69 });
-	sCrouch.PushBack({ 361,838,126,68 });
-	sCrouch.PushBack({ 513,838,126,68 });
-	sCrouch.PushBack({ 677,839,126,68 });
-	sCrouch.PushBack({ 830 ,838,125,78 });
-	sCrouch.PushBack({ 988,840,124,68 });
-	sCrouch.PushBack({ 1164 ,839,126,68 });
-	sCrouch.PushBack({ 568,739,85,68 });
-	sCrouch.PushBack({ 692 ,739,85,68 });
-	sCrouch.PushBack({ 820,739,85,68 });
-	sCrouch.PushBack({ 944,739,81,68 });
-	sCrouch.PushBack({ 1070,739,81,68 });
-	sCrouch.PushBack({ 1182,738,83,69 });
 }
 
 ModulePlayer::~ModulePlayer()
