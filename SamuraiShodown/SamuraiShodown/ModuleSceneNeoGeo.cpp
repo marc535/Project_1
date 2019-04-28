@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneNeoGeo.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -76,6 +77,16 @@ update_status ModuleSceneNeoGeo::Update()
 		
 		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_haohmaru, 2.0f);
 		
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F11] == 1) {
+		App->player2->isDead = true;
+		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_ending, 2.0f);
+		LOG("PLAYER1 WIN")
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F12] == 1) {
+		App->player2->isDead = true;
+		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_ending, 2.0f);
+		LOG("PLAYER2 WIN")
 	}
 
 	return UPDATE_CONTINUE;
