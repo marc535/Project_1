@@ -243,7 +243,7 @@ update_status ModulePlayer::Update()
 				break;
 			case ST_SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
-				sCrouch = true; action = true;
+				sCrouched = true; action = true;
 				break;
 			case ST_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
