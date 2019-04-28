@@ -40,11 +40,12 @@ bool ModuleSceneHaohmaru::Start()
 	App->UI->Enable();
 	LOG("UI Enabled");
 	App->player->hp = 100;
-	App->player2->hp = 100; 
 	App->player->position.x = 50;
-	App->player2->position.x = 200;
+	App->player->isDead = false;
 
-	
+	App->player2->hp = 100;
+	App->player2->position.x = 200;
+	App->player2->isDead = false;
 
     LOG("Loading Haohmaru scene");
 
@@ -55,7 +56,7 @@ bool ModuleSceneHaohmaru::Start()
 	}
 	else {
 		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");
-	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");
+		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");	
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -90,6 +91,14 @@ update_status ModuleSceneHaohmaru::Update()
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 		Mix_FadeOutMusic(2000);
 
+	}
+	if (App->player->isDead == true) {
+
+		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
+	}
+	if (App->player2->isDead == true) {
+
+		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 	}
 
 	return UPDATE_CONTINUE;

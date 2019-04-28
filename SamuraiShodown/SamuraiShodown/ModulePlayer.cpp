@@ -197,10 +197,13 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
+	action = false;
+
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
+	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
 	
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 	current_state = ST_IDLE;
@@ -275,6 +278,7 @@ update_status ModulePlayer::Update()
 			case ST_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
 				attacking = true; action = true;
+				Mix_PlayChannel(-1, App->audio->effects[6], 0);
 				if (!flipPlayer) {
 
 					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
@@ -290,12 +294,12 @@ update_status ModulePlayer::Update()
 				LOG("KICK STANDING ----\n");
 				kicked = true; action = true;
 				if (!flipPlayer) {
-
+					Mix_PlayChannel(-1, App->audio->effects[2], 0);
 					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
 					attack->SetPos(position.x + 30, position.y - 50);
 				}
 				if (flipPlayer) {
-
+					Mix_PlayChannel(-1, App->audio->effects[2], 0);
 					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
 					attack->SetPos(position.x - 25, position.y - 50);
 				}
@@ -328,6 +332,11 @@ update_status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 
 				}
+				break;
+			case ST_DEAD:
+				LOG("PLAYER1 DEAD x.x\n");
+				//current_animation = &dead;
+				action = true;
 				break;
 
 			}
@@ -587,10 +596,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 	case COLLIDER_ENEMY_SHOT:
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
+		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 	}
 }
 
