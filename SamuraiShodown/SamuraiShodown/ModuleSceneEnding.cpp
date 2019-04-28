@@ -77,8 +77,10 @@ update_status ModuleSceneEnding::Update()
 		//FadeToBlack
 		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_welcome, 2.0f);
 		Mix_FadeOutMusic(2000);
-		
 	}
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_haohmaru, 2.0f);
+	}
 	return UPDATE_CONTINUE;
 }

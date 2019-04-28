@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneCharacterSelection.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -74,6 +75,20 @@ update_status ModuleSceneCharacterSelection::Update()
 
 		//Mix_FadeOutMusic(2000);
 		
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru, 2.0f);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
+		App->player2->isDead = true;
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 2.0f);
+		LOG("PLAYER1 WIN")
+	}
+	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
+		App->player->isDead = true;
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 2.0f);
+		LOG("PLAYER2 WIN")
 	}
 
 	return UPDATE_CONTINUE;
