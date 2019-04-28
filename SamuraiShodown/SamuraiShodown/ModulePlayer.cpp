@@ -83,7 +83,45 @@ ModulePlayer::ModulePlayer()
 	sAttack.PushBack({ 809, 488, 130, 85 });
 
 	sAttack.speed = 0.3f;
-	
+
+	// crouch 
+	crouchD.PushBack({ 22, 432, 68, 110 });
+	crouchD.PushBack({ 101, 432, 68, 110 });
+	crouchD.PushBack({ 187, 432, 68, 110 });
+	crouchD.PushBack({ 304, 467, 89, 75 });
+	crouchD.PushBack({ 434, 467, 89, 75 });
+	crouchD.PushBack({ 560, 467, 89, 75 });
+	crouchD.loop = false;
+
+	// jump forward
+
+	JumpForward.PushBack({ 22,592, 62, 128 });
+	JumpForward.PushBack({ 90,592, 62, 128 });
+	JumpForward.PushBack({ 158,592, 62, 128 });
+	JumpForward.PushBack({ 231,592, 74, 91 });
+	JumpForward.PushBack({ 314,592, 74, 91 });
+	JumpForward.PushBack({ 398,592, 74, 91 });
+	JumpForward.PushBack({ 485,589, 61, 82 });
+	JumpForward.PushBack({ 566,589, 61, 82 });
+	JumpForward.PushBack({ 638,589, 61, 82 });
+	JumpForward.PushBack({ 713,592 ,82 ,61 });
+	JumpForward.PushBack({ 805,592 ,82 ,61 });
+	JumpForward.PushBack({ 895,592 ,82 ,61 });
+	JumpForward.PushBack({ 988,592 ,61 ,81 });
+	JumpForward.PushBack({ 1073,592 ,61 ,81 });
+	JumpForward.PushBack({ 1158,592 ,61 ,81 });
+	JumpForward.PushBack({ 1229,592 ,82 ,61});
+	JumpForward.PushBack({ 1318,592 ,82 ,61 });
+	JumpForward.PushBack({ 1410,592 ,82 ,61 });
+	JumpForward.PushBack({ 1213,462 ,76 ,83});
+	JumpForward.PushBack({ 1299,462 ,76 ,83 });
+	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+
+	// jump bakward
+
+	JumpBackward.PushBack({ 22, 720, 60, 112 });
+	JumpBackward.PushBack({ 89, 720, 60, 112 });
+	JumpBackward.PushBack({ 157, 720, 60, 112 });
 }
 
 ModulePlayer::~ModulePlayer()
@@ -373,6 +411,12 @@ update_status ModulePlayer::Update()
 
 				sAttack.finishingAnimation(false);
 			}
+
+		}
+		if (crouched) {
+
+			current_animation = &crouchD;
+
 
 		}
 	
