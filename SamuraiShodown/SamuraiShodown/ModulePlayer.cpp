@@ -204,7 +204,9 @@ bool ModulePlayer::Start()
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
-	
+	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
+
+
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 	current_state = ST_IDLE;
 	return ret;
@@ -601,7 +603,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
-		Mix_PlayChannel(-1, App->audio->effects[7], 0);
+		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
 }
 
