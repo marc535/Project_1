@@ -532,9 +532,9 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 			switch (last_input)
 			{
 			case IN_RIGHT_DOWN: if (!flipPlayer) { state = ST_WALK_FORWARD; break; }
-								else { state = ST_WALK_BACKWARD; break; }
+								if(flipPlayer) { state = ST_WALK_BACKWARD; break; }
 			case IN_LEFT_DOWN: if (!flipPlayer) { state = ST_WALK_BACKWARD; break;	}
-							   else	{ state = ST_WALK_FORWARD; break;	}
+							   if (flipPlayer) { state = ST_WALK_FORWARD; break;	}
 			case IN_JUMP: state = ST_JUMP_NEUTRAL;  break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			case IN_SLASH: state = ST_SLASH_STANDING; break;
