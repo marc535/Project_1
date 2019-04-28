@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneEnding.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -36,7 +37,10 @@ bool ModuleSceneEnding::Start()
 	}
 	else {
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru.png");
-		Mix_PlayMusic(App->audio->soundtracks[2], 2);
+
+	player = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru1.png");
+	player2 = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru2.png");
+	Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
 	
@@ -61,7 +65,10 @@ update_status ModuleSceneEnding::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Ending Image
+	if (App->player->isDead) { App->render->Blit(player2, 0, 0, &background, 0.1f, false); }
+
+	if (App->player2->isDead) { App->render->Blit(player, 0, 0, &background, 0.1f, false); }
+	 //Ending Image
 	
 
 	

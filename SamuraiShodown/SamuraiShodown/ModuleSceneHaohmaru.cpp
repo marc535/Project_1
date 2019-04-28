@@ -56,7 +56,7 @@ bool ModuleSceneHaohmaru::Start()
 	}
 	else {
 		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/Haohmaru_Stage_Sprites.png");
-	graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");
+		graphics = App->textures->Load("Assets/Map_Stages/Haohmaru_Stage/ProvaRes.png");	
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 

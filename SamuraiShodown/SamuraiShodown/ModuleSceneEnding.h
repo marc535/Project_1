@@ -18,7 +18,10 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* player = nullptr;
+	SDL_Texture* player2 = nullptr;
 	SDL_Rect background;
+	
 
 	//Animation backgroundanim;
 };
