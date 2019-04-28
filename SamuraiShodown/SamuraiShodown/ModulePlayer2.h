@@ -99,6 +99,8 @@ public:
 	bool attacking = false;
 	bool crouched = false;
 	bool sCrouched = false;
+	bool jumpedF = false;
+	bool jumpedB = false;
 	bool sJump = false;
 	bool sJumpF = false;
 	bool sJumpB = false;

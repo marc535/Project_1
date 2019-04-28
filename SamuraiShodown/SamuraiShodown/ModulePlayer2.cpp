@@ -204,11 +204,11 @@ update_status ModulePlayer2::Update()
 				break;
 			case ST2_JUMP_FORWARD:
 				LOG("jumped FORWARD ^^>>\n");
-				sJumpF = true; action = true;
+				jumpedF = true; action = true;
 				break;
 			case ST2_JUMP_BACKWARD:
 				LOG("jumped BACKWARD ^^<<\n");
-				sJumpB = true; action = true;
+				jumpedB = true; action = true;
 				break;
 			case ST2_CROUCH:
 				LOG("CROUCHING ****\n");
@@ -286,6 +286,15 @@ update_status ModulePlayer2::Update()
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
+		{
+			if (!action && !flipPlayer) { current_animation = &JumpBackward;}
+			if (!action && flipPlayer) { current_animation = &JumpForward;}
+
+			jumpedF = true;
+			action = true;
+
+		}
 
 	}
 
@@ -294,6 +303,14 @@ update_status ModulePlayer2::Update()
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
+		{
+			if (!action && !flipPlayer) { current_animation = &JumpBackward;}
+			if (!action && flipPlayer) { current_animation = &JumpForward;}
+			jumpedB = true;
+			action = true;
+
+		}
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
@@ -378,27 +395,21 @@ update_status ModulePlayer2::Update()
 
 		}
 
-		if (sJumpF) {
+		if (jumpedF) {
 
-			if (flipPlayer) {
-				current_animation = &JumpBackward;
-			}
-			else {
-				current_animation = &JumpForward;
-			}
+			current_animation = &JumpForward;
 
-
-			position.y = 220 - (yVelocity*var1)+(0.5*(yAcceleration)*pow(var1, 2));
+			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)    //end of the jump
+			if (position.y > 220 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
-				sJumpF = false;
+				jumpedF = false;
 				position.y = 220;
 				action = false;
 				JumpForward.Reset();
@@ -410,28 +421,21 @@ update_status ModulePlayer2::Update()
 
 
 		}
-		if (sJumpB) {
+		if (jumpedB) {
 
-			if (flipPlayer) {
-				current_animation = &JumpForward;
-			}
-			else {
-				current_animation = &JumpBackward;
+			current_animation = &JumpBackward;
 
-			}
-
-
-			position.y = 220 - (yVelocity*var1)+(0.5*(yAcceleration)*pow(var1, 2));
+			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)    //end of the jump
+			if (position.y > 220 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
-				sJumpB = false;
+				jumpedB = false;
 				position.y = 220;
 				action = false;
 				JumpBackward.Reset();
@@ -442,8 +446,6 @@ update_status ModulePlayer2::Update()
 
 
 		}
-
-	}
 
 		if (kicked) {
 
@@ -493,6 +495,7 @@ update_status ModulePlayer2::Update()
 			action = false;
 
 		}
+	}
 
 		if (isDead) {
 
@@ -500,9 +503,9 @@ update_status ModulePlayer2::Update()
 			p2Collider->to_delete = true;
 			if (death.FinishedAnimation() == true) {
 				current_animation = &dead;
+				}
 			}
-		}
-	}
+		
 
 	if (hp <= 0) { isDead = true; action = true; }
 
@@ -697,7 +700,10 @@ player2_states ModulePlayer2::process_fsm2(p2Qeue<player2_inputs>& inputs)
 			if (flipPlayer) { case IN2_LEFT_UP: state = ST2_IDLE; break; }
 			if (!flipPlayer) { case IN2_RIGHT_UP: state = ST2_IDLE; break; }
 			case IN2_LEFT_AND_RIGHT: state = ST2_IDLE; break;
-			case IN2_JUMP: state = ST2_JUMP_FORWARD;  break;
+			case IN2_JUMP: 
+				if (!flipPlayer) { state = ST2_JUMP_FORWARD; }
+				if (flipPlayer) { state = ST2_JUMP_BACKWARD; }
+				break;
 			case IN2_CROUCH_DOWN: state = ST2_CROUCH; break;
 			}
 		}
@@ -710,7 +716,10 @@ player2_states ModulePlayer2::process_fsm2(p2Qeue<player2_inputs>& inputs)
 			if (!flipPlayer) { case IN2_LEFT_UP: state = ST2_IDLE; break; }
 			if (flipPlayer) { case IN2_RIGHT_UP: state = ST2_IDLE; break; }
 			case IN2_LEFT_AND_RIGHT: state = ST2_IDLE; break;
-			case IN2_JUMP: state = ST2_JUMP_BACKWARD; break;
+			case IN2_JUMP:
+				if (!flipPlayer) { state = ST2_JUMP_BACKWARD; }
+				if (flipPlayer) { state = ST2_JUMP_FORWARD; }
+				break;
 			case IN2_CROUCH_DOWN: state = ST2_CROUCH; break;
 			}
 		}
