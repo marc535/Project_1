@@ -163,8 +163,17 @@ ModulePlayer::ModulePlayer()
 	sCrouch.PushBack({ 1182,738,83,69 });
 	sCrouch.speed = 0.3f;
 	sCrouch.loop = false;
-	
 
+	// coruch kick anim
+	
+	kcrouch.PushBack({ 22,927,73 ,76 });
+	kcrouch.PushBack({ 114,925,73 ,76 });
+	kcrouch.PushBack({ 213,923,78 ,80 });
+	kcrouch.PushBack({ 310,923,78 ,80 });
+	kcrouch.PushBack({ 406,932,98 ,71 });
+	kcrouch.PushBack({ 524,932,98 ,71 });
+	kcrouch.PushBack({ 654,921,80,78 });
+	kcrouch.PushBack({ 761,921,80,78 });
 }
 
 ModulePlayer::~ModulePlayer()
