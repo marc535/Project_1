@@ -27,7 +27,9 @@ enum player2_states
 	ST2_SLASH_BACKWARD_JUMP,
 	ST2_SLASH_CROUCH,
 	ST2_KICK_STANDING,
-	ST2_SPECIAL
+	ST2_SPECIAL,
+	ST2_DEAD,
+	ST2_VICTORY,
 };
 
 enum player2_inputs
@@ -102,8 +104,7 @@ public:
 	bool flipPlayer = true;
 
 	bool isDead = false;
-	bool victory = false;
-	bool defeat = false;
+	
 
 	int var1 = 0;
 

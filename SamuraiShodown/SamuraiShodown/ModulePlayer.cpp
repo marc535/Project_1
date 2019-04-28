@@ -476,14 +476,17 @@ update_status ModulePlayer::Update()
 
 		}
 	
-	
 	}
 	if (hp <= 0) { isDead = true; action = true; }
 
 	if (isDead) {
 
-		victory = false;
-		defeat = true;
+		current_state = ST_DEAD;
+		
+	}
+	if (App->player2->isDead == true) {
+
+		current_state = ST_VICTORY;
 	}
 
 	if (!flipPlayer) {

@@ -368,6 +368,18 @@ update_status ModulePlayer2::Update()
 
 	}
 
+	if (hp <= 0) { isDead = true; action = true; }
+
+	if (isDead) {
+
+		current_state2 = ST2_DEAD;
+
+	}
+	if (App->player2->isDead == true) {
+
+		current_state2 = ST2_VICTORY;
+	}
+
 	if (!flipPlayer) {
 		p2Collider->SetPos(position.x + 20, position.y - 80);
 	}

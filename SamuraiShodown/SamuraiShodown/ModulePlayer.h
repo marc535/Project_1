@@ -28,7 +28,8 @@ enum player_states
 	ST_SLASH_CROUCH,
 	ST_KICK_STANDING,
 	ST_SPECIAL,
-	ST_DEAD
+	ST_DEAD,
+	ST_VICTORY,
 };
 
 enum player_inputs
@@ -107,8 +108,7 @@ public:
 	bool flipPlayer = false;
 	bool godMode = false;
 	bool isDead = false;
-	bool victory = false;
-	bool defeat = false;
+	
 
 	int var1 = 0;
 
