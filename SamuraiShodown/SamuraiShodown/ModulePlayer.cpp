@@ -530,7 +530,8 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 	}
 	if (isDead) {
 
-
+		victory = false;
+		defeat = true;
 	}
 }
 

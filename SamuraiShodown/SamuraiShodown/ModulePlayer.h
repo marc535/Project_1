@@ -27,7 +27,8 @@ enum player_states
 	ST_SLASH_BACKWARD_JUMP,
 	ST_SLASH_CROUCH,
 	ST_KICK_STANDING,
-	ST_SPECIAL
+	ST_SPECIAL,
+	ST_DEAD
 };
 
 enum player_inputs

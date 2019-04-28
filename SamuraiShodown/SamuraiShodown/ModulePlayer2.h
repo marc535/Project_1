@@ -101,6 +101,9 @@ public:
 
 	bool flipPlayer = true;
 
+	bool isDead = false;
+	bool victory = false;
+	bool defeat = false;
 
 	int var1 = 0;
 
