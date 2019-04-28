@@ -204,7 +204,9 @@ bool ModulePlayer::Start()
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
-	
+	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
+
+
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 	current_state = ST_IDLE;
 	return ret;
@@ -445,14 +447,8 @@ update_status ModulePlayer::Update()
 		}
 		if (jumpedF) {
 
-			if (flipPlayer) {
-				current_animation = &JumpBackward;
-			}
-			else {
-				current_animation = &JumpForward;
-			}
-					
-
+			current_animation = &JumpForward;
+			
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
@@ -477,15 +473,8 @@ update_status ModulePlayer::Update()
 		}
 		if (jumpedB) {
 
-			if (flipPlayer) {
-				current_animation = &JumpForward;
-			}
-			else {
-				current_animation = &JumpBackward;
-				
-			}
-			
-
+			current_animation = &JumpBackward;
+		
 			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
@@ -610,12 +599,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 10;
+		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 	case COLLIDER_ENEMY_SHOT:
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
-		Mix_PlayChannel(-1, App->audio->effects[7], 0);
+		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
 }
 
@@ -768,7 +758,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
 			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_FORWARD;  break;
+			case IN_JUMP: 
+				if (!flipPlayer) { state = ST_JUMP_FORWARD; }
+				if (flipPlayer) { state = ST_JUMP_BACKWARD; }
+				break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			}
 		}
@@ -781,7 +774,10 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
 			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
 			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: state = ST_JUMP_BACKWARD; break;
+			case IN_JUMP: 
+				if (!flipPlayer) { state = ST_JUMP_BACKWARD; }
+				if (flipPlayer) { state = ST_JUMP_FORWARD; }
+				break;
 			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
 			}
 		}
