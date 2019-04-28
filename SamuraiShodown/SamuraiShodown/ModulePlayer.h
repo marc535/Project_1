@@ -101,6 +101,8 @@ public:
 	bool godMode = false;
 
 	int var1 = 0;
+
+	int hp = 100;
 	
 	Mix_Chunk* kicks;
 	Mix_Chunk* tornados;

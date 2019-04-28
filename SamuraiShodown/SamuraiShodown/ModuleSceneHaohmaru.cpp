@@ -37,6 +37,8 @@ bool ModuleSceneHaohmaru::Start()
 {
 	Enable();
 	App->collision->Enable();
+	App->UI->Enable();
+	LOG("UI Enabled");
 
 	
 
