@@ -116,6 +116,12 @@ ModulePlayer::ModulePlayer()
 	JumpForward.PushBack({ 1213,462 ,76 ,83});
 	JumpForward.PushBack({ 1299,462 ,76 ,83 });
 	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+
+	// jump bakward
+
+	JumpBackward.PushBack({ 22, 720, 60, 112 });
+	JumpBackward.PushBack({ 89, 720, 60, 112 });
+	JumpBackward.PushBack({ 157, 720, 60, 112 });
 }
 
 ModulePlayer::~ModulePlayer()

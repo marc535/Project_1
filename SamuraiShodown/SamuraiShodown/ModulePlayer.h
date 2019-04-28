@@ -84,6 +84,7 @@ public:
 	Animation crouchD;
 	Animation crouchU;
 	Animation JumpForward;
+	Animation JumpBackward;
 
 	iPoint position;
 
@@ -98,7 +99,7 @@ public:
 	bool sJump = false;
 	bool sJumpF = false;
 	bool sJumpB = false;
-
+	
 	bool flipPlayer = false;
 	bool godMode = false;
 
