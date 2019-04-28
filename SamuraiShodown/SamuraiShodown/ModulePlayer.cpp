@@ -286,6 +286,7 @@ update_status ModulePlayer::Update()
 			case ST_SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
 				sCrouched = true; action = true;
+			
 				break;
 			case ST_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
@@ -543,7 +544,7 @@ update_status ModulePlayer::Update()
 			}
 
 		}
-		if (sCrouched) {
+		/*if (sCrouched) {
 
 			current_animation = &sCrouch;
 			if (sCrouch.FinishedAnimation() == true) {
@@ -556,11 +557,17 @@ update_status ModulePlayer::Update()
 				sCrouch.finishingAnimation(false);
 			}
 
-		}
+		}*/
 		if (crouched) {
 
 			current_animation = &crouchD;
-			action = false;
+			if (crouchD.FinishedAnimation() == true) {
+
+				crouched = false;
+				action = false;
+
+				crouchD.finishingAnimation(false);
+			}
 
 		}
 		if (isDead) {
@@ -595,12 +602,14 @@ update_status ModulePlayer::Update()
 	}
 
 	if (!flipPlayer) {
-		p1Collider->SetPos(position.x + 20, position.y - 80);
-	}
-	else {
-		p1Collider->SetPos(position.x + 10, position.y - 80);
-	}
 
+		p1Collider->SetPos(position.x + 20, position.y - 80);
+		
+	}
+	if (flipPlayer) {
+
+			p1Collider->SetPos(position.x + 10, position.y - 80);	
+	}
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
