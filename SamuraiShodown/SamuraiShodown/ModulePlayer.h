@@ -83,6 +83,7 @@ public:
 	Animation sAttack;
 	Animation crouchD;
 	Animation crouchU;
+	Animation JumpForward;
 
 	iPoint position;
 

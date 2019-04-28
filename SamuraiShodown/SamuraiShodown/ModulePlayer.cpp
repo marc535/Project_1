@@ -93,6 +93,9 @@ ModulePlayer::ModulePlayer()
 	crouchD.PushBack({ 560, 467, 89, 75 });
 	crouchD.loop = false;
 
+	// jump forward
+
+	JumpForward.PushBack({ 22,592, 62, 128 });
 	
 }
 
