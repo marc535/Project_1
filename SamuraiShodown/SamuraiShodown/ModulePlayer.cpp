@@ -528,6 +528,10 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
 		}
 	}
+	if (isDead) {
+
+
+	}
 }
 
 bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)

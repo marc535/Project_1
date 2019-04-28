@@ -101,8 +101,12 @@ public:
 	bool sJumpF = false;
 	bool sJumpB = false;
 	
+	
 	bool flipPlayer = false;
 	bool godMode = false;
+	bool isDead = false;
+	bool victory = false;
+	bool defeat = false;
 
 	int var1 = 0;
 
