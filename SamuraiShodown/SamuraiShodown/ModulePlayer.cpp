@@ -173,14 +173,30 @@ update_status ModulePlayer::Update()
 			case ST_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
 				attacking = true; action = true;
-				//App->attack->addAttack({ position.x + 73, position.y - 56, 40, 40 }, COLLIDER_PLAYER_ATTACK, 20, 7);
+				if (!flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack->SetPos(position.x + 60, position.y - 50);
+				}
+				if (flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack->SetPos(position.x - 55, position.y - 50);
+				}
 				break;
 			case ST_KICK_STANDING:
 				LOG("KICK STANDING ----\n");
 				kicked = true; action = true;
-				attack = App->collision->AddCollider({ position.x, position.y, 80, 40 }, COLLIDER_PLAYER_ATTACK, this);
-				attack->SetPos(position.x + 30, position.y - 35);
-				//App->attack->addAttack({ position.x + 73, position.y - 56 / 2, 40, 20 }, COLLIDER_PLAYER_ATTACK, 10, 3);
+				if (!flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack->SetPos(position.x + 30, position.y - 50);
+				}
+				if (flipPlayer) {
+
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack->SetPos(position.x - 25, position.y - 50);
+				}
 				break;
 			case ST_SLASH_NEUTRAL_JUMP:
 				LOG("SLASH JUMP NEUTRAL ^^++\n");
@@ -342,6 +358,7 @@ update_status ModulePlayer::Update()
 
 				attacking = false;
 				action = false;
+				attack->to_delete = true;
 				inputs.Push(IN_SLASH_FINISH);
 
 				sAttack.finishingAnimation(false);
