@@ -181,7 +181,8 @@ ModulePlayer::ModulePlayer()
 	hit.PushBack({ 1364,133,109,83 });
 	hit.PushBack({ 1364,133,109,83 });
 
-	hit.speed = 0.1f;
+	hit.loop = false;
+	hit.speed = 0.14f;
 
 	// death animation
 
