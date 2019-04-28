@@ -10,9 +10,8 @@
 
 struct SDL_Texture;
 
-enum PlayerStates2 {
-
-
+enum player2_states
+{
 	ST2_UNKNOWN,
 
 	ST2_IDLE,
@@ -21,32 +20,34 @@ enum PlayerStates2 {
 	ST2_JUMP_NEUTRAL,
 	ST2_JUMP_FORWARD,
 	ST2_JUMP_BACKWARD,
-	ST2_CROUCH_UP,
-	ST2_CROUCH_DOWN,
+	ST2_CROUCH,
 	ST2_SLASH_STANDING,
 	ST2_SLASH_NEUTRAL_JUMP,
 	ST2_SLASH_FORWARD_JUMP,
 	ST2_SLASH_BACKWARD_JUMP,
 	ST2_SLASH_CROUCH,
-	ST2_KICK_CROUCH,
 	ST2_KICK_STANDING,
-	ST2_SPECIAL,
-
-	HIT2,
-	DEATH2,
-	WIN2
+	ST2_SPECIAL
 };
 
-
-struct PlayerInput2 {
-	bool pressing_left;
-	bool pressing_right;
-	bool pressing_down;
-	bool pressing_up;
-	bool pressing_1;//J
-	bool pressing_2;//K
-	bool pressing_3;//L
-	bool pressing_F5;
+enum player2_inputs
+{
+	IN2_LEFT_DOWN,
+	IN2_LEFT_UP,
+	IN2_RIGHT_DOWN,
+	IN2_RIGHT_UP,
+	IN2_LEFT_AND_RIGHT,
+	IN2_JUMP,
+	IN2_CROUCH_UP,
+	IN2_CROUCH_DOWN,
+	IN2_JUMP_AND_CROUCH,
+	IN2_SLASH,
+	IN2_KICK,
+	IN2_SPECIAL,
+	IN2_JUMP_FINISH,
+	IN2_KICK_FINISH,
+	IN2_SLASH_FINISH,
+	IN2_SPECIAL_FINISH
 };
 class ModulePlayer2 : public Module
 {
@@ -55,18 +56,18 @@ public:
 	~ModulePlayer2();
 
 	bool Start();
-	update_status PreUpdate();
 	update_status Update();
 
 	void OnCollision(Collider* c1, Collider* c2);
 	void OnPassing(ModulePlayer* p1);
 
-	PlayerInput2 player2_input;
+	bool external_input2(p2Qeue<player2_inputs>& inputs);
+	player2_states process_fsm2(p2Qeue<player2_inputs>& inputs);
 
 public:
 
-	p2Qeue<PlayerInput2> inputs;
-	PlayerStates2 current_state2 = ST2_UNKNOWN;
+	p2Qeue<player2_inputs> inputs;
+	player2_states current_state2 = ST2_UNKNOWN;
 
 	SDL_Texture* graphics = nullptr;
 
@@ -79,11 +80,15 @@ public:
 	Animation kick;
 	Animation tornadoMove;
 	Animation sAttack;
+	Animation crouchD;
+	Animation crouchU;
+	Animation JumpForward;
+	Animation JumpBackward;
 
 	iPoint position;
 
 	bool jumped = false;
-	bool airborne = false;
+	bool grounded = false;
 	bool action = false;
 	bool kicked = false;
 	bool tornadoMov = false;
