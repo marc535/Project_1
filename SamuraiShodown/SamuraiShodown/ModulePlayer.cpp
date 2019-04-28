@@ -434,7 +434,7 @@ update_status ModulePlayer::Update()
 		if (crouched) {
 
 			current_animation = &crouchD;
-
+			action = false;
 
 		}
 	
@@ -589,15 +589,15 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 {
 	static player_states state = ST_IDLE;
-	player_inputs laST_input;
+	player_inputs last_input;
 
-	while (inputs.Pop(laST_input))
+	while (inputs.Pop(last_input))
 	{
 		switch (state)
 		{
 		case ST_IDLE:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_RIGHT_DOWN: if (!flipPlayer) { state = ST_WALK_FORWARD; break; }
 								if(flipPlayer) { state = ST_WALK_BACKWARD; break; }
@@ -615,7 +615,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_WALK_FORWARD:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
 			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
@@ -628,7 +628,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_WALK_BACKWARD:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
 			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
@@ -641,7 +641,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_NEUTRAL:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_NEUTRAL_JUMP; break;
@@ -651,7 +651,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_FORWARD:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_FORWARD_JUMP; break;
@@ -661,7 +661,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_JUMP_BACKWARD:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_BACKWARD_JUMP; break;
@@ -671,7 +671,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_NEUTRAL_JUMP:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -681,7 +681,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_FORWARD_JUMP:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -691,7 +691,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_BACKWARD_JUMP:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_JUMP_FINISH: state = ST_IDLE; break;
@@ -701,7 +701,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_SLASH_STANDING:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_SLASH_FINISH: state = ST_IDLE; break;
 			}
@@ -710,7 +710,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 
 		case ST_CROUCH:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_CROUCH_UP: state = ST_IDLE; break;
 			case IN_SLASH: state = ST_SLASH_CROUCH; break;
@@ -719,7 +719,7 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		break;
 		case ST_SLASH_CROUCH:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_CROUCH_UP && IN_SLASH_FINISH: state = ST_IDLE; break;
 			case IN_SLASH_FINISH: state = ST_CROUCH; break;
@@ -727,14 +727,14 @@ player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
 		}
 		case ST_KICK_STANDING:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_KICK_FINISH: state = ST_IDLE; break;
 			}
 		}
 		case ST_SPECIAL:
 		{
-			switch (laST_input)
+			switch (last_input)
 			{
 			case IN_SPECIAL_FINISH: state = ST_IDLE; break;
 			}
