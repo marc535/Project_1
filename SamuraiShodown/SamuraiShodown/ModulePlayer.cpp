@@ -122,6 +122,24 @@ ModulePlayer::ModulePlayer()
 	JumpBackward.PushBack({ 22, 720, 60, 112 });
 	JumpBackward.PushBack({ 89, 720, 60, 112 });
 	JumpBackward.PushBack({ 157, 720, 60, 112 });
+	JumpForward.PushBack({ 231,592, 74, 91 });
+	JumpForward.PushBack({ 314,592, 74, 91 });
+	JumpForward.PushBack({ 398,592, 74, 91 });
+	JumpForward.PushBack({ 1229,592 ,82 ,61 });
+	JumpForward.PushBack({ 1318,592 ,82 ,61 });
+	JumpForward.PushBack({ 1410,592 ,82 ,61 });
+	JumpForward.PushBack({ 988,592 ,61 ,81 });
+	JumpForward.PushBack({ 1073,592 ,61 ,81 });
+	JumpForward.PushBack({ 1158,592 ,61 ,81 });
+	JumpForward.PushBack({ 713,592 ,82 ,61 });
+	JumpForward.PushBack({ 805,592 ,82 ,61 });
+	JumpForward.PushBack({ 895,592 ,82 ,61 });
+	JumpForward.PushBack({ 485,589, 61, 82 });
+	JumpForward.PushBack({ 566,589, 61, 82 });
+	JumpForward.PushBack({ 638,589, 61, 82 });
+	JumpForward.PushBack({ 1213,462 ,76 ,83 });
+	JumpForward.PushBack({ 1299,462 ,76 ,83 });
+	JumpForward.PushBack({ 1387,462 ,76 ,83 });
 }
 
 ModulePlayer::~ModulePlayer()
