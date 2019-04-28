@@ -174,6 +174,10 @@ ModulePlayer::ModulePlayer()
 	kcrouch.PushBack({ 524,932,98 ,71 });
 	kcrouch.PushBack({ 654,921,80,78 });
 	kcrouch.PushBack({ 761,921,80,78 });
+
+	//get hit anim
+
+	hit.PushBack({ 1364,133,109,83 });
 }
 
 ModulePlayer::~ModulePlayer()
@@ -527,6 +531,10 @@ void ModulePlayer::OnPassing(ModulePlayer2* p2) {
 				LOG("Player1 flip = true")	
 				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
 		}
+	}
+	if (isDead) {
+
+
 	}
 }
 
