@@ -87,6 +87,7 @@ public:
 	Animation JumpBackward;
 	Animation sCrouch;
 	Animation kcrouch;
+	Animation hit;
 	iPoint position;
 
 	bool jumped = false;

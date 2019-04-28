@@ -174,6 +174,10 @@ ModulePlayer::ModulePlayer()
 	kcrouch.PushBack({ 524,932,98 ,71 });
 	kcrouch.PushBack({ 654,921,80,78 });
 	kcrouch.PushBack({ 761,921,80,78 });
+
+	//get hit anim
+
+	hit.PushBack({ 1364,133,109,83 });
 }
 
 ModulePlayer::~ModulePlayer()
