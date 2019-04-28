@@ -258,11 +258,11 @@ update_status ModulePlayer::Update()
 				break;
 			case ST_JUMP_FORWARD:
 				LOG("jumped FORWARD ^^>>\n");
-				jumped = true; action = true;
+				jumpedF = true; action = true;
 				break;
 			case ST_JUMP_BACKWARD:
 				LOG("jumped BACKWARD ^^<<\n");
-				jumped = true; action = true;
+				jumpedB = true; action = true;
 				break;
 			case ST_CROUCH:
 				LOG("CROUCHING ****\n");
@@ -428,9 +428,74 @@ update_status ModulePlayer::Update()
 				jumped = false;
 				position.y = 220;
 				action = false;
+				
 
 			}
 			var1++;
+
+		}
+		if (jumpedF) {
+
+			if (flipPlayer) {
+				current_animation = &JumpBackward;
+			}
+			else {
+				current_animation = &JumpForward;
+			}
+					
+
+			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.x += 4;
+			grounded = true;
+
+
+			if (position.y > 220 && grounded == true)	//end of the jump
+			{
+				inputs.Push(IN_JUMP_FINISH);
+				var1 = 0;
+				grounded = false;
+				jumpedF = false;
+				position.y = 220;
+				action = false;
+				JumpForward.Reset();
+				JumpBackward.Reset();
+
+
+			}
+			var1++;
+			
+
+		}
+		if (jumpedB) {
+
+			if (flipPlayer) {
+				current_animation = &JumpForward;
+			}
+			else {
+				current_animation = &JumpBackward;
+				
+			}
+			
+
+			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.x -= 4;
+			grounded = true;
+
+
+			if (position.y > 220 && grounded == true)	//end of the jump
+			{
+				inputs.Push(IN_JUMP_FINISH);
+				var1 = 0;
+				grounded = false;
+				jumpedB = false;
+				position.y = 220;
+				action = false;
+				JumpBackward.Reset();
+
+
+			}
+			var1++;
+
 
 		}
 

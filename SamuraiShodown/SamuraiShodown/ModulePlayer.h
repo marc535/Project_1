@@ -94,6 +94,8 @@ public:
 	iPoint position;
 
 	bool jumped = false;
+	bool jumpedF = false;
+	bool jumpedB = false;
 	bool grounded = false;
 	bool action = false;
 	bool kicked = false;
@@ -112,6 +114,7 @@ public:
 	
 
 	int var1 = 0;
+	int var2 = 0;
 
 	int hp = 100;
 	
