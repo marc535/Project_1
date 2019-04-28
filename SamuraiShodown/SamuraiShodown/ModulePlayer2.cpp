@@ -162,12 +162,12 @@ update_status ModulePlayer2::Update()
 				attacking = true; action = true;
 				if (!flipPlayer) {
 
-					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
 					attack->SetPos(position.x + 60, position.y - 50);
 				}
 				if (flipPlayer) {
 
-					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
+					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
 					attack->SetPos(position.x - 55, position.y - 50);
 				}
 				break;
@@ -176,12 +176,12 @@ update_status ModulePlayer2::Update()
 				kicked = true; action = true;
 				if (!flipPlayer) {
 
-					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
 					attack->SetPos(position.x + 30, position.y - 50);
 				}
 				if (flipPlayer) {
 
-					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
 					attack->SetPos(position.x - 25, position.y - 50);
 				}
 				break;
@@ -242,7 +242,7 @@ update_status ModulePlayer2::Update()
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action && !jumped)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		kicked = true; action = true;
@@ -274,11 +274,20 @@ update_status ModulePlayer2::Update()
 
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[6], 0);
-		attacking = true;
-		action = true;
+		attacking = true; action = true;
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
+			attack->SetPos(position.x + 60, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
+			attack->SetPos(position.x - 55, position.y - 50);
+		}
 
 	}
 
