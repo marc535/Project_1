@@ -58,10 +58,10 @@ bool Application::Init()
 	player->Disable();
 	player2->Disable();
 	UI->Disable();
-	//collision->Disable();
+	collision->Disable();
 	
 
-
+	//Deactivate scenes
 	scene_welcome->Disable();
 	scene_charSelect->Disable();
 	scene_ending->Disable();

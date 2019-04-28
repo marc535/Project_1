@@ -49,6 +49,7 @@ public:
 
 	int var1 = 0;
 
+	int hp = 100;
 
 	Mix_Chunk* kicks;
 
