@@ -41,8 +41,6 @@ bool ModuleSceneCharacterSelection::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 		Mix_PlayChannel(-1, App->audio->effects[5], 0);
 	}
-
-	
 	
 	return true;
 }
