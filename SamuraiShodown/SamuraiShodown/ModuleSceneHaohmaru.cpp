@@ -37,6 +37,7 @@ bool ModuleSceneHaohmaru::Start()
 {
 	Enable();
 	App->collision->Enable();
+	App->collision->debug = false;
 	App->UI->Enable();
 	LOG("UI Enabled");
 	App->player->hp = 100;
