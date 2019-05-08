@@ -218,6 +218,8 @@ bool ModulePlayer::Start()
 
 
 	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
+	inputs.Clear();
+	
 	current_state = ST_IDLE;
 	return ret;
 }
@@ -675,6 +677,7 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 
 	if (this->IsEnabled() == true) {
 
+		
 		while (SDL_PollEvent(&event) != 0)
 		{
 			if (event.type == SDL_KEYUP && event.key.repeat == 0)

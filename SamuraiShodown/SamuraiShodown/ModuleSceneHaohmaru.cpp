@@ -41,10 +41,12 @@ bool ModuleSceneHaohmaru::Start()
 	LOG("Collision Enabled");
 	App->UI->Enable();
 	LOG("UI Enabled");
+	App->player->inputs.Clear();
 	App->player->hp = 100;
 	App->player->position.x = 50;
 	App->player->isDead = false;
 
+	App->player2->inputs.Clear();
 	App->player2->hp = 100;
 	App->player2->position.x = 200;
 	App->player2->isDead = false;
@@ -110,9 +112,33 @@ update_status ModuleSceneHaohmaru::Update()
 	}
 	if (App->player->isDead == true) {
 
+		App->player->action = true;
+		App->player2->action = true;
+
+		for (uint i = 0; i < MAX_COLLIDERS; ++i)
+		{
+			if (App->collision->colliders[i] != nullptr)
+			{
+				delete App->collision->colliders[i];
+				App->collision->colliders[i] = nullptr;
+			}
+		}
+
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 	}
 	if (App->player2->isDead == true) {
+
+		App->player->action = true;
+		App->player2->action = true;
+
+		for (uint i = 0; i < MAX_COLLIDERS; ++i)
+		{
+			if (App->collision->colliders[i] != nullptr)
+			{
+				delete App->collision->colliders[i];
+				App->collision->colliders[i] = nullptr;
+			}
+		}
 
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 	}

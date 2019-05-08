@@ -56,9 +56,11 @@ public:
 	void DebugDraw();
 	bool debug = true;
 
+	Collider* colliders[MAX_COLLIDERS];
+
 private:
 
-	Collider* colliders[MAX_COLLIDERS];
+	
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	
 };

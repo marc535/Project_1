@@ -98,7 +98,7 @@ public:
 	bool jumpedF = false;
 	bool jumpedB = false;
 	bool grounded = false;
-	bool action = false;
+	bool action = true;
 	bool kicked = false;
 	bool tornadoMov = false;
 	bool attacking = false;
