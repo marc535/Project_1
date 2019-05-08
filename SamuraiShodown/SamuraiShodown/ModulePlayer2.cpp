@@ -83,6 +83,16 @@ ModulePlayer2::ModulePlayer2()
 	sAttack.PushBack({ 689, 1049, 119, 82 });
 	sAttack.PushBack({ 809, 1046, 130, 85 });
 
+	// crouch 
+	crouchD.PushBack({ 22, 432, 68, 110 });
+	crouchD.PushBack({ 101, 432, 68, 110 });
+	crouchD.PushBack({ 187, 432, 68, 110 });
+	crouchD.PushBack({ 304, 467, 89, 75 });
+	crouchD.PushBack({ 434, 467, 89, 75 });
+	crouchD.PushBack({ 560, 467, 89, 75 });
+	crouchD.speed = 0.3f;
+	crouchD.loop = false;
+
 	// jump forward
 
 	JumpForward.PushBack({ 22,592, 62, 128 });
@@ -182,7 +192,7 @@ update_status ModulePlayer2::Update()
 	float yVelocity = 15.1f;
 	float yAcceleration = 0.87f;
 
-
+//	if (!jumped && !jumpedB && !jumpedF) { position.y = 220; }
 	if (external_input2(inputs))
 	{
 		player2_states state = process_fsm2(inputs);
@@ -225,7 +235,7 @@ update_status ModulePlayer2::Update()
 				break;
 			case ST2_SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
-				sCrouched = true; action = true;
+				sCrouched = true; //action = true;
 				break;
 			case ST2_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
@@ -290,7 +300,7 @@ update_status ModulePlayer2::Update()
 		current_state2 = state;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
@@ -307,7 +317,7 @@ update_status ModulePlayer2::Update()
 
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
@@ -326,6 +336,13 @@ update_status ModulePlayer2::Update()
 	{
 
 		jumped = true;
+		action = true;
+
+	}
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT && !action)
+	{
+
+		crouched = true;
 		action = true;
 
 	}
@@ -501,8 +518,15 @@ update_status ModulePlayer2::Update()
 		if (crouched) {
 
 			current_animation = &crouchD;
-			action = false;
+			action = true;
 
+			if (crouchD.FinishedAnimation() == true && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_UP) {
+				inputs.Push(IN2_CROUCH_UP);
+				var1 = 0;
+				crouched = false;
+				position.y = 220;
+				action = false;
+			}
 		}
 	}
 
@@ -521,7 +545,7 @@ update_status ModulePlayer2::Update()
 			action = false;
 			getsHit = false;
 			current_state2 = ST2_IDLE;
-
+			position.y = 220;
 		}
 
 	}
@@ -571,6 +595,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
 		getsHit = true;
+		position.y = 220;
 		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
 	
