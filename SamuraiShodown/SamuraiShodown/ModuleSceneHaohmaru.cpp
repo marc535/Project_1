@@ -37,7 +37,8 @@ bool ModuleSceneHaohmaru::Start()
 {
 	Enable();
 	App->collision->Enable();
-	App->collision->debug = false;
+	App->collision->debug = false;	//game starts without collision draw activated
+	LOG("Collision Enabled");
 	App->UI->Enable();
 	LOG("UI Enabled");
 	App->player->hp = 100;
@@ -63,6 +64,9 @@ bool ModuleSceneHaohmaru::Start()
 
 	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
+
+	App->player->Enable();
+	App->player2->Enable();
 	
 	return true;
 }
@@ -79,8 +83,7 @@ update_status ModuleSceneHaohmaru::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //Haohmaru Image
-	App->player->Enable();
-	App->player2->Enable();
+
 	App->UI->Enable();
 
 
