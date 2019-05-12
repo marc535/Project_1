@@ -9,8 +9,10 @@
 
 ModuleUI::ModuleUI() {
 	
-	KO.PushBack({151, 0, 26, 23});
+	KO.PushBack({ 151,  0, 26, 23 });
 	KO.PushBack({ 151, 23, 26, 23 });
+
+	KO.speed = 0.14f;
 }
 
 ModuleUI::~ModuleUI() {}
@@ -63,12 +65,19 @@ update_status ModuleUI::Update() {
 
 	
 	
+	if (!animKO) {
+		App->render->Blit(ui_png, SCREEN_WIDTH / 2 - 12, 10, &KO.frames[0], 1.0F, false);
+	}
+	else {
+		App->render->Blit(ui_png, SCREEN_WIDTH / 2 - 24 / 2, 10, &KO.GetCurrentFrame(), 1.0F, false);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleUI::UpdateBars()
 {
-
+	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; }
 
 	if (current_hp1 != App->player->hp) {
 		int new_width = currentW_player1;
