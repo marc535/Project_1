@@ -14,11 +14,8 @@
 
 ModuleSceneGenAn::ModuleSceneGenAn()
 {
-	background.w = 320;
-	background.h = 224;
-	background.x = 0;
-	background.y = 0;
-	/*for (int i = 0; i < 6; i++)
+	
+	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
@@ -26,8 +23,7 @@ ModuleSceneGenAn::ModuleSceneGenAn()
 			LOG("j++")
 		}
 		LOG("i++")
-	}*/
-
+	}
 
 	stageAnimation.speed = 0.14f;
 }
@@ -63,7 +59,7 @@ bool ModuleSceneGenAn::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-		graphics = App->textures->Load("Assets/Map_Stages/Genan_Stage/1.png");	
+		graphics = App->textures->Load("Assets/Map_Stages/Genan_Stage/GenAn_Stage_Sprites.png");	
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -87,7 +83,7 @@ update_status ModuleSceneGenAn::Update()
 	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
-	//App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //GenAn Image
+	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //GenAn Image
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //GenAn Image
 
 	//App->UI->Enable();
