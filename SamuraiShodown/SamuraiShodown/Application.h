@@ -1,7 +1,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 18
+#define NUM_MODULES 19
 
 class ModuleWindow;
 class ModuleInput;
@@ -22,6 +22,7 @@ class ModuleFadeToBlack;
 class ModuleCollision;
 class Module;
 class ModuleUI;
+class ModuleGen;
 
 class Application
 {
@@ -46,6 +47,7 @@ public:
 	ModuleParticles2* particles2;
 	ModuleAudio* audio;
 	ModuleUI* UI;
+	ModuleGen* gen;
 
 public:
 

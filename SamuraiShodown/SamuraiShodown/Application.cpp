@@ -17,6 +17,7 @@
 #include "ModuleUI.h"
 #include "ModuleParticles.h"
 #include "ModuleParticles2.h"
+#include "ModuleGen.h"
 
 Application::Application()
 {
@@ -42,7 +43,7 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = particles2 = new ModuleParticles2();
 	modules[i++] = collision = new ModuleCollision();
-	
+	modules[i++] = gen = new ModuleGen();
 
 }
 
