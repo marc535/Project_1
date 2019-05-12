@@ -22,7 +22,7 @@ ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 		LOG("i++")
 	}
 
-	backgroundanim.speed = 0.014f;
+	backgroundanim.speed = 0.14f;
 	backgroundanim.loop = false;
 }
 
