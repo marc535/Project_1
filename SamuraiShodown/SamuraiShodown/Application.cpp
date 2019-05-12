@@ -68,6 +68,7 @@ bool Application::Init()
 	scene_charSelect->Disable();
 	scene_ending->Disable();
 	scene_haohmaru->Disable();
+	scene_genan->Disable();
 
 	// ----------------------------
 

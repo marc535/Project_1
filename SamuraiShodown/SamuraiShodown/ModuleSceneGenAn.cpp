@@ -14,8 +14,11 @@
 
 ModuleSceneGenAn::ModuleSceneGenAn()
 {
-
-	for (int i = 0; i < 6; i++)
+	background.w = 320;
+	background.h = 224;
+	background.x = 0;
+	background.y = 0;
+	/*for (int i = 0; i < 6; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
@@ -23,7 +26,8 @@ ModuleSceneGenAn::ModuleSceneGenAn()
 			LOG("j++")
 		}
 		LOG("i++")
-	}
+	}*/
+
 
 	stageAnimation.speed = 0.14f;
 }
@@ -37,9 +41,9 @@ bool ModuleSceneGenAn::Start()
 {
 	Enable();
 	App->collision->Enable();
-	App->collision->debug = false;	//game starts without collision draw activated
+	//App->collision->debug = false;	//game starts without collision draw activated
 	LOG("Collision Enabled");
-	App->UI->Enable();
+	//App->UI->Enable();
 	LOG("UI Enabled");
 	App->player->inputs.Clear();
 	App->player->hp = 100;
@@ -59,16 +63,15 @@ bool ModuleSceneGenAn::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-		graphics = App->textures->Load("Assets/Map_Stages/GenAn_Stage/GenAn_Stage_Sprites.png");
-		graphics = App->textures->Load("Assets/Map_Stages/GenAn_Stage/ProvaRes.png");	
+		graphics = App->textures->Load("Assets/Map_Stages/Genan_Stage/1.png");	
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
 	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 
-	App->player->Enable();
-	App->player2->Enable();
+	/*App->player->Enable();
+	App->player2->Enable();*/
 	
 	return true;
 }
@@ -84,9 +87,10 @@ update_status ModuleSceneGenAn::Update()
 	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //GenAn Image
+	//App->render->Blit(graphics, 0, 0, &stageAnimation.GetCurrentFrame(), 0.1f, false); //GenAn Image
+	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //GenAn Image
 
-	App->UI->Enable();
+	//App->UI->Enable();
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
