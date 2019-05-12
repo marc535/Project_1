@@ -12,11 +12,21 @@
 
 ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 {
-	background.w = 320;
+	/*background.w = 320;
 	background.h = 224;
 	background.x = 0;
-	background.y = 0;
+	background.y = 0;*/
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			backgroundanim.PushBack({ (320 * j), (224 * i), 320, 224 });
+			LOG("j++")
+		}
+		LOG("i++")
+	}
 
+	backgroundanim.speed = 0.14f;
 }
 
 ModuleSceneNeoGeo::~ModuleSceneNeoGeo()
@@ -36,7 +46,7 @@ bool ModuleSceneNeoGeo::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neogeo.png");
+		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neo_geo_anim2.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -61,8 +71,12 @@ bool ModuleSceneNeoGeo::CleanUp()
 update_status ModuleSceneNeoGeo::Update()
 {
 
+	
+
+	Animation *current_animation = &backgroundanim;
+
 	// Draw everything --------------------------------------	
-	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //NeoGeo Image
+	App->render->Blit(graphics, 0, 0, &backgroundanim.GetCurrentFrame(), 0.1f, false); //NeoGeo Image
 	
 
 	

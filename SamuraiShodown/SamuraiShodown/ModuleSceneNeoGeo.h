@@ -20,6 +20,6 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 
-	//Animation backgroundanim;
+	Animation backgroundanim;
 };
 
