@@ -25,7 +25,7 @@ ModuleSceneGenAn::ModuleSceneGenAn()
 		LOG("i++")
 	}
 
-	stageAnimation.speed = 0.14f;
+	stageAnimation.speed = 0.3f;
 }
 
 
