@@ -12,10 +12,6 @@
 
 ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 {
-	/*background.w = 320;
-	background.h = 224;
-	background.x = 0;
-	background.y = 0;*/
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -27,6 +23,7 @@ ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 	}
 
 	backgroundanim.speed = 0.14f;
+	backgroundanim.loop = false;
 }
 
 ModuleSceneNeoGeo::~ModuleSceneNeoGeo()
@@ -55,40 +52,26 @@ bool ModuleSceneNeoGeo::Start()
 	return true;
 }
 
-// UnLoad assets
-bool ModuleSceneNeoGeo::CleanUp()
-{
-	LOG("Unloading Welcome scene");
-
-	App->textures->Unload(graphics);
-	
-	App->audio->CleanUp();
-
-	return true;
-}
-
 // Update: draw background
 update_status ModuleSceneNeoGeo::Update()
 {
-
-	
 
 	Animation *current_animation = &backgroundanim;
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &backgroundanim.GetCurrentFrame(), 0.1f, false); //NeoGeo Image
-	
 
-	
+
+
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
 		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_welcome, 2.0f);
 		Mix_FadeOutMusic(2000);
-		
+
 	}
-	if(App->input->keyboard[SDL_SCANCODE_F2] == 1) {
-		
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+
 		App->fade->FadeToBlack((Module*)App->scene_neogeo, (Module*)App->scene_haohmaru, 2.0f);
 		Mix_FadeOutMusic(2000);
 	}
@@ -106,3 +89,16 @@ update_status ModuleSceneNeoGeo::Update()
 	return UPDATE_CONTINUE;
 
 }
+
+// UnLoad assets
+bool ModuleSceneNeoGeo::CleanUp()
+{
+	LOG("Unloading Welcome scene");
+
+	App->textures->Unload(graphics);
+	
+	App->audio->CleanUp();
+
+	return true;
+}
+
