@@ -28,12 +28,14 @@ public:
 	//BARS
 	int maxHP = 0;
 	int max_width = 128;
+
 	//player1
 	int target_hp1 = 0;
 	int current_hp1 = 0;
 	int currentW_player1 = 0;
 	bool decrease_player1 = false;
 	SDL_Rect hpBar1{ 8,32,128,9 };
+
 	//player2
 	int target_hp2 = 0;
 	int current_hp2 = 0;
@@ -41,7 +43,9 @@ public:
 	bool decrease_player2 = false;
 	SDL_Rect hpBar2{ 8,32,128,9 };
 	
-	
+	//KO
+
+	bool animKO;
 	
 	
 	
@@ -50,6 +54,7 @@ public:
 	
 	Animation draw_anim;
 	Animation time_up_anim;
+	Animation KO;
 	
 	
 

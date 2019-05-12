@@ -9,7 +9,8 @@
 
 ModuleUI::ModuleUI() {
 	
-
+	KO.PushBack({151, 0, 26, 23});
+	KO.PushBack({ 151, 23, 26, 23 });
 }
 
 ModuleUI::~ModuleUI() {}
@@ -17,8 +18,11 @@ ModuleUI::~ModuleUI() {}
 bool ModuleUI::Start() {
 	LOG("Loading UI\n");
 	ui_png = App->textures->Load("Assets/Textures/in_gameUI.png");
+
 	hpBar1 = { 8,32,128,9 };
 	hpBar2 = { 8,32,128,9 };
+
+
 	App->player->hp = 100;
 	App->player2->hp = 100;
 	currentW_player1 = hpBar1.w;
@@ -57,7 +61,7 @@ update_status ModuleUI::Update() {
 	App->render->Blit(ui_png, 183, 17, &rect, 1.0f, false); //
 	App->render->Blit(ui_png, 185, 19, &hpBar2, 1.0f, false); //
 
-		
+	
 	
 	return UPDATE_CONTINUE;
 }
