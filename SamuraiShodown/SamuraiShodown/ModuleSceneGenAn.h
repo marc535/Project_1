@@ -5,11 +5,11 @@
 
 struct SDL_Texture;
 
-class ModuleSceneNeoGeo : public Module
+class ModuleSceneGenAn : public Module
 {
 public:
-	ModuleSceneNeoGeo();
-	~ModuleSceneNeoGeo();
+	ModuleSceneGenAn();
+	~ModuleSceneGenAn();
 
 	bool Start();
 	update_status Update();
@@ -19,8 +19,8 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
+	
 
-	Animation backgroundanim;
-	Animation backgroundanim2;
+	Animation stageAnimation;
 };
 

@@ -8,6 +8,7 @@
 #include "ModuleSceneCharacterSelection.h"
 #include "ModuleSceneEnding.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneGenAn.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
@@ -32,6 +33,7 @@ Application::Application()
 	modules[i++] = scene_charSelect = new ModuleSceneCharacterSelection();
 	modules[i++] = scene_ending = new ModuleSceneEnding();
 	modules[i++] = scene_haohmaru = new ModuleSceneHaohmaru();
+	modules[i++] = scene_genan = new ModuleSceneGenAn();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = UI = new ModuleUI();
 

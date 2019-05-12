@@ -84,6 +84,9 @@
     <ClCompile Include="ModuleInterface.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSceneGenAn.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="p2Qeue.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneGenAn.h">
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

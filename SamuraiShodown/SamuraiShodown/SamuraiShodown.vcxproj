@@ -144,6 +144,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneCharacterSelection.cpp" />
     <ClCompile Include="ModuleSceneEnding.cpp" />
+    <ClCompile Include="ModuleSceneGenAn.cpp" />
     <ClCompile Include="ModuleSceneHaohmaru.cpp" />
     <ClCompile Include="ModuleSceneNeoGeo.cpp" />
     <ClCompile Include="ModuleSceneWelcome.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSceneCharacterSelection.h" />
     <ClInclude Include="ModuleSceneEnding.h" />
+    <ClInclude Include="ModuleSceneGenAn.h" />
     <ClInclude Include="ModuleSceneHaohmaru.h" />
     <ClInclude Include="ModuleSceneNeoGeo.h" />
     <ClInclude Include="ModuleSceneWelcome.h" />

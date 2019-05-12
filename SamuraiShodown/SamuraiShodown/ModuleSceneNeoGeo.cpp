@@ -22,7 +22,7 @@ ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 		LOG("i++")
 	}
 
-	backgroundanim.speed = 0.014f;
+	backgroundanim.speed = 0.14f;
 	backgroundanim.loop = false;
 }
 
@@ -43,7 +43,7 @@ bool ModuleSceneNeoGeo::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neo_geo_anim2.png");
+		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/neo_geo_anim.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 

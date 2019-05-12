@@ -1,7 +1,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 17
+#define NUM_MODULES 18
 
 class ModuleWindow;
 class ModuleInput;
@@ -14,6 +14,7 @@ class ModuleSceneNeoGeo;
 class ModuleSceneCharacterSelection;
 class ModuleSceneEnding;
 class ModuleSceneHaohmaru;
+class ModuleSceneGenAn;
 class ModulePlayer;
 class ModulePlayer2;
 class ModuleAudio;
@@ -36,6 +37,7 @@ public:
 	ModuleSceneCharacterSelection* scene_charSelect;
 	ModuleSceneEnding* scene_ending;
 	ModuleSceneHaohmaru * scene_haohmaru;
+	ModuleSceneGenAn * scene_genan;
 	ModuleCollision* collision;
 	ModulePlayer* player;
 	ModulePlayer2* player2;
