@@ -3,7 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleSceneGenAn.h"
-#include "ModulePlayer.h"
+#include "ModuleGen.h"
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
@@ -41,10 +41,10 @@ bool ModuleSceneGenAn::Start()
 	LOG("Collision Enabled");
 	//App->UI->Enable();
 	LOG("UI Enabled");
-	App->player->inputs.Clear();
-	App->player->hp = 100;
-	App->player->position.x = 50;
-	App->player->isDead = false;
+	App->gen->Ginputs.Clear();
+	App->gen->hp = 100;
+	App->gen->position.x = 50;
+	App->gen->isDead = false;
 
 	App->player2->inputs.Clear();
 	App->player2->hp = 100;
@@ -75,8 +75,8 @@ bool ModuleSceneGenAn::Start()
 // Update: draw background
 update_status ModuleSceneGenAn::Update()
 {
-	if (App->player->position.x <= -15) { App->player->position.x = -15; }
-	if (App->player->position.x + 60 >= 325) { App->player->position.x = 265; }
+	if (App->gen->position.x <= -15) { App->gen->position.x = -15; }
+	if (App->gen->position.x + 60 >= 325) { App->gen->position.x = 265; }
 	if (App->player2->position.x <= -15) { App->player2->position.x = -15; }
 	if (App->player2->position.x + 60 >= 325) { App->player2->position.x = 265; }
 
@@ -106,13 +106,13 @@ update_status ModuleSceneGenAn::Update()
 		LOG("PLAYER1 WIN")
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
-		App->player->isDead = true;
+		App->gen->isDead = true;
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 		LOG("PLAYER2 WIN")
 	}
-	if (App->player->isDead == true) {
+	if (App->gen->isDead == true) {
 
-		App->player->action = true;
+		App->gen->action = true;
 		App->player2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -128,7 +128,7 @@ update_status ModuleSceneGenAn::Update()
 	}
 	if (App->player2->isDead == true) {
 
-		App->player->action = true;
+		App->gen->action = true;
 		App->player2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -151,7 +151,7 @@ bool ModuleSceneGenAn::CleanUp()
 {
 	LOG("Unloading GenAn scene");
 
-	App->player->Disable();
+	App->gen->Disable();
 	App->player2->Disable();
 	App->UI->Disable();
 	App->textures->Unload(graphics);
