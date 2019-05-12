@@ -18,11 +18,29 @@ The stories take place in the 18th century in Japan, during the seclusion period
 * Òscar Tarrés (https://github.com/oscarta3)- Q&A
 
 Instructions:
-Download the file of whichever version you wish to play, inside of every one of them you will find an executable to play the version and a modified copy of this README file. We recommend you read only the last part, which will show you which features are included in that version
+Download the file of whichever version you wish to play, inside of every one of them you will find an executable to play the version and a modified copy of this README file. 
+We recommend you read only the last part, which will show you which features are included in that version and the controls to play the game
 
 Controls:
 If you wish to switch screens you can press SPACE
+* Player1 - Haohmaru:
 To move Haohmaru you have to either press D(forward walk), A(backward walk) or W(jump)
+To attack with Haohmaru you can either press Q(kick), E(slash), or R(tornado)
+You can also combine walking with jumping to realize forward/backward jumps (A/D + W)
+
+* Player2 - Haohmaru:
+To move Haohmaru you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk) or UP(jump)
+To attack with Haohmaru you can either press 1(kick), 2(slash), or 3(tornado)
+You can also combine walking with jumping to realize forward/backward jumps (LEFT/RIGHT + UP)
+
+* Debug tools
+F1: show/hide colliders
+F2: skip to battle
+F5: godMode(eliminate p1 colliders)
+F10: Player1 win
+F11: Player2 win
+1:Direct player1 win
+2:Direct player2 win
 
 List of Versions:
 
@@ -46,5 +64,18 @@ v.0.4:  - Camera limits implemented
 	- Colliders for walls/camera limits
 	- F1 debug tool added (show collides)
 	- F5 debug tool added godMode(eliminates only player's colliders)
+
+V.0.5:  - Implemented the following animations:
+		- Jump Forward/Backward
+		- Crouch up/down
+	- HP bars added(fully functional) that decrease when player gets hit
+	- State/Input manager
+	- Win/Lose situations included
+	- Debug tools added directWin/Lose (player1/player2 victory) by pressing either 1 or 2, in all the screens
+	- Skip to battle debug tool changed from Q to F2, and added to all the screens
+	- Slash mechanic added, as well as its sfx
+	- Getting hit sfx and animation added
+	- Applied all changes to player2
+	- Death animation
 
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki
