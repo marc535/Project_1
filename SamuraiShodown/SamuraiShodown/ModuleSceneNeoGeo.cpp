@@ -22,7 +22,7 @@ ModuleSceneNeoGeo::ModuleSceneNeoGeo()
 		LOG("i++")
 	}
 
-	backgroundanim.speed = 0.14f;
+	backgroundanim.speed = 0.22f;
 	backgroundanim.loop = false;
 }
 
@@ -62,6 +62,10 @@ update_status ModuleSceneNeoGeo::Update()
 	App->render->Blit(graphics, 0, 0, &backgroundanim.GetCurrentFrame(), 0.1f, false); //NeoGeo Image
 
 
+	if (backgroundanim.Finished() == true) {
+
+		
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
