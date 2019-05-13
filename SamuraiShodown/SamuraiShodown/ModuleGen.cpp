@@ -87,16 +87,16 @@ ModuleGen::ModuleGen()
 
 	// jump forward
 
-	JumpForward.PushBack({ 392,1695,61,105 });
-	JumpForward.PushBack({ 453,1680,61,120 });
-	JumpForward.PushBack({ 529,1718,62,72 });
+	JumpForward.PushBack({ 650,387,96,153 });
+	JumpForward.PushBack({ 744,387,98,175 });
+	JumpForward.PushBack({ 858,387,96,128 });
 	JumpForward.loop = false;
 
 	// jump backward
 
-	JumpBackward.PushBack({ 604,1696,66,105 });
-	JumpBackward.PushBack({ 677,1700,66,88 });
-	JumpBackward.PushBack({ 746,1708,62,72 });
+	JumpBackward.PushBack({ 650,387,96,153 });
+	JumpBackward.PushBack({ 744,387,98,175 });
+	JumpBackward.PushBack({ 858,387,96,128 });
 	JumpBackward.loop = false;
 
 	// crouch sword attack 
