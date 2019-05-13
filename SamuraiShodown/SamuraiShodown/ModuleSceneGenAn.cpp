@@ -42,6 +42,9 @@ bool ModuleSceneGenAn::Start()
 	LOG("Collision Enabled");
 	App->UI->Enable();
 	LOG("UI Enabled");
+
+	App->gen->Enable();
+
 	App->gen->Ginputs.Clear();
 	App->gen->hp = 100;
 	App->gen->position.x = 50;
