@@ -120,6 +120,8 @@ public:
 
 	int hp = 100;
 	
+	int playerControlTime = 0;
+
 	Mix_Chunk* kicks;
 	Mix_Chunk* tornados;
 

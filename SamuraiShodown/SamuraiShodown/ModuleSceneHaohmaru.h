@@ -10,7 +10,7 @@ class ModuleSceneHaohmaru : public Module
 public:
 	ModuleSceneHaohmaru();
 	~ModuleSceneHaohmaru();
-
+	int timeSCENE;
 	bool Start();
 	update_status Update();
 	bool CleanUp();

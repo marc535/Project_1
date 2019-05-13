@@ -19,6 +19,9 @@ ModuleUI::ModuleUI() {
 ModuleUI::~ModuleUI() {}
 
 bool ModuleUI::Start() {
+
+	startingtime = SDL_GetTicks();
+	int actualtime = 99;
 	LOG("Loading UI\n");
 
 	font_time = App->fonts->Load("Assets/TimeTile.png", "0123456789", 1);
@@ -57,9 +60,9 @@ update_status ModuleUI::Update() {
 	
 	UpdateBars();
 
-	SDL_Rect name{ 0,0,64,8 }; // haomaru name
-	App->render->Blit(ui_png, 17, 32, &name, 1.0f, false); //
-	App->render->Blit(ui_png, 238, 32, &name, 1.0f, false);
+//	SDL_Rect name{ 0,0,64,8 }; // haomaru name
+	//App->render->Blit(ui_png, 17, 32, &name, 1.0f, false); //
+	//App->render->Blit(ui_png, 238, 32, &name, 1.0f, false);
 
 	SDL_Rect rect{ 6,17,132,13 }; // bar
 
@@ -81,13 +84,12 @@ update_status ModuleUI::Update() {
 	}
 
 
-	
-	actualtime = 99 - (SDL_GetTicks()/1000);
+	actualtime = 99 - ((SDL_GetTicks() - (startingtime )) / 1000);
 	sprintf_s(time_text, 10, "%7d", actualtime);
 
 	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
-	//App->fonts->BlitText(230, 30, 1, "HAOHMARU");
-	//App->fonts->BlitText(10, 30, 1, "HAOHMARU");
+	App->fonts->BlitText(230, 30, 1, "HAOHMARU");
+	App->fonts->BlitText(10, 30, 1, "HAOHMARU");
 
 	App->fonts->BlitText(10, 5, 1, "P1= 0");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");

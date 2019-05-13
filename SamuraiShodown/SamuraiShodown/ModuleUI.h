@@ -47,6 +47,7 @@ public:
 	int font_time = -1;
 	char time_text[10];
 	int actualtime = 99;
+	int startingtime = 0;
 
 	//el resto de fuentes
 	int font_name = -1;
