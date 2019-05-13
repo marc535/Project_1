@@ -62,6 +62,7 @@ bool Application::Init()
 	// Deactivate modules here ----
 	player->Disable();
 	player2->Disable();
+	gen->Disable();
 	UI->Disable();
 	collision->Disable();
 	

@@ -12,7 +12,7 @@
 ModuleGen::ModuleGen()
 {
 	position.x = 50;
-	position.y = 220;
+	position.y = 200;
 
 	// idle animation
 	idle.PushBack({22, 0, 73, 118});
@@ -206,7 +206,7 @@ bool ModuleGen::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen_An/1.png");
 	
 	action = false;
 
@@ -436,17 +436,17 @@ update_status ModuleGen::Update()
 
 			current_animation = &jump;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 
 
@@ -458,18 +458,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpForward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedF = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 				JumpForward.Reset();
 				JumpBackward.Reset();
@@ -484,18 +484,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpBackward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedB = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 				JumpBackward.Reset();
 
