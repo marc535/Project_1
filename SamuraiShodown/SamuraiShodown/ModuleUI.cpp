@@ -116,7 +116,7 @@ update_status ModuleUI::Update() {
 
 void ModuleUI::UpdateBars()
 {
-	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; puntuacion1 = 1; }
+	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; }
 
 	if (current_hp1 != App->player->hp) {
 		int new_width = currentW_player1;

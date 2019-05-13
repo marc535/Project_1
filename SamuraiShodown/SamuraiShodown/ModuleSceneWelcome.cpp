@@ -82,7 +82,7 @@ update_status ModuleSceneWelcome::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_genan, 2.0f);
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {

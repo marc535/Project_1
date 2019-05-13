@@ -85,7 +85,7 @@ update_status ModuleSceneEnding::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 2.0f);
 
 	}
 	return UPDATE_CONTINUE;
