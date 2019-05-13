@@ -75,7 +75,13 @@ update_status ModuleUI::Update() {
 	else {
 		App->render->Blit(ui_png, SCREEN_WIDTH / 2 - 24 / 2, 10, &KO.GetCurrentFrame(), 1.0F, false);
 	}
-	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, "99");
+
+
+	
+	actualtime = 99 - (SDL_GetTicks()/1000);
+	sprintf_s(time_text, 10, "%7d", actualtime);
+
+	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
 
 	return UPDATE_CONTINUE;
 }
