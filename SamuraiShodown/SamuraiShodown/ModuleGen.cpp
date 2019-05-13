@@ -24,17 +24,17 @@ ModuleGen::ModuleGen()
 	idle.speed = 0.14f;
 
 	// walk forward animation 
-	forward.PushBack({ 9,1699,57,84 });
-	forward.PushBack({ 71,1700,58,80 });
-	forward.PushBack({ 132,1702,61,80 });
-	forward.PushBack({ 196,1697,55,86 });
+	forward.PushBack({ 1174,388,88,117 });
+	forward.PushBack({ 1262,388,84,117 });
+	forward.PushBack({ 1346,382,83,123 });
+	forward.PushBack({ 1429,383,68,122 });
 	forward.speed = 0.14f;
 
 	// walk backward animation 
-	backward.PushBack({ 9,1699,57,84 });
-	backward.PushBack({ 71,1700,58,80 });
-	backward.PushBack({ 132,1702,61,80 });
-	backward.PushBack({ 196,1697,55,86 });
+	backward.PushBack({ 1174,388,88,117 });
+	backward.PushBack({ 1262,388,84,117 });
+	backward.PushBack({ 1346,382,83,123 });
+	backward.PushBack({ 1429,383,68,122 });
 	backward.speed = 0.14f;
 
 	// jump animation
