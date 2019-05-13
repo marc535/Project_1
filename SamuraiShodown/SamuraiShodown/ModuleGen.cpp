@@ -206,7 +206,7 @@ bool ModuleGen::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen_An/1.png");
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/1.png");
 	
 	action = false;
 
