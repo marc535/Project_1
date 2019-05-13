@@ -18,6 +18,7 @@
 #include "ModuleParticles.h"
 #include "ModuleParticles2.h"
 #include "ModuleGen.h"
+#include "ModuleFonts.h"
 
 Application::Application()
 {
@@ -44,6 +45,7 @@ Application::Application()
 	modules[i++] = particles2 = new ModuleParticles2();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = gen = new ModuleGen();
+	modules[i++] = fonts = new ModuleFonts();
 
 }
 

@@ -42,6 +42,13 @@ public:
 	int currentW_player2 = 0;
 	bool decrease_player2 = false;
 	SDL_Rect hpBar2{ 8,32,128,9 };
+
+	//timer
+	int font_time = -1;
+	char time_text[10];
+	int startingtime = 0;
+	int actualtime = 99;
+	bool timerStop = false;
 	
 	//KO
 

@@ -5,6 +5,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleRender.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleFonts.h"
 #include <iostream>
 
 ModuleUI::ModuleUI() {
@@ -19,7 +20,10 @@ ModuleUI::~ModuleUI() {}
 
 bool ModuleUI::Start() {
 	LOG("Loading UI\n");
+
+	font_time = App->fonts->Load("Assets/TimeTile.png", "0123456789", 1);
 	ui_png = App->textures->Load("Assets/Textures/in_gameUI.png");
+
 
 	hpBar1 = { 8,32,128,9 };
 	hpBar2 = { 8,32,128,9 };
@@ -41,7 +45,7 @@ bool ModuleUI::CleanUp() {
 
 	LOG("UI Unloaded\n");
 	App->textures->Unload(ui_png);
-	
+	App->fonts->UnLoad(font_time);
 	return true;
 }
 
@@ -71,6 +75,7 @@ update_status ModuleUI::Update() {
 	else {
 		App->render->Blit(ui_png, SCREEN_WIDTH / 2 - 24 / 2, 10, &KO.GetCurrentFrame(), 1.0F, false);
 	}
+	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, "99");
 
 	return UPDATE_CONTINUE;
 }
