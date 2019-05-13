@@ -46,9 +46,12 @@ public:
 	//timer
 	int font_time = -1;
 	char time_text[10];
-	int startingtime = 0;
 	int actualtime = 99;
-	bool timerStop = false;
+
+	//el resto de fuentes
+	int font_name = -1;
+	int font_menu = -1;
+	
 	
 	//KO
 

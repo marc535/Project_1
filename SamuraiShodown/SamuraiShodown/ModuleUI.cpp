@@ -22,6 +22,8 @@ bool ModuleUI::Start() {
 	LOG("Loading UI\n");
 
 	font_time = App->fonts->Load("Assets/TimeTile.png", "0123456789", 1);
+	font_name = App->fonts->Load("Assets/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
+	font_menu = App->fonts->Load("Assets/TextTile.png", "ABCDEFGHIJKLMNOPQRSTUVWYZ-123! ", 1);
 	ui_png = App->textures->Load("Assets/Textures/in_gameUI.png");
 
 
@@ -46,6 +48,8 @@ bool ModuleUI::CleanUp() {
 	LOG("UI Unloaded\n");
 	App->textures->Unload(ui_png);
 	App->fonts->UnLoad(font_time);
+	App->fonts->UnLoad(font_menu);
+	App->fonts->UnLoad(font_name);
 	return true;
 }
 
@@ -82,7 +86,15 @@ update_status ModuleUI::Update() {
 	sprintf_s(time_text, 10, "%7d", actualtime);
 
 	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
+	//App->fonts->BlitText(230, 30, 1, "HAOHMARU");
+	//App->fonts->BlitText(10, 30, 1, "HAOHMARU");
 
+	App->fonts->BlitText(10, 5, 1, "P1= 0");
+	App->fonts->BlitText(200, 5, 1, "P2= 0");
+
+
+	App->fonts->BlitText(210, 212, 1, "CREDITS 01");
+	App->fonts->BlitText(10, 212, 1, "CREDITS 01");
 	return UPDATE_CONTINUE;
 }
 
