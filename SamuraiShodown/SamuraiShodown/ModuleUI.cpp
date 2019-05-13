@@ -83,7 +83,10 @@ update_status ModuleUI::Update() {
 		App->render->Blit(ui_png, SCREEN_WIDTH / 2 - 24 / 2, 10, &KO.GetCurrentFrame(), 1.0F, false);
 	}
 
-
+	if (App->player2->getsHit == true) {
+		puntuacion1 = puntuacion1 + 10;
+	}
+	sprintf_s(puntuation1, 10, "%7d", puntuacion1);
 	actualtime = 99 - ((SDL_GetTicks() - (startingtime )) / 1000);
 	sprintf_s(time_text, 10, "%7d", actualtime);
 
@@ -91,7 +94,7 @@ update_status ModuleUI::Update() {
 	//App->fonts->BlitText(230, 30, 1, "HAOHMARU");
 	//App->fonts->BlitText(10, 30, 1, "HAOHMARU");
 
-	App->fonts->BlitText(10, 5, 1, "P1= 0");
+	App->fonts->BlitText(10, 5, 1, puntuation1);
 	App->fonts->BlitText(200, 5, 1, "P2= 0");
 
 

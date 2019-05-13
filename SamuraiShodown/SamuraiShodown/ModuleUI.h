@@ -48,6 +48,10 @@ public:
 	char time_text[10];
 	int actualtime = 99;
 	int startingtime = 0;
+	
+	int puntuacion1;
+	char puntuation1[10];
+	char puntuation2[10];
 
 	//el resto de fuentes
 	int font_name = -1;
