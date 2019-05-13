@@ -12,44 +12,34 @@
 ModuleGen::ModuleGen()
 {
 	position.x = 50;
-	position.y = 220;
+	position.y = 200;
 
 	// idle animation
-	idle.PushBack({22, 0, 73, 118});
-	idle.PushBack({96, 0, 73, 118});
-	idle.PushBack({169, 0, 72, 118});
-	idle.PushBack({241, 0, 72, 118});
-	idle.PushBack({169, 0, 72, 118 });
-	idle.PushBack({96, 0, 73, 118 });
+	idle.PushBack({ 1722,555,68,122 });
+	idle.PushBack({ 1818,564,81,113 });
+	idle.PushBack({ 1917,553,82,124 });
+	idle.PushBack({ 1726,694,84,117 });
+	idle.PushBack({ 1822,685,80,126 });
+	idle.PushBack({ 1915,687,84,124 });
 	idle.speed = 0.14f;
 
 	// walk forward animation 
-	forward.PushBack({313, 0, 68, 118});
-	forward.PushBack({446, 0, 58, 118});
-	forward.PushBack({576, 0, 56, 118});
-	forward.PushBack({701, 0, 61, 118});
-	forward.PushBack({823, 0, 69, 118});
-	forward.PushBack({946, 0, 75, 118});
+	forward.PushBack({ 9,1699,57,84 });
+	forward.PushBack({ 71,1700,58,80 });
+	forward.PushBack({ 132,1702,61,80 });
+	forward.PushBack({ 196,1697,55,86 });
 	forward.speed = 0.14f;
 
 	// walk backward animation 
-	backward.PushBack({ 1023, 0, 82, 118 });
-	backward.PushBack({ 1109, 0, 74, 118 });
-	backward.PushBack({ 1187, 0, 68, 118 });
-	backward.PushBack({ 1259, 0, 64, 118 });
-	backward.PushBack({ 1326, 0, 69, 118 });
-	backward.PushBack({ 1399, 0, 74, 118 });
-	backward.PushBack({ 1326, 0, 69, 118 });
-	backward.PushBack({ 1259, 0, 64, 118 });
-	backward.PushBack({ 1187, 0, 68, 118 });
-	backward.PushBack({ 1109, 0, 74, 118 });
+	backward.PushBack({ 9,1699,57,84 });
+	backward.PushBack({ 71,1700,58,80 });
+	backward.PushBack({ 132,1702,61,80 });
+	backward.PushBack({ 196,1697,55,86 });
 	backward.speed = 0.14f;
 
 	// jump animation
-	jump.PushBack({ 22,124,59,112 }); 
-	jump.PushBack({ 83,145,75,91 });
-	jump.PushBack({ 158,153,76,84 });
-	jump.PushBack({ 235,126,68,110 });
+	jump.PushBack({ 261,1687,67,105 });
+	jump.PushBack({ 330,1715,62,72 });
 	jump.speed = 0.07f;
 
 	// kick animation
@@ -97,52 +87,16 @@ ModuleGen::ModuleGen()
 
 	// jump forward
 
-	JumpForward.PushBack({ 22,592, 62, 128 });
-	JumpForward.PushBack({ 90,592, 62, 128 });
-	JumpForward.PushBack({ 158,592, 62, 128 });
-	JumpForward.PushBack({ 231,592, 74, 91 });
-	JumpForward.PushBack({ 314,592, 74, 91 });
-	JumpForward.PushBack({ 398,592, 74, 91 });
-	JumpForward.PushBack({ 485,589, 61, 82 });
-	JumpForward.PushBack({ 566,589, 61, 82 });
-	JumpForward.PushBack({ 638,589, 61, 82 });
-	JumpForward.PushBack({ 713,592 ,82 ,61 });
-	JumpForward.PushBack({ 805,592 ,82 ,61 });
-	JumpForward.PushBack({ 895,592 ,82 ,61 });
-	JumpForward.PushBack({ 988,592 ,61 ,81 });
-	JumpForward.PushBack({ 1073,592 ,61 ,81 });
-	JumpForward.PushBack({ 1158,592 ,61 ,81 });
-	JumpForward.PushBack({ 1229,592 ,82 ,61});
-	JumpForward.PushBack({ 1318,592 ,82 ,61 });
-	JumpForward.PushBack({ 1410,592 ,82 ,61 });
-	JumpForward.PushBack({ 1213,462 ,76 ,83});
-	JumpForward.PushBack({ 1299,462 ,76 ,83 });
-	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+	JumpForward.PushBack({ 392,1695,61,105 });
+	JumpForward.PushBack({ 453,1680,61,120 });
+	JumpForward.PushBack({ 529,1718,62,72 });
 	JumpForward.loop = false;
 
 	// jump backward
 
-	JumpBackward.PushBack({ 22, 720, 60, 112 });
-	JumpBackward.PushBack({ 89, 720, 60, 112 });
-	JumpBackward.PushBack({ 157, 720, 60, 112 });
-	JumpBackward.PushBack({ 231,592, 74, 91 });
-	JumpBackward.PushBack({ 314,592, 74, 91 });
-	JumpBackward.PushBack({ 398,592, 74, 91 });
-	JumpBackward.PushBack({ 1229,592 ,82 ,61 });
-	JumpBackward.PushBack({ 1318,592 ,82 ,61 });
-	JumpBackward.PushBack({ 1410,592 ,82 ,61 });
-	JumpBackward.PushBack({ 988,592 ,61 ,81 });
-	JumpBackward.PushBack({ 1073,592 ,61 ,81 });
-	JumpBackward.PushBack({ 1158,592 ,61 ,81 });
-	JumpBackward.PushBack({ 713,592 ,82 ,61 });
-	JumpBackward.PushBack({ 805,592 ,82 ,61 });
-	JumpBackward.PushBack({ 895,592 ,82 ,61 });
-	JumpBackward.PushBack({ 485,589, 61, 82 });
-	JumpBackward.PushBack({ 566,589, 61, 82 });
-	JumpBackward.PushBack({ 638,589, 61, 82 });
-	JumpBackward.PushBack({ 1213,462 ,76 ,83 });
-	JumpBackward.PushBack({ 1299,462 ,76 ,83 });
-	JumpBackward.PushBack({ 1387,462 ,76 ,83 });
+	JumpBackward.PushBack({ 604,1696,66,105 });
+	JumpBackward.PushBack({ 677,1700,66,88 });
+	JumpBackward.PushBack({ 746,1708,62,72 });
 	JumpBackward.loop = false;
 
 	// crouch sword attack 
@@ -206,7 +160,7 @@ bool ModuleGen::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/1.png");
 	
 	action = false;
 
@@ -436,17 +390,17 @@ update_status ModuleGen::Update()
 
 			current_animation = &jump;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 
 
@@ -458,18 +412,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpForward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedF = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 				JumpForward.Reset();
 				JumpBackward.Reset();
@@ -484,18 +438,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpBackward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y >  200 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedB = false;
-				position.y = 220;
+				position.y =  200;
 				action = false;
 				JumpBackward.Reset();
 

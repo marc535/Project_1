@@ -100,7 +100,11 @@ update_status ModuleSceneHaohmaru::Update()
 
 	}
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
+
+		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_genan, 2.0f);
+
+	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
 		App->player2->isDead = true;
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
