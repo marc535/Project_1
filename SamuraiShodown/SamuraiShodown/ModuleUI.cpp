@@ -88,8 +88,8 @@ update_status ModuleUI::Update() {
 	sprintf_s(time_text, 10, "%7d", actualtime);
 
 	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
-	App->fonts->BlitText(230, 30, 1, "HAOHMARU");
-	App->fonts->BlitText(10, 30, 1, "HAOHMARU");
+	//App->fonts->BlitText(230, 30, 1, "HAOHMARU");
+	//App->fonts->BlitText(10, 30, 1, "HAOHMARU");
 
 	App->fonts->BlitText(10, 5, 1, "P1= 0");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");

@@ -10,6 +10,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "ModuleUI.h"
+#include "ModuleFonts.h"
 
 
 ModuleSceneGenAn::ModuleSceneGenAn()
@@ -39,7 +40,7 @@ bool ModuleSceneGenAn::Start()
 	App->collision->Enable();
 	//App->collision->debug = false;	//game starts without collision draw activated
 	LOG("Collision Enabled");
-	//App->UI->Enable();
+	App->UI->Enable();
 	LOG("UI Enabled");
 	App->gen->Ginputs.Clear();
 	App->gen->hp = 100;
@@ -142,7 +143,8 @@ update_status ModuleSceneGenAn::Update()
 
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 	}
-
+	App->fonts->BlitText(230, 30, 1, "GEN-AN");
+	App->fonts->BlitText(10, 30, 1, "GEN-AN");
 	return UPDATE_CONTINUE;
 }
 
