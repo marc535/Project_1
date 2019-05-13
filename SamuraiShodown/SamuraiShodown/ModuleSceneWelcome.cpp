@@ -37,7 +37,8 @@ bool ModuleSceneWelcome::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-		graphics = App->textures->Load("Assets/Sprite_Sheets/UI/title.png");
+		graphics = App->textures->Load("Assets/Textures/menus.png");
+		anim = App->textures->Load("Assets/Textures/white_letters.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -64,6 +65,7 @@ update_status ModuleSceneWelcome::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
+	App->render->Blit(anim, 0, 0, &background, 0.1f, false); //Welcome Image
 	
 
 	

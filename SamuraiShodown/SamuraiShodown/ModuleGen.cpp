@@ -12,7 +12,7 @@
 ModuleGen::ModuleGen()
 {
 	position.x = 50;
-	position.y = 200;
+	position.y = 210;
 
 	// idle animation
 	idle.PushBack({ 1722,555,68,122 });
@@ -390,17 +390,17 @@ update_status ModuleGen::Update()
 
 			current_animation = &jump;
 
-			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
 
-			if (position.y >  200 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
-				position.y =  200;
+				position.y =  210;
 				action = false;
 
 
@@ -412,18 +412,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpForward;
 
-			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y >  200 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedF = false;
-				position.y =  200;
+				position.y =  210;
 				action = false;
 				JumpForward.Reset();
 				JumpBackward.Reset();
@@ -438,18 +438,18 @@ update_status ModuleGen::Update()
 
 			current_animation = &JumpBackward;
 
-			position.y =  200 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y >  200 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
 				Ginputs.Push(ING_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedB = false;
-				position.y =  200;
+				position.y =  210;
 				action = false;
 				JumpBackward.Reset();
 

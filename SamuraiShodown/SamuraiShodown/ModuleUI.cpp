@@ -105,7 +105,7 @@ update_status ModuleUI::Update() {
 
 	App->fonts->BlitText(10, 5, 1, puntuation1);
 
-	App->fonts->BlitText(10, 5, 1, "P1=");
+	App->fonts->BlitText(19, 6, 1, "P1=");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");
 
 

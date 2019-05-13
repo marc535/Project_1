@@ -148,8 +148,8 @@ update_status ModuleSceneHaohmaru::Update()
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 	}
 	timeSCENE = SDL_GetTicks() / 1000;
-	App->fonts->BlitText(230, 30, 1, "HAOHMARU");
-	App->fonts->BlitText(10, 30, 1, "HAOHMARU");
+	App->fonts->BlitText(240, 31, 1, "HAOHMARU");
+	App->fonts->BlitText(20, 31, 1, "HAOHMARU");
 	return UPDATE_CONTINUE;
 }
 

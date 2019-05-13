@@ -43,17 +43,12 @@ bool ModuleSceneGenAn::Start()
 	App->UI->Enable();
 	LOG("UI Enabled");
 
-	App->gen->Enable();
-
 	App->gen->Ginputs.Clear();
 	App->gen->hp = 100;
 	App->gen->position.x = 50;
 	App->gen->isDead = false;
 
-	App->player2->inputs.Clear();
-	App->player2->hp = 100;
-	App->player2->position.x = 200;
-	App->player2->isDead = false;
+	
 
     LOG("Loading GenAn scene");
 
@@ -69,6 +64,8 @@ bool ModuleSceneGenAn::Start()
 
 	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
 	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
+
+	App->gen->Enable();
 
 	/*App->player->Enable();
 	App->player2->Enable();*/
@@ -146,8 +143,8 @@ update_status ModuleSceneGenAn::Update()
 
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 	}
-	App->fonts->BlitText(230, 30, 1, "GEN-AN");
-	App->fonts->BlitText(10, 30, 1, "GEN-AN");
+	App->fonts->BlitText(255, 31, 1, "GEN-AN");
+	App->fonts->BlitText(20, 31, 1, "GEN-AN");
 	return UPDATE_CONTINUE;
 }
 
