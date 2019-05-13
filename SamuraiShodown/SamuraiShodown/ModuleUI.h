@@ -62,8 +62,6 @@ public:
 
 	bool animKO;
 	
-	
-	
 	bool show_ui = false;
 	bool is_draw = false;
 	

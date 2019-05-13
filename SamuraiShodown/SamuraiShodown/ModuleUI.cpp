@@ -5,6 +5,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleRender.h"
 #include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneGenAn.h"
 #include "ModuleFonts.h"
 #include <iostream>
 
@@ -14,6 +15,7 @@ ModuleUI::ModuleUI() {
 	KO.PushBack({ 151, 23, 26, 23 });
 
 	KO.speed = 0.14f;
+	KO.loop = true;
 }
 
 ModuleUI::~ModuleUI() {}
@@ -91,21 +93,30 @@ update_status ModuleUI::Update() {
 	sprintf_s(time_text, 10, "%7d", actualtime);
 
 	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
-	//App->fonts->BlitText(230, 30, 1, "HAOHMARU");
-	//App->fonts->BlitText(10, 30, 1, "HAOHMARU");
+
+	if (App->scene_haohmaru->IsEnabled() == true) {
+		App->fonts->BlitText(238, 32, 1, "HAOHMARU");
+		App->fonts->BlitText(17, 32, 1, "HAOHMARU");
+	}
+	if (App->scene_genan->IsEnabled() == true) {
+		App->fonts->BlitText(238, 32, 1, "GEN-AN");
+		App->fonts->BlitText(17, 32, 1, "GEN-AN");
+	}
 
 	App->fonts->BlitText(10, 5, 1, puntuation1);
+
+	App->fonts->BlitText(10, 5, 1, "P1=");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");
 
 
-	App->fonts->BlitText(210, 212, 1, "CREDITS 01");
-	App->fonts->BlitText(10, 212, 1, "CREDITS 01");
+	App->fonts->BlitText(210, 215, 1, "CREDITS 01");
+	App->fonts->BlitText((SCREEN_WIDTH / 2) - 25, 215, 1, "LEVEL 1");
 	return UPDATE_CONTINUE;
 }
 
 void ModuleUI::UpdateBars()
 {
-	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; }
+	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; puntuacion1 = 1; }
 
 	if (current_hp1 != App->player->hp) {
 		int new_width = currentW_player1;
