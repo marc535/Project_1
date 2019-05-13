@@ -1,5 +1,5 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModuleGen2_H__
+#define __ModuleGen2_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -10,71 +10,71 @@
 
 struct SDL_Texture;
 
-enum player_states
+enum Gen2_states
 {
-	ST_UNKNOWN,
+	STG_2UNKNOWN,
 
-	ST_IDLE,
-	ST_WALK_FORWARD,
-	ST_WALK_BACKWARD,
-	ST_JUMP_NEUTRAL,
-	ST_JUMP_FORWARD,
-	ST_JUMP_BACKWARD,
-	ST_CROUCH,
-	ST_SLASH_STANDING,
-	ST_SLASH_NEUTRAL_JUMP,
-	ST_SLASH_FORWARD_JUMP,
-	ST_SLASH_BACKWARD_JUMP,
-	ST_SLASH_CROUCH,
-	ST_KICK_STANDING,
-	ST_SPECIAL,
-	ST_DEAD,
-	ST_VICTORY,
+	STG_2IDLE,
+	STG_2WALK_FORWARD,
+	STG_2WALK_BACKWARD,
+	STG_2JUMP_NEUTRAL,
+	STG_2JUMP_FORWARD,
+	STG_2JUMP_BACKWARD,
+	STG_2CROUCH,
+	STG_2SLASH_STANDING,
+	STG_2SLASH_NEUTRAL_JUMP,
+	STG_2SLASH_FORWARD_JUMP,
+	STG_2SLASH_BACKWARD_JUMP,
+	STG_2SLASH_CROUCH,
+	STG_2KICK_STANDING,
+	STG_2SPECIAL,
+	STG_2DEAD,
+	STG_2VICTORY,
 };
 
-enum player_inputs
+enum Gen2_inputs
 {
-	IN_LEFT_DOWN,
-	IN_LEFT_UP,
-	IN_RIGHT_DOWN,
-	IN_RIGHT_UP,
-	IN_LEFT_AND_RIGHT,
-	IN_JUMP,
-	IN_CROUCH_UP,
-	IN_CROUCH_DOWN,
-	IN_JUMP_AND_CROUCH,
-	IN_SLASH,
-	IN_KICK,
-	IN_SPECIAL,
-	IN_JUMP_FINISH,
-	IN_KICK_FINISH,
-	IN_SLASH_FINISH,
-	IN_SPECIAL_FINISH
+	ING2_LEFT_DOWN,
+	ING2_LEFT_UP,
+	ING2_RIGHT_DOWN,
+	ING2_RIGHT_UP,
+	ING2_LEFT_AND_RIGHT,
+	ING2_JUMP,
+	ING2_CROUCH_UP,
+	ING2_CROUCH_DOWN,
+	ING2_JUMP_AND_CROUCH,
+	ING2_SLASH,
+	ING2_KICK,
+	ING2_SPECIAL,
+	ING2_JUMP_FINISH,
+	ING2_KICK_FINISH,
+	ING2_SLASH_FINISH,
+	ING2_SPECIAL_FINISH
 };
 
-class ModulePlayer : public Module
+class ModuleGen2 : public Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModuleGen2();
+	~ModuleGen2();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 
 	void OnCollision(Collider* c1, Collider* c2);
-	void OnPassing(ModulePlayer2* p2);
+	void OnPassing2(ModuleGen* p1);
 
-	bool external_input(p2Qeue<player_inputs>& inputs);
-	player_states process_fsm(p2Qeue<player_inputs>& inputs);
+	bool external_input(p2Qeue<Gen2_inputs>& Ginputs);
+	Gen2_states process_fsm(p2Qeue<Gen2_inputs>& Ginputs);
 
 public:
-	p2Qeue<player_inputs> inputs;
-	player_states current_state = ST_UNKNOWN;
+	p2Qeue<Gen2_inputs> Ginputs;
+	Gen2_states current_state = STG_2UNKNOWN;
 
 	SDL_Texture* graphics = nullptr;
 
-	Collider* p1Collider = nullptr;
+	Collider* Gen2Collider = nullptr;
 	Collider* attack = nullptr;
 	Animation idle;
 	Animation forward;
@@ -120,8 +120,6 @@ public:
 
 	int hp = 8000;
 	
-	int playerControlTime = 0;
-
 	Mix_Chunk* kicks;
 	Mix_Chunk* tornados;
 

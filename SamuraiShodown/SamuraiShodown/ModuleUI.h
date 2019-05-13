@@ -65,6 +65,7 @@ public:
 	bool show_ui = false;
 	bool is_draw = false;
 	
+
 	Animation draw_anim;
 	Animation time_up_anim;
 	Animation KO;

@@ -68,6 +68,7 @@ update_status ModuleSceneEnding::Update()
 	if (App->player->isDead) { App->render->Blit(player2, 0, 0, &background, 0.1f, false); }
 
 	if (App->player2->isDead) { App->render->Blit(player, 0, 0, &background, 0.1f, false); }
+	else{ App->render->Blit(player, 0, 0, &background, 0.1f, false); }
 	 //Ending Image
 	
 

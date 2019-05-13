@@ -43,12 +43,12 @@ bool ModuleSceneHaohmaru::Start()
 	App->UI->Enable();
 	LOG("UI Enabled");
 	App->player->inputs.Clear();
-	App->player->hp = 100;
+	App->player->hp = 8000;
 	App->player->position.x = 50;
 	App->player->isDead = false;
 
 	App->player2->inputs.Clear();
-	App->player2->hp = 100;
+	App->player2->hp = 8000;
 	App->player2->position.x = 200;
 	App->player2->isDead = false;
 

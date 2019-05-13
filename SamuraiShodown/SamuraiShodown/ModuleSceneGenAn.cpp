@@ -4,7 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleSceneGenAn.h"
 #include "ModuleGen.h"
-#include "ModulePlayer2.h"
+#include "ModuleGen2.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
@@ -44,7 +44,7 @@ bool ModuleSceneGenAn::Start()
 	LOG("UI Enabled");
 
 	App->gen->Ginputs.Clear();
-	App->gen->hp = 100;
+	App->gen->hp = 8000;
 	App->gen->position.x = 50;
 	App->gen->isDead = false;
 
@@ -66,9 +66,10 @@ bool ModuleSceneGenAn::Start()
 	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 
 	App->gen->Enable();
+	App->gen2->Enable();
 
 	/*App->player->Enable();
-	App->player2->Enable();*/
+	App->gen2->Enable();*/
 	
 	return true;
 }
@@ -76,10 +77,12 @@ bool ModuleSceneGenAn::Start()
 // Update: draw background
 update_status ModuleSceneGenAn::Update()
 {
+	timeUp();
+
 	if (App->gen->position.x <= -15) { App->gen->position.x = -15; }
 	if (App->gen->position.x + 60 >= 325) { App->gen->position.x = 265; }
-	if (App->player2->position.x <= -15) { App->player2->position.x = -15; }
-	if (App->player2->position.x + 60 >= 325) { App->player2->position.x = 265; }
+	if (App->gen2->position.x <= -15) { App->gen2->position.x = -15; }
+	if (App->gen2->position.x + 60 >= 325) { App->gen2->position.x = 265; }
 
 	Animation * current_animation = &stageAnimation;
 
@@ -100,21 +103,24 @@ update_status ModuleSceneGenAn::Update()
 
 	}
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
+
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_haohmaru, 2.0f);
+	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
-		App->player2->isDead = true;
+		App->gen2->isDead = true;
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 		LOG("PLAYER1 WIN")
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
 		App->gen->isDead = true;
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
-		LOG("PLAYER2 WIN")
+		LOG("gen2 WIN")
 	}
 	if (App->gen->isDead == true) {
 
 		App->gen->action = true;
-		App->player2->action = true;
+		App->gen2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		{
@@ -127,10 +133,10 @@ update_status ModuleSceneGenAn::Update()
 
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 	}
-	if (App->player2->isDead == true) {
+	if (App->gen2->isDead == true) {
 
 		App->gen->action = true;
-		App->player2->action = true;
+		App->gen2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		{
@@ -154,7 +160,7 @@ bool ModuleSceneGenAn::CleanUp()
 	LOG("Unloading GenAn scene");
 
 	App->gen->Disable();
-	App->player2->Disable();
+	App->gen2->Disable();
 	App->UI->Disable();
 	App->textures->Unload(graphics);
 	App->collision->Disable();
@@ -163,5 +169,26 @@ bool ModuleSceneGenAn::CleanUp()
 	App->audio->CleanUp();
 
 	return true;
+}
+
+bool ModuleSceneGenAn::timeUp() {
+
+	if (App->UI->actualtime == 0) {
+		if (App->gen->hp == App->gen2->hp) {
+
+			App->gen->isDead = true;
+			App->gen2->isDead = true;
+		}
+		if (App->gen->hp > App->gen2->hp) {
+
+			App->gen2->isDead = true;
+		}
+		else {
+
+			App->gen->isDead = true;
+		}
+		return true;
+	}
+	else { return false; }
 }
 

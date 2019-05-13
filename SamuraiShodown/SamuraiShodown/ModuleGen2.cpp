@@ -3,54 +3,43 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
-#include "ModulePlayer2.h"
+#include "ModuleGen.h"
+#include "ModuleGen2.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
-#include <stdlib.h>  
-#include <time.h> 
 
-ModulePlayer::ModulePlayer()
+
+ModuleGen2::ModuleGen2()
 {
-	position.x = 50;
+	position.x = 200;
 	position.y = 210;
 
 	// idle animation
-	idle.PushBack({22, 0, 73, 118});
-	idle.PushBack({96, 0, 73, 118});
-	idle.PushBack({169, 0, 72, 118});
-	idle.PushBack({241, 0, 72, 118});
-	idle.PushBack({169, 0, 72, 118 });
-	idle.PushBack({96, 0, 73, 118 });
+	idle.PushBack({ 1722,555,68,122 });
+	idle.PushBack({ 1818,564,81,113 });
+	idle.PushBack({ 1917,553,82,124 });
+	idle.PushBack({ 1726,694,84,117 });
+	idle.PushBack({ 1822,685,80,126 });
+	idle.PushBack({ 1915,687,84,124 });
 	idle.speed = 0.14f;
 
 	// walk forward animation 
-	forward.PushBack({313, 0, 68, 118});
-	forward.PushBack({446, 0, 58, 118});
-	forward.PushBack({576, 0, 56, 118});
-	forward.PushBack({701, 0, 61, 118});
-	forward.PushBack({823, 0, 69, 118});
-	forward.PushBack({946, 0, 75, 118});
+	forward.PushBack({ 1174,388,88,117 });
+	forward.PushBack({ 1262,388,84,117 });
+	forward.PushBack({ 1346,382,83,123 });
+	forward.PushBack({ 1429,383,68,122 });
 	forward.speed = 0.14f;
 
 	// walk backward animation 
-	backward.PushBack({ 1023, 0, 82, 118 });
-	backward.PushBack({ 1109, 0, 74, 118 });
-	backward.PushBack({ 1187, 0, 68, 118 });
-	backward.PushBack({ 1259, 0, 64, 118 });
-	backward.PushBack({ 1326, 0, 69, 118 });
-	backward.PushBack({ 1399, 0, 74, 118 });
-	backward.PushBack({ 1326, 0, 69, 118 });
-	backward.PushBack({ 1259, 0, 64, 118 });
-	backward.PushBack({ 1187, 0, 68, 118 });
-	backward.PushBack({ 1109, 0, 74, 118 });
+	backward.PushBack({ 1174,388,88,117 });
+	backward.PushBack({ 1262,388,84,117 });
+	backward.PushBack({ 1346,382,83,123 });
+	backward.PushBack({ 1429,383,68,122 });
 	backward.speed = 0.14f;
 
 	// jump animation
-	jump.PushBack({ 22,124,59,112 }); 
-	jump.PushBack({ 83,145,75,91 });
-	jump.PushBack({ 158,153,76,84 });
-	jump.PushBack({ 235,126,68,110 });
+	jump.PushBack({ 261,1687,67,105 });
+	jump.PushBack({ 330,1715,62,72 });
 	jump.speed = 0.07f;
 
 	// kick animation
@@ -98,52 +87,16 @@ ModulePlayer::ModulePlayer()
 
 	// jump forward
 
-	JumpForward.PushBack({ 22,592, 62, 128 });
-	JumpForward.PushBack({ 90,592, 62, 128 });
-	JumpForward.PushBack({ 158,592, 62, 128 });
-	JumpForward.PushBack({ 231,592, 74, 91 });
-	JumpForward.PushBack({ 314,592, 74, 91 });
-	JumpForward.PushBack({ 398,592, 74, 91 });
-	JumpForward.PushBack({ 485,589, 61, 82 });
-	JumpForward.PushBack({ 566,589, 61, 82 });
-	JumpForward.PushBack({ 638,589, 61, 82 });
-	JumpForward.PushBack({ 713,592 ,82 ,61 });
-	JumpForward.PushBack({ 805,592 ,82 ,61 });
-	JumpForward.PushBack({ 895,592 ,82 ,61 });
-	JumpForward.PushBack({ 988,592 ,61 ,81 });
-	JumpForward.PushBack({ 1073,592 ,61 ,81 });
-	JumpForward.PushBack({ 1158,592 ,61 ,81 });
-	JumpForward.PushBack({ 1229,592 ,82 ,61});
-	JumpForward.PushBack({ 1318,592 ,82 ,61 });
-	JumpForward.PushBack({ 1410,592 ,82 ,61 });
-	JumpForward.PushBack({ 1213,462 ,76 ,83});
-	JumpForward.PushBack({ 1299,462 ,76 ,83 });
-	JumpForward.PushBack({ 1387,462 ,76 ,83 });
+	JumpForward.PushBack({ 650,387,96,153 });
+	JumpForward.PushBack({ 744,387,98,175 });
+	JumpForward.PushBack({ 858,387,96,128 });
 	JumpForward.loop = false;
 
 	// jump backward
 
-	JumpBackward.PushBack({ 22, 720, 60, 112 });
-	JumpBackward.PushBack({ 89, 720, 60, 112 });
-	JumpBackward.PushBack({ 157, 720, 60, 112 });
-	JumpBackward.PushBack({ 231,592, 74, 91 });
-	JumpBackward.PushBack({ 314,592, 74, 91 });
-	JumpBackward.PushBack({ 398,592, 74, 91 });
-	JumpBackward.PushBack({ 1229,592 ,82 ,61 });
-	JumpBackward.PushBack({ 1318,592 ,82 ,61 });
-	JumpBackward.PushBack({ 1410,592 ,82 ,61 });
-	JumpBackward.PushBack({ 988,592 ,61 ,81 });
-	JumpBackward.PushBack({ 1073,592 ,61 ,81 });
-	JumpBackward.PushBack({ 1158,592 ,61 ,81 });
-	JumpBackward.PushBack({ 713,592 ,82 ,61 });
-	JumpBackward.PushBack({ 805,592 ,82 ,61 });
-	JumpBackward.PushBack({ 895,592 ,82 ,61 });
-	JumpBackward.PushBack({ 485,589, 61, 82 });
-	JumpBackward.PushBack({ 566,589, 61, 82 });
-	JumpBackward.PushBack({ 638,589, 61, 82 });
-	JumpBackward.PushBack({ 1213,462 ,76 ,83 });
-	JumpBackward.PushBack({ 1299,462 ,76 ,83 });
-	JumpBackward.PushBack({ 1387,462 ,76 ,83 });
+	JumpBackward.PushBack({ 650,387,96,153 });
+	JumpBackward.PushBack({ 744,387,98,175 });
+	JumpBackward.PushBack({ 858,387,96,128 });
 	JumpBackward.loop = false;
 
 	// crouch sword attack 
@@ -197,22 +150,23 @@ ModulePlayer::ModulePlayer()
 
 	//dead anim
 	dead.PushBack({ 1009,167,116,42 });
-
-	srand(time(NULL));
 }
 
-ModulePlayer::~ModulePlayer()
+ModuleGen2::~ModuleGen2()
 {}
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModuleGen2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
-	playerControlTime = 3363;
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/2.png");
+	
 	action = false;
+	hp = 8000;
 
+	flipPlayer = true;
+	
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
 	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
@@ -221,14 +175,14 @@ bool ModulePlayer::Start()
 	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
 
 
-	p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
-	inputs.Clear();
-	
-	current_state = ST_IDLE;
+	Gen2Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_ENEMY, this);
+	Ginputs.Clear();
+
+	current_state = STG_2IDLE;
 	return ret;
 }
 
-bool ModulePlayer::CleanUp(){
+bool ModuleGen2::CleanUp(){
 
 	LOG("Unloading Character");
 	App->textures->Unload(graphics);
@@ -239,7 +193,7 @@ bool ModulePlayer::CleanUp(){
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModuleGen2::Update()
 {
 	Animation* current_animation = &idle;
 	
@@ -248,53 +202,53 @@ update_status ModulePlayer::Update()
 	float yAcceleration = 0.87f;
 	
 
-	if (external_input(inputs))
+	if (external_input(Ginputs))
 	{
 		
-		player_states state = process_fsm(inputs);
+		Gen2_states state = process_fsm(Ginputs);
 
 		if (!action) {
 			switch (state)
 			{
-			case ST_IDLE:
+			case STG_2IDLE:
 				LOG("IDLE\n");
 				current_animation = &idle;
 				break;
-			case ST_WALK_FORWARD:
+			case STG_2WALK_FORWARD:
 				LOG("FORWARD >>>\n");
 				current_animation = &forward;			
 				if (!action && !flipPlayer) { position.x += speed; }
 				if (!action && flipPlayer) { position.x -= speed; }
 				
 				break;
-			case ST_WALK_BACKWARD:
+			case STG_2WALK_BACKWARD:
 				LOG("BACKWARD <<<\n");
 				current_animation = &backward;
 				if (!action && !flipPlayer) { position.x -= speed; }
 				if (!action && flipPlayer) { position.x += speed; }
 				break;
-			case ST_JUMP_NEUTRAL:
+			case STG_2JUMP_NEUTRAL:
 				LOG("jumped NEUTRAL ^^^^\n");
 				jumped = true; action = true;
 				break;
-			case ST_JUMP_FORWARD:
+			case STG_2JUMP_FORWARD:
 				LOG("jumped FORWARD ^^>>\n");
 				jumpedF = true; action = true;
 				break;
-			case ST_JUMP_BACKWARD:
+			case STG_2JUMP_BACKWARD:
 				LOG("jumped BACKWARD ^^<<\n");
 				jumpedB = true; action = true;
 				break;
-			case ST_CROUCH:
+			case STG_2CROUCH:
 				LOG("CROUCHING ****\n");
 				crouched = true; action = true;
 				break;
-			case ST_SLASH_CROUCH:
+			case STG_2SLASH_CROUCH:
 				LOG("SLASH CROUCHING **++\n");
 				sCrouched = true; action = true;
 			
 				break;
-			case ST_SLASH_STANDING:
+			case STG_2SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
 				attacking = true; action = true;
 				Mix_PlayChannel(-1, App->audio->effects[6], 0);
@@ -309,7 +263,7 @@ update_status ModulePlayer::Update()
 					attack->SetPos(position.x - 55, position.y - 50);
 				}
 				break;
-			case ST_KICK_STANDING:
+			case STG_2KICK_STANDING:
 				LOG("KICK STANDING ----\n");
 				kicked = true; action = true;
 				if (!flipPlayer) {
@@ -323,19 +277,19 @@ update_status ModulePlayer::Update()
 					attack->SetPos(position.x - 25, position.y - 50);
 				}
 				break;
-			case ST_SLASH_NEUTRAL_JUMP:
+			case STG_2SLASH_NEUTRAL_JUMP:
 				LOG("SLASH JUMP NEUTRAL ^^++\n");
 				sJump = true; action = true;
 				break;
-			case ST_SLASH_FORWARD_JUMP:
+			case STG_2SLASH_FORWARD_JUMP:
 				LOG("SLASH JUMP FORWARD ^>>+\n");
 				sJumpF = true; action = true;
 				break;
-			case ST_SLASH_BACKWARD_JUMP:
+			case STG_2SLASH_BACKWARD_JUMP:
 				LOG("SLASH JUMP BACKWARD ^<<+\n");
 				sJumpB = true; action = true;
 				break;
-			case ST_SPECIAL:
+			case STG_2SPECIAL:
 				LOG("TORNADO\n");
 				tornadoMov = true; action = true;
 				Mix_PlayChannel(-1, App->audio->effects[3], 0);
@@ -354,61 +308,89 @@ update_status ModulePlayer::Update()
 				break;
 			
 		}
-		current_state = state;
+		//current_state = state;
 	}
 
-	/*if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
-	
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
+		{
+			if (!action && !flipPlayer) { current_animation = &JumpBackward; }
+			if (!action && flipPlayer) { current_animation = &JumpForward; }
+
+			jumpedF = true;
+			action = true;
+
+		}
+
 	}
-		
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
-		
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
+		{
+			if (!action && !flipPlayer) { current_animation = &JumpBackward; }
+			if (!action && flipPlayer) { current_animation = &JumpForward; }
+			jumpedB = true;
+			action = true;
+
+		}
+
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && !action)
 	{
 
 		jumped = true;
 		action = true;
-		
+
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT && !action)
 	{
-        Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		kicked = true;
+
+		crouched = true;
 		action = true;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
-
-		Mix_PlayChannel(-1, App->audio->effects[3], 0);
-		Mix_PlayChannel(-1, App->audio->effects[4], 0);
-		tornadoMov = true;
-		action = true;
+	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	{
+		Mix_PlayChannel(-1, App->audio->effects[2], 0);
+		kicked = true; action = true;
 		if (!flipPlayer) {
-			App->particles->tornado.speed.x = +3;
-			App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
 		}
-		else {
-			App->particles->tornado.speed.x = -3;
-			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
-			
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
 		}
+
 	}
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT && !action)
+	
+	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[6], 0);
-		attacking = true;
-		action = true;
+		attacking = true; action = true;
+		if (!flipPlayer) {
 
-	}*/
+			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
+			attack->SetPos(position.x + 60, position.y - 50);
+		}
+		if (flipPlayer) {
+			attacking = true; action = true;
+
+			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
+			attack->SetPos(position.x - 55, position.y - 50);
+		}
+
+	}
 
 	
 
@@ -423,11 +405,11 @@ update_status ModulePlayer::Update()
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_UP) {
 		if (godMode) {
-			p1Collider->to_delete = true;
+			Gen2Collider->to_delete = true;
 		}
 
 		if (!godMode) {
-			p1Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
+			Gen2Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_PLAYER, this);
 		}
 	}
 
@@ -438,17 +420,17 @@ update_status ModulePlayer::Update()
 
 			current_animation = &jump;
 
-			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
 
-			if (position.y > 210 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
-				inputs.Push(IN_JUMP_FINISH);
+				Ginputs.Push(ING2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
-				position.y = 210;
+				position.y =  210;
 				action = false;
 
 
@@ -460,18 +442,18 @@ update_status ModulePlayer::Update()
 
 			current_animation = &JumpForward;
 
-			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y > 210 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
-				inputs.Push(IN_JUMP_FINISH);
+				Ginputs.Push(ING2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedF = false;
-				position.y = 210;
+				position.y =  210;
 				action = false;
 				JumpForward.Reset();
 				JumpBackward.Reset();
@@ -486,18 +468,18 @@ update_status ModulePlayer::Update()
 
 			current_animation = &JumpBackward;
 
-			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y =  210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y > 210 && grounded == true)	//end of the jump
+			if (position.y >  210 && grounded == true)	//end of the jump
 			{
-				inputs.Push(IN_JUMP_FINISH);
+				Ginputs.Push(ING2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedB = false;
-				position.y = 210;
+				position.y =  210;
 				action = false;
 				JumpBackward.Reset();
 
@@ -517,7 +499,7 @@ update_status ModulePlayer::Update()
 				kicked = false;
 				action = false;
 				attack->to_delete = true;
-				inputs.Push(IN_KICK_FINISH);
+				Ginputs.Push(ING2_KICK_FINISH);
 
 				kick.finishingAnimation(false);
 			}
@@ -530,7 +512,7 @@ update_status ModulePlayer::Update()
 
 				tornadoMov = false;
 				action = false;
-				inputs.Push(IN_SPECIAL_FINISH);
+				Ginputs.Push(ING2_SPECIAL_FINISH);
 
 				tornadoMove.finishingAnimation(false);
 			}
@@ -544,7 +526,7 @@ update_status ModulePlayer::Update()
 				attacking = false;
 				action = false;
 				attack->to_delete = true;
-				inputs.Push(IN_SLASH_FINISH);
+				Ginputs.Push(ING2_SLASH_FINISH);
 
 				sAttack.finishingAnimation(false);
 			}
@@ -579,7 +561,7 @@ update_status ModulePlayer::Update()
 		if (isDead) {
 
 			current_animation = &death;
-			p1Collider->to_delete = true;
+			Gen2Collider->to_delete = true;
 			if (death.FinishedAnimation() == true) {
 				current_animation = &dead;
 				}
@@ -590,9 +572,9 @@ update_status ModulePlayer::Update()
 	if (hp <= 0) { isDead = true; action = true; }
 
 	
-	if (App->player2->isDead == true) {
+	if (App->gen->isDead == true) {
 
-		current_state = ST_VICTORY;
+		current_state = STG_2VICTORY;
 	}
 	if (getsHit) {
 
@@ -601,7 +583,7 @@ update_status ModulePlayer::Update()
 		if (hit.Finished() == true) {
 			action = false;
 			getsHit = false;
-			current_state = ST_IDLE;
+			current_state = STG_2IDLE;
 
 		}
 
@@ -609,17 +591,17 @@ update_status ModulePlayer::Update()
 
 	if (!flipPlayer) {
 
-		p1Collider->SetPos(position.x + 20, position.y - 80);
+		Gen2Collider->SetPos(position.x + 20, position.y - 80);
 		
 	}
 	if (flipPlayer) {
 
-			p1Collider->SetPos(position.x + 10, position.y - 80);	
+			Gen2Collider->SetPos(position.x + 10, position.y - 80);	
 	}
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	OnPassing(App->player2);
+	OnPassing2(App->gen);
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
 
 	
@@ -628,17 +610,17 @@ update_status ModulePlayer::Update()
 
 
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+void ModuleGen2::OnCollision(Collider* c1, Collider* c2) {
 	
 	switch (c2->type) {
 
-	case COLLIDER_ENEMY_ATTACK:
+	case COLLIDER_PLAYER_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 550 + (rand() % 150);
+		hp -= 10;
 		getsHit = true;
 		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
-	case COLLIDER_ENEMY_SHOT:
+	case COLLIDER_PLAYER_SHOT:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		getsHit = true;
 		hp -= 20;
@@ -646,31 +628,33 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	}
 }
 
-void ModulePlayer::OnPassing(ModulePlayer2* p2) {
+
+void ModuleGen2::OnPassing2(ModuleGen* p1) {
 
 	if (flipPlayer) {
 		
-			if ((this->position.x + 60) < p2->position.x) {
+			if ((this->position.x + 60) < p1->position.x) {
 				flipPlayer = false;
 				LOG("Player1 flip = false")
-				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
+				if (current_state == STG_2WALK_FORWARD) { current_state = STG_2WALK_BACKWARD; }
 
 		}
 	}
 	if (!flipPlayer) {
 
 		
-		if (this->position.x > (p2->position.x + 60)) {
+		if (this->position.x > (p1->position.x + 60)) {
 				flipPlayer = true;
 				LOG("Player1 flip = true")	
-				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
+				if (current_state == STG_2WALK_FORWARD) { current_state = STG_2WALK_BACKWARD; }
 		}
 	}
 
 	
 }
 
-bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
+
+bool ModuleGen2::external_input(p2Qeue<Gen2_inputs>& inputs)
 {
 	static bool left = false;
 	static bool right = false;
@@ -692,18 +676,18 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 					return false;
 					break;
 				case SDLK_s:
-					inputs.Push(IN_CROUCH_UP);
+					inputs.Push(ING2_CROUCH_UP);
 					down = false;
 					break;
 				case SDLK_w:
 					up = false;
 					break;
 				case SDLK_a:
-					inputs.Push(IN_LEFT_UP);
+					inputs.Push(ING2_LEFT_UP);
 					left = false;
 					break;
 				case SDLK_d:
-					inputs.Push(IN_RIGHT_UP);
+					inputs.Push(ING2_RIGHT_UP);
 					right = false;
 					break;
 				}
@@ -713,13 +697,13 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 				switch (event.key.keysym.sym)
 				{
 				case SDLK_q:
-					inputs.Push(IN_SLASH);
+					inputs.Push(ING2_SLASH);
 					break;
 				case SDLK_e:
-					inputs.Push(IN_KICK);
+					inputs.Push(ING2_KICK);
 					break;
 				case SDLK_r:
-					inputs.Push(IN_SPECIAL);
+					inputs.Push(ING2_SPECIAL);
 					break;
 				case SDLK_w:
 					up = true;
@@ -738,190 +722,190 @@ bool ModulePlayer::external_input(p2Qeue<player_inputs>& inputs)
 		}
 
 		if (left && right)
-			inputs.Push(IN_LEFT_AND_RIGHT);
+			inputs.Push(ING2_LEFT_AND_RIGHT);
 		{
 			if (left)
-				inputs.Push(IN_LEFT_DOWN);
+				inputs.Push(ING2_LEFT_DOWN);
 			if (right)
-				inputs.Push(IN_RIGHT_DOWN);
+				inputs.Push(ING2_RIGHT_DOWN);
 		}
 
 		if (up && down)
-			inputs.Push(IN_JUMP_AND_CROUCH);
+			inputs.Push(ING2_JUMP_AND_CROUCH);
 		else
 		{
 			if (down)
-				inputs.Push(IN_CROUCH_DOWN);
+				inputs.Push(ING2_CROUCH_DOWN);
 			else
-				inputs.Push(IN_CROUCH_UP);
+				inputs.Push(ING2_CROUCH_UP);
 			if (up)
-				inputs.Push(IN_JUMP);
+				inputs.Push(ING2_JUMP);
 		}
 
 		return true;
 	}
 }
 
-player_states ModulePlayer::process_fsm(p2Qeue<player_inputs>& inputs)
+Gen2_states ModuleGen2::process_fsm(p2Qeue<Gen2_inputs>& inputs)
 {
-	static player_states state = ST_IDLE;
-	player_inputs last_input;
+	static Gen2_states state = STG_2IDLE;
+	Gen2_inputs laSTG_2input;
 
-	while (inputs.Pop(last_input))
+	while (inputs.Pop(laSTG_2input))
 	{
 		switch (state)
 		{
-		case ST_IDLE:
+		case STG_2IDLE:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_RIGHT_DOWN: if (!flipPlayer) { state = ST_WALK_FORWARD; break; }
-								if(flipPlayer) { state = ST_WALK_BACKWARD; break; }
-			case IN_LEFT_DOWN: if (!flipPlayer) { state = ST_WALK_BACKWARD; break;	}
-							   if (flipPlayer) { state = ST_WALK_FORWARD; break;	}
-			case IN_JUMP: state = ST_JUMP_NEUTRAL;  break;
-			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
-			case IN_SLASH: state = ST_SLASH_STANDING; break;
-			case IN_KICK: state = ST_KICK_STANDING; break;
-			case IN_SPECIAL: state = ST_SPECIAL; break;
+			case ING2_RIGHT_DOWN: if (!flipPlayer) { state = STG_2WALK_FORWARD; break; }
+								if(flipPlayer) { state = STG_2WALK_BACKWARD; break; }
+			case ING2_LEFT_DOWN: if (!flipPlayer) { state = STG_2WALK_BACKWARD; break;	}
+							   if (flipPlayer) { state = STG_2WALK_FORWARD; break;	}
+			case ING2_JUMP: state = STG_2JUMP_NEUTRAL;  break;
+			case ING2_CROUCH_DOWN: state = STG_2CROUCH; break;
+			case ING2_SLASH: state = STG_2SLASH_STANDING; break;
+			case ING2_KICK: state = STG_2KICK_STANDING; break;
+			case ING2_SPECIAL: state = STG_2SPECIAL; break;
 
 			}
 		}
 		break;
 
-		case ST_WALK_FORWARD:
+		case STG_2WALK_FORWARD:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			if (flipPlayer) { case IN_LEFT_UP: state = ST_IDLE; break; }
-			if (!flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
-			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: 
-				if (!flipPlayer) { state = ST_JUMP_FORWARD; }
-				if (flipPlayer) { state = ST_JUMP_BACKWARD; }
+			if (flipPlayer) { case ING2_LEFT_UP: state = STG_2IDLE; break; }
+			if (!flipPlayer) { case ING2_RIGHT_UP: state = STG_2IDLE; break; }
+			case ING2_LEFT_AND_RIGHT: state = STG_2IDLE; break;
+			case ING2_JUMP: 
+				if (!flipPlayer) { state = STG_2JUMP_FORWARD; }
+				if (flipPlayer) { state = STG_2JUMP_BACKWARD; }
 				break;
-			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
+			case ING2_CROUCH_DOWN: state = STG_2CROUCH; break;
 			}
 		}
 		break;
 
-		case ST_WALK_BACKWARD:
+		case STG_2WALK_BACKWARD:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			if (!flipPlayer) {case IN_LEFT_UP: state = ST_IDLE; break;}
-			if (flipPlayer) { case IN_RIGHT_UP: state = ST_IDLE; break; }
-			case IN_LEFT_AND_RIGHT: state = ST_IDLE; break;
-			case IN_JUMP: 
-				if (!flipPlayer) { state = ST_JUMP_BACKWARD; }
-				if (flipPlayer) { state = ST_JUMP_FORWARD; }
+			if (!flipPlayer) {case ING2_LEFT_UP: state = STG_2IDLE; break;}
+			if (flipPlayer) { case ING2_RIGHT_UP: state = STG_2IDLE; break; }
+			case ING2_LEFT_AND_RIGHT: state = STG_2IDLE; break;
+			case ING2_JUMP: 
+				if (!flipPlayer) { state = STG_2JUMP_BACKWARD; }
+				if (flipPlayer) { state = STG_2JUMP_FORWARD; }
 				break;
-			case IN_CROUCH_DOWN: state = ST_CROUCH; break;
+			case ING2_CROUCH_DOWN: state = STG_2CROUCH; break;
 			}
 		}
 		break;
 
-		case ST_JUMP_NEUTRAL:
+		case STG_2JUMP_NEUTRAL:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
-			case IN_SLASH: state = ST_SLASH_NEUTRAL_JUMP; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
+			case ING2_SLASH: state = STG_2SLASH_NEUTRAL_JUMP; break;
 			}
 		}
 		break;
 
-		case ST_JUMP_FORWARD:
+		case STG_2JUMP_FORWARD:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
-			case IN_SLASH: state = ST_SLASH_FORWARD_JUMP; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
+			case ING2_SLASH: state = STG_2SLASH_FORWARD_JUMP; break;
 			}
 		}
 		break;
 
-		case ST_JUMP_BACKWARD:
+		case STG_2JUMP_BACKWARD:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
-			case IN_SLASH: state = ST_SLASH_BACKWARD_JUMP; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
+			case ING2_SLASH: state = STG_2SLASH_BACKWARD_JUMP; break;
 			}
 		}
 		break;
 
-		case ST_SLASH_NEUTRAL_JUMP:
+		case STG_2SLASH_NEUTRAL_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
+			case ING2_SLASH_FINISH: state = STG_2IDLE; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
 			}
 		}
 		break;
 
-		case ST_SLASH_FORWARD_JUMP:
+		case STG_2SLASH_FORWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
+			case ING2_SLASH_FINISH: state = STG_2IDLE; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
 			}
 		}
 		break;
 
-		case ST_SLASH_BACKWARD_JUMP:
+		case STG_2SLASH_BACKWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
-			case IN_JUMP_FINISH: state = ST_IDLE; break;
+			case ING2_SLASH_FINISH: state = STG_2IDLE; break;
+			case ING2_JUMP_FINISH: state = STG_2IDLE; break;
 			}
 		}
 		break;
 
-		case ST_SLASH_STANDING:
+		case STG_2SLASH_STANDING:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_SLASH_FINISH: state = ST_IDLE; break;
+			case ING2_SLASH_FINISH: state = STG_2IDLE; break;
 			}
 		}
 		break;
 
-		case ST_CROUCH:
+		case STG_2CROUCH:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_CROUCH_UP: state = ST_IDLE; break;
-			case IN_SLASH: state = ST_SLASH_CROUCH; break;
+			case ING2_CROUCH_UP: state = STG_2IDLE; break;
+			case ING2_SLASH: state = STG_2SLASH_CROUCH; break;
 			}
 		}
 		break;
-		case ST_SLASH_CROUCH:
+		case STG_2SLASH_CROUCH:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_CROUCH_UP && IN_SLASH_FINISH: state = ST_IDLE; break;
-			case IN_SLASH_FINISH: state = ST_CROUCH; break;
+			case ING2_CROUCH_UP && ING2_SLASH_FINISH: state = STG_2IDLE; break;
+			case ING2_SLASH_FINISH: state = STG_2CROUCH; break;
 			}
 		}
-		case ST_KICK_STANDING:
+		case STG_2KICK_STANDING:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_KICK_FINISH: 
-				state = ST_IDLE;
+			case ING2_KICK_FINISH: 
+				state = STG_2IDLE;
 
 				break;
 			}
 		}
-		case ST_SPECIAL:
+		case STG_2SPECIAL:
 		{
-			switch (last_input)
+			switch (laSTG_2input)
 			{
-			case IN_SPECIAL_FINISH: state = ST_IDLE; break;
+			case ING2_SPECIAL_FINISH: state = STG_2IDLE; break;
 			}
 		}
 		break;

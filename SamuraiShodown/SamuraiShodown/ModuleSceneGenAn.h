@@ -15,6 +15,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool timeUp();
+
 public:
 
 	SDL_Texture* graphics = nullptr;

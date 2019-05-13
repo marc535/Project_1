@@ -90,6 +90,9 @@
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleGen2.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGen2.h">
+      <Filter>Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleGen.h"
+#include "ModuleGen2.h"
 #include "ModuleRender.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneGenAn.h"
@@ -24,6 +26,7 @@ bool ModuleUI::Start() {
 
 	startingtime = SDL_GetTicks();
 	int actualtime = 99;
+	is_draw = false;
 	LOG("Loading UI\n");
 
 	font_time = App->fonts->Load("Assets/TimeTile.png", "0123456789", 1);
@@ -35,16 +38,28 @@ bool ModuleUI::Start() {
 	hpBar1 = { 8,32,128,9 };
 	hpBar2 = { 8,32,128,9 };
 
+	if (App->scene_genan->IsEnabled() == true) {
 
-	App->player->hp = 100;
-	App->player2->hp = 100;
-	currentW_player1 = hpBar1.w;
-	
-	maxHP = App->player->hp;
-	currentW_player2 = hpBar2.w;
-	current_hp2 = maxHP;
-	current_hp1 = maxHP;
+		App->gen->hp = 8000;
+		App->gen2->hp = 8000;
+		currentW_player1 = hpBar1.w;
 
+		maxHP = App->gen->hp;
+		currentW_player2 = hpBar2.w;
+		current_hp2 = maxHP;
+		current_hp1 = maxHP;
+	}
+
+	if (App->scene_haohmaru->IsEnabled() == true) {
+		App->player->hp = 8000;
+		App->player2->hp = 8000;
+		currentW_player1 = hpBar1.w;
+
+		maxHP = App->player->hp;
+		currentW_player2 = hpBar2.w;
+		current_hp2 = maxHP;
+		current_hp1 = maxHP;
+	}
 	return true;
 }
 
@@ -86,7 +101,7 @@ update_status ModuleUI::Update() {
 	}
 
 	if (App->player2->getsHit == true) {
-		puntuacion1 = puntuacion1 + 10;
+		puntuacion1 = puntuacion1 + 100;
 	}
 	sprintf_s(puntuation1, 10, "%7d", puntuacion1);
 	actualtime = 99 - ((SDL_GetTicks() - (startingtime )) / 1000);
@@ -103,7 +118,7 @@ update_status ModuleUI::Update() {
 		App->fonts->BlitText(17, 32, 1, "GEN-AN");
 	}*/
 
-	App->fonts->BlitText(10, 5, 1, puntuation1);
+	App->fonts->BlitText(25, 5, 1, puntuation1);
 
 	App->fonts->BlitText(19, 6, 1, "P1=");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");
@@ -116,76 +131,157 @@ update_status ModuleUI::Update() {
 
 void ModuleUI::UpdateBars()
 {
-	if (App->player->hp < 30 || App->player2->hp < 30) { animKO = true; }
+	
+	if (App->scene_genan->IsEnabled() == true) {
+	
+		if (App->gen->hp < 2400 || App->gen2->hp < 2400) { animKO = true; }
 
-	if (current_hp1 != App->player->hp) {
-		int new_width = currentW_player1;
-		int quantity = App->player->hp - current_hp1;
-		int new_quantity = (current_hp1 + quantity);
-		current_hp1 += quantity;
+		if (current_hp1 != App->gen->hp) {
+			int new_width = currentW_player1;
+			int quantity = App->gen->hp - current_hp1;
+			int new_quantity = (current_hp1 + quantity);
+			current_hp1 += quantity;
 
-		if (maxHP != 0)
-			new_width = (new_quantity * max_width) / maxHP;
+			if (maxHP != 0)
+				new_width = (new_quantity * max_width) / maxHP;
 
-		if (current_hp1 <= 0) {
-			current_hp1 = 0;
-			target_hp1 = 0;
+			if (current_hp1 <= 0) {
+				current_hp1 = 0;
+				target_hp1 = 0;
+			}
+			else if (current_hp1 >= maxHP) {
+				current_hp1 = maxHP;
+				target_hp1 = max_width;
+			}
+			else
+				target_hp1 = new_width;
+
+			decrease_player1 = true;
 		}
-		else if (current_hp1 >= maxHP) {
-			current_hp1 = maxHP;
-			target_hp1 = max_width;
+		if (decrease_player1) {
+			if (currentW_player1 > target_hp1) {
+				currentW_player1 -= 1;
+			}
+			else if (currentW_player1 < target_hp1) {
+				currentW_player1 += 1;
+			}
+			else {
+				decrease_player1 = false;
+			}
+			hpBar1.w = currentW_player1;
 		}
-		else
-			target_hp1 = new_width;
 
-		decrease_player1 = true;
+		if (current_hp2 != App->gen2->hp) {
+			int new_width = currentW_player2;
+			int quantity = App->gen2->hp - current_hp2;
+			int new_quantity = (current_hp2 + quantity);
+			current_hp2 += quantity;
+
+			if (maxHP != 0)
+				new_width = (new_quantity * max_width) / maxHP;
+
+			if (current_hp2 <= 0) {
+				current_hp2 = 0;
+				target_hp2 = 0;
+			}
+			else if (current_hp2 >= maxHP) {
+				current_hp2 = maxHP;
+				target_hp2 = max_width;
+			}
+			else
+				target_hp2 = new_width;
+
+			decrease_player2 = true;
+		}
+		if (decrease_player2) {
+			if (currentW_player2 > target_hp2) {
+				currentW_player2 -= 1;
+			}
+			else if (currentW_player2 < target_hp2) {
+				currentW_player2 += 1;
+			}
+			else {
+				decrease_player2 = false;
+			}
+			hpBar2.w = currentW_player2;
+		}
 	}
-	if (decrease_player1) {
-		if (currentW_player1 > target_hp1) {
-			currentW_player1 -= 1;
+	else if(App->scene_haohmaru->IsEnabled() == true) {
+	
+		if (App->player->hp < 2400 || App->player2->hp < 2400) { animKO = true; }
+
+		if (current_hp1 != App->player->hp) {
+			int new_width = currentW_player1;
+			int quantity = App->player->hp - current_hp1;
+			int new_quantity = (current_hp1 + quantity);
+			current_hp1 += quantity;
+
+			if (maxHP != 0)
+				new_width = (new_quantity * max_width) / maxHP;
+
+			if (current_hp1 <= 0) {
+				current_hp1 = 0;
+				target_hp1 = 0;
+			}
+			else if (current_hp1 >= maxHP) {
+				current_hp1 = maxHP;
+				target_hp1 = max_width;
+			}
+			else
+				target_hp1 = new_width;
+
+			decrease_player1 = true;
 		}
-		else if (currentW_player1 < target_hp1) {
-			currentW_player1 += 1;
+		if (decrease_player1) {
+			if (currentW_player1 > target_hp1) {
+				currentW_player1 -= 1;
+			}
+			else if (currentW_player1 < target_hp1) {
+				currentW_player1 += 1;
+			}
+			else {
+				decrease_player1 = false;
+			}
+			hpBar1.w = currentW_player1;
 		}
-		else {
-			decrease_player1 = false;
+
+		if (current_hp2 != App->player2->hp) {
+			int new_width = currentW_player2;
+			int quantity = App->player2->hp - current_hp2;
+			int new_quantity = (current_hp2 + quantity);
+			current_hp2 += quantity;
+
+			if (maxHP != 0)
+				new_width = (new_quantity * max_width) / maxHP;
+
+			if (current_hp2 <= 0) {
+				current_hp2 = 0;
+				target_hp2 = 0;
+			}
+			else if (current_hp2 >= maxHP) {
+				current_hp2 = maxHP;
+				target_hp2 = max_width;
+			}
+			else
+				target_hp2 = new_width;
+
+			decrease_player2 = true;
 		}
-		hpBar1.w = currentW_player1;
+		if (decrease_player2) {
+			if (currentW_player2 > target_hp2) {
+				currentW_player2 -= 1;
+			}
+			else if (currentW_player2 < target_hp2) {
+				currentW_player2 += 1;
+			}
+			else {
+				decrease_player2 = false;
+			}
+			hpBar2.w = currentW_player2;
+		}
+
 	}
 
-	if (current_hp2 != App->player2->hp) {
-		int new_width = currentW_player2;
-		int quantity = App->player2->hp - current_hp2;
-		int new_quantity = (current_hp2 + quantity);
-		current_hp2 += quantity;
-
-		if (maxHP != 0)
-			new_width = (new_quantity * max_width) / maxHP;
-
-		if (current_hp2 <= 0) {
-			current_hp2 = 0;
-			target_hp2 = 0;
-		}
-		else if (current_hp2 >= maxHP) {
-			current_hp2 = maxHP;
-			target_hp2 = max_width;
-		}
-		else
-			target_hp2 = new_width;
-
-		decrease_player2 = true;
-	}
-	if (decrease_player2) {
-		if (currentW_player2 > target_hp2) {
-			currentW_player2 -= 1;
-		}
-		else if (currentW_player2 < target_hp2) {
-			currentW_player2 += 1;
-		}
-		else {
-			decrease_player2 = false;
-		}
-		hpBar2.w = currentW_player2;
-	}
+	
 }
 

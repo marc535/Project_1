@@ -8,11 +8,13 @@
 #include "ModuleCollision.h"
 #include "Animation.h"
 #include "ModuleParticles2.h"
+#include <stdlib.h>  
+#include <time.h> 
 
 ModulePlayer2::ModulePlayer2()
 {
 	position.x = 200;
-	position.y = 220;
+	position.y = 210;
 
 	// idle animation
 	idle.PushBack({22, 0, 73, 118});
@@ -165,6 +167,8 @@ ModulePlayer2::ModulePlayer2()
 
 	//dead anim
 	dead.PushBack({ 1009,167,116,42 });
+
+	srand(time(NULL));
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -178,7 +182,7 @@ bool ModulePlayer2::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/Haohmaru.png");
 	
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-	hp = 100;
+	hp = 8000;
 
 	p2Collider = App->collision->AddCollider({ position.x, position.y - 70, 40, 70 }, COLLIDER_ENEMY, this);
 	return ret;
@@ -192,7 +196,7 @@ update_status ModulePlayer2::Update()
 	float yVelocity = 15.1f;
 	float yAcceleration = 0.87f;
 
-//	if (!jumped && !jumpedB && !jumpedF) { position.y = 220; }
+//	if (!jumped && !jumpedB && !jumpedF) { position.y = 210; }
 	if (external_input2(inputs))
 	{
 		player2_states state = process_fsm2(inputs);
@@ -403,17 +407,17 @@ update_status ModulePlayer2::Update()
 
 			current_animation = &jump;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y > 210 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumped = false;
-				position.y = 220;
+				position.y = 210;
 				action = false;
 
 			}
@@ -425,18 +429,18 @@ update_status ModulePlayer2::Update()
 
 			current_animation = &JumpForward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x += 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y > 210 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedF = false;
-				position.y = 220;
+				position.y = 210;
 				action = false;
 				JumpForward.Reset();
 				JumpBackward.Reset();
@@ -451,18 +455,18 @@ update_status ModulePlayer2::Update()
 
 			current_animation = &JumpBackward;
 
-			position.y = 220 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
 			position.x -= 4;
 			grounded = true;
 
 
-			if (position.y > 220 && grounded == true)	//end of the jump
+			if (position.y > 210 && grounded == true)	//end of the jump
 			{
 				inputs.Push(IN2_JUMP_FINISH);
 				var1 = 0;
 				grounded = false;
 				jumpedB = false;
-				position.y = 220;
+				position.y = 210;
 				action = false;
 				JumpBackward.Reset();
 
@@ -524,7 +528,7 @@ update_status ModulePlayer2::Update()
 				inputs.Push(IN2_CROUCH_UP);
 				var1 = 0;
 				crouched = false;
-				position.y = 220;
+				position.y = 210;
 				action = false;
 			}
 		}
@@ -545,7 +549,7 @@ update_status ModulePlayer2::Update()
 			action = false;
 			getsHit = false;
 			current_state2 = ST2_IDLE;
-			position.y = 220;
+			position.y = 210;
 		}
 
 	}
@@ -586,7 +590,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	case COLLIDER_PLAYER_ATTACK:
 
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 10;
+		hp -= 550 + (rand() % 150);
 		getsHit = true;
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
 
@@ -595,7 +599,7 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		hp -= 20;
 		getsHit = true;
-		position.y = 220;
+		position.y = 210;
 		Mix_PlayChannel(-1, App->audio->effects[8], 0);
 	}
 	

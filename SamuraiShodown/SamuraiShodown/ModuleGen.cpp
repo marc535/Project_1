@@ -3,11 +3,12 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
-#include "ModulePlayer2.h"
+#include "ModuleGen.h"
+#include "ModuleGen2.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
-#include "ModuleGen.h"
+#include <stdlib.h>  
+#include <time.h> 
 
 ModuleGen::ModuleGen()
 {
@@ -150,6 +151,8 @@ ModuleGen::ModuleGen()
 
 	//dead anim
 	dead.PushBack({ 1009,167,116,42 });
+
+	srand(time(NULL));
 }
 
 ModuleGen::~ModuleGen()
@@ -163,7 +166,7 @@ bool ModuleGen::Start()
 	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/1.png");
 	
 	action = false;
-
+	hp = 8000;
 	
 	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
 	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
@@ -510,7 +513,7 @@ update_status ModuleGen::Update()
 				sCrouched = false;
 				action = false;
 				attack->to_delete = true;
-				inputs.Push(IN_SLASH_FINISH);
+				inputs.Push(ING2_SLASH_FINISH);
 
 				sCrouch.finishingAnimation(false);
 			}
@@ -542,7 +545,7 @@ update_status ModuleGen::Update()
 	if (hp <= 0) { isDead = true; action = true; }
 
 	
-	if (App->player2->isDead == true) {
+	if (App->gen2->isDead == true) {
 
 		current_state = STG_VICTORY;
 	}
@@ -571,7 +574,7 @@ update_status ModuleGen::Update()
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	//OnPassing(App->player2);
+	OnPassing(App->gen2);
 	App->render->Blit(graphics, position.x, position.y - r.h, &r, 1.0f, flipPlayer);
 
 	
@@ -586,7 +589,7 @@ void ModuleGen::OnCollision(Collider* c1, Collider* c2) {
 
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 10;
+		hp -= 550 + (rand() % 150);
 		getsHit = true;
 		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
@@ -598,15 +601,15 @@ void ModuleGen::OnCollision(Collider* c1, Collider* c2) {
 	}
 }
 
-/*
-void ModuleGen::OnPassing(ModulePlayer2* p2) {
+
+void ModuleGen::OnPassing(ModuleGen2* p2) {
 
 	if (flipPlayer) {
 		
 			if ((this->position.x + 60) < p2->position.x) {
 				flipPlayer = false;
 				LOG("Player1 flip = false")
-				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
+				if (current_state == STG_WALK_FORWARD) { current_state = STG_WALK_BACKWARD; }
 
 		}
 	}
@@ -616,13 +619,13 @@ void ModuleGen::OnPassing(ModulePlayer2* p2) {
 		if (this->position.x > (p2->position.x + 60)) {
 				flipPlayer = true;
 				LOG("Player1 flip = true")	
-				if (current_state == ST_WALK_FORWARD) { current_state = ST_WALK_BACKWARD; }
+				if (current_state == STG_WALK_FORWARD) { current_state = STG_WALK_BACKWARD; }
 		}
 	}
 
 	
 }
-*/
+
 
 bool ModuleGen::external_input(p2Qeue<Gen_inputs>& inputs)
 {
@@ -719,15 +722,15 @@ bool ModuleGen::external_input(p2Qeue<Gen_inputs>& inputs)
 Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 {
 	static Gen_states state = STG_IDLE;
-	Gen_inputs last_input;
+	Gen_inputs laSTG_input;
 
-	while (inputs.Pop(last_input))
+	while (inputs.Pop(laSTG_input))
 	{
 		switch (state)
 		{
-		case ST_IDLE:
+		case STG_IDLE:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_RIGHT_DOWN: if (!flipPlayer) { state = STG_WALK_FORWARD; break; }
 								if(flipPlayer) { state = STG_WALK_BACKWARD; break; }
@@ -745,7 +748,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_WALK_FORWARD:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			if (flipPlayer) { case ING_LEFT_UP: state = STG_IDLE; break; }
 			if (!flipPlayer) { case ING_RIGHT_UP: state = STG_IDLE; break; }
@@ -761,7 +764,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_WALK_BACKWARD:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			if (!flipPlayer) {case ING_LEFT_UP: state = STG_IDLE; break;}
 			if (flipPlayer) { case ING_RIGHT_UP: state = STG_IDLE; break; }
@@ -770,14 +773,14 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 				if (!flipPlayer) { state = STG_JUMP_BACKWARD; }
 				if (flipPlayer) { state = STG_JUMP_FORWARD; }
 				break;
-			case IN_CROUCH_DOWN: state = STG_CROUCH; break;
+			case ING2_CROUCH_DOWN: state = STG_CROUCH; break;
 			}
 		}
 		break;
 
 		case STG_JUMP_NEUTRAL:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
 			case ING_SLASH: state = STG_SLASH_NEUTRAL_JUMP; break;
@@ -787,7 +790,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_JUMP_FORWARD:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
 			case ING_SLASH: state = STG_SLASH_FORWARD_JUMP; break;
@@ -797,7 +800,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_JUMP_BACKWARD:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
 			case ING_SLASH: state = STG_SLASH_BACKWARD_JUMP; break;
@@ -807,7 +810,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_SLASH_NEUTRAL_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_SLASH_FINISH: state = STG_IDLE; break;
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
@@ -817,7 +820,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_SLASH_FORWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_SLASH_FINISH: state = STG_IDLE; break;
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
@@ -827,7 +830,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_SLASH_BACKWARD_JUMP:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_SLASH_FINISH: state = STG_IDLE; break;
 			case ING_JUMP_FINISH: state = STG_IDLE; break;
@@ -837,7 +840,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_SLASH_STANDING:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_SLASH_FINISH: state = STG_IDLE; break;
 			}
@@ -846,7 +849,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 
 		case STG_CROUCH:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_CROUCH_UP: state = STG_IDLE; break;
 			case ING_SLASH: state = STG_SLASH_CROUCH; break;
@@ -855,15 +858,15 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 		break;
 		case STG_SLASH_CROUCH:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
-			case ING_CROUCH_UP && IN_SLASH_FINISH: state = STG_IDLE; break;
+			case ING_CROUCH_UP && ING2_SLASH_FINISH: state = STG_IDLE; break;
 			case ING_SLASH_FINISH: state = STG_CROUCH; break;
 			}
 		}
 		case STG_KICK_STANDING:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_KICK_FINISH: 
 				state = STG_IDLE;
@@ -873,7 +876,7 @@ Gen_states ModuleGen::process_fsm(p2Qeue<Gen_inputs>& inputs)
 		}
 		case STG_SPECIAL:
 		{
-			switch (last_input)
+			switch (laSTG_input)
 			{
 			case ING_SPECIAL_FINISH: state = STG_IDLE; break;
 			}

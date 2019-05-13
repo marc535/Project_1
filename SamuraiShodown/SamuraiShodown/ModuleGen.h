@@ -63,7 +63,7 @@ public:
 	bool CleanUp();
 
 	void OnCollision(Collider* c1, Collider* c2);
-	//void OnPassing(ModulePlayer2* p2);
+	void OnPassing(ModuleGen2* p2);
 
 	bool external_input(p2Qeue<Gen_inputs>& Ginputs);
 	Gen_states process_fsm(p2Qeue<Gen_inputs>& Ginputs);
@@ -118,7 +118,7 @@ public:
 	int var1 = 0;
 	int var2 = 0;
 
-	int hp = 100;
+	int hp = 8000;
 	
 	Mix_Chunk* kicks;
 	Mix_Chunk* tornados;

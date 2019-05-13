@@ -13,11 +13,12 @@
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleGen.h"
+#include "ModuleGen2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleUI.h"
 #include "ModuleParticles.h"
 #include "ModuleParticles2.h"
-#include "ModuleGen.h"
 #include "ModuleFonts.h"
 
 Application::Application()
@@ -41,10 +42,14 @@ Application::Application()
 
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = gen = new ModuleGen();
+	modules[i++] = gen2 = new ModuleGen2();
+
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = particles2 = new ModuleParticles2();
+
 	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = gen = new ModuleGen();
+	
 	modules[i++] = fonts = new ModuleFonts();
 
 }
@@ -63,6 +68,7 @@ bool Application::Init()
 	player->Disable();
 	player2->Disable();
 	gen->Disable();
+	gen2->Disable();
 	UI->Disable();
 	collision->Disable();
 	

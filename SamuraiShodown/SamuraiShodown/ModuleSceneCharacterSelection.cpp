@@ -76,7 +76,7 @@ update_status ModuleSceneCharacterSelection::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
-		
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru, 2.0f);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 

@@ -114,7 +114,7 @@ public:
 
 	int var1 = 0;
 
-	int hp = 100;
+	int hp = 8000;
 
 	Mix_Chunk* kicks;
 

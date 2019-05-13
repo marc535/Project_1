@@ -1,7 +1,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 20
+#define NUM_MODULES 21
 
 class ModuleWindow;
 class ModuleInput;
@@ -17,12 +17,13 @@ class ModuleSceneHaohmaru;
 class ModuleSceneGenAn;
 class ModulePlayer;
 class ModulePlayer2;
+class ModuleGen;
+class ModuleGen2;
 class ModuleAudio;
 class ModuleFadeToBlack;
 class ModuleCollision;
 class Module;
 class ModuleUI;
-class ModuleGen;
 class ModuleFonts;
 
 class Application
@@ -43,12 +44,13 @@ public:
 	ModuleCollision* collision;
 	ModulePlayer* player;
 	ModulePlayer2* player2;
+	ModuleGen* gen;
+	ModuleGen2* gen2;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleParticles2* particles2;
 	ModuleAudio* audio;
 	ModuleUI* UI;
-	ModuleGen* gen;
 	ModuleFonts* fonts;
 
 public:
