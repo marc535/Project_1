@@ -65,7 +65,7 @@ v.0.4:  - Camera limits implemented
 	- F1 debug tool added (show collides)
 	- F5 debug tool added godMode(eliminates only player's colliders)
 
-V.0.5:  - Implemented the following animations:
+v.0.5:  - Implemented the following animations:
 		- Jump Forward/Backward
 		- Crouch up/down
 	- HP bars added(fully functional) that decrease when player gets hit
@@ -78,4 +78,13 @@ V.0.5:  - Implemented the following animations:
 	- Applied all changes to player2
 	- Death animation
 
+v.0.6:	- Implemented the following stage/screen animations:
+		- Gen-an stage
+		- NeoGeo screen
+		- Welcome screen
+	- Implemented gen-an + player2 gen-an with different color sprites
+	- Implemented walk (forward and backward), jump (neutral, forward and backward) animations to gen-an
+	- Introduced timer
+	- Introduced KO animation(UI)
+	- Added F3 debug tool (shortcut to gen-an stage)
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki

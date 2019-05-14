@@ -125,7 +125,7 @@ update_status ModuleUI::Update() {
 
 
 	App->fonts->BlitText(210, 215, 1, "CREDITS 01");
-	App->fonts->BlitText((SCREEN_WIDTH / 2) - 25, 215, 1, "LEVEL 1");
+	//App->fonts->BlitText((SCREEN_WIDTH / 2) - 25, 215, 1, "LEVEL 1");
 	return UPDATE_CONTINUE;
 }
 
