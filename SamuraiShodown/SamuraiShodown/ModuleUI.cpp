@@ -118,7 +118,7 @@ update_status ModuleUI::Update() {
 		App->fonts->BlitText(17, 32, 1, "GEN-AN");
 	}*/
 
-	App->fonts->BlitText(25, 5, 1, puntuation1);
+	App->fonts->BlitText(45, 5, 1, puntuation1);
 
 	App->fonts->BlitText(19, 6, 1, "P1=");
 	App->fonts->BlitText(200, 5, 1, "P2= 0");
