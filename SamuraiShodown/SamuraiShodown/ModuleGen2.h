@@ -110,6 +110,7 @@ public:
 	bool getsHit = false;
 	
 	
+	
 	bool flipPlayer = false;
 	bool godMode = false;
 	bool isDead = false;

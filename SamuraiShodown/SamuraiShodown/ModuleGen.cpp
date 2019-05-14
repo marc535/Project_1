@@ -29,26 +29,35 @@ ModuleGen::ModuleGen()
 	forward.PushBack({ 1262,388,84,117 });
 	forward.PushBack({ 1346,382,83,123 });
 	forward.PushBack({ 1429,383,68,122 });
+
 	forward.speed = 0.14f;
+	forward.loop = false;
 
 	// walk backward animation 
 	backward.PushBack({ 1174,388,88,117 });
 	backward.PushBack({ 1262,388,84,117 });
 	backward.PushBack({ 1346,382,83,123 });
 	backward.PushBack({ 1429,383,68,122 });
+
 	backward.speed = 0.14f;
+	backward.loop = false;
 
 	// jump animation
 	jump.PushBack({ 261,1687,67,105 });
 	jump.PushBack({ 330,1715,62,72 });
+
 	jump.speed = 0.07f;
+	jump.loop = false;
+
 
 	// kick animation
 	kick.PushBack({ 305,141,66,95 });
 	kick.PushBack({ 372,138,86,98 });
 	kick.PushBack({ 305,141,66,95 });
 	//kick.PushBack({22, 0, 73, 118});
+
 	kick.speed = 0.14f;
+	kick.loop = false;
 
 	// tornado move animation
 	tornadoMove.PushBack({ 22, 247, 102, 102 });
@@ -91,6 +100,8 @@ ModuleGen::ModuleGen()
 	JumpForward.PushBack({ 650,387,96,153 });
 	JumpForward.PushBack({ 744,387,98,175 });
 	JumpForward.PushBack({ 858,387,96,128 });
+
+	JumpForward.speed = 0.14f;
 	JumpForward.loop = false;
 
 	// jump backward
@@ -98,6 +109,8 @@ ModuleGen::ModuleGen()
 	JumpBackward.PushBack({ 650,387,96,153 });
 	JumpBackward.PushBack({ 744,387,98,175 });
 	JumpBackward.PushBack({ 858,387,96,128 });
+
+	JumpBackward.speed = 0.14f;
 	JumpBackward.loop = false;
 
 	// crouch sword attack 
