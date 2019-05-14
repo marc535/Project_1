@@ -3,7 +3,15 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleCollision.h"
 #include "SDL/include/SDL.h"
+#include "p2Point.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
+#include "ModuleGen.h"
+#include "ModuleGen2.h"
+#include "ModuleSceneHaohmaru.h"
+#include "ModuleSceneGenAn.h"
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -140,4 +148,93 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	}
 
 	return ret;
+}
+
+void ModuleRender::MoveCamera()
+{
+	if (App->scene_genan->IsEnabled() == true) {
+
+		iPoint player_1 = App->gen->position;
+		iPoint player_2 = App->gen2->position;
+
+	}
+	else if (App->scene_haohmaru->IsEnabled() == true) {
+
+		iPoint player_1 = App->player->position;
+		iPoint player_2 = App->player2->position;
+	}
+	
+
+		iPoint player_1 = App->player->position;
+		iPoint player_2 = App->player2->position;
+	
+	
+	
+	if ((player_1.x < left->rect.x + left->rect.w)) {
+		if (player_2.x + 50 < right->rect.x) {
+			right->rect.x -= 2;
+			left->rect.x -= 2;
+			camera.x -= 2 * SCREEN_SIZE;
+		}
+	}
+	else if ((player_2.x > right->rect.x - 48)) {
+		if (player_1.x > left->rect.x + left->rect.w) {
+			right->rect.x += 2;
+			left->rect.x += 2;
+			camera.x += 2 * SCREEN_SIZE;
+		}
+	}
+	if ((player_2.x < left->rect.x + left->rect.w)) {
+		if (player_1.x + 50 < right->rect.x) {
+			right->rect.x -= 2;
+			left->rect.x -= 2;
+			camera.x -= 2 * SCREEN_SIZE;
+		}
+	}
+	else if ((player_1.x > right->rect.x - 50)) {
+		if (player_2.x > left->rect.x + left->rect.w) {
+			right->rect.x += 2;
+			left->rect.x += 2;
+			camera.x += 2 * SCREEN_SIZE;
+		}
+	}
+	if (App->scene_haohmaru->IsEnabled() == true)
+	{
+		if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
+		{
+			camera.x--;
+			left->rect.x--;
+		}
+		if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
+		{
+			camera.x++;
+			right->rect.x++;
+		}
+
+	}
+	else if (App->scene_genan->IsEnabled() == true)
+	{
+		if (camera.x + SCREEN_WIDTH > App->scene_genan->right_wall->rect.x + 150)
+		{
+			camera.x--;
+			left->rect.x--;
+		}
+		if (camera.x < App->scene_genan->left_wall->rect.x - 150)
+		{
+			camera.x++;
+			right->rect.x++;
+		}
+	}
+
+}
+
+void ModuleRender::SetCamera()
+{
+	if ((!left) && (!right))
+	{
+		left = App->collision->AddCollider({ -50,0,50,SCREEN_HEIGHT }, COLLIDER_WALL);
+		right = App->collision->AddCollider({ camera.w,0,50,SCREEN_HEIGHT }, COLLIDER_WALL);
+	}
+	left->SetPos(-50, 0);
+	right->SetPos(camera.w, 0);
 }

@@ -20,6 +20,8 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	
+	Collider *left_wall = nullptr;
+	Collider *right_wall = nullptr;
 
 	Animation stageAnimation;
 };

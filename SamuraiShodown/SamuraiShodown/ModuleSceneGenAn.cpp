@@ -48,7 +48,7 @@ bool ModuleSceneGenAn::Start()
 	App->gen->position.x = 50;
 	App->gen->isDead = false;
 
-	
+	App->collision->debug = false;
 
     LOG("Loading GenAn scene");
 
@@ -62,8 +62,8 @@ bool ModuleSceneGenAn::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
+	left_wall = App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
+	right_wall = App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 
 	App->gen->Enable();
 	App->gen2->Enable();
@@ -71,6 +71,8 @@ bool ModuleSceneGenAn::Start()
 	/*App->player->Enable();
 	App->gen2->Enable();*/
 	
+	App->render->SetCamera();
+
 	return true;
 }
 
@@ -149,8 +151,11 @@ update_status ModuleSceneGenAn::Update()
 
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
 	}
+
 	App->fonts->BlitText(255, 31, 1, "GEN-AN");
 	App->fonts->BlitText(20, 31, 1, "GEN-AN");
+	App->render->MoveCamera();
+
 	return UPDATE_CONTINUE;
 }
 

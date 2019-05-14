@@ -65,12 +65,14 @@ bool ModuleSceneHaohmaru::Start()
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
-	App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
-	App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
+	left_wall = App->collision->AddCollider({ -10, 0, 13, 500 }, COLLIDER_WALL);
+	right_wall = App->collision->AddCollider({ 317, 0, 3, 500 }, COLLIDER_WALL);
 
 	App->player->Enable();
 	App->player2->Enable();
 	
+	App->render->SetCamera();
+
 	return true;
 }
 
@@ -147,9 +149,12 @@ update_status ModuleSceneHaohmaru::Update()
 
 		App->fade->FadeToBlack((Module*)App->scene_haohmaru, (Module*)App->scene_ending, 2.0f);
 	}
+
 	timeSCENE = SDL_GetTicks() / 1000;
 	App->fonts->BlitText(240, 31, 1, "HAOHMARU");
 	App->fonts->BlitText(20, 31, 1, "HAOHMARU");
+	App->render->MoveCamera();
+
 	return UPDATE_CONTINUE;
 }
 
