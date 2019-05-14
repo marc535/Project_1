@@ -17,6 +17,38 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	background.x = 0;
 	background.y = 0;
 
+	/*backgroundanim.PushBack({ 82, 52, 55, 70 });
+	backgroundanim.PushBack({ 82, 182, 55, 70 });
+	backgroundanim.PushBack({ 70, 297, 67, 79 });
+	backgroundanim.PushBack({ 55, 419, 82, 87 });*/
+
+	
+	for (int i = 0; i < 8; i++) {
+
+		for (int j = 0; j < 6; j++) {
+
+			backgroundanim.PushBack({ (22 + (244 * j)), (130 * i), 244, 130 });
+
+		}
+
+	}
+	
+
+	backgroundanim.speed = 0.14f;
+	backgroundanim.loop = false;
+
+	for (int i = 0; i < 6; i++) {
+
+		for (int j = 0; j < 3; j++) {
+
+			backgroundanim2.PushBack({ (253 * j), (114 * i), 253, 114 });
+
+		}
+
+	}
+
+	backgroundanim2.speed = 0.2f;
+	backgroundanim2.loop = false;
 
 }
 
@@ -39,6 +71,7 @@ bool ModuleSceneWelcome::Start()
 	else {
 		graphics = App->textures->Load("Assets/Textures/menus.png");
 		anim = App->textures->Load("Assets/Textures/white_letters.png");
+		redlet = App->textures->Load("Assets/Textures/3SamuraiShodownLetters.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -65,7 +98,13 @@ update_status ModuleSceneWelcome::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
-	App->render->Blit(anim, 0, 0, &background, 0.1f, false); //Welcome Image
+	
+	Animation* current_animation = &backgroundanim2;
+	App->render->Blit(redlet, 34, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
+
+
+	//SDL_Rect r = current_animation->GetCurrentFrame();
+	//App->render->Blit(anim, 0, 0, &background, 0.1f, false); //Welcome Image
 	
 
 	
