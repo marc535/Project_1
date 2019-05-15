@@ -12,6 +12,7 @@
 #include "ModuleGen2.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneGenAn.h"
+#include "ModuleUI.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -33,14 +34,14 @@ bool ModuleRender::Init()
 	bool ret = true;
 	Uint32 flags = 0;
 
-	if(REN_VSYNC == true)
+	if (REN_VSYNC == true)
 	{
 		flags |= SDL_RENDERER_PRESENTVSYNC;
 	}
 
 	renderer = SDL_CreateRenderer(App->window->window, -1, flags);
-	
-	if(renderer == NULL)
+
+	if (renderer == NULL)
 	{
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
@@ -58,7 +59,7 @@ update_status ModuleRender::PreUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status ModuleRender::Update()	
+update_status ModuleRender::Update()
 {
 	//move camera	
 
@@ -78,7 +79,7 @@ bool ModuleRender::CleanUp()
 	LOG("Destroying renderer");
 
 	//Destroy window
-	if(renderer != NULL)
+	if (renderer != NULL)
 	{
 		SDL_DestroyRenderer(renderer);
 	}
@@ -94,7 +95,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
 	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
 
-	if(section != NULL)
+	if (section != NULL)
 	{
 		rect.w = section->w;
 		rect.h = section->h;
@@ -187,59 +188,49 @@ void ModuleRender::MoveCamera()
 		if (!spaced) {
 			if ((player_1.x < left->rect.x + left->rect.w)) {
 				if (player_2.x + 50 < right->rect.x) {
-					right->rect.x -= 2;
-					left->rect.x -= 2;
-					camera.x -= 2 * SCREEN_SIZE;
+					right->rect.x -= 2 * SCREEN_SIZE;
+					left->rect.x -= 2 * SCREEN_SIZE;
+					camera.x += 2 * SCREEN_SIZE;
+					App->UI->hpBar1.x += 2;
+
 				}
 			}
 			else if ((player_2.x > right->rect.x - 48)) {
 				if (player_1.x > left->rect.x + left->rect.w) {
-					right->rect.x += 2;
-					left->rect.x += 2;
-					camera.x += 2 * SCREEN_SIZE;
+					right->rect.x += 2 * SCREEN_SIZE;
+					left->rect.x += 2 * SCREEN_SIZE;
+					camera.x -= 2 * SCREEN_SIZE;
+					App->UI->hpBar1.x -= 2;
 				}
 			}
 			if ((player_2.x < left->rect.x + left->rect.w)) {
 				if (player_1.x + 50 < right->rect.x) {
-					right->rect.x -= 2;
-					left->rect.x -= 2;
-					camera.x -= 2 * SCREEN_SIZE;
+					right->rect.x -= 2 * SCREEN_SIZE;
+					left->rect.x -= 2 * SCREEN_SIZE;
+					camera.x += 2 * SCREEN_SIZE;
+					App->UI->hpBar1.x += 2;
 				}
 			}
 			else if ((player_1.x > right->rect.x - 50)) {
 				if (player_2.x > left->rect.x + left->rect.w) {
-					right->rect.x += 2;
-					left->rect.x += 2;
-					camera.x += 2 * SCREEN_SIZE;
+					right->rect.x += 2 * SCREEN_SIZE;
+					left->rect.x += 2 * SCREEN_SIZE;
+					camera.x -= 2 * SCREEN_SIZE;
+					App->UI->hpBar1.x -= 2;
 				}
 			}
-			if (App->scene_haohmaru->IsEnabled() == true)
-			{
-				if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
-				{
-					camera.x--;
-					left->rect.x--;
-				}
-				if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
-				{
-					camera.x++;
-					right->rect.x++;
-				}
 
-			}
-			else if (App->scene_genan->IsEnabled() == true)
+			if (camera.x + SCREEN_WIDTH > App->scene_genan->right_wall->rect.x + 150)
 			{
-				if (camera.x + SCREEN_WIDTH > App->scene_genan->right_wall->rect.x + 150)
-				{
-					camera.x--;
-					left->rect.x--;
-				}
-				if (camera.x < App->scene_genan->left_wall->rect.x - 150)
-				{
-					camera.x++;
-					right->rect.x++;
-				}
+				camera.x--;
+				left->rect.x--;
 			}
+			if (camera.x < App->scene_genan->left_wall->rect.x - 150)
+			{
+				camera.x++;
+				right->rect.x++;
+			}
+
 
 		}
 	}
@@ -256,9 +247,9 @@ void ModuleRender::MoveCamera()
 				spaced = true;
 
 			}
-			else { 
+			else {
 
-				spaced = false; 
+				spaced = false;
 			}
 		}
 		else {
@@ -267,9 +258,9 @@ void ModuleRender::MoveCamera()
 
 				spaced = true;
 			}
-			else { 
+			else {
 
-				spaced = false; 
+				spaced = false;
 			}
 
 		}
@@ -304,34 +295,16 @@ void ModuleRender::MoveCamera()
 					camera.x -= 2 * SCREEN_SIZE;
 				}
 			}
-			if (App->scene_haohmaru->IsEnabled() == true)
+			if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
 			{
-				if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
-				{
-					camera.x--;
-					left->rect.x--;
-				}
-				if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
-				{
-					camera.x++;
-					right->rect.x++;
-				}
-
+				camera.x--;
+				left->rect.x--;
 			}
-			else if (App->scene_genan->IsEnabled() == true)
+			if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
 			{
-				if (camera.x + SCREEN_WIDTH > App->scene_genan->right_wall->rect.x + 150)
-				{
-					camera.x--;
-					left->rect.x--;
-				}
-				if (camera.x < App->scene_genan->left_wall->rect.x - 150)
-				{
-					camera.x++;
-					right->rect.x++;
-				}
+				camera.x++;
+				right->rect.x++;
 			}
-
 		}
 
 	}
@@ -350,18 +323,14 @@ void ModuleRender::SetCamera()
 
 void ModuleRender::StartCameraShake(int duration, float magnitude)
 {
-	
 	shaking = true;
-
-	shake_duration = duration; shake_magnitude = magnitude; shake_timer = 0.0f;
-
-
+	shake_duration = duration; 
+	shake_magnitude = magnitude; 
+	shake_timer = 0.0f;
 }
 
 void ModuleRender::UpdateCameraShake()
 {
-	
-
 	if (shake_timer < shake_duration) {
 
 		camera_offset.x = ((rand() % 2) - 1) * shake_magnitude;
