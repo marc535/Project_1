@@ -109,14 +109,7 @@ update_status ModuleUI::Update() {
 
 	App->fonts->BlitText((SCREEN_WIDTH / 2) - 15, 40, 0, time_text);
 
-	/*if (App->scene_haohmaru->IsEnabled() == true) {
-		App->fonts->BlitText(238, 32, 1, "HAOHMARU");
-		App->fonts->BlitText(17, 32, 1, "HAOHMARU");
-	}
-	if (App->scene_genan->IsEnabled() == true) {
-		App->fonts->BlitText(238, 32, 1, "GEN-AN");
-		App->fonts->BlitText(17, 32, 1, "GEN-AN");
-	}*/
+	
 
 	App->fonts->BlitText(45, 5, 1, puntuation1);
 

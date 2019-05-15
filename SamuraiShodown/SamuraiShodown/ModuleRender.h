@@ -25,10 +25,13 @@ public:
 	void SetCamera();
 
 public:
+
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
 	Collider* left = nullptr;
 	Collider* right = nullptr;
+
+	bool spaced = false;
 
 };
 

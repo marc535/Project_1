@@ -81,11 +81,11 @@ update_status ModuleSceneGenAn::Update()
 {
 	timeUp();
 
-	if (App->gen->position.x <= -15) { App->gen->position.x = -15; }
+	/*if (App->gen->position.x <= -15) { App->gen->position.x = -15; }
 	if (App->gen->position.x + 60 >= 325) { App->gen->position.x = 265; }
 	if (App->gen2->position.x <= -15) { App->gen2->position.x = -15; }
 	if (App->gen2->position.x + 60 >= 325) { App->gen2->position.x = 265; }
-
+*/
 	Animation * current_animation = &stageAnimation;
 
 	// Draw everything --------------------------------------	
