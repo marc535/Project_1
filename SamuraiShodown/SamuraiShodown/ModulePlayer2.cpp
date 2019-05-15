@@ -588,12 +588,14 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 	switch (c2->type) {
 
 	case COLLIDER_PLAYER_ATTACK:
-
+		
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 550 + (rand() % 150);
-		getsHit = true;
-		Mix_PlayChannel(-1, App->audio->effects[7], 0);
-
+		if (!getsHit) {
+			hp -= 550 + (rand() % 150);
+			getsHit = true;
+			LOG("GetHit")
+			Mix_PlayChannel(-1, App->audio->effects[7], 0);
+		}
 	case COLLIDER_PLAYER_SHOT:
 
 		if (c2->to_delete == false) { c2->to_delete = true; }

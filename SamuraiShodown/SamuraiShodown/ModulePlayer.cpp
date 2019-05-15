@@ -602,7 +602,7 @@ update_status ModulePlayer::Update()
 			action = false;
 			getsHit = false;
 			current_state = ST_IDLE;
-
+			hit.Reset();
 		}
 
 	}
@@ -634,10 +634,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 	case COLLIDER_ENEMY_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 550 + (rand() % 150);
-		getsHit = true;
-		LOG("HURT 10")
-		Mix_PlayChannel(-1, App->audio->effects[7], 0);
+		if (!getsHit) {
+			hp -= 550 + (rand() % 150);
+			getsHit = true;
+			LOG("HURT 10")
+				Mix_PlayChannel(-1, App->audio->effects[7], 0);
+		}
 	case COLLIDER_ENEMY_SHOT:
 		if (c2->to_delete == false) { c2->to_delete = true; }
 		getsHit = true;

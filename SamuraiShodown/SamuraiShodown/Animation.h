@@ -45,6 +45,7 @@ public:
 	void Reset()
 	{
 		current_frame = 0;
+		Finish = false;
 	}
 
 	bool FinishedAnimation() {
