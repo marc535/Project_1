@@ -24,6 +24,9 @@ public:
 	void MoveCamera();
 	void SetCamera();
 
+	void StartCameraShake(int duration, float magnitude);
+	void UpdateCameraShake();
+
 public:
 
 	SDL_Renderer* renderer = nullptr;
@@ -32,6 +35,16 @@ public:
 	Collider* right = nullptr;
 
 	bool spaced = false;
+
+private:
+	
+	bool shaking = false;
+
+	int shake_duration = 1.0f;
+	int shake_timer = 0.0f;
+	float shake_magnitude = 1.0f;
+
+	SDL_Point camera_offset;
 
 };
 
