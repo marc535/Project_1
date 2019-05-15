@@ -23,18 +23,19 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	backgroundanim.PushBack({ 55, 419, 82, 87 });*/
 
 	
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 6; i++) {
 
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 8; j++) {
 
-			backgroundanim.PushBack({ (22 + (244 * j)), (130 * i), 244, 130 });
-
+				backgroundanim.PushBack({ (242 * i), (130 * j), 242, 130 });
+			
 		}
-
 	}
+
+	
 	
 
-	backgroundanim.speed = 0.14f;
+	backgroundanim.speed = 0.2f;
 	backgroundanim.loop = false;
 
 	for (int i = 0; i < 6; i++) {
@@ -47,7 +48,7 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 
 	}
 
-	backgroundanim2.speed = 0.2f;
+	backgroundanim2.speed = 0.14f;
 	backgroundanim2.loop = false;
 
 }
@@ -100,11 +101,23 @@ update_status ModuleSceneWelcome::Update()
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
 	
 	Animation* current_animation = &backgroundanim2;
-	App->render->Blit(redlet, 34, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
+
+	if (backgroundanim.FinishedAnimation() == true) {
+
+		App->render->Blit(redlet, 34, 47, &backgroundanim2.GetCurrentFrame(), 0.1f, false);
+
+	}
+	else {
+		App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
+	}
+
+	
+
+	
 
 
 	//SDL_Rect r = current_animation->GetCurrentFrame();
-	//App->render->Blit(anim, 0, 0, &background, 0.1f, false); //Welcome Image
+	
 	
 
 	

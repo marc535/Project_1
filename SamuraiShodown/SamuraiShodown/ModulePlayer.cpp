@@ -597,6 +597,7 @@ update_status ModulePlayer::Update()
 	if (getsHit) {
 
 		action = true;
+		//App->render->StartCameraShake(30, 10);
 		current_animation = &hit;
 		if (hit.Finished() == true) {
 			action = false;
@@ -604,6 +605,8 @@ update_status ModulePlayer::Update()
 			current_state = ST_IDLE;
 
 		}
+
+		
 
 	}
 

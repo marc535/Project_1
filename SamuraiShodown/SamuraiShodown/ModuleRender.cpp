@@ -12,6 +12,8 @@
 #include "ModuleGen2.h"
 #include "ModuleSceneHaohmaru.h"
 #include "ModuleSceneGenAn.h"
+#include <cstdlib>
+#include <time.h>
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -344,4 +346,27 @@ void ModuleRender::SetCamera()
 	}
 	left->SetPos(-50, 0);
 	right->SetPos(SCREEN_WIDTH, 0);
+}
+
+void ModuleRender::StartCameraShake(int duration, float magnitude)
+{
+	
+	shaking = true;
+
+	shake_duration = duration; shake_magnitude = magnitude; shake_timer = 0.0f;
+
+
+}
+
+void ModuleRender::UpdateCameraShake()
+{
+	
+
+	if (shake_timer < shake_duration) {
+
+		camera_offset.x = ((rand() % 2) - 1) * shake_magnitude;
+		camera_offset.y = ((rand() % 2) - 1) * shake_magnitude;
+		shake_timer++;
+	}
+
 }
