@@ -12,6 +12,7 @@
 
 ModuleSceneWelcome::ModuleSceneWelcome()
 {
+
 	background.w = 320;
 	background.h = 224;
 	background.x = 0;
@@ -39,7 +40,7 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	
 	
 
-	backgroundanim.speed = 0.2f;
+	backgroundanim.speed = 0.35f;
 	backgroundanim.loop = false;
 
 	for (int i = 0; i < 6; i++) {
@@ -103,26 +104,23 @@ update_status ModuleSceneWelcome::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
-	
-	//Animation* current_animation = &backgroundanim2;
-
+		
 	if (backgroundanim.FinishedAnimation() == true) {
-
-		
-
-		App->render->Blit(redlet, 33, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false);
-
-		
-
-	}
-	else {
-		App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
-
-		if (backgroundanim.FinishedAnimation() == true) {
-
-			App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_welcome, 1,  1.0f);
+			App->render->Blit(redlet, 33, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
 		}
-	}
+	else{
+			App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
+
+			if (backgroundanim.FinishedAnimation() == true) {
+				
+				App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_welcome, 1, 0.5f);
+				
+			}
+		}
+
+
+		
+	
 
 	
 
