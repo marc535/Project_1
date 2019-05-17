@@ -56,14 +56,26 @@ update_status ModuleFadeToBlack::Update()
 	}
 
 	// Finally render the black square with alpha on the screen
-	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
-	SDL_RenderFillRect(App->render->renderer, &screen);
+	
+	if (blacks == 0) {
+
+		SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
+		SDL_RenderFillRect(App->render->renderer, &screen);
+
+	}
+
+	else
+	{
+		SDL_SetRenderDrawColor(App->render->renderer, 255, 255, 255, (Uint8)(normalized * 255.0f));
+		SDL_RenderFillRect(App->render->renderer, &screen);
+	}
+	
 
 	return UPDATE_CONTINUE;
 }
 
 // Fade to black. At mid point deactivate one module, then activate the other
-bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float time)
+bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, int black, float time )
 {
 	bool ret = false;
 
@@ -75,6 +87,7 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 		to_enable = module_on;
 		to_disable = module_off;
 		ret = true;
+		blacks = black;
 	}
 
 	return ret;

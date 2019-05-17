@@ -100,23 +100,23 @@ update_status ModuleSceneGenAn::Update()
 		//FadeToBlack
 		
 		
-		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 0, 2.0f);
 		Mix_FadeOutMusic(2000);
 
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_haohmaru, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_haohmaru, 0, 2.0f);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
 		App->gen2->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("PLAYER1 WIN")
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
 		App->gen->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("gen2 WIN")
 	}
 	if (App->gen->isDead == true) {
@@ -133,7 +133,7 @@ update_status ModuleSceneGenAn::Update()
 			}
 		}
 
-		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 0, 2.0f);
 	}
 	if (App->gen2->isDead == true) {
 
