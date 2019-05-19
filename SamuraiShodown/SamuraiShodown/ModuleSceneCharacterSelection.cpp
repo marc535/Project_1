@@ -68,7 +68,7 @@ update_status ModuleSceneCharacterSelection::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru,0, 2.0f);
 		
 
 		//Mix_FadeOutMusic(2000);
@@ -76,21 +76,21 @@ update_status ModuleSceneCharacterSelection::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru,0, 2.0f);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_genan, 0, 2.0f);
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
 		App->player2->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("PLAYER1 WIN")
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
 		App->player->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("PLAYER2 WIN")
 	}
 	

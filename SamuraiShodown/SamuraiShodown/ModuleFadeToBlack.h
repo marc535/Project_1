@@ -12,10 +12,12 @@ public:
 
 	bool Start();
 	update_status Update();
-	bool FadeToBlack(Module* module_off, Module* module_on, float time = 1.0f);
+	bool FadeToBlack(Module* module_off, Module* module_on, int black = 1, float time = 1.0f);
 	bool IsFading() const;
 
 private:
+
+	int blacks;
 
 	enum fade_step
 	{

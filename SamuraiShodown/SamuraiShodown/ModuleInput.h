@@ -35,13 +35,13 @@ public:
 public:
 	KEY_STATE keyboard[MAX_KEYS];
 	SDL_Event Events;
-	Uint8 game_pad[MAX_BUTTONS][MAX_GAME_PAD];
+	//Uint8 game_pad[MAX_BUTTONS][MAX_GAME_PAD];
 
-	SDL_GameController* controller_player_1 = nullptr;
-	SDL_GameController* controller_player_2 = nullptr;
+	//SDL_GameController* controller_player_1 = nullptr;
+	//SDL_GameController* controller_player_2 = nullptr;
 
-private:
-	int controller_1_index;
+//private:
+	//int controller_1_index;
 };
 
 #endif // __ModuleInput_H__

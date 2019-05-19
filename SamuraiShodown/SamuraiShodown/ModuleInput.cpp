@@ -7,11 +7,11 @@ ModuleInput::ModuleInput() : Module()
 {
 	for (uint i = 0; i < MAX_KEYS; ++i)
 		keyboard[i] = KEY_IDLE;
-	for (uint i = 0; i < MAX_BUTTONS; ++i) {
-		for (int j = 0; j < 2; ++j) {
-			game_pad[i][j] = KEY_IDLE;
-		}
-	}
+	//for (uint i = 0; i < MAX_BUTTONS; ++i) {
+		//for (int j = 0; j < 2; ++j) {
+			//game_pad[i][j] = KEY_IDLE;
+		//}
+	//}
 }
 
 // Destructor
@@ -31,7 +31,7 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-	SDL_Init(SDL_INIT_GAMECONTROLLER);
+	//SDL_Init(SDL_INIT_GAMECONTROLLER);
 
 	return ret;
 }
@@ -64,7 +64,7 @@ update_status ModuleInput::PreUpdate()
 			}
 		}
 	}
-
+	/*
 	for (int i = 0; i < MAX_BUTTONS; ++i) {
 		game_pad[i][GAME_PAD_1] = SDL_GameControllerGetButton(controller_player_1, (SDL_GameControllerButton)i);
 		game_pad[i][GAME_PAD_2] = SDL_GameControllerGetButton(controller_player_2, (SDL_GameControllerButton)i);
@@ -123,7 +123,7 @@ update_status ModuleInput::PreUpdate()
 		}
 	}
 
-
+*/
 	if (keyboard[SDL_SCANCODE_ESCAPE]) {
 
 		return update_status::UPDATE_STOP;

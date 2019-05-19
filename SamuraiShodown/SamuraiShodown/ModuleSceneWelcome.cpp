@@ -12,6 +12,7 @@
 
 ModuleSceneWelcome::ModuleSceneWelcome()
 {
+
 	background.w = 320;
 	background.h = 224;
 	background.x = 0;
@@ -28,6 +29,10 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 		for (int j = 0; j < 8; j++) {
 
 				backgroundanim.PushBack({ (242 * i), (130 * j), 242, 130 });
+
+				if (i == 5 && j == 4) {
+					break;
+				}
 			
 		}
 	}
@@ -35,7 +40,7 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	
 	
 
-	backgroundanim.speed = 0.2f;
+	backgroundanim.speed = 0.35f;
 	backgroundanim.loop = false;
 
 	for (int i = 0; i < 6; i++) {
@@ -99,17 +104,23 @@ update_status ModuleSceneWelcome::Update()
 
 	// Draw everything --------------------------------------	
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
-	
-	Animation* current_animation = &backgroundanim2;
-
+		
 	if (backgroundanim.FinishedAnimation() == true) {
+			App->render->Blit(redlet, 33, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
+		}
+	else{
+			App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
 
-		App->render->Blit(redlet, 34, 47, &backgroundanim2.GetCurrentFrame(), 0.1f, false);
+			if (backgroundanim.FinishedAnimation() == true) {
+				
+				App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_welcome, 1, 0.5f);
+				
+			}
+		}
 
-	}
-	else {
-		App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
-	}
+
+		
+	
 
 	
 
@@ -124,29 +135,29 @@ update_status ModuleSceneWelcome::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
-		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_charSelect, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_charSelect, 0, 2.0f);
 
 		Mix_FadeOutMusic(2000);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_haohmaru, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_haohmaru, 0, 2.0f);
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_genan, 0, 2.0f);
 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_1] == 1) {
 		App->player2->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("PLAYER1 WIN")
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2] == 1) {
 		App->player->isDead = true;
-		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_ending, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_ending, 0, 2.0f);
 		LOG("PLAYER2 WIN")
 	}
 

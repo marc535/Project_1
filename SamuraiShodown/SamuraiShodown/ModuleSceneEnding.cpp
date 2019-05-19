@@ -76,17 +76,17 @@ update_status ModuleSceneEnding::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
-		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 0, 2.0f);
 		Mix_FadeOutMusic(2000);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_haohmaru, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_haohmaru, 0, 2.0f);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F3] == 1) {
 
-		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 2.0f);
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 0, 2.0f);
 
 	}
 	return UPDATE_CONTINUE;
