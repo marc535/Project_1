@@ -28,6 +28,8 @@ public:
 	//BARS
 	int maxHP = 0;
 	int max_width = 128;
+	SDL_Rect rect{ 6,17,132,13 }; 
+
 
 	//player1
 	int target_hp1 = 0;

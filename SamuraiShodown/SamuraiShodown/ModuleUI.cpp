@@ -78,11 +78,11 @@ update_status ModuleUI::Update() {
 	
 	UpdateBars();
 
-	SDL_Rect rect{ 6,17,132,13 }; // bar
+	
 
 	//player 1 bar
-	App->render->Blit(ui_png, App->render->camera.x + 8, 17, &rect, 1.0f, false); //
-	App->render->Blit(ui_png, App->render->camera.x + 10, 19, &hpBar1, 1.0f, false); //
+	App->render->Blit(ui_png, 8, 17, &rect, 1.0f, false); //
+	App->render->Blit(ui_png, 10, 19, &hpBar1, 1.0f, false); //
 
 	//player 2 bar
 	App->render->Blit(ui_png, 183, 17, &rect, 1.0f, false); //
