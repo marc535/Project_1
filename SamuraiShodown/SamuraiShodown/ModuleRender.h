@@ -27,16 +27,12 @@ public:
 	void StartCameraShake(int duration, float magnitude);
 	void UpdateCameraShake();
 
-public:
-
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
 	Collider* left = nullptr;
 	Collider* right = nullptr;
 
 	bool spaced = false;
-
-private:
 	
 	bool shaking = false;
 

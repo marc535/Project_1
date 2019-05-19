@@ -566,6 +566,7 @@ update_status ModuleGen::Update()
 
 		action = true;
 		current_animation = &hit;
+		App->render->StartCameraShake(30, 5);
 		if (hit.Finished() == true) {
 			action = false;
 			getsHit = false;
