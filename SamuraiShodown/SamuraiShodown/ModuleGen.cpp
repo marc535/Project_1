@@ -43,8 +43,9 @@ ModuleGen::ModuleGen()
 	backward.loop = false;
 
 	// jump animation
-	jump.PushBack({ 261,1687,67,105 });
-	jump.PushBack({ 330,1715,62,72 });
+	jump.PushBack({ 634,628,80,103 });
+	jump.PushBack({ 720,628,97,86 });
+	jump.PushBack({ 832,647,105,64 });
 
 	jump.speed = 0.07f;
 	jump.loop = false;
