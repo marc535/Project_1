@@ -43,6 +43,13 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	backgroundanim.speed = 0.35f;
 	backgroundanim.loop = false;
 
+	backgroundanim2.PushBack({759, 0, 253, 114 });
+	backgroundanim2.PushBack({ 759, 0, 253, 114 });
+	backgroundanim2.PushBack({ 759, 0, 253, 114 });
+	backgroundanim2.PushBack({ 759, 0, 253, 114 });
+
+
+
 	for (int i = 0; i < 6; i++) {
 
 		for (int j = 0; j < 3; j++) {
@@ -110,6 +117,7 @@ update_status ModuleSceneWelcome::Update()
 		}
 	else{
 			App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
+			
 
 			if (backgroundanim.FinishedAnimation() == true) {
 				
