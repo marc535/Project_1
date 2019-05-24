@@ -8,6 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
+#include "ModuleFonts.h"
 
 
 ModuleSceneWelcome::ModuleSceneWelcome()
@@ -77,6 +78,8 @@ bool ModuleSceneWelcome::Start()
 	LOG("Loading Welcome scene");
 
 	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
+	font_credit = App->fonts->Load("Assets/Fonts/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
+	font_menuu = App->fonts->Load("Assets/Fonts/TextTile.png", "ABCDEFGHIJKLMNOPQRSTUVWYZ-123! ", 1);
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
@@ -99,7 +102,8 @@ bool ModuleSceneWelcome::CleanUp()
 	LOG("Unloading Welcome scene");
 
 	App->textures->Unload(graphics);
-	
+	App->fonts->UnLoad(font_credit);
+	App->fonts->UnLoad(font_menuu);
 	App->audio->CleanUp();
 
 	return true;
@@ -110,10 +114,15 @@ update_status ModuleSceneWelcome::Update()
 {
 
 	// Draw everything --------------------------------------	
+	App->fonts->BlitText(0, 0, 1, "CREDITS 01");
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
+	App->fonts->BlitText(200, 20, 1, "P1=");
+	App->fonts->BlitText(0, 0, 1, "CREDITS 01");
+	//App->fonts->BlitText(10,10,)
 		
 	if (backgroundanim.FinishedAnimation() == true) {
 			App->render->Blit(redlet, 33, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
+			
 		}
 	else{
 			App->render->Blit(anim, 39, 36, &backgroundanim.GetCurrentFrame(), 0.1f, false);
@@ -124,22 +133,8 @@ update_status ModuleSceneWelcome::Update()
 				App->fade->FadeToBlack((Module*)App->scene_welcome, (Module*)App->scene_welcome, 1, 0.5f);
 				
 			}
-		}
-
-
+	}
 		
-	
-
-	
-
-	
-
-
-	//SDL_Rect r = current_animation->GetCurrentFrame();
-	
-	
-
-	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack

@@ -23,6 +23,10 @@ public:
 	SDL_Texture* anim = nullptr;
 	SDL_Texture* redlet = nullptr;
 	SDL_Rect background;
+
+	int font_credit = -1;
+	int font_menuu = -1;
+	
 	
 
 	Animation backgroundanim;
