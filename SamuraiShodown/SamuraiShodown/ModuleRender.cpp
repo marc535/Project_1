@@ -241,6 +241,17 @@ void ModuleRender::MoveCamera()
 		iPoint player_1 = App->player->position;
 		iPoint player_2 = App->player2->position;
 
+		if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
+		{
+			camera.x--;
+			left->rect.x--;
+		}
+		if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
+		{
+			camera.x++;
+			right->rect.x++;
+		}
+
 		if (App->player->flipPlayer == false) {
 
 			if (((player_1.x + 50) - player_2.x) > 250) {
@@ -268,43 +279,36 @@ void ModuleRender::MoveCamera()
 
 		if (!spaced) {
 
-			if ((player_1.x < left->rect.x + left->rect.w)) {	//P1 beyond LEFT_WALL
-				if (player_2.x + 50 < right->rect.x) {			//P2 not beyond RIGHT WALL
-					right->rect.x -= 2 * SCREEN_SIZE;
-					left->rect.x -= 2 * SCREEN_SIZE;
-					camera.x += 2 * SCREEN_SIZE;
+			iPoint player_1 = App->player->position;
+			iPoint player_2 = App->player2->position;
+
+			if ((player_1.x < left->rect.x + left->rect.w)) {
+				if (player_2.x + 50 < right->rect.x) {
+					right->rect.x -= App->player->speed;
+					left->rect.x -= App->player->speed;
+					camera.x -= App->player->speed * SCREEN_SIZE;
 				}
 			}
-			else if ((player_2.x > right->rect.x - 48)) {		//P2 beyond RIGHT_WALL
-				if (player_1.x > left->rect.x + left->rect.w) { //P1 not beyond LEFT WALL
-					right->rect.x += 2 * SCREEN_SIZE;
-					left->rect.x += 2 * SCREEN_SIZE;
-					camera.x -= 2 * SCREEN_SIZE;
+			else if ((player_2.x > right->rect.x - 48)) {
+				if (player_1.x > left->rect.x + left->rect.w) {
+					right->rect.x += App->player->speed;
+					left->rect.x += App->player->speed;
+					camera.x += App->player->speed * SCREEN_SIZE;
 				}
 			}
-			if ((player_2.x < left->rect.x + left->rect.w)) {	//P2 beyond LEFT_WALL
-				if (player_1.x + 50 < right->rect.x) {			//P1 not beyond RIGHT_WALL
-					right->rect.x -= 2 * SCREEN_SIZE;
-					left->rect.x -= 2 * SCREEN_SIZE;
-					camera.x += 2 * SCREEN_SIZE;
+			if ((player_2.x < left->rect.x + left->rect.w)) {
+				if (player_1.x + 50 < right->rect.x) {
+					right->rect.x -= App->player->speed;
+					left->rect.x -= App->player->speed;
+					camera.x -= App->player->speed * SCREEN_SIZE;
 				}
 			}
-			else if ((player_1.x > right->rect.x - 50)) {		//P1 beyond RIGHT_WALL
-				if (player_2.x > left->rect.x + left->rect.w) { //P2 not beyond LEFT WALL
-					right->rect.x += 2 * SCREEN_SIZE;
-					left->rect.x += 2 * SCREEN_SIZE;
-					camera.x -= 2 * SCREEN_SIZE;
+			else if ((player_1.x > right->rect.x - 50)) {
+				if (player_2.x > left->rect.x + left->rect.w) {
+					right->rect.x += App->player->speed;
+					left->rect.x += App->player->speed;
+					camera.x += App->player->speed * SCREEN_SIZE;
 				}
-			}
-			if (camera.x + SCREEN_WIDTH > App->scene_haohmaru->right_wall->rect.x + 150)
-			{
-				camera.x--;
-				left->rect.x--;
-			}
-			if (camera.x < App->scene_haohmaru->left_wall->rect.x - 150)
-			{
-				camera.x++;
-				right->rect.x++;
 			}
 		}
 

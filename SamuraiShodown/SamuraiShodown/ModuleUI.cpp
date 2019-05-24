@@ -30,9 +30,9 @@ bool ModuleUI::Start() {
 	is_draw = false;
 	LOG("Loading UI\n");
 
-	font_time = App->fonts->Load("Assets/TimeTile.png", "0123456789", 1);
-	font_name = App->fonts->Load("Assets/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
-	font_menu = App->fonts->Load("Assets/TextTile.png", "ABCDEFGHIJKLMNOPQRSTUVWYZ-123! ", 1);
+	font_time = App->fonts->Load("Assets/Fonts/TimeTile.png", "0123456789", 1);
+	font_name = App->fonts->Load("Assets/Fonts/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
+	font_menu = App->fonts->Load("Assets/Fonts/TextTile.png", "ABCDEFGHIJKLMNOPQRSTUVWYZ-123! ", 1);
 	ui_png = App->textures->Load("Assets/Textures/in_gameUI.png");
 
 

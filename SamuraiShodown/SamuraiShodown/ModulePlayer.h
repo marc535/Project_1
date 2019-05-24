@@ -119,6 +119,7 @@ public:
 	int var2 = 0;
 
 	int hp = 8000;
+	int speed = 2;
 	
 	int playerControlTime = 0;
 
