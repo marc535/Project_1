@@ -648,6 +648,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		getsHit = true;
 		hp -= 20;
 		Mix_PlayChannel(-1, App->audio->effects[8], 0);
+
+	case COLLIDER_WALL:
+		if (flipPlayer) {
+
+			position.x -= speed;
+		}
+		else {
+
+			position.x += speed;
+		}
 	}
 }
 
