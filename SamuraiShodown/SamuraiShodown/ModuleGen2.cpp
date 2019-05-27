@@ -38,8 +38,9 @@ ModuleGen2::ModuleGen2()
 	backward.speed = 0.14f;
 
 	// jump animation
-	jump.PushBack({ 261,1687,67,105 });
-	jump.PushBack({ 330,1715,62,72 });
+	jump.PushBack({ 575,645,90,103 });
+	jump.PushBack({ 671,645,97,86 });
+	jump.PushBack({ 783,664,105,65 });
 	jump.speed = 0.07f;
 
 	// kick animation
