@@ -196,8 +196,7 @@ void ModuleRender::MoveCamera()
 					right->rect.x -= 2 * SCREEN_SIZE;
 					left->rect.x -= 2 * SCREEN_SIZE;
 					camera.x += 2 * SCREEN_SIZE;
-					App->UI->hpBar1.x += 2;
-					App->UI->rect.x += 2;
+					
 
 				}
 			}
@@ -206,7 +205,7 @@ void ModuleRender::MoveCamera()
 					right->rect.x += 2 * SCREEN_SIZE;
 					left->rect.x += 2 * SCREEN_SIZE;
 					camera.x -= 2 * SCREEN_SIZE;
-					App->UI->hpBar1.x += 2;
+					
 				}
 			}
 			if ((player_2.x < left->rect.x + left->rect.w)) {
@@ -214,7 +213,7 @@ void ModuleRender::MoveCamera()
 					right->rect.x -= 2 * SCREEN_SIZE;
 					left->rect.x -= 2 * SCREEN_SIZE;
 					camera.x += 2 * SCREEN_SIZE;
-					App->UI->hpBar1.x -= 2;
+					
 				}
 			}
 			else if ((player_1.x > right->rect.x - 50)) {
@@ -222,7 +221,8 @@ void ModuleRender::MoveCamera()
 					right->rect.x += 2 * SCREEN_SIZE;
 					left->rect.x += 2 * SCREEN_SIZE;
 					camera.x -= 2 * SCREEN_SIZE;
-					App->UI->hpBar1.x += 2;
+					
+					
 				}
 			}
 
