@@ -8,7 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
-#include "ModuleFonts.h"
+
 
 
 ModuleSceneWelcome::ModuleSceneWelcome()
@@ -18,6 +18,11 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	background.h = 224;
 	background.x = 0;
 	background.y = 0;
+
+	SNK.w = 78;
+	SNK.h = 21;
+	SNK.x = 93;
+	SNK.y = 0;
 
 	/*backgroundanim.PushBack({ 82, 52, 55, 70 });
 	backgroundanim.PushBack({ 82, 182, 55, 70 });
@@ -50,6 +55,13 @@ ModuleSceneWelcome::ModuleSceneWelcome()
 	backgroundanim2.PushBack({ 759, 0, 253, 114 });
 
 
+	// insert coin animation
+	insertcoin.PushBack({ 0,0,89,9 });
+	insertcoin.PushBack({ 0,10,89,9 });
+
+	insertcoin.speed = 0.03f;
+	insertcoin.loop = true;
+
 
 	for (int i = 0; i < 6; i++) {
 
@@ -78,8 +90,7 @@ bool ModuleSceneWelcome::Start()
 	LOG("Loading Welcome scene");
 
 	App->audio->soundtracks[2] = Mix_LoadMUS("Assets/audio/Pregame/Title.ogg");
-	font_credit = App->fonts->Load("Assets/Fonts/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
-	font_menuu = App->fonts->Load("Assets/Fonts/TextTile.png", "ABCDEFGHIJKLMNOPQRSTUVWYZ-123! ", 1);
+	
 
 	if (!App->audio->soundtracks[2]) {
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
@@ -88,6 +99,7 @@ bool ModuleSceneWelcome::Start()
 		graphics = App->textures->Load("Assets/Textures/menus.png");
 		anim = App->textures->Load("Assets/Textures/white_letters.png");
 		redlet = App->textures->Load("Assets/Textures/3SamuraiShodownLetters.png");
+		coin = App->textures->Load("Assets/Textures/extras.png");
 		Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 
@@ -102,8 +114,7 @@ bool ModuleSceneWelcome::CleanUp()
 	LOG("Unloading Welcome scene");
 
 	App->textures->Unload(graphics);
-	App->fonts->UnLoad(font_credit);
-	App->fonts->UnLoad(font_menuu);
+	
 	App->audio->CleanUp();
 
 	return true;
@@ -114,14 +125,19 @@ update_status ModuleSceneWelcome::Update()
 {
 
 	// Draw everything --------------------------------------	
-	App->fonts->BlitText(0, 0, 1, "CREDITS 01");
+	
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //Welcome Image
-	App->fonts->BlitText(200, 20, 1, "P1=");
-	App->fonts->BlitText(0, 0, 1, "CREDITS 01");
-	//App->fonts->BlitText(10,10,)
-		
+	
+	
 	if (backgroundanim.FinishedAnimation() == true) {
 			App->render->Blit(redlet, 33, 55, &backgroundanim2.GetCurrentFrame(), 0.1f, false); 
+
+			if (backgroundanim2.FinishedAnimation() == true) {
+
+				App->render->Blit(coin, 115, 177, &insertcoin.GetCurrentFrame(), 0.1f, false);
+				App->render->Blit(coin, 20, 193, &SNK, 0.1f, false); //SNK Image
+
+			}
 			
 		}
 	else{

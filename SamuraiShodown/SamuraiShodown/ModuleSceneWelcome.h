@@ -22,15 +22,19 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* anim = nullptr;
 	SDL_Texture* redlet = nullptr;
+	SDL_Texture* coin = nullptr;
+	
 	SDL_Rect background;
+	SDL_Rect SNK;
 
-	int font_credit = -1;
-	int font_menuu = -1;
+	
 	
 	
 
 	Animation backgroundanim;
 	Animation backgroundanim2;
+	Animation insertcoin;
+	
 };
 
 #endif // __MODULESCENEWELC_H__
