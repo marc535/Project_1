@@ -5,51 +5,53 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
-#include "p2Qeue.h"
+#include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "SDL/include/SDL_render.h"
 
 struct SDL_Texture;
 
-enum player_states
+enum States
 {
-	ST_UNKNOWN,
-
-	ST_IDLE,
-	ST_WALK_FORWARD,
-	ST_WALK_BACKWARD,
-	ST_JUMP_NEUTRAL,
-	ST_JUMP_FORWARD,
-	ST_JUMP_BACKWARD,
-	ST_CROUCH,
-	ST_SLASH_STANDING,
-	ST_SLASH_NEUTRAL_JUMP,
-	ST_SLASH_FORWARD_JUMP,
-	ST_SLASH_BACKWARD_JUMP,
-	ST_SLASH_CROUCH,
-	ST_KICK_STANDING,
-	ST_SPECIAL,
-	ST_DEAD,
-	ST_VICTORY,
+	BACKWARD,
+	CROUCH_UP,
+	CROUCH_DOWN,
+	CROUCH_KICK,
+	CROUCH_PUNCH,
+	JUMP_NEUTRAL,
+	JUMP_FORWARD,
+	JUMP_BACKWARD,
+	JUMP_PUNCH,
+	JUMP_KICK,
+	JUMP_HEAVY_PUNCH,
+	FORWARD,
+	HEAVY_PUNCH,
+	HEAVY_KICK,
+	IDLE,
+	KICK,
+	PUNCH,
+	TWISTER,
+	HIT,
+	EN_GARDE,
+	GRAB,
+	WIN,
+	DEATH,
+	SPECIAL_ATTACK,
 };
 
-enum player_inputs
-{
-	IN_LEFT_DOWN,
-	IN_LEFT_UP,
-	IN_RIGHT_DOWN,
-	IN_RIGHT_UP,
-	IN_LEFT_AND_RIGHT,
-	IN_JUMP,
-	IN_CROUCH_UP,
-	IN_CROUCH_DOWN,
-	IN_JUMP_AND_CROUCH,
-	IN_SLASH,
-	IN_KICK,
-	IN_SPECIAL,
-	IN_JUMP_FINISH,
-	IN_KICK_FINISH,
-	IN_SLASH_FINISH,
-	IN_SPECIAL_FINISH
+struct PlayerInput {
+
+	bool pressing_A;
+	bool pressing_D;
+	bool pressing_C;
+	bool pressing_B;
+	bool pressing_W;
+	bool pressing_S;
+	bool pressing_V;
+	bool pressing_Q;
+	bool pressing_N;
+	bool pressing_M;
+	bool pressing_F4;
 };
 
 class ModulePlayer : public Module
@@ -58,74 +60,75 @@ public:
 	ModulePlayer();
 	~ModulePlayer();
 
-	bool Start();
+	virtual bool Start();
+	update_status PreUpdate();
 	update_status Update();
-	bool CleanUp();
-
-	void OnCollision(Collider* c1, Collider* c2);
-	void OnPassing(ModulePlayer2* p2);
-
-	bool external_input(p2Qeue<player_inputs>& inputs);
-	player_states process_fsm(p2Qeue<player_inputs>& inputs);
-
+	virtual bool CleanUp();
+	//virtual void OnCollision(Collider* c1, Collider* c2);
+	virtual void BlockControls(bool block);
 public:
-	p2Qeue<player_inputs> inputs;
-	player_states current_state = ST_UNKNOWN;
-
-	SDL_Texture* graphics = nullptr;
-
-	Collider* p1Collider = nullptr;
-	Collider* attack = nullptr;
+	SDL_Texture* player_textures = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;
-	Animation jump;
+	Animation punch;
+	Animation heavy_punch;
 	Animation kick;
-	Animation tornadoMove;
-	Animation sAttack;
-	Animation crouchD;
-	Animation crouchU;
-	Animation JumpForward;
-	Animation JumpBackward;
-	Animation sCrouch;
-	Animation kcrouch;
+	Animation heavy_kick;
 	Animation hit;
-	Animation death;
-	Animation dead;
+	Animation jump_neutral;
+	Animation jump_forward;
+	Animation jump_backward;
+	Animation jump_punch;
+	Animation jump_kick;
+	Animation jump_heavy_punch;
+	Animation crouch_up;
+	Animation crouch_down;
+	Animation crouch_punch;
+	Animation crouch_kick;
+	Animation twister;
+	Animation twisterAlone;
+	Animation fire_sword;
+	Animation en_garde;
+	Animation specialattack;
+	Animation grab;
+	Animation win;
+	Animation die;
+	int hit_percent = 0;
+	int hit_done = 0;
 	iPoint position;
+	iPoint lposition;
+	bool god = false;
+	iPoint initial_position;
+	Collider *collider_player_up = nullptr;
+	Collider *collider_player_mid = nullptr;
+	Collider *collider_player_down = nullptr;
+	Collider *collider_player_attack = nullptr;
+	int life = 100;
+	int mult = 1;
+	int direction_x = 0;
+	Animation* current_animation = nullptr;
+	PlayerInput player_input;
+	States state;
+	float speed = 2;
+	bool are_particles_created = false;
+	bool shadow_blit = true;
+	Mix_Chunk* light_attack_fx;
+	Mix_Chunk* light_kick_fx;
+	Mix_Chunk* twister_fx;
+	Mix_Chunk* hit_fx;
+	Mix_Chunk* special_attack_fx;
+	int attack_frames = 0;
+	void PlayerCollidersCleanUp();
+	int shadow_x;
+	int shadow_w = 70;
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
+	bool controls = true;
 
-	bool jumped = false;
-	bool jumpedF = false;
-	bool jumpedB = false;
-	bool grounded = false;
-	bool action = true;
-	bool kicked = false;
-	bool tornadoMov = false;
-	bool attacking = false;
-	bool crouched = false;
-	bool sCrouched = false;
-	bool sJump = false;
-	bool sJumpF = false;
-	bool sJumpB = false;
-	bool getsHit = false;
-	
-	
-	bool flipPlayer = false;
-	bool godMode = false;
+
+
+	//cosa varias
 	bool isDead = false;
-	
-
-	int var1 = 0;
-	int var2 = 0;
-
-	int hp = 8000;
-	int speed = 2;
-	
-	int playerControlTime = 0;
-
-	Mix_Chunk* kicks;
-	Mix_Chunk* tornados;
-
 };
 
-#endif
+#endif // __ModulePlayer_H__

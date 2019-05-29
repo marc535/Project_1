@@ -20,10 +20,12 @@ public:
 	//void VictorySprite();
 
 
+
 public:
 	SDL_Texture * ui_png = nullptr;
 
-	
+	int player1_point;
+	int player2_point;
 
 	//BARS
 	int maxHP = 0;

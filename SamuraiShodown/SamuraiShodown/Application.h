@@ -53,6 +53,8 @@ public:
 	ModuleUI* UI;
 	ModuleFonts* fonts;
 
+	bool is_paused = false;
+
 public:
 
 	Application();
@@ -61,7 +63,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
-
+	void ChangePause();
 };
 
 // Global var made extern for Application ---

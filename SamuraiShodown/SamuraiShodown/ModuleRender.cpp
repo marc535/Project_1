@@ -256,7 +256,7 @@ void ModuleRender::MoveCamera()
 			camera.x++;
 			right->rect.x++;
 		}
-
+		/*
 		if (App->player->flipPlayer == false) {
 
 			if (((player_1.x + 50) - player_2.x) > 250) {
@@ -281,7 +281,7 @@ void ModuleRender::MoveCamera()
 			}
 
 		}
-
+*/
 		if (!spaced) {
 
 			iPoint player_1 = App->player->position;

@@ -116,3 +116,8 @@ bool Application::CleanUp()
 
 	return ret;
 }
+
+void Application::ChangePause()
+{
+	is_paused = !is_paused;
+}

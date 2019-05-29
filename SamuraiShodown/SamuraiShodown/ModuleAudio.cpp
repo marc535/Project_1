@@ -73,3 +73,44 @@ bool ModuleAudio::CleanUp()
 
 	return true;
 }
+
+Mix_Chunk* ModuleAudio::LoadFX(const char* path) {
+	Mix_Chunk* fx;
+	fx = Mix_LoadWAV(path);
+	if (!fx)
+	{
+		LOG("Mix_LoadWAV: %s\n", Mix_GetError());
+	}
+	for (int i = 0; i < MAX_EFFECTS; i++)
+	{
+		if (effects[i] == nullptr)
+		{
+			effects[i] = fx;
+			break;
+		}
+	}
+	return fx;
+}
+
+bool ModuleAudio::PlayFX(Mix_Chunk* fx) {
+	if (Mix_PlayChannel(-1, fx, 0) == -1)
+	{
+		LOG("Mix_PlayChannel: %s\n", Mix_GetError());
+		return false;
+	}
+	//Mix_FreeChunk(fx);
+	return true;
+}
+
+bool ModuleAudio::UnLoadFx(Mix_Chunk * chunk)
+{
+	for (int i = 0; i < MAX_EFFECTS; ++i) {
+		if (effects[i] == chunk) {
+			Mix_FreeChunk(chunk);
+			effects[i] = nullptr;
+			chunk = nullptr;
+			break;
+		}
+	}
+	return true;
+}

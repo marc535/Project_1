@@ -17,6 +17,9 @@ public:
 	ModuleAudio();
 	~ModuleAudio();
 
+	Mix_Chunk* LoadFX(const char* path);
+	bool PlayFX(Mix_Chunk* chunk);
+	bool UnLoadFx(Mix_Chunk* chunk);
 
 	bool Init();
 	bool CleanUp();

@@ -52,11 +52,11 @@ bool ModuleUI::Start() {
 	}
 
 	if (App->scene_haohmaru->IsEnabled() == true) {
-		App->player->hp = 8000;
+		App->player->life = 8000;
 		App->player2->hp = 8000;
 		currentW_player1 = hpBar1.w;
 
-		maxHP = App->player->hp;
+		maxHP = App->player->life;
 		currentW_player2 = hpBar2.w;
 		current_hp2 = maxHP;
 		current_hp1 = maxHP;
@@ -198,11 +198,11 @@ void ModuleUI::UpdateBars()
 	}
 	else if(App->scene_haohmaru->IsEnabled() == true) {
 	
-		if (App->player->hp < 2400 || App->player2->hp < 2400) { animKO = true; }
+		if (App->player->life < 2400 || App->player2->hp < 2400) { animKO = true; }
 
-		if (current_hp1 != App->player->hp) {
+		if (current_hp1 != App->player->life) {
 			int new_width = currentW_player1;
-			int quantity = App->player->hp - current_hp1;
+			int quantity = App->player->life - current_hp1;
 			int new_quantity = (current_hp1 + quantity);
 			current_hp1 += quantity;
 

@@ -4,6 +4,7 @@
 #include "SDL/include/SDL_rect.h"
 #define MAX_FRAMES 48
 
+
 class Animation
 {
 public:
@@ -48,11 +49,18 @@ public:
 		Finish = false;
 	}
 
+	int SeeCurrentFrame() {
+		return (int)current_frame;
+	}
+
 	bool FinishedAnimation() {
 		return Finish;
 	}
 	void finishingAnimation(bool end) {
 		Finish = end;
+	}
+	SDL_Rect GetCurrentRect() {
+		return frames[(int)current_frame];
 	}
 
 

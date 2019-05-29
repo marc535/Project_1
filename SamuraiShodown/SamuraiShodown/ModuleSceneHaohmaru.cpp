@@ -42,8 +42,8 @@ bool ModuleSceneHaohmaru::Start()
 	LOG("Collision Enabled");
 	App->UI->Enable();
 	LOG("UI Enabled");
-	App->player->inputs.Clear();
-	App->player->hp = 8000;
+	//App->player->inputs.Clear();
+	App->player->life = 8000;
 	App->player->position.x = 50;
 	App->player->isDead = false;
 
@@ -119,7 +119,7 @@ update_status ModuleSceneHaohmaru::Update()
 	}
 	if (App->player->isDead == true) {
 
-		App->player->action = true;
+		//App->player->action = true;
 		App->player2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -135,7 +135,7 @@ update_status ModuleSceneHaohmaru::Update()
 	}
 	if (App->player2->isDead == true) {
 
-		App->player->action = true;
+	//	App->player->action = true;
 		App->player2->action = true;
 
 		for (uint i = 0; i < MAX_COLLIDERS; ++i)
