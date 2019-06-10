@@ -98,6 +98,9 @@ public:
 	Animation mediumattack;
 	Animation mediumattackj;
 	Animation mediumattackc;
+
+	
+
 	iPoint position;
 
 	bool jumped = false;

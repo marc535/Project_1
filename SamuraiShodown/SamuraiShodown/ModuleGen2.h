@@ -92,6 +92,7 @@ public:
 	Animation hit;
 	Animation death;
 	Animation dead;
+	Animation lightattackc;
 	iPoint position;
 
 	bool jumped = false;
