@@ -817,7 +817,7 @@ update_status ModulePlayer::PreUpdate()
 			player_input.pressing_A = App->input->keyboard[SDL_SCANCODE_A] == KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000;
 			player_input.pressing_D = App->input->keyboard[SDL_SCANCODE_D] == KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000;
 			player_input.pressing_S = App->input->keyboard[SDL_SCANCODE_S] == KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) >= 10000;
-			player_input.pressing_W = App->input->keyboard[SDL_SCANCODE_W] == KEY_DOWN || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
+			player_input.pressing_W = App->input->keyboard[SDL_SCANCODE_W] == KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000;
 			player_input.pressing_C = App->input->keyboard[SDL_SCANCODE_C] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN;
 			player_input.pressing_V = App->input->keyboard[SDL_SCANCODE_V] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN;
 			player_input.pressing_B = App->input->keyboard[SDL_SCANCODE_B] == KEY_DOWN || App->input->game_pad[SDL_CONTROLLER_BUTTON_Y][GAME_PAD_1] == KEY_DOWN;
@@ -831,7 +831,10 @@ update_status ModulePlayer::PreUpdate()
 			}
 
 		}
-
+if ((position.y < initial_position.y) && ((state != JUMP_BACKWARD) && (state != JUMP_NEUTRAL) && (state != JUMP_FORWARD) && (state != HIT) && (state != SPECIAL_ATTACK) && (state != JUMP_PUNCH) && (state != JUMP_KICK)))
+	{
+		state = JUMP_NEUTRAL;
+	}
 		//states 
 		{
 			if (state == IDLE) {
@@ -858,6 +861,7 @@ update_status ModulePlayer::PreUpdate()
 					state = HEAVY_KICK;
 					hit_done++;
 					App->audio->PlayFX(light_kick_fx);
+					LOG("HEAVY KICK");
 				}
 				if (player_input.pressing_M) {
 					//App->audio->PlayFX(twister_fx);
@@ -868,10 +872,13 @@ update_status ModulePlayer::PreUpdate()
 					App->render->StartCameraShake(1200, 2);
 					//App->render->StartSlowdown(750, 20);
 				}
-				if (player_input.pressing_W)
+				if (player_input.pressing_W) {
 					state = JUMP_NEUTRAL;
-				if (player_input.pressing_S)
+					LOG("SALTO");
+				}
+				if (player_input.pressing_S) {
 					state = CROUCH_DOWN;
+				}
 			}
 			if (state == BACKWARD) {
 				if (!player_input.pressing_A)
@@ -1226,7 +1233,7 @@ update_status ModulePlayer::Update()
 		case FORWARD:
 			current_animation = &forward;
 			position.x += speed;
-			//haohmaru
+			//haohmarucscs
 			/*
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				collider_player_up->SetPos(position.x - 10, position.y - 85);
@@ -1521,13 +1528,34 @@ update_status ModulePlayer::Update()
 			break;
 		case JUMP_NEUTRAL:
 			current_animation = &jump_neutral;
+			
+
+			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
+			grounded = true;
+
+
+			if (position.y > 210 && grounded == true)	//end of the jump
+			{
+				state = IDLE;
+				jump_neutral.Reset();
+				var1 = 0;
+				grounded = false;
+				jumped = false;
+				position.y = 210;
+				
+
+			}
+			var1++;
+
+			/*
+			current_animation = &jump_neutral;
 
 			position.y -= speed * 2 * mult;
 
 			if (position.y <= 100) {
 				mult = -1;
 			}
-			else if (position.y == initial_position.y)
+		else if (position.y == initial_position.y)
 			{
 				mult = 1;
 				jump_neutral.Reset();
@@ -1538,7 +1566,10 @@ update_status ModulePlayer::Update()
 			{
 				position.y = initial_position.y;
 				mult = 1;
-			}
+			}*/
+
+
+
 			//haohmaru
 			/*
 			if (flip == SDL_FLIP_HORIZONTAL) {
@@ -1562,6 +1593,7 @@ update_status ModulePlayer::Update()
 			}
 			*/
 			//wan-fu jump neutral
+			
 			if (flip == SDL_FLIP_HORIZONTAL) {
 				if (collider_player_up != nullptr)
 				{
@@ -1586,6 +1618,7 @@ update_status ModulePlayer::Update()
 					collider_player_down->SetSize(55, 35);
 				}
 			}
+
 			break;
 		case JUMP_FORWARD:
 			current_animation = &jump_forward;
@@ -2359,10 +2392,7 @@ update_status ModulePlayer::Update()
 			break;
 		}
 	}
-	if ((position.y < initial_position.y) && ((state != JUMP_BACKWARD) && (state != JUMP_NEUTRAL) && (state != JUMP_FORWARD) && (state != HIT) && (state != SPECIAL_ATTACK) && (state != JUMP_PUNCH) && (state != JUMP_KICK)))
-	{
-		state = JUMP_NEUTRAL;
-	}
+	
 	//Draw everything
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	//haohmaru shadow
