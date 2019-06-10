@@ -53,7 +53,51 @@ ModuleGen::ModuleGen()
 
 	//light attack jumping
 
+	//medium attack
 
+	mediumattack.PushBack({ 42,2299,96,70 });
+	mediumattack.PushBack({ 139,2299,96,70 });
+	mediumattack.PushBack({ 238,2300,150,69 });
+	mediumattack.PushBack({ 389,2300,150,69 });
+	mediumattack.PushBack({ 542,2300,166,69 });
+	mediumattack.PushBack({ 711,2300,166,69 });
+	mediumattack.PushBack({ 878,2300,166,69 });
+	mediumattack.PushBack({ 1045,2300,166,69 });
+	mediumattack.PushBack({ 1212,2300,166,69 });
+	mediumattack.PushBack({ 1379,2300,166,69 });
+	mediumattack.PushBack({ 1547,2275,94,70 });
+	mediumattack.PushBack({ 1647,2275,94,70 });
+	mediumattack.PushBack({ 1747,2287,89,82 });
+	mediumattack.PushBack({ 1837,2287,89,82 });
+	mediumattack.PushBack({ 1928,2297,83,72 });
+	mediumattack.PushBack({ 1761,2203,83,72 });
+	mediumattack.PushBack({ 1857,2203,88,72 });
+	mediumattack.PushBack({ 1953,2203,88,72 });
+
+	mediumattack.speed = 0.4f;
+	mediumattack.loop = false;
+
+	//medium attack crouch
+
+	mediumattackc.PushBack({ 42,2394,103,56 });
+	mediumattackc.PushBack({ 147,2394,103,56 });
+	mediumattackc.PushBack({ 254,2392,157,58 });
+	mediumattackc.PushBack({ 411,2392,157,58 });
+	mediumattackc.PushBack({ 568,2393,169,57 });
+	mediumattackc.PushBack({ 737,2393,169,57 });
+	mediumattackc.PushBack({ 906,2393,169,57 });
+	mediumattackc.PushBack({ 1075,2393,169,57 });
+	mediumattackc.PushBack({ 1244,2393,169,57 });
+	mediumattackc.PushBack({ 1413,2393,169,57 });
+	mediumattackc.PushBack({ 1582,2375,101,75 });
+	mediumattackc.PushBack({ 1683,2375,101,75 });
+	mediumattackc.PushBack({ 1784,2369,89,81 });
+	mediumattackc.PushBack({ 1873,2369,89,81 });
+	mediumattackc.PushBack({ 1962,2378,82,81 });
+	mediumattackc.PushBack({ 1962,2450,82,81 });
+
+	mediumattackc.speed = 0.4f;
+	mediumattackc.loop = false;
 
 
 	// idle animation
