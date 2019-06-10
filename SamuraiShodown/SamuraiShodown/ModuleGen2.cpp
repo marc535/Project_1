@@ -14,6 +14,24 @@ ModuleGen2::ModuleGen2()
 	position.x = 200;
 	position.y = 210;
 
+	// light attack crouch
+
+	lightattackc.PushBack({ 42,2087,88,56 });
+	lightattackc.PushBack({ 132,2087,88,56 });
+	lightattackc.PushBack({ 220,2087,103,56 });
+	lightattackc.PushBack({ 326,2087,103,56 });
+	lightattackc.PushBack({ 434,2085,158,54 });
+	lightattackc.PushBack({ 607,2085,158,54 });
+	lightattackc.PushBack({ 775,2086,170,55 });
+	lightattackc.PushBack({ 945,2086,170,55 });
+	lightattackc.PushBack({ 1118,2086,169,55 });
+	lightattackc.PushBack({ 1290,2086,169,55 });
+	lightattackc.PushBack({ 1461,2086,169,55 });
+	lightattackc.PushBack({ 1633,2086,169,55 });
+
+	lightattackc.speed = 0.14f;
+	lightattackc.loop = false;
+
 	// idle animation
 	idle.PushBack({ 1722,555,68,122 });
 	idle.PushBack({ 1818,564,81,113 });

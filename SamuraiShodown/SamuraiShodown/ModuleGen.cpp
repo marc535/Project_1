@@ -15,6 +15,47 @@ ModuleGen::ModuleGen()
 	position.x = 50;
 	position.y = 210;
 
+	// light attack crouch
+
+	lightattackc.PushBack({ 42,2087,88,56 });
+	lightattackc.PushBack({ 132,2087,88,56 });
+	lightattackc.PushBack({ 220,2087,103,56 });
+	lightattackc.PushBack({ 326,2087,103,56 });
+	lightattackc.PushBack({ 434,2085,158,54 });
+	lightattackc.PushBack({ 607,2085,158,54 });
+	lightattackc.PushBack({ 775,2086,170,55 });
+	lightattackc.PushBack({ 945,2086,170,55 });
+	lightattackc.PushBack({ 1118,2086,169,55 });
+	lightattackc.PushBack({ 1290,2086,169,55 });
+	lightattackc.PushBack({ 1461,2086,169,55 });
+	lightattackc.PushBack({ 1633,2086,169,55 });
+
+	lightattackc.speed = 0.4f;
+	lightattackc.loop = false;
+
+
+	//light attack 
+
+	lightattack.PushBack({ 1222,2205,96,70 });
+	lightattack.PushBack({ 1327,2205,96,70 });
+	lightattack.PushBack({ 1427,2206,150,69 });
+	lightattack.PushBack({ 42,2206,150,69 });
+	lightattack.PushBack({ 193,2206,166,69 });
+	lightattack.PushBack({ 363,2206,166,69 });
+	lightattack.PushBack({ 532,2206,166,69 });
+	lightattack.PushBack({ 700,2206,166,69 });
+	lightattack.PushBack({ 868,2206,166,69 });
+	lightattack.PushBack({ 1036,2206,166,69 });
+
+	lightattack.speed = 0.4f;
+	lightattack.loop = false;
+
+
+	//light attack jumping
+
+
+
+
 	// idle animation
 	idle.PushBack({ 1722,555,68,122 });
 	idle.PushBack({ 1818,564,81,113 });
