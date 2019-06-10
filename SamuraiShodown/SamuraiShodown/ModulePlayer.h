@@ -126,6 +126,11 @@ public:
 	bool controls = true;
 
 
+	bool jumped = false;
+	bool grounded = false;
+	int var1 = 0;
+	float yVelocity = 15.1f;
+    float yAcceleration = 0.87f;
 
 	//cosa varias
 	bool isDead = false;
