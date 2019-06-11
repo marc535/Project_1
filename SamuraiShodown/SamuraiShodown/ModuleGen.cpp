@@ -188,6 +188,8 @@ ModuleGen::ModuleGen()
 	poison.PushBack({ 538,2834,227,92 });
 	poison.PushBack({ 1239,2845,174,73 });
 
+	poison.speed = 0.14f;
+	poison.loop = false;
 
 
 	// tornado move animation
