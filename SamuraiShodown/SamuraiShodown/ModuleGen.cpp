@@ -269,7 +269,7 @@ bool ModuleGen::Start()
 	
 	App->audio->effects[10] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/attackgen.wav");
 	App->audio->effects[11] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/SLASHGEN.wav");
-	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
+	App->audio->effects[12] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/GenAn/POISONCLOUD.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
 	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
@@ -465,7 +465,7 @@ update_status ModuleGen::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
-		//Mix_PlayChannel(-1, App->audio->effects[3], 0);
+		Mix_PlayChannel(-1, App->audio->effects[12], 0);
 		//Mix_PlayChannel(-1, App->audio->effects[4], 0);
 		tornadoMov = true;
 		action = true;
