@@ -137,13 +137,23 @@ ModuleGen::ModuleGen()
 
 
 	// kick animation
-	kick.PushBack({ 305,141,66,95 });
-	kick.PushBack({ 372,138,86,98 });
-	kick.PushBack({ 305,141,66,95 });
-	//kick.PushBack({22, 0, 73, 118});
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 556,2450,82,109 });
+	kick.PushBack({ 556,2450,82,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 45,2450,82,124 });
 
-	kick.speed = 0.14f;
-	kick.loop = false;
+	kick.speed = 0.5f;
+	kick.loop = true;
 
 	// tornado move animation
 	tornadoMove.PushBack({ 22, 247, 102, 102 });
@@ -173,17 +183,17 @@ ModuleGen::ModuleGen()
 
 	// crouch 
 
-	crouch.PushBack({ 257,1612,88,76 });
+	crouch.PushBack({ 257,1612,88,56 });
 
 	//crouch right & left
-	crouchD.PushBack({ 345, 1612, 83, 74 });
-	crouchD.PushBack({ 430, 1612, 89, 75 });
-	crouchD.PushBack({ 526, 1612, 99, 76 });
-	crouchD.PushBack({ 626, 1612, 95, 77 });
-	crouchD.PushBack({ 730, 1612, 89, 77 });
+	crouchD.PushBack({ 345, 1612, 83, 54 });
+	crouchD.PushBack({ 430, 1612, 89, 55 });
+	crouchD.PushBack({ 526, 1612, 99, 56 });
+	crouchD.PushBack({ 626, 1612, 95, 57 });
+	crouchD.PushBack({ 730, 1612, 89, 57 });
 
-	crouchD.speed = 0.3f;
-	crouchD.loop = false;
+	crouchD.speed = 0.14f;
+	crouchD.loop = true;
 
 	// jump forward
 
@@ -220,8 +230,8 @@ ModuleGen::ModuleGen()
 	sCrouch.PushBack({ 944,739,81,68 });
 	sCrouch.PushBack({ 1070,739,81,68 });
 	sCrouch.PushBack({ 1182,738,83,69 });
-	sCrouch.speed = 0.3f;
-	sCrouch.loop = false;
+	sCrouch.speed = 0.1f;
+	sCrouch.loop = true;
 
 	// coruch kick anim
 	
@@ -435,6 +445,23 @@ update_status ModuleGen::Update()
 
 		crouched = true;
 		action = true;
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000 && !kicked && !tornadoMov)
+		{
+			crouchedD = true;
+			action = true;
+			if (!action && !flipPlayer) { current_animation = &crouchD; }
+			if (!action && flipPlayer) { current_animation = &crouchD; }
+			position.x += speed;
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000 && !kicked && !tornadoMov)
+		{
+			crouchedD = true;
+			action = true;
+			if (!action && !flipPlayer) { current_animation = &crouchD; }
+			if (!action && flipPlayer) { current_animation = &crouchD; }
+			position.x += speed;
+		}
 
 	}
 		
@@ -461,6 +488,14 @@ update_status ModuleGen::Update()
 	{
        // Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		Mix_PlayChannel(-1, App->audio->effects[11], 0);
+		mediumAttack = true;
+		action = true;
+
+	}
+	if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_1] == KEY_DOWN && !action && !jumped)
+	{
+		//Mix_PlayChannel(-1, App->audio->effects[2], 0);
+	//	Mix_PlayChannel(-1, App->audio->effects[11], 0);
 		kicked = true;
 		action = true;
 
@@ -592,14 +627,30 @@ update_status ModuleGen::Update()
 
 		if (kicked) {
 
+			current_animation = &kick;
+
+			if (kick.FinishedAnimation() == true) {
+				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
+				kicked = false;
+				action = false;
+				//		attack->to_delete = true;
+				Ginputs.Push(ING_KICK_FINISH);
+
+				kick.finishingAnimation(false);
+			}
+
+		}
+
+		if (mediumAttack) {
+
 			current_animation = &mediumattack;
 
 			if (mediumattack.FinishedAnimation() == true) {
 				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
-				kicked = false;
+				mediumAttack = false;
 				action = false;
 		//		attack->to_delete = true;
-				Ginputs.Push(ING_KICK_FINISH);
+				Ginputs.Push(ING_MATTACK_FINISH);
 
 				mediumattack.finishingAnimation(false);
 			}
@@ -649,16 +700,30 @@ update_status ModuleGen::Update()
 		}*/
 		if (crouched) {
 
+			current_animation = &crouch;
+			if (crouch.FinishedAnimation() == true) {
+
+				crouched = false;
+				action = false;
+
+				crouch.finishingAnimation(false);
+			}
+
+		}
+
+		if (crouchedD) {
+
 			current_animation = &crouchD;
 			if (crouchD.FinishedAnimation() == true) {
 
-				crouched = false;
+				crouchedD = false;
 				action = false;
 
 				crouchD.finishingAnimation(false);
 			}
 
 		}
+
 		if (isDead) {
 
 			current_animation = &death;
