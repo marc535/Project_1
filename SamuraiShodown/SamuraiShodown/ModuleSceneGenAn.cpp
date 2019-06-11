@@ -154,8 +154,24 @@ update_status ModuleSceneGenAn::Update()
 
 	App->fonts->BlitText(255, 31, 1, "GEN-AN");
 	App->fonts->BlitText(20, 31, 1, "GEN-AN");
-	App->render->MoveCamera();
+	//App->render->MoveCamera();
+	if (App->gen->flipPlayer == false && App->gen->position.x < App->render->camera.x) {
 
+		App->gen->position.x = App->render->camera.x;
+	}
+	if (App->gen->flipPlayer == true && (App->gen->position.x + App->gen->GenCollider->rect.w) > SCREEN_WIDTH) {
+
+		App->gen->position.x = SCREEN_WIDTH - App->gen->GenCollider->rect.w;
+	}
+
+	if (App->gen2->flipPlayer == false && App->gen2->position.x < App->render->camera.x) {
+
+		App->gen2->position.x = App->render->camera.x;
+	}
+	if (App->gen2->flipPlayer == true && (App->gen2->position.x + App->gen2->Gen2Collider->rect.w) > SCREEN_WIDTH) {
+
+		App->gen2->position.x = SCREEN_WIDTH - App->gen2->Gen2Collider->rect.w;
+	}
 	return UPDATE_CONTINUE;
 }
 
