@@ -116,7 +116,7 @@ ModuleGen::ModuleGen()
 	forward.PushBack({ 1429,383,68,122 });
 
 	forward.speed = 0.14f;
-	forward.loop = false;
+	forward.loop = true;
 
 	// walk backward animation 
 	backward.PushBack({ 1174,388,88,117 });
@@ -125,7 +125,7 @@ ModuleGen::ModuleGen()
 	backward.PushBack({ 1429,383,68,122 });
 
 	backward.speed = 0.14f;
-	backward.loop = false;
+	backward.loop = true;
 
 	// jump animation
 	jump.PushBack({ 634,628,80,103 });
@@ -133,7 +133,7 @@ ModuleGen::ModuleGen()
 	jump.PushBack({ 832,647,105,64 });
 
 	jump.speed = 0.07f;
-	jump.loop = false;
+	jump.loop = true;
 
 
 	// kick animation
@@ -411,7 +411,7 @@ update_status ModuleGen::Update()
 		//current_state = state;
 	}
 
-	/*if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
@@ -462,7 +462,7 @@ update_status ModuleGen::Update()
 		attacking = true;
 		action = true;
 
-	}*/
+	}
 
 	
 
@@ -570,7 +570,7 @@ update_status ModuleGen::Update()
 
 				kicked = false;
 				action = false;
-				attack->to_delete = true;
+		//		attack->to_delete = true;
 				Ginputs.Push(ING_KICK_FINISH);
 
 				kick.finishingAnimation(false);
