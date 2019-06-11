@@ -172,12 +172,16 @@ ModuleGen::ModuleGen()
 	sAttack.speed = 0.3f;
 
 	// crouch 
-	crouchD.PushBack({ 22, 432, 68, 110 });
-	crouchD.PushBack({ 101, 432, 68, 110 });
-	crouchD.PushBack({ 187, 432, 68, 110 });
-	crouchD.PushBack({ 304, 467, 89, 75 });
-	crouchD.PushBack({ 434, 467, 89, 75 });
-	crouchD.PushBack({ 560, 467, 89, 75 });
+
+	crouch.PushBack({ 257,1612,88,76 });
+
+	//crouch right & left
+	crouchD.PushBack({ 345, 1612, 83, 74 });
+	crouchD.PushBack({ 430, 1612, 89, 75 });
+	crouchD.PushBack({ 526, 1612, 99, 76 });
+	crouchD.PushBack({ 626, 1612, 95, 77 });
+	crouchD.PushBack({ 730, 1612, 89, 77 });
+
 	crouchD.speed = 0.3f;
 	crouchD.loop = false;
 
