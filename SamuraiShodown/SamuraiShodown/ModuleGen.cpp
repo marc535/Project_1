@@ -48,7 +48,7 @@ ModuleGen::ModuleGen()
 	lightattack.PushBack({ 1036,2206,166,69 });
 
 	lightattack.speed = 0.4f;
-	lightattack.loop = false;
+	lightattack.loop = true;
 
 
 	//light attack jumping
@@ -351,7 +351,7 @@ update_status ModuleGen::Update()
 			case STG_SLASH_STANDING:
 				LOG("SLASH STANDING ++++\n");
 				attacking = true; action = true;
-				Mix_PlayChannel(-1, App->audio->effects[6], 0);
+				//Mix_PlayChannel(-1, App->audio->effects[6], 0);
 				if (!flipPlayer) {
 
 					attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_PLAYER_ATTACK, (Module*)App->player2);
@@ -367,12 +367,12 @@ update_status ModuleGen::Update()
 				LOG("KICK STANDING ----\n");
 				kicked = true; action = true;
 				if (!flipPlayer) {
-					Mix_PlayChannel(-1, App->audio->effects[2], 0);
+					//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
 					attack->SetPos(position.x + 30, position.y - 50);
 				}
 				if (flipPlayer) {
-					Mix_PlayChannel(-1, App->audio->effects[2], 0);
+					//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 					attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
 					attack->SetPos(position.x - 25, position.y - 50);
 				}
@@ -392,8 +392,8 @@ update_status ModuleGen::Update()
 			case STG_SPECIAL:
 				LOG("TORNADO\n");
 				tornadoMov = true; action = true;
-				Mix_PlayChannel(-1, App->audio->effects[3], 0);
-				Mix_PlayChannel(-1, App->audio->effects[4], 0);
+			//	Mix_PlayChannel(-1, App->audio->effects[3], 0);
+			//	Mix_PlayChannel(-1, App->audio->effects[4], 0);
 				tornadoMov = true;
 				action = true;
 				if (!flipPlayer) {
@@ -607,15 +607,15 @@ update_status ModuleGen::Update()
 		}
 		if (attacking) {
 
-			current_animation = &sAttack;
-			if (sAttack.FinishedAnimation() == true) {
+			current_animation = &lightattack;
+			if (lightattack.FinishedAnimation() == true) {
 
 				attacking = false;
 				action = false;
 				//attack->to_delete = true;
 				Ginputs.Push(ING_SLASH_FINISH);
 
-				sAttack.finishingAnimation(false);
+				lightattack.finishingAnimation(false);
 			}
 
 		}
