@@ -98,6 +98,7 @@ public:
 	Animation mediumattack;
 	Animation mediumattackj;
 	Animation mediumattackc;
+	Animation poison;
 
 	
 

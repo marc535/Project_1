@@ -145,6 +145,41 @@ ModuleGen::ModuleGen()
 	kick.speed = 0.14f;
 	kick.loop = false;
 
+	//poison
+
+	poison.PushBack({ 835,2465,97,72 });
+	poison.PushBack({ 945,2464,75,75 });
+	poison.PushBack({ 945,2464,75,75 });
+	poison.PushBack({ 835,2465,97,72 });
+	poison.PushBack({ 1172,2471,103,60 });
+	poison.PushBack({ 1307,2470,127,60 });
+	poison.PushBack({ 1455,2470,145,77 });
+	poison.PushBack({ 1455,2470,145,77 });
+	poison.PushBack({ 1620,2465,162,72 });
+	poison.PushBack({ 65,2583,178,89 });
+	poison.PushBack({ 257,2583,178,89 });
+	poison.PushBack({ 453,2483,178,89 });
+	poison.PushBack({ 453,2483,178,89 });
+	poison.PushBack({ 1029,2579,182,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1794,2578,229,102 });
+	poison.PushBack({ 1794,2578,229,102 });
+	poison.PushBack({ 1794,2578,229,102 });
+	poison.PushBack({ 512,2701,227,98 });
+	poison.PushBack({ 512,2701,227,98 });
+	poison.PushBack({ 512,2701,227,98 });
+	poison.PushBack({ 1191,2701,232,98 });
+	poison.PushBack({ 1191,2701,232,98 });
+	poison.PushBack({ 1191,2701,232,98 });
+	poison.PushBack({ 538,2834,227,92 });
+	poison.PushBack({ 538,2834,227,92 });
+	poison.PushBack({ 538,2834,227,92 });
+	poison.PushBack({ 1239,2845,174,73 });
+
+
+
 	// tornado move animation
 	tornadoMove.PushBack({ 22, 247, 102, 102 });
 	tornadoMove.PushBack({ 124, 247, 81, 101 });
