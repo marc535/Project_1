@@ -803,7 +803,7 @@ void ModuleGen2::OnCollision(Collider* c1, Collider* c2) {
 
 	case COLLIDER_PLAYER_ATTACK:
 		if (c2->to_delete == false) { c2->to_delete = true; }
-		hp -= 200;
+		hp -= 500;
 		getsHit = true;
 		LOG("HURT 10")
 		Mix_PlayChannel(-1, App->audio->effects[7], 0);
