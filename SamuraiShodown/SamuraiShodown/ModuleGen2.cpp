@@ -42,24 +42,30 @@ ModuleGen2::ModuleGen2()
 	idle.speed = 0.14f;
 
 	// walk forward animation 
-	forward.PushBack({ 1073,398,88,115 });
-	forward.PushBack({ 1161,398,84, 115 });
-	forward.PushBack({ 1245,392,83,121 });
-	forward.PushBack({ 1328,393,68,120 });
+	forward.PushBack({ 1174,388,88,117 });
+	forward.PushBack({ 1262,388,84,117 });
+	forward.PushBack({ 1346,382,83,123 });
+	forward.PushBack({ 1429,383,68,122 });
+
 	forward.speed = 0.14f;
+	forward.loop = true;
 
 	// walk backward animation 
-	backward.PushBack({ 1073,398,88,115 });
-	backward.PushBack({ 1161,398,84, 115 });
-	backward.PushBack({ 1245,392,83,121 });
-	backward.PushBack({ 1328,393,68,120 });
+	backward.PushBack({ 1174,388,88,117 });
+	backward.PushBack({ 1262,388,84,117 });
+	backward.PushBack({ 1346,382,83,123 });
+	backward.PushBack({ 1429,383,68,122 });
+
 	backward.speed = 0.14f;
+	backward.loop = true;
 
 	// jump animation
-	jump.PushBack({ 575,645,90,103 });
-	jump.PushBack({ 671,645,97,86 });
-	jump.PushBack({ 783,664,105,65 });
+	jump.PushBack({ 634,628,80,103 });
+	jump.PushBack({ 720,628,97,86 });
+	jump.PushBack({ 832,647,105,64 });
+
 	jump.speed = 0.07f;
+	jump.loop = true;
 
 	kick.PushBack({ 45,2450,82,124 });
 	kick.PushBack({ 45,2450,82,124 });
@@ -162,16 +168,20 @@ ModuleGen2::ModuleGen2()
 
 	// jump forward
 
-	JumpForward.PushBack({ 474,340,96,153 });
-	JumpForward.PushBack({ 568,340,98,175 });
-	JumpForward.PushBack({ 682 ,340,96,128 });
+	JumpForward.PushBack({ 650,387,96,153 });
+	JumpForward.PushBack({ 744,387,98,175 });
+	JumpForward.PushBack({ 858,387,96,128 });
+
+	JumpForward.speed = 0.14f;
 	JumpForward.loop = false;
 
 	// jump backward
 
-	JumpBackward.PushBack({ 474,340,96,153 });
-	JumpBackward.PushBack({ 568,340,98,175 });
-	JumpBackward.PushBack({ 682 ,340,96,128 });
+	JumpBackward.PushBack({ 650,387,96,153 });
+	JumpBackward.PushBack({ 744,387,98,175 });
+	JumpBackward.PushBack({ 858,387,96,128 });
+
+	JumpBackward.speed = 0.14f;
 	JumpBackward.loop = false;
 
 	// crouch sword attack 
