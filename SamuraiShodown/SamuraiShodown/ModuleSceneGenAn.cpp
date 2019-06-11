@@ -71,7 +71,7 @@ bool ModuleSceneGenAn::Start()
 	/*App->player->Enable();
 	App->gen2->Enable();*/
 	
-	//App->render->SetCamera();
+	App->render->SetCamera();
 
 	return true;
 }
@@ -154,7 +154,7 @@ update_status ModuleSceneGenAn::Update()
 
 	App->fonts->BlitText(255, 31, 1, "GEN-AN");
 	App->fonts->BlitText(20, 31, 1, "GEN-AN");
-	//App->render->MoveCamera();
+	App->render->MoveCamera();
 
 	return UPDATE_CONTINUE;
 }
