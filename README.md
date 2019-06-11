@@ -27,19 +27,19 @@ We recommend you read only the last part, which will show you which features are
 
 Controls:
 If you wish to switch screens you can press SPACE
-* Player1 - Haohmaru:
-To move Haohmaru you have to either press D(forward walk), A(backward walk),W(jump) or S(crouch)
-To attack with Haohmaru you can either press Q(kick), E(slash), or R(tornado)
+* Player1 - Gen-an:
+To move Gen-an you have to either press D(forward walk), A(backward walk),W(jump) or S(crouch)
+To attack with Gen-an you can either press Q(light attack), E(medium attack), or R(Poison attack) T(kick)
 You can also combine walking with jumping to realize forward/backward jumps (A/D + W)
 
-* Player2 - Haohmaru:
-To move Haohmaru you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk),UP(jump) or DOWN(crouch)
-To attack with Haohmaru you can either press 1(kick), 2(slash), or 3(tornado)
+* Player2 - Gen-an:
+To move Gen-an you have to, using the arrows, either press RIGHT(forward walk), LEFT(backward walk),UP(jump) or DOWN(crouch)
+To attack with Gen-an you can either press 1(light attack), 2(medium attack), or 3(Poison attack) 4(kick)
 You can also combine walking with jumping to realize forward/backward jumps (LEFT/RIGHT + UP)
 
 * Debug tools
 F1: show/hide colliders
-F2: skip to battle
+F3: skip to battle
 F5: godMode(eliminate p1 colliders)
 F10: Player1 win
 F11: Player2 win
@@ -91,4 +91,10 @@ v.0.6:	- Implemented the following stage/screen animations:
 	- Introduced timer
 	- Introduced KO animation(UI)
 	- Added F3 debug tool (shortcut to gen-an stage)
+
+v.Alpha:  - Haohmaru disabled
+	  - Implemented Gen-an crouch (forward and backward), fixed jump (neutral, forward and backward) animations to gen-an
+	  - Implemented Gen-an particles
+	  - Implemented Gen-an new animations (kick, lightattack, medium attack)
+
 Link to the game's wiki: https://github.com/marc535/Project_1/wiki
