@@ -96,6 +96,7 @@ public:
 	Animation dead;
 	Animation lightattackc;
 	Animation mediumattack;
+	Animation poison;
 	iPoint position;
 
 	bool jumped = false;
@@ -114,6 +115,7 @@ public:
 	bool getsHit = false;
 	bool crouchedD = false;
 	bool Mattack = false;
+	bool poisonA = false;
 	
 	
 	
