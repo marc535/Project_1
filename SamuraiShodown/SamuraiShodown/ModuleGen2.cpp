@@ -29,7 +29,7 @@ ModuleGen2::ModuleGen2()
 	lightattackc.PushBack({ 1461,2086,169,55 });
 	lightattackc.PushBack({ 1633,2086,169,55 });
 
-	lightattackc.speed = 0.14f;
+	lightattackc.speed = 0.5f;
 	lightattackc.loop = false;
 
 	// idle animation
@@ -61,26 +61,58 @@ ModuleGen2::ModuleGen2()
 	jump.PushBack({ 783,664,105,65 });
 	jump.speed = 0.07f;
 
-	// kick animation
-	kick.PushBack({ 305,141,66,95 });
-	kick.PushBack({ 372,138,86,98 });
-	kick.PushBack({ 305,141,66,95 });
-	//kick.PushBack({22, 0, 73, 118});
-	kick.speed = 0.14f;
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 556,2450,82,109 });
+	kick.PushBack({ 556,2450,82,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 398,2450,72,109 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 220,2450,85,118 });
+	kick.PushBack({ 45,2450,82,124 });
+	kick.PushBack({ 45,2450,82,124 });
 
-	// tornado move animation
-	tornadoMove.PushBack({ 22, 247, 102, 102 });
-	tornadoMove.PushBack({ 124, 247, 81, 101 });
-	tornadoMove.PushBack({ 206, 253, 82, 101 });
-	tornadoMove.PushBack({ 289, 244, 66, 105 });
-	tornadoMove.PushBack({ 356, 237, 107, 102 });
-	tornadoMove.PushBack({ 480, 174, 72, 174 });
-	tornadoMove.PushBack({ 566, 236, 111, 112 });
-	tornadoMove.PushBack({ 681, 244, 111, 104 });
-	tornadoMove.PushBack({ 793, 244, 118, 104 });
-	tornadoMove.PushBack({ 912, 244, 104, 102 });
+	kick.speed = 0.5f;
+	kick.loop = true;
 
-	tornadoMove.speed = 0.2f;
+	poison.PushBack({ 835,2465,97,72 });
+	poison.PushBack({ 945,2464,75,75 });
+	poison.PushBack({ 945,2464,75,75 });
+	poison.PushBack({ 835,2465,97,72 });
+	poison.PushBack({ 1172,2471,103,60 });
+	poison.PushBack({ 1307,2470,127,60 });
+	poison.PushBack({ 1455,2470,145,62 });
+	poison.PushBack({ 1455,2470,145,62 });
+	poison.PushBack({ 1620,2465,162,72 });
+	poison.PushBack({ 65,2583,178,89 });
+	poison.PushBack({ 257,2583,178,89 });
+	poison.PushBack({ 453,2583,178,89 });
+	poison.PushBack({ 453,2583,178,89 });
+	poison.PushBack({ 1029,2579,182,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1212,2579,228,93 });
+	poison.PushBack({ 1794,2578,229,102 });
+	//poison.PushBack({ 1794,2578,229,102 });
+	poison.PushBack({ 1794,2578,229,102 });
+	//poison.PushBack({ 512,2701,227,98 });
+	poison.PushBack({ 512,2701,227,98 });
+
+	//poison.PushBack({ 1191,2701,232,98 });
+
+	poison.PushBack({ 1191,2701,232,98 });
+	//poison.PushBack({ 538,2834,227,92 });
+	poison.PushBack({ 538,2834,227,92 });
+
+	poison.PushBack({ 1239,2845,174,73 });
+
+	poison.speed = 0.25f;
+	poison.loop = true;
+
 
 	// sword attack
 	sAttack.PushBack({ 22, 1004, 67, 127 });
@@ -95,6 +127,28 @@ ModuleGen2::ModuleGen2()
 	sAttack.speed = 0.3f;
 
 	crouch.PushBack({ 257,1612,88,56 });
+
+	mediumattack.PushBack({ 42,2299,96,70 });
+	mediumattack.PushBack({ 139,2299,96,70 });
+	mediumattack.PushBack({ 238,2300,150,69 });
+	mediumattack.PushBack({ 389,2300,150,69 });
+	mediumattack.PushBack({ 542,2300,166,69 });
+	mediumattack.PushBack({ 711,2300,166,69 });
+	mediumattack.PushBack({ 878,2300,166,69 });
+	mediumattack.PushBack({ 1045,2300,166,69 });
+	mediumattack.PushBack({ 1212,2300,166,69 });
+	mediumattack.PushBack({ 1379,2300,166,69 });
+	mediumattack.PushBack({ 1547,2275,94,70 });
+	mediumattack.PushBack({ 1647,2275,94,70 });
+	mediumattack.PushBack({ 1747,2287,89,82 });
+	mediumattack.PushBack({ 1837,2287,89,82 });
+	mediumattack.PushBack({ 1928,2297,83,72 });
+	mediumattack.PushBack({ 1761,2203,83,72 });
+	mediumattack.PushBack({ 1857,2203,88,72 });
+	mediumattack.PushBack({ 1953,2203,88,72 });
+
+	mediumattack.speed = 0.4f;
+	mediumattack.loop = true;
 
 	// crouch 
 	crouchD.PushBack({ 22, 432, 68, 110 });
@@ -181,7 +235,7 @@ bool ModuleGen2::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/2.png");
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/22.png");
 	
 	action = false;
 	hp = 8000;
@@ -449,6 +503,23 @@ update_status ModuleGen2::Update()
 
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	{
+		Mix_PlayChannel(-1, App->audio->effects[2], 0);
+		poisonA = true; action = true;
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
+
+	}
+
 	
 
 	//GOD MODE
@@ -563,6 +634,25 @@ update_status ModuleGen2::Update()
 			}
 
 		}
+
+
+		if (poisonA) {
+
+			current_animation = &poison;
+
+			if (kick.FinishedAnimation() == true) {
+
+				poisonA = false;
+				action = false;
+				attack->to_delete = true;
+				Ginputs.Push(ING2_KICK_FINISH);
+
+				poison.finishingAnimation(false);
+			}
+
+		}
+
+
 		if (tornadoMov) {
 
 			current_animation = &tornadoMove;

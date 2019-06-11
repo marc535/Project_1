@@ -539,7 +539,7 @@ update_status ModuleGen::Update()
 	}
 	
 	
-	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
+	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_Y][GAME_PAD_1] == KEY_DOWN && !action && !jumped) {
 
 		Mix_PlayChannel(-1, App->audio->effects[12], 0);
 		//Mix_PlayChannel(-1, App->audio->effects[4], 0);

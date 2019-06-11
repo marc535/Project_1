@@ -18,7 +18,8 @@ public:
 	bool timeUp();
 
 public:
-
+	int winsgen = 0;
+	int winsgen2 = 0;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	
