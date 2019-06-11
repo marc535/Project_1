@@ -528,6 +528,17 @@ update_status ModuleGen::Update()
 		mediumAttack = true;
 		action = true;
 
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
+
 	}
 	if (App->input->keyboard[SDL_SCANCODE_T] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_B][GAME_PAD_1] == KEY_DOWN && !action && !jumped)
 	{
@@ -535,6 +546,16 @@ update_status ModuleGen::Update()
 	//	Mix_PlayChannel(-1, App->audio->effects[11], 0);
 		kicked = true;
 		action = true;
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
 
 	}
 	
@@ -555,6 +576,16 @@ update_status ModuleGen::Update()
 			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 			
 		}*/
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN && !action)
 	{
@@ -562,7 +593,16 @@ update_status ModuleGen::Update()
 		//Mix_PlayChannel(-1, App->audio->effects[6], 0);
 		attacking = true;
 		action = true;
+		if (!flipPlayer) {
 
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_PLAYER_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
+		}
 	}
 
 	
@@ -671,7 +711,7 @@ update_status ModuleGen::Update()
 				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 				kicked = false;
 				action = false;
-				//		attack->to_delete = true;
+					attack->to_delete = true;
 				Ginputs.Push(ING_KICK_FINISH);
 
 				kick.finishingAnimation(false);
@@ -687,7 +727,7 @@ update_status ModuleGen::Update()
 				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 				poisonA = false;
 				action = false;
-				//		attack->to_delete = true;
+						attack->to_delete = true;
 				Ginputs.Push(ING_KICK_FINISH);
 
 				poison.finishingAnimation(false);
@@ -703,7 +743,7 @@ update_status ModuleGen::Update()
 				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 				mediumAttack = false;
 				action = false;
-		//		attack->to_delete = true;
+				attack->to_delete = true;
 				Ginputs.Push(ING_MATTACK_FINISH);
 
 				mediumattack.finishingAnimation(false);
@@ -731,7 +771,7 @@ update_status ModuleGen::Update()
 
 				attacking = false;
 				action = false;
-				//attack->to_delete = true;
+				attack->to_delete = true;
 				Ginputs.Push(ING_SLASH_FINISH);
 
 				lightattack.finishingAnimation(false);

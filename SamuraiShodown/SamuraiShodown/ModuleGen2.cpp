@@ -30,7 +30,7 @@ ModuleGen2::ModuleGen2()
 	lightattackc.PushBack({ 1633,2086,169,55 });
 
 	lightattackc.speed = 0.5f;
-	lightattackc.loop = false;
+	lightattackc.loop = true;
 
 	// idle animation
 	idle.PushBack({ 1722,555,68,122 });
@@ -513,7 +513,7 @@ update_status ModuleGen2::Update()
 
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	if (App->input->keyboard[SDL_SCANCODE_KP_3] == KEY_STATE::KEY_DOWN && !action && !jumped)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		poisonA = true; action = true;
@@ -650,7 +650,7 @@ update_status ModuleGen2::Update()
 
 			current_animation = &poison;
 
-			if (kick.FinishedAnimation() == true) {
+			if (poison.FinishedAnimation() == true) {
 
 				poisonA = false;
 				action = false;
