@@ -416,6 +416,13 @@ update_status ModuleGen::Update()
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
 		position.x += speed;
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action && !jumped)
+		{
+
+			jumpedF = true;
+			action = true;
+
+		}
 	
 	}
 		
@@ -424,9 +431,15 @@ update_status ModuleGen::Update()
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
-		
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action && !jumped)
+		{
+
+			jumpedB = true;
+			action = true;
+
+		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action)
 	{
 
 		jumped = true;
