@@ -94,6 +94,8 @@ ModuleGen2::ModuleGen2()
 
 	sAttack.speed = 0.3f;
 
+	crouch.PushBack({ 257,1612,88,56 });
+
 	// crouch 
 	crouchD.PushBack({ 22, 432, 68, 110 });
 	crouchD.PushBack({ 101, 432, 68, 110 });
@@ -102,7 +104,7 @@ ModuleGen2::ModuleGen2()
 	crouchD.PushBack({ 434, 467, 89, 75 });
 	crouchD.PushBack({ 560, 467, 89, 75 });
 	crouchD.speed = 0.3f;
-	crouchD.loop = false;
+	crouchD.loop = true;
 
 	// jump forward
 
@@ -375,12 +377,30 @@ update_status ModuleGen2::Update()
 
 		crouched = true;
 		action = true;
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
+		{
+			crouchedD = true;
+			action = true;
+			if (!action && !flipPlayer) { current_animation = &forward; }
+			if (!action && flipPlayer) { current_animation = &backward; }
+			position.x += speed;
 
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov && !action && !getsHit)
+		{
+			crouchedD = true;
+			action = true;
+			if (!action && !flipPlayer) { current_animation = &forward; }
+			if (!action && flipPlayer) { current_animation = &backward; }
+			position.x -= speed;
+
+		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_KP_2] == KEY_STATE::KEY_REPEAT && !action && !jumped)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[2], 0);
-		kicked = true; action = true;
+		Mattack = true; action = true;
 		if (!flipPlayer) {
 
 			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
@@ -408,6 +428,23 @@ update_status ModuleGen2::Update()
 
 			attack = App->collision->AddCollider({ position.x, position.y, 67, 30 }, COLLIDER_ENEMY_ATTACK, (Module*)App->player2);
 			attack->SetPos(position.x - 55, position.y - 50);
+		}
+
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_KP_4] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	{
+		Mix_PlayChannel(-1, App->audio->effects[2], 0);
+		kicked = true; action = true;
+		if (!flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x + 30, position.y - 50);
+		}
+		if (flipPlayer) {
+
+			attack = App->collision->AddCollider({ position.x, position.y, 70, 35 }, COLLIDER_ENEMY_ATTACK, this);
+			attack->SetPos(position.x - 25, position.y - 50);
 		}
 
 	}
@@ -458,6 +495,7 @@ update_status ModuleGen2::Update()
 			var1++;
 
 		}
+
 		if (jumpedF) {
 
 			current_animation = &JumpForward;
@@ -552,6 +590,21 @@ update_status ModuleGen2::Update()
 			}
 
 		}
+
+		if (Mattack) {
+
+			current_animation = &mediumattack;
+			if (mediumattack.FinishedAnimation() == true) {
+
+				Mattack = false;
+				action = false;
+				attack->to_delete = true;
+				Ginputs.Push(ING2_SLASH_FINISH);
+
+				mediumattack.finishingAnimation(false);
+			}
+
+		}
 		/*if (sCrouched) {
 
 			current_animation = &sCrouch;
@@ -568,16 +621,30 @@ update_status ModuleGen2::Update()
 		}*/
 		if (crouched) {
 
+			current_animation = &crouch;
+			if (crouch.FinishedAnimation() == true) {
+
+				crouched = false;
+				action = false;
+
+				crouch.finishingAnimation(false);
+			}
+
+		}
+
+		if (crouchedD) {
+
 			current_animation = &crouchD;
 			if (crouchD.FinishedAnimation() == true) {
 
-				crouched = false;
+				crouchedD = false;
 				action = false;
 
 				crouchD.finishingAnimation(false);
 			}
 
 		}
+
 		if (isDead) {
 
 			current_animation = &death;

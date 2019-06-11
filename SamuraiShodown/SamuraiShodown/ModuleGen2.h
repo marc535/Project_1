@@ -77,6 +77,7 @@ public:
 
 	Collider* Gen2Collider = nullptr;
 	Collider* attack = nullptr;
+	Animation crouch;
 	Animation idle;
 	Animation forward;
 	Animation backward;
@@ -94,6 +95,7 @@ public:
 	Animation death;
 	Animation dead;
 	Animation lightattackc;
+	Animation mediumattack;
 	iPoint position;
 
 	bool jumped = false;
@@ -110,6 +112,8 @@ public:
 	bool sJumpF = false;
 	bool sJumpB = false;
 	bool getsHit = false;
+	bool crouchedD = false;
+	bool Mattack = false;
 	
 	
 	
