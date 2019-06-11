@@ -14,7 +14,7 @@ The stories take place in the 18th century in Japan, during the seclusion period
 
 ## **Team members**
 
-[Team photo](https://github.com/marc535/Project_1/blob/master/SamuraiShodown/SamuraiShodown/Game/Assets/Wiki_gallery/team-photo.jpeg)
+![Team photo](https://github.com/marc535/Project_1/blob/master/SamuraiShodown/SamuraiShodown/Game/Assets/Wiki_gallery/team-photo.jpeg)
 
 * Guillem Turmo (https://github.com/turmo11)- Management
 * Santiago Moliner (https://github.com/sanmopre)- Programmer
