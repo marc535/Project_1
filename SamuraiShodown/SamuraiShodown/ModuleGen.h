@@ -47,6 +47,7 @@ enum Gen_inputs
 	ING_KICK,
 	ING_SPECIAL,
 	ING_JUMP_FINISH,
+	ING_MATTACK_FINISH,
 	ING_KICK_FINISH,
 	ING_SLASH_FINISH,
 	ING_SPECIAL_FINISH
@@ -110,6 +111,7 @@ public:
 	bool grounded = false;
 	bool action = true;
 	bool kicked = false;
+	bool mediumAttack = false;
 	bool tornadoMov = false;
 	bool attacking = false;
 	bool crouched = false;
@@ -118,6 +120,7 @@ public:
 	bool sJumpF = false;
 	bool sJumpB = false;
 	bool getsHit = false;
+	bool crouchedD = false;
 	
 	
 	bool flipPlayer = false;
