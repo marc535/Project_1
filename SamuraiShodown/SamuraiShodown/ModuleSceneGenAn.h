@@ -20,6 +20,8 @@ public:
 public:
 	int winsgen = 0;
 	int winsgen2 = 0;
+	int p1win = 0;
+	int p2win = 0;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	
