@@ -75,7 +75,7 @@ ModuleGen::ModuleGen()
 	mediumattack.PushBack({ 1953,2203,88,72 });
 
 	mediumattack.speed = 0.4f;
-	mediumattack.loop = false;
+	mediumattack.loop = true;
 
 	//medium attack crouch
 
@@ -267,9 +267,9 @@ bool ModuleGen::Start()
 	action = false;
 	hp = 8000;
 	
-	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
-	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
+	App->audio->effects[10] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/attackgen.wav");
+	App->audio->effects[11] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/SLASHGEN.wav");
+	App->audio->effects[12] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/GenAn/POISONCLOUD.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
 	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
@@ -425,6 +425,14 @@ update_status ModuleGen::Update()
 		}
 	
 	}
+
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && !action)
+	{
+
+		crouched = true;
+		action = true;
+
+	}
 		
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000 && !kicked && !tornadoMov)
 	{
@@ -433,7 +441,6 @@ update_status ModuleGen::Update()
 		position.x -= speed;
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action && !jumped)
 		{
-
 			jumpedB = true;
 			action = true;
 
@@ -448,7 +455,8 @@ update_status ModuleGen::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN && !action && !jumped)
 	{
-        Mix_PlayChannel(-1, App->audio->effects[2], 0);
+       // Mix_PlayChannel(-1, App->audio->effects[2], 0);
+		Mix_PlayChannel(-1, App->audio->effects[11], 0);
 		kicked = true;
 		action = true;
 
@@ -457,8 +465,8 @@ update_status ModuleGen::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
-		Mix_PlayChannel(-1, App->audio->effects[3], 0);
-		Mix_PlayChannel(-1, App->audio->effects[4], 0);
+		Mix_PlayChannel(-1, App->audio->effects[12], 0);
+		//Mix_PlayChannel(-1, App->audio->effects[4], 0);
 		tornadoMov = true;
 		action = true;
 		if (!flipPlayer) {
@@ -473,7 +481,8 @@ update_status ModuleGen::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN && !action)
 	{
-		Mix_PlayChannel(-1, App->audio->effects[6], 0);
+		Mix_PlayChannel(-1, App->audio->effects[10], 0);
+		//Mix_PlayChannel(-1, App->audio->effects[6], 0);
 		attacking = true;
 		action = true;
 
@@ -579,16 +588,16 @@ update_status ModuleGen::Update()
 
 		if (kicked) {
 
-			current_animation = &kick;
+			current_animation = &mediumattack;
 
-			if (kick.FinishedAnimation() == true) {
-
+			if (mediumattack.FinishedAnimation() == true) {
+				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
 				kicked = false;
 				action = false;
 		//		attack->to_delete = true;
 				Ginputs.Push(ING_KICK_FINISH);
 
-				kick.finishingAnimation(false);
+				mediumattack.finishingAnimation(false);
 			}
 
 		}
@@ -608,6 +617,7 @@ update_status ModuleGen::Update()
 		if (attacking) {
 
 			current_animation = &lightattack;
+			
 			if (lightattack.FinishedAnimation() == true) {
 
 				attacking = false;
