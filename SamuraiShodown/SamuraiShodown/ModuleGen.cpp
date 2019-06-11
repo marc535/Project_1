@@ -411,7 +411,7 @@ update_status ModuleGen::Update()
 		//current_state = state;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) >= 10000 && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &forward; }
 		if (!action && flipPlayer) { current_animation = &backward; }
@@ -419,27 +419,29 @@ update_status ModuleGen::Update()
 	
 	}
 		
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && !kicked && !tornadoMov)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTX) <= -10000 && !kicked && !tornadoMov)
 	{
 		if (!action && !flipPlayer) { current_animation = &backward; }
 		if (!action && flipPlayer) { current_animation = &forward; }
 		position.x -= speed;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->controller_player_1, SDL_CONTROLLER_AXIS_LEFTY) <= -10000 && !action)
 	{
 
 		jumped = true;
 		action = true;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT && !action && !jumped)
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_X][GAME_PAD_1] == KEY_DOWN && !action && !jumped)
 	{
         Mix_PlayChannel(-1, App->audio->effects[2], 0);
 		kicked = true;
 		action = true;
 
 	}
+	
+	
 	if (App->input->keyboard[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT && !action && !jumped) {
 
 		Mix_PlayChannel(-1, App->audio->effects[3], 0);
@@ -456,7 +458,7 @@ update_status ModuleGen::Update()
 			
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT && !action)
+	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN && !action)
 	{
 		Mix_PlayChannel(-1, App->audio->effects[6], 0);
 		attacking = true;
@@ -597,7 +599,7 @@ update_status ModuleGen::Update()
 
 				attacking = false;
 				action = false;
-				attack->to_delete = true;
+				//attack->to_delete = true;
 				Ginputs.Push(ING_SLASH_FINISH);
 
 				sAttack.finishingAnimation(false);
