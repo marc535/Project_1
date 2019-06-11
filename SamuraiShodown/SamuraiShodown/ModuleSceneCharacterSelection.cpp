@@ -68,11 +68,8 @@ update_status ModuleSceneCharacterSelection::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
 		//FadeToBlack
-		App->fade->FadeToBlack((Module*)App->scene_charSelect, (Module*)App->scene_haohmaru,0, 2.0f);
-		
-
-		//Mix_FadeOutMusic(2000);
-		
+		App->fade->FadeToBlack((Module*)App->scene_ending, (Module*)App->scene_genan, 0, 2.0f);
+		Mix_FadeOutMusic(2000);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == 1) {
 
