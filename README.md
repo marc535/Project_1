@@ -2,6 +2,8 @@
 
 ## Samurai Shodown
 
+![Team logo](https://github.com/marc535/Project_1/blob/master/SamuraiShodown/SamuraiShodown/Game/Assets/Wiki_gallery/isekaihack.jpeg)
+
 ### Presentation:
 
 Project 1 - Samurai Shodown
@@ -11,6 +13,8 @@ Samurai Shodown is a competitive fighting game series developed by SNK for the N
 The stories take place in the 18th century in Japan, during the seclusion period. Shiro Tokisada Amakusa was slain in 1638 by the forces of the Tokugawa Shogunate and he is revived as a satanic demon. Driven by his hate for the force that killed him, he uses his dark powers to bring chaos to the world.
 
 ## **Team members**
+
+[Team photo](https://github.com/marc535/Project_1/blob/master/SamuraiShodown/SamuraiShodown/Game/Assets/Wiki_gallery/team-photo.jpeg)
 
 * Guillem Turmo (https://github.com/turmo11)- Management
 * Santiago Moliner (https://github.com/sanmopre)- Programmer
