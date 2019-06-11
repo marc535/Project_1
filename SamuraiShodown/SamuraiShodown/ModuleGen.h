@@ -121,7 +121,7 @@ public:
 	bool sJumpB = false;
 	bool getsHit = false;
 	bool crouchedD = false;
-	
+	bool poisonA = false;
 	
 	bool flipPlayer = false;
 	bool godMode = false;

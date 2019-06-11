@@ -188,8 +188,8 @@ ModuleGen::ModuleGen()
 	poison.PushBack({ 538,2834,227,92 });
 	poison.PushBack({ 1239,2845,174,73 });
 
-	poison.speed = 0.14f;
-	poison.loop = false;
+	poison.speed = 0.05f;
+	poison.loop = true;
 
 
 	// tornado move animation
@@ -543,17 +543,18 @@ update_status ModuleGen::Update()
 
 		Mix_PlayChannel(-1, App->audio->effects[12], 0);
 		//Mix_PlayChannel(-1, App->audio->effects[4], 0);
-		tornadoMov = true;
+		poisonA = true;
 		action = true;
+		/*
 		if (!flipPlayer) {
 			App->particles->tornado.speed.x = +3;
 			App->particles->AddParticle(App->particles->tornado, position.x + 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 		}
 		else {
-			App->particles->tornado.speed.x = -3;
+		App->particles->tornado.speed.x = -3;
 			App->particles->AddParticle(App->particles->tornado, position.x - 20, position.y - 77, COLLIDER_PLAYER_SHOT);
 			
-		}
+		}*/
 	}
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_REPEAT || App->input->game_pad[SDL_CONTROLLER_BUTTON_A][GAME_PAD_1] == KEY_DOWN && !action)
 	{
@@ -674,6 +675,22 @@ update_status ModuleGen::Update()
 				Ginputs.Push(ING_KICK_FINISH);
 
 				kick.finishingAnimation(false);
+			}
+
+		}
+
+		if (poisonA) {
+
+			current_animation = &poison;
+
+			if (poison.FinishedAnimation() == true) {
+				//Mix_PlayChannel(-1, App->audio->effects[2], 0);
+				poisonA = false;
+				action = false;
+				//		attack->to_delete = true;
+				Ginputs.Push(ING_KICK_FINISH);
+
+				poison.finishingAnimation(false);
 			}
 
 		}
