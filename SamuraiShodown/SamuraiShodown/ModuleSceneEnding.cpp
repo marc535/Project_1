@@ -36,10 +36,10 @@ bool ModuleSceneEnding::Start()
 		LOG("Mix_LoadMUS(\"Title.ogg\"): %s\n", Mix_GetError());
 	}
 	else {
-	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru.png");
+	graphics = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/Player1wins.png");
 
-	player = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru1.png");
-	player2 = App->textures->Load("Assets/Sprite_Sheets/Characters/Haohmaru/EndingHaohmaru2.png");
+	player = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/Player1wins.png");
+	player2 = App->textures->Load("Assets/Sprite_Sheets/Characters/Gen-An/Player2wins.png");
 	Mix_PlayMusic(App->audio->soundtracks[2], 2);
 	}
 

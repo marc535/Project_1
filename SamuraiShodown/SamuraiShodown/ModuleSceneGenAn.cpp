@@ -73,6 +73,8 @@ bool ModuleSceneGenAn::Start()
 	
 	App->render->SetCamera();
 
+	
+
 	return true;
 }
 
@@ -93,7 +95,17 @@ update_status ModuleSceneGenAn::Update()
 	App->render->Blit(graphics, 0, 0, &background, 0.1f, false); //GenAn Image
 
 	//App->UI->Enable();
+	if (p1win == 2) {
 
+		
+
+	}
+
+	if (p2win == 2) {
+		
+
+
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 
@@ -121,6 +133,8 @@ update_status ModuleSceneGenAn::Update()
 	}
 	if (App->gen->isDead == true) {
 
+		p2win += 1;
+
 		App->gen->action = true;
 		App->gen2->action = true;
 
@@ -136,6 +150,8 @@ update_status ModuleSceneGenAn::Update()
 		App->fade->FadeToBlack((Module*)App->scene_genan, (Module*)App->scene_ending, 0, 2.0f);
 	}
 	if (App->gen2->isDead == true) {
+
+		p1win += 1;
 
 		App->gen->action = true;
 		App->gen2->action = true;
