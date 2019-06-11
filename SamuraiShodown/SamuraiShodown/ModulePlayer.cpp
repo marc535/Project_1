@@ -831,7 +831,7 @@ update_status ModulePlayer::PreUpdate()
 			}
 
 		}
-if ((position.y < initial_position.y) && ((state != JUMP_BACKWARD) && (state != JUMP_NEUTRAL) && (state != JUMP_FORWARD) && (state != HIT) && (state != SPECIAL_ATTACK) && (state != JUMP_PUNCH) && (state != JUMP_KICK)))
+	if ((position.y < initial_position.y) && ((state != JUMP_BACKWARD) && (state != JUMP_NEUTRAL) && (state != JUMP_FORWARD) && (state != HIT) && (state != SPECIAL_ATTACK) && (state != JUMP_PUNCH) && (state != JUMP_KICK)))
 	{
 		state = JUMP_NEUTRAL;
 	}
@@ -1527,14 +1527,15 @@ update_status ModulePlayer::Update()
 
 			break;
 		case JUMP_NEUTRAL:
+			LOG("ESTADO SALTANDO")
 			current_animation = &jump_neutral;
 			
 
 			position.y = 210 - (yVelocity*var1) + (0.5*(yAcceleration)*pow(var1, 2));
-			grounded = true;
+			
 
 
-			if (position.y > 210 && grounded == true)	//end of the jump
+			if (position.y > 210 )	//end of the jump
 			{
 				state = IDLE;
 				jump_neutral.Reset();

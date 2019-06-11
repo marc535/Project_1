@@ -205,7 +205,7 @@ update_status ModulePlayer2::Update()
 			switch (state)
 			{
 			case ST2_IDLE:
-				LOG("IDLE\n");
+				
 				current_animation = &idle;
 				break;
 			case ST2_WALK_FORWARD:
