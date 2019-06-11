@@ -1,4 +1,4 @@
-﻿# Project 1 bla blka bla test
+﻿# Project 1
 
 ## Samurai Shodown
 
