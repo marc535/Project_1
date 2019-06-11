@@ -186,9 +186,9 @@ bool ModuleGen2::Start()
 
 	flipPlayer = true;
 	
-	App->audio->effects[2] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaomaruKick.wav");
-	App->audio->effects[3] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/HaohmaruTornado.wav");
-	App->audio->effects[4] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/TornadoFX.wav");
+	App->audio->effects[13] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/attackgen.wav");
+	App->audio->effects[14] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Common/SLASHGEN.wav");
+	App->audio->effects[15] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/GenAn/POISONCLOUD.wav");
 	App->audio->effects[6] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/Slash.wav");
 	App->audio->effects[7] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit.wav");
 	App->audio->effects[8] = Mix_LoadWAV("Assets/audio/FXSAMURAI/CharactersSounds/Haohmaru/hit2.wav");
@@ -396,7 +396,7 @@ update_status ModuleGen2::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_KP_1] == KEY_STATE::KEY_REPEAT && !action)
 	{
-		Mix_PlayChannel(-1, App->audio->effects[6], 0);
+		Mix_PlayChannel(-1, App->audio->effects[13], 0);
 		attacking = true; action = true;
 		if (!flipPlayer) {
 
@@ -540,15 +540,15 @@ update_status ModuleGen2::Update()
 		}
 		if (attacking) {
 
-			current_animation = &sAttack;
-			if (sAttack.FinishedAnimation() == true) {
+			current_animation = &lightattackc;
+			if (lightattackc.FinishedAnimation() == true) {
 
 				attacking = false;
 				action = false;
 				attack->to_delete = true;
 				Ginputs.Push(ING2_SLASH_FINISH);
 
-				sAttack.finishingAnimation(false);
+				lightattackc.finishingAnimation(false);
 			}
 
 		}
