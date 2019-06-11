@@ -84,7 +84,7 @@ public:
 	Animation tornadoMove;
 	Animation sAttack;
 	Animation crouchD;
-	Animation crouchU;
+	Animation crouch;
 	Animation JumpForward;
 	Animation JumpBackward;
 	Animation sCrouch;
